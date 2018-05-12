@@ -1,0 +1,26 @@
+/**
+* Font-face Mixin
+*/
+@mixin font-face($fontFamily: 'OpenSans', $fontStyle:normal, $fontWeight:400, $root:'../../fonts/Open_Sans/', $file:'OpenSans-Regular.ttf'){
+	$src: "#{$root}#{$file}";
+	@font-face{
+		font-family: '#{$fontFamily}'; // 'family name'
+		font-style: $fontStyle; // normal, italic, oblique
+		font-weight: $fontWeight; // 100 (This is light), 400 (This is normal), 900 (This is bold).
+		src: url('#{$src}');
+	}
+}
+
+/**
+* Usage:
+*/
+$DINProPath: '../../fonts/';
+
+@include font-face('OpenSans',normal,300,$DINProPath,'DINPro-Light.otf');
+@include font-face('OpenSans',normal,400,$DINProPath,'DINPro-Regular.otf');
+@include font-face('OpenSans',normal,800,$DINProPath,'DINPro-Medium.otf');
+
+/* Variables */
+$DINPro: "DINPro", Arial, sans-serif;
+
+$primaryFontFamily: $DINPro;

@@ -1,0 +1,27 @@
+.dropdown{
+  padding: 0;
+
+  > li{
+    z-index: 1;
+    position: relative;
+
+    &:hover{
+      > ul{ display: block; }
+    }
+
+    a{ display: block; }
+
+    > ul{ 
+      display: none; 
+      min-width: 120px;
+      position: absolute; 
+      left: 0;
+      top: 100%; 
+
+      ul{
+        top: 0;
+        left: 100%;
+      }
+    }
+  }
+}

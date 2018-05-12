@@ -1,0 +1,170 @@
+/** 
+ * SVG background images with PNG and retina fallback
+ * 
+ * Required files:
+ * - pattern.svg
+ * - pattern.png
+ * - pattern@2x.png
+ *
+ * Ex:
+ *
+ * $image-path: '../img' !default;
+ * $fallback-extension: 'png' !default;
+ * $retina-suffix: '@2x';
+ *
+ * Usage: body { @include background-image('pattern'); }
+ */
+
+@mixin background-image($name, $size:false){
+    background-image: url(#{$image-path}/#{$name}.svg);
+    @if($size){
+        background-size: $size;
+    }
+    .no-svg &{
+        background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+          background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+        }
+    }
+}
+
+/**
+ * Animations and keyframes
+ * 
+ * Mixin to create animations crossbrowser supported.
+ *
+ * Ex:
+ *
+ * @include keyframes(slide-down) {
+ *   0% { opacity: 1; }
+ *   90% { opacity: 0; }
+ * }
+
+ * .element {
+ *   width: 100px;
+ *   height: 100px;
+ *   background: black;
+ *   @include animation('slide-down 5s 3');
+ * }
+ */
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+
+/** 
+ * Transitions
+ *
+ * Ex:
+ *
+ * a {
+ *   color: gray;
+ *   @include transition(color .3s ease);
+ *   &:hover {
+ *     color: black;
+ *   }
+ * }
+ */
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+
+/**
+ * Cross browser opacity
+ *
+ * Ex:
+ *
+ * .faded-text { @include opacity(0.8); }
+ */
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/**
+ * Crossbrowser Grayscale
+ *
+ * Ex:
+ *
+ * img { @include grayscale(1); }
+ * img:hover { @include grayscale(0); } //Disable grayscale on hover
+ */
+
+@mixin grayscale($desaturate){
+  @if $desaturate>0 {
+    filter: gray; /* IE6-9 */
+    filter: grayscale($desaturate); /* Microsoft Edge and Firefox 35+ */
+    -webkit-filter: grayscale($desaturate); /* Google Chrome, Safari 6+ & Opera 15+ */
+  }
+  @else{
+    filter: none;
+    -webkit-filter: grayscale($desaturate); /* Google Chrome, Safari 6+ & Opera 15+ */
+  }
+}
+
+/** 
+ * Placeholder
+ *
+ * An easy way style a placeholder crossbrowser
+ *
+ * Ex:
+ *
+ * .foo { @include placeholder { color: green; } }
+ */
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}
+

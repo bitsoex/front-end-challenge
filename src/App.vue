@@ -26,6 +26,12 @@ export default {
 html, body {
   margin: 0;
   padding: 0;
+  background: #21282f;
+  overflow-x: hidden;
+  -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 @font-face {
@@ -69,6 +75,7 @@ html, body {
     height: 66px;
     width: 100vw;
     background: #252c36;
+    z-index: 1000;
   }
 
   #navbar .logo {

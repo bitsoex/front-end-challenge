@@ -1,6 +1,25 @@
 {
   "hosting": {
     "public": "dist",
+    "headers": [ {
+        "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+        "headers" : [ {
+          "key" : "Access-Control-Allow-Origin",
+          "value" : "max-age=30672000"
+        } ]
+        }, {
+        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [ {
+          "key" : "Cache-Control",
+          "value" : "max-age=30672000"
+        } ]
+        }, {
+        "source" : "404.html",
+        "headers" : [ {
+          "key" : "Cache-Control",
+          "value" : "max-age=30672000"
+        } ]
+      } ],
     "ignore": [
       "firebase.json",
       "**/.*",

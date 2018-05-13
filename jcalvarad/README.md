@@ -3,8 +3,16 @@ Create a React webb app that fullfills the requirements described in https://git
 
 The proposed stack for the mvp goes as follows:
 - [X] Create React App to bootstrap app
-- [ ] React Toolbox as UI framework
+- [X] React Toolbox as UI framework
 - [ ] MobX for state management
 - [ ] Chart.js
+
+## UI components
+- [ ] Layout
+- [ ] Header Bar
+- [ ] Trades
+- [ ] Compra
+- [ ] Venta
+- [ ] Chart
 
 More to come...

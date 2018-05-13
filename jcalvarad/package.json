@@ -5,12 +5,26 @@
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+    "react-helmet": "^5.2.0",
+    "react-scripts": "1.1.4",
+    "react-toolbox": "^2.0.0-beta.12"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "toolbox": "react-toolbox-themr"
+  },
+  "devDependencies": {
+    "react-toolbox-themr": "^1.0.2"
+  },
+  "reactToolbox": {
+    "include": [
+      "APP_BAR",
+      "LINK",
+      "NAVIGATION"
+    ],
+    "output": "src/assets/react-toolbox"
   }
 }

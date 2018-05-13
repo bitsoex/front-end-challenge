@@ -1,0 +1,29 @@
+@font-face {
+  font-family: DINPro-Light;
+  src: url('../../../Assets/Fonts/DINPro-Light.otf');
+}
+
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../../../Assets/Fonts/DINPro-Medium.otf');
+}
+
+@font-face {
+  font-family: DINPro-Regular;
+  src: url('../../../Assets/Fonts/DINPro-Regular.otf');
+}
+
+.coin-section {
+
+}
+
+
+.view-exchange {
+  font-family: 'DINPro-Light';
+  color: #b0bac1;
+  font-size: 1em;
+  margin-bottom: 40px;
+}
+
+
+

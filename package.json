@@ -1,0 +1,39 @@
+{
+  "name": "bitso-front-end-challenge",
+  "version": "1.0.0",
+  "description": "bitso frontend challenge",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visomiDev/front-end-challenge.git"
+  },
+  "keywords": [
+    "bitso",
+    "react",
+    "redux",
+    "react-router",
+    "frontend"
+  ],
+  "author": "Michael Villalba Sotelo <visomi.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/visomiDev/front-end-challenge/issues"
+  },
+  "homepage": "https://github.com/visomiDev/front-end-challenge#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.8.1",
+    "redux-devtools": "^3.4.1",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2"
+  }
+}

@@ -1,0 +1,42 @@
+.trades-section{
+    background-color: #23292d;
+    width: 400px;
+}
+
+.trades-header-tittle{
+    color: #b0bac1;
+    width: 300px;
+    height: 30px;
+    padding-top: 10px;
+    margin-left: 50px;
+    text-align: left;
+    padding-left: 10px;
+    background-color: #313d4c;
+}
+
+.trades-header-column{
+    display: inline-flex;
+    color:#747f89;
+    width: 400px;
+
+}
+
+.trades-list-row{
+    display: inline-flex;
+    color:#747f89;
+    width: 400px;
+}
+.column{
+    width: 33%;
+}
+.tradeBuy{
+    width: 33%;
+    color:#466830;
+}
+.tradeSell{
+    width: 33%;
+    color:#722837;
+}
+.coin{
+    color: #2e353d;
+}

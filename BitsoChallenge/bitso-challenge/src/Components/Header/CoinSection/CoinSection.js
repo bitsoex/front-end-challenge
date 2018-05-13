@@ -24,12 +24,12 @@ class CoinSection extends Component {
     objParam.param='book';
     objParam.value=PARAMS_SERVICES.book_btc_mx;
 
-
+    arrayParams.push(objParam);
     callGetServices(URL_SERVICES.Ticker,arrayParams).then(response => {
       
       
       
-      console.log(response)
+      console.log('Last '+response.payload.last)
       this.setState({btc_to_mxn:response.payload.last})
     }
   

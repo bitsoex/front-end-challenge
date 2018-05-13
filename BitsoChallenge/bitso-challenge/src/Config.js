@@ -1,5 +1,6 @@
 export const URL_SERVICES={
-    Ticker : 'https://api.bitso.com/v3/ticker/' 
+    Ticker : 'https://api.bitso.com/v3/ticker/',
+    Trades: 'https://api.bitso.com/v3/trades/'    
 }
 
 

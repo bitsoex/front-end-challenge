@@ -64,6 +64,7 @@
     right: 0;
     background: var(--sidebar);
     overflow-y: scroll;
+    display: none;
   }
 
   #app > .page > header > nav > ul.hidden {
@@ -71,6 +72,7 @@
   }
 
   #app > .page > header > nav > ul.show {
+    display: flex;
     animation: showSidebar .2s ease forwards;
   }
 

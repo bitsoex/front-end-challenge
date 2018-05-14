@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
 
-import { toggleSidebar } from '../../../store/actions/ui'
+import { toggleSidebar as toggleSidebarAction } from '../../../store/actions/ui'
 
 import Dropdown from '../Dropdown'
 
@@ -12,6 +12,8 @@ import mobileLog from '../../../../Assets/Images/1x/bitso.png'
 
 import './index.css'
 import './animations.css'
+
+const toggleSidebar = (action) => action()
 
 const TheHeader = (props) => (
   <header>
@@ -28,7 +30,7 @@ const TheHeader = (props) => (
     <nav>
       <i
         className='material-icons is-hidden-desktop'
-        onClick={props.toggleSidebar}
+        onClick={toggleSidebar.bind(null, props.toggleSidebarAction)}
       >
         menu
       </i>
@@ -48,7 +50,7 @@ const TheHeader = (props) => (
 const mapStateToProps = ({ ui }) => ({ sidebar: ui.sidebar })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleSidebar: bindActionCreators(toggleSidebar, dispatch)
+  toggleSidebarAction: bindActionCreators(toggleSidebarAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TheHeader)

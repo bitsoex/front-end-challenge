@@ -1,0 +1,19 @@
+@keyframes showSidebar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 60%;
+    z-index: 100;
+  }
+}
+
+@keyframes hideSidebar {
+  from {
+    width: 60%;
+  }
+  to {
+    width: 0;
+    z-index: -100;
+  }
+}

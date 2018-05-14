@@ -5,7 +5,9 @@ import 'material-design-icons/iconfont/material-icons.css'
 
 import store from '../../store'
 import Router from '../../router'
+
 import './index.css'
+import './animations.css'
 
 class App extends Component {
   render () {

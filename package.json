@@ -24,17 +24,21 @@
   },
   "homepage": "https://github.com/visomiDev/front-end-challenge#readme",
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "deep-extend": "^0.5.1",
     "parcel-bundler": "^1.8.1",
     "redux-devtools": "^3.4.1",
     "standard": "^11.0.1"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "material-design-icons": "^3.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-actions": "^2.3.2"
   }
 }

@@ -43,6 +43,37 @@ body {
   flex-direction: column;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  position: relative;
+}
+
+td.loading {
+  display: table-cell;
+}
+
+.loading::after {
+  position: absolute;
+  animation: spinAround .5s infinite linear;
+  border: 2px solid var(--regular-green);
+  border-radius: 100%;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  width: 1em;
+}
+
+td.loading::after {
+  left: calc(50% - .5em);
+  top: calc(50% - .5em);
+  position: absolute;
+}
+
 @media screen and (max-width: 768px) {
   .is-hidden-mobile {
     display: none;
@@ -56,4 +87,7 @@ body {
 }
 
 @media screen and (min-width: 1024px) {
+  .is-hidden-desktop {
+    display: none;
+  }
 }

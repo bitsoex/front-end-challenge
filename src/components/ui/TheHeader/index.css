@@ -58,21 +58,23 @@
   }
 
   #app > .page > header > nav > ul {
-    display: none;
+    position: fixed;
+    flex-direction: column;
+    height: calc(100% - 62px);
+    right: 0;
+    background: var(--sidebar);
+    overflow-y: scroll;
+  }
+
+  #app > .page > header > nav > ul.hidden {
+    animation: hideSidebar .2s ease forwards;
   }
 
   #app > .page > header > nav > ul.show {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 50%;
-    right: 0;
-    flex: 1;
-    background: var(--sidebar);
+    animation: showSidebar .2s ease forwards;
   }
 
-  #app > .page > header > nav > ul.show > li {
+  #app > .page > header > nav > ul > li {
     padding: 10px 20px;
   }
 }

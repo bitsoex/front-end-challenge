@@ -26,7 +26,14 @@
         <div> Ayuda </div>
       </div>
 
-      <div class="user"></div>
+      <div class="user">
+        <div class="user-pic">
+          <div class="outer"></div>
+          <div class="inner"></div>
+        </div>
+        <div class="text"> Usuario </div>
+        <img src="./assets/images/dropdown.svg">
+      </div>
 
       <div class="dayMode_switch" v-on:click="dayMode = !dayMode">
         <div class="button">
@@ -36,6 +43,16 @@
 
         <img class="moon" src="./assets/images/moon.svg">
       </div>
+
+      <div id="mobile-menu" v-on:click="mobileMenu.open = !mobileMenu.open" v-bind:class="{open: mobileMenu.open}">
+        <div class="menu-line first"></div>
+        <div class="menu-line second"></div>
+        <div class="menu-line third"></div>
+      </div>
+
+      <div id="mobile-menu-view" v-bind:class="{open: mobileMenu.open}">
+      </div>
+
     </div>
 
     <div id="status-bar"></div>
@@ -62,6 +79,9 @@ export default {
         bitcoin: {
           price: '168000.00'
         }
+      },
+      mobileMenu: {
+        open: false
       }
     }
   },
@@ -182,44 +202,96 @@ html, body {
 
   #navbar .wallet {
     position: absolute;
-    top: 23px;
-    right: 550px;
+    top: 0;
+    right: 516px;
+    width: 112px;
+    height: 66px;
+    line-height: 66px;
     cursor: pointer;
   }
 
   #navbar .wallet img {
     position: absolute;
-    top: 9px;
-    right: -18px;
+    top: 32px;
+    right: 12px;
   }
 
   #navbar .exchange {
     position: absolute;
-    top: 23px;
-    right: 424px;
+    top: 0;
+    right: 404px;
+    width: 112px;
+    height: 66px;
+    line-height: 66px;
+    cursor: pointer;
   }
 
   #navbar .exchange img {
     position: absolute;
-    top: 9px;
-    right: -18px;
+    top: 32px;
+    right: 4px;
   }
 
   #navbar .ayuda {
     position: absolute;
-    top: 23px;
-    right: 324px;
+    top: 0;
+    right: 292px;
+    width: 112px;
+    height: 66px;
+    line-height: 66px;
+    cursor: pointer;
   }
 
-  #navbar .user {}
+  #navbar .user {
+    position: absolute;
+    top: 0;
+    right: 138px;
+    width: 154px;
+    height: 66px;
+    line-height: 66px;
+    cursor: pointer;
+  }
+
+  #navbar .user .outer {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    height: 48px;
+    width: 48px;
+    background: #606b76;
+    border-radius: 24px;
+  }
+
+  #navbar .user .inner {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    height: 38px;
+    width: 38px;
+    background: #606b76;
+    border-radius: 21px;
+    border: 2px solid #252c36;
+  }
+
+  #navbar .user .text {
+    position: absolute;
+    top: 0;
+    left: 72px;
+  }
+
+  #navbar .user img {
+    position: absolute;
+    top: 32px;
+    right: 0;
+  }
 
   #navbar .dayMode_switch {
     position: absolute;
-    top: 21px;
+    top: 23px;
     right: 60px;
-    height: 24px;
+    height: 20px;
     width: 48px;
-    border-radius: 12px;
+    border-radius: 10px;
     background-color: #1d2228;
     cursor: pointer;
   }
@@ -234,20 +306,20 @@ html, body {
 
   #navbar .dayMode_switch .button .outer {
     position: absolute;
-    top: 3px;
+    top: 2px;
     right: 3px;
-    height: 18px;
-    width: 18px;
+    height: 16px;
+    width: 16px;
     border-radius: 8px;
     background: #606b76;
   }
 
   #navbar .dayMode_switch .button .inner {
     position: absolute;
-    top: 5px;
+    top: 4px;
     right: 5px;
-    height: 12px;
-    width: 12px;
+    height: 10px;
+    width: 10px;
     border-radius: 8px;
     background: #606b76;
     border: 1px solid #1d2228;
@@ -255,10 +327,17 @@ html, body {
 
   #navbar .dayMode_switch .moon {
     position: absolute;
-    top: 7px;
-    left: 10px;
+    top: 5px;
+    left: 8px;
   }
 
+  #navbar .mobile-menu {
+    display: none;
+  }
+
+  #navbar #mobile-menu-view {
+    display: none;
+  }
 /* END NAVBAR */
 
 /* STATUS BAR */
@@ -279,6 +358,145 @@ html, body {
   background: #21282f;
   border-top: solid 1px #2d3540;
   min-height: calc(100vh - 111px);
+}
+
+@media screen and (max-width:1200px) {
+  #navbar {
+    font-size: 14px;
+  }
+
+  #navbar .dayMode_switch {
+    right: 32px;
+  }
+
+  #navbar .user {
+    right: 100px;
+  }
+
+  #navbar .user img {
+    right: 8px;
+  }
+
+  #navbar .ayuda {
+    right: 244px;
+  }
+
+  #navbar .exchange {
+    right: 356px;
+  }
+
+  #navbar .wallet {
+    right: 468px;
+  }
+
+  #navbar .divider-line.btc-line {
+    right: 580px;
+  }
+
+  #navbar .bitcoin-price {
+    right: 610px;
+  }
+}
+
+@media screen and (max-width:992px) {
+  #navbar .divider-line.logo-line {
+    left: 140px;
+  }
+
+  #navbar .subtitle {
+    left: 153px;
+  }
+
+  #navbar .btc-line, #navbar .wallet, #navbar .exchange, #navbar .ayuda, #navbar .user {
+    display: none;
+  }
+
+  #navbar #mobile-menu {
+    display: block;
+    position: absolute;
+    top: 26px;
+    right: 24px;
+    height: 18px;
+    width: 24px;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  #navbar .bitcoin-price {
+    right: 166px;
+  }
+
+  #navbar #mobile-menu .menu-line {
+    position: absolute;
+    height: 2px;
+    width: 24px;
+    background: #bdc6cc;
+    left: 0;
+  }
+
+  #navbar #mobile-menu .menu-line.first {
+    top: 0;
+  }
+
+  #navbar #mobile-menu.open .menu-line.first {
+    top: 6px;
+    transform: rotate(45deg);
+  }
+
+  #navbar #mobile-menu .menu-line.second {
+    top: 6px;
+  }
+
+  #navbar #mobile-menu.open .menu-line.second {
+    opacity: 0;
+  }
+
+  #navbar #mobile-menu .menu-line.third {
+    top: 12px;
+  }
+
+  #navbar #mobile-menu.open .menu-line.third {
+    top: 6px;
+    transform: rotate(-45deg);
+  }
+
+  #navbar #mobile-menu-view {
+    position: relative;
+    display: block;
+    transform: translate3d(0, -100vh, 0);
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 900;
+  }
+
+  #navbar #mobile-menu-view.open {
+    transform: translate3d(0, 0, 0);
+  }
+
+  #navbar .dayMode_switch {
+    right: 84px;
+  }
+}
+
+@media screen and (max-width:576px) {
+  #navbar .bitcoin-price {
+    display: none;
+  }
+
+  #navbar .dayMode_switch {
+    display: none;
+  }
+}
+
+@media screen and (max-width:320px) {
+  #navbar .divider-line.logo-line {
+    display: none;
+  }
+
+  #navbar .subtitle {
+    display: none;
+  }
 }
 
 /* DAY MODE */
@@ -304,13 +522,22 @@ html, body {
     opacity: 1;
   }
 
+  #app.day #navbar .user .outer {
+    background: #BDC6CC;
+  }
+
+  #app.day #navbar .user .inner {
+    background: #BDC6CC;
+    border: 2px solid #FFF;
+  }
+
   #app.day #navbar .dayMode_switch {
     background: #FFF;
     box-shadow: inset 0 1px 2px #888;
   }
 
   #app.day #navbar .dayMode_switch .button {
-    transform: translate3d(-24px, 0, 0);
+    transform: translate3d(-26px, 0, 0);
   }
 
   #app.day #navbar .dayMode_switch .button .outer, #app.day #navbar .dayMode_switch .button .inner {
@@ -333,6 +560,5 @@ html, body {
     border-top: solid 1px #ccc;
     background: #FFF;
   }
-
 /* END DAY MODE */
 </style>

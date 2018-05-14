@@ -6,7 +6,11 @@
           <img src="../assets/images/dropdown.svg">
           <div class="title">Últimos Trades</div>
         </div>
-        <div class="content"></div>
+        <div class="content">
+          <div class="header">
+            Últimos Trades
+          </div>
+        </div>
       </div>
 
       <div id="chart">
@@ -129,8 +133,8 @@ export default {
     top: 0;
     left: 0;
     overflow-y: scroll;
-    width: 364px;
-    transform: translate3d(-320px, 0 , 0);
+    width: 302px;
+    transform: translate3d(-258px, 0 , 0);
     transition: all 0.3s;
   }
 
@@ -155,7 +159,23 @@ export default {
   #last-trades .content {
     height: calc(100vh - 111px);
     background: blue;
-    width: 320px;
+    width: 258px;
+  }
+
+  #last-trades .content .header {
+    width: 226px;
+    height: 30px;
+    background-color: #33404d;
+    font-family: 'DIN_Medium';
+    text-transform: uppercase;
+    color: #bdc6cc;
+    text-align: left;
+    line-height: 30px;
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    padding-left: 16px;
+    display: none;
   }
 /* END LAST TRADES */
 
@@ -235,7 +255,7 @@ export default {
   }
 /* END MOBILE TAB BAR */
 
-@media screen and (min-width:1280px) {
+@media screen and (min-width:1200px) {
 
   #last-trades {
     transform: translate3d(0, 0, 0);
@@ -243,6 +263,10 @@ export default {
 
   #last-trades .slider {
     display: none;
+  }
+
+  #last-trades .content .header {
+    display: block;
   }
 }
 

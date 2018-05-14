@@ -1,0 +1,53 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown > i:last-child {
+  display: none;
+}
+
+.dropdown > ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+}
+
+.dropdown:hover > ul {
+  display: flex;
+}
+
+.dropdown > ul > li {
+  padding: 10px;
+  background: #fff;
+  width: 100%;
+  padding-right: 3rem;
+  white-space: nowrap;
+  color: #4a4a4a;
+  display: block;
+  line-height: 1.5;
+  padding: .375rem 1rem;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.dropdown ul > li:hover {
+  background: #f5f5f5;
+  color: var(--primary-text-color);
+  cursor: pointer;
+}
+
+.dropdown ul > li > i {
+  padding-right: .5rem;
+}

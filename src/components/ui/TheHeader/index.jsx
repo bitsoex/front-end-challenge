@@ -5,11 +5,13 @@ import classnames from 'classnames'
 
 import { toggleSidebar } from '../../../store/actions/ui'
 
-import './index.css'
-import './animations.css'
+import Dropdown from '../Dropdown'
 
 import logo from '../../../../Assets/Images/2x/bitso_logo@2x.png'
 import mobileLog from '../../../../Assets/Images/1x/bitso.png'
+
+import './index.css'
+import './animations.css'
 
 const TheHeader = (props) => (
   <header>
@@ -18,9 +20,9 @@ const TheHeader = (props) => (
       <img src={mobileLog} alt='bitso-logo' className='logo is-hidden-touch' />
     </div>
     <div className='title-page money-exchange'>
-      <div>{props.page}</div>
+      <div>{ props.page }</div>
       <div>
-        1BTC = {props.exchange.toLocaleString({ style: 'currency', currency: 'MXN' })} MXN
+        1BTC = { props.exchange.toLocaleString({ style: 'currency', currency: 'MXN' }) } MXN
       </div>
     </div>
     <nav>
@@ -31,9 +33,9 @@ const TheHeader = (props) => (
         menu
       </i>
       <ul className={classnames({ show: props.sidebar, hidden: !props.sidebar })}>
-        <li>Wallet</li>
-        <li>Exchange</li>
-        <li>Ayuda</li>
+        <li><Dropdown options={[{ label: 'option 1' }]} text='Wallet' /></li>
+        <li><Dropdown options={[{ label: 'option 2' }]} text='Exchange' /></li>
+        <li><Dropdown options={[{ label: 'option 3' }]} text='Ayuda' /></li>
         <li>
           <img alt='user-avatar' />
           {props.user}

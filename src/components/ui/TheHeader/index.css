@@ -13,7 +13,6 @@
 
 #app > .page > header > .logo > img {
   height: 30px;
-  padding: 18px 15px 18px 30px;
   width: auto;
 }
 
@@ -37,13 +36,9 @@
   border-right: 1px solid var(--header-separator);
 }
 
-#app > .page > header > nav > i {
-  cursor: pointer;
-  padding: 19px 20px;
-}
-
 #app > .page > header > nav > ul {
   list-style-type: none;
+  display: flex;
   margin: 0;
   padding: 0;
 }
@@ -55,6 +50,11 @@
 
   #app > .page > header > .title-page.money-exchange > div {
     padding: 5px 10px;
+  }
+
+  #app > .page > header > nav > i {
+    cursor: pointer;
+    padding: 19px 20px;
   }
 
   #app > .page > header > nav > ul {
@@ -80,6 +80,9 @@
 }
 
 @media screen and (min-width: 769px) {
+  #app > .page > header > .logo > img {
+    padding: 18px 15px 18px 30px;
+  }
 }
 
 @media screen and (min-width: 1024px) {

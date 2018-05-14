@@ -9,10 +9,10 @@ import { Switch, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import axios from 'axios'
 
 import { setBooks, setSelectedBook } from 'actions'
 
+import NetworkOperation from 'lib/NetworkOperation'
 import Nav from 'components/Nav'
 import Dashboard from 'containers/Dashboard'
 
@@ -32,25 +32,44 @@ class App extends PureComponent {
   state = {}
 
   componentDidMount() {
-    axios.get('https://api.bitso.com/v3/available_books').then(({ data }) => {
-      const { payload } = data
-      this.props.actions.setBooks(payload)
-      const selectedBook = payload[0]
+    NetworkOperation.getTicker()
+      .then(({ data: { payload } }) => {
+        console.log('Ticker', payload)
+        const selectedBook = payload[0]
 
-      this.props.actions.setSelectedBook(selectedBook)
-    })
+        this.props.actions.setBooks(payload)
+
+        this.props.actions.setSelectedBook(selectedBook)
+      })
+      .catch(error => {
+        console.log({ error })
+      })
+
+    // NetworkOperation.getAvailableBooks()
+    //   .then(({ data }) => {
+    //     const { payload } = data
+    //     this.props.actions.setBooks(payload)
+    //     const selectedBook = payload[0]
+    //
+    //     this.props.actions.setSelectedBook(selectedBook)
+    //   })
+    //   .catch(error => {
+    //     console.log({ error })
+    //   })
   }
 
   componentDidUpdate() {
-    const book = this.props.bitso.selectedBook.book
-    this.setState({
-      isLoading: true
-    })
-    axios
-      .get(`https://api.bitso.com/v3/ticker?book=${book}`)
-      .then(({ data }) => {
-        console.log({ data })
-      })
+    // const book = this.props.bitso.selectedBook.book
+    // this.setState({
+    //   isLoading: true
+    // })
+    // NetworkOperation.getTicker()
+    //   .then(({ data }) => {
+    //     console.log('Ticker', data)
+    //   })
+    //   .catch(error => {
+    //     console.log({ error })
+    //   })
   }
 
   render() {

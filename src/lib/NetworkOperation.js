@@ -1,21 +1,20 @@
 import axios from 'axios'
 
-const baseUrl = 'https://api-dev.bitso.com/v3/'
-
-// Request interceptors
-axios.interceptors.request.use(
-  config => {
-    // Add token
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-    // Do something before request is sent
-    return config
-  },
-  error => Promise.reject(error)
-)
+const baseUrl = 'https://api-dev.bitso.com/v3'
 
 class NetworkOperation {
-  static login(email, password) {
-    return axios.post(`${baseUrl}/authenticate`, { email, password })
+  static getTicker() {
+    return axios.get(`${baseUrl}/ticker`, {
+      params: {}
+    })
+  }
+
+  static getTrades({ book, limit = 30 }) {
+    return axios.get(`${baseUrl}/trades?book=${book}&limit=${limit}`)
+  }
+
+  static getAvailableBooks() {
+    return axios.get('https://api.bitso.com/v3/available_books')
   }
 }
 

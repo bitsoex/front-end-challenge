@@ -38,7 +38,7 @@ class ListSelector extends Component {
 }
 
 ListSelector.propTypes = {
-  onItemClick: PropTypes.function,
+  // onItemClick: PropTypes.function, // TODO
   items: PropTypes.array,
   type: PropTypes.string,
   value: PropTypes.string

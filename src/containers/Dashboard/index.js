@@ -8,13 +8,13 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import axios from 'axios'
-
 import {
   tradeSuscribe,
   // DIFF_ordersSuscribe,
   ordersSuscribe
 } from 'lib/constants'
+
+import NetworkOperation from 'lib/NetworkOperation'
 import Sidebar from 'components/Sidebar'
 import Transactions from 'components/Transactions'
 import Orders from 'components/Orders'
@@ -69,12 +69,14 @@ class Home extends PureComponent {
       this.websocket.close()
     }
 
-    axios
-      .get(`https://api.bitso.com/v3/trades?book=${book}&limit=39`)
+    NetworkOperation.getTrades({ book, limit: 39 })
       .then(({ data: { payload } }) => {
         this.setState({
           transactions: payload
         })
+      })
+      .catch(error => {
+        console.log(error)
       })
 
     this.websocket = new WebSocket('wss://ws.bitso.com')
@@ -89,10 +91,9 @@ class Home extends PureComponent {
 
   onMessage = ({ data: stringData }) => {
     const { type, payload } = JSON.parse(stringData)
-
+    // console.log(type, payload)
     switch (type) {
       case 'transactions':
-        console.log('TRANSACTION', payload)
         payload &&
           this.setState(prev => ({
             transactions: prev.transactions.concat(payload)

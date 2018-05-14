@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 
 import './style.less'
 
@@ -48,6 +49,10 @@ class Transactions extends PureComponent {
       </div>
     )
   }
+}
+
+Transactions.propTypes = {
+  transactions: PropTypes.array
 }
 
 Transactions.defaultProps = {

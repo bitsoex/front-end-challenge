@@ -7,25 +7,26 @@ import bitsoLogo from 'assets/icons/bitso.svg'
 import './style.less'
 
 function Nav({ books, onBookSelect, selectedBook }) {
-  const from = selectedBook.book.split('_')[0].toUpperCase()
-  const to = selectedBook.book.split('_')[1].toUpperCase()
+  const { high, low, volume, from, to, last } = selectedBook
+  const variation = (parseFloat(high) - parseFloat(low)).toFixed(2)
+  const variationPercentage = (variation / low * 100).toFixed(1)
 
   const VALUES = [
     {
       title: 'Volumen 24 hrs.',
-      value: `${0} ${from}`
+      value: `${volume} ${from}`
     },
     {
       title: 'Max.',
-      value: `${0} ${from}`
+      value: `${high} ${from}`
     },
     {
       title: 'Min.',
-      value: `${0} ${from}`
+      value: `${low} ${from}`
     },
     {
       title: 'Variación',
-      value: `+4,061.68 ${to} (1.4%)`
+      value: `+${variation} ${to} (${variationPercentage}%)`
     }
   ]
 
@@ -39,7 +40,8 @@ function Nav({ books, onBookSelect, selectedBook }) {
         </div>
         <ul className="nav__actions">
           <li>
-            1 {from} = 000,000.00{to}
+            1 {from} = {last}
+            {to}
           </li>
           <div className="vr" />
           <li>Wallet</li>

@@ -3,6 +3,7 @@
     <div class="market-content" v-bind:style="{transform: mobilePagePosition}">
       <div id="last-trades" v-bind:class="{open: lastTrades.open}">
         <div class="slider" v-on:click="lastTrades.open = !lastTrades.open">
+          <img src="../assets/images/dropdown.svg">
           <div class="title">Últimos Trades</div>
         </div>
         <div class="content"></div>
@@ -16,6 +17,7 @@
 
       <div id="markets" v-bind:class="{open: markets.open}">
         <div class="slider" v-on:click="markets.open = !markets.open">
+          <img src="../assets/images/dropdown.svg">
           <div class="title">Mercados</div>
         </div>
 
@@ -82,6 +84,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+* {
+  transition: all 0.3s;
+}
 
 .market {
   position: relative;
@@ -93,7 +98,7 @@ export default {
   transition: all 0.3s;
 }
 
-.slider {
+#app .slider {
   min-height: calc(100vh - 111px);
   height: 100%;
   width: 44px;
@@ -101,8 +106,14 @@ export default {
   cursor: pointer;
 }
 
+.slider img {
+  position: absolute;
+  top: 24px;
+  left: 16px;
+}
+
 .slider div.title {
-  margin-top: 56px;
+  margin-top: 64px;
   color: #B0BAC1;
   text-transform: uppercase;
   -webkit-transform: rotate(90deg);
@@ -125,6 +136,14 @@ export default {
 
   #last-trades.open {
     transform: translate3d(0, 0 , 0);
+  }
+
+  #last-trades .slider img {
+    transform: rotate(270deg);
+  }
+
+  #last-trades.open .slider img {
+    transform: rotate(90deg);
   }
 
   #last-trades .slider {
@@ -159,6 +178,14 @@ export default {
 
   #markets.open {
     transform: translate3d(0, 0 , 0);
+  }
+
+  #markets .slider img {
+    transform: rotate(90deg);
+  }
+
+  #markets.open .slider img {
+    transform: rotate(270deg);
   }
 
   #markets .slider {
@@ -209,12 +236,17 @@ export default {
 /* END MOBILE TAB BAR */
 
 @media screen and (min-width:1280px) {
+
+  #last-trades {
+    transform: translate3d(0, 0, 0);
+  }
+
   #last-trades .slider {
     display: none;
   }
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:767px) {
   #last-trades, #markets {
     width: 100vw;
   }
@@ -245,4 +277,7 @@ export default {
     display: block;
   }
 }
+
+/* DAY MODE */
+/* END DAY MODE */
 </style>

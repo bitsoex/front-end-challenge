@@ -1,7 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+:root {
+  --dark-green: #466830;
+  --medium-green: #86af6b;
+  --regular-green: #80c156;
+  --light-green: #98d372;
+  --dark-red: #722837;
+  --regular-red: #cc4458;
+  --medium-red: #ba3040;
+  --dark-navy: #161a1e;
+  --background-navy: #191e23;
+  --regular-navy: #252c36;
+  --medium-navy: #384555;
+  --navy-headers: #313d4c;
+  --dark-text: #4e5863;
+  --light-text: #b0bac1;
+  --sidebar-background: #23292d;
+  --sidebar: #2e353d;
+  --sidebar-header: #727c84;
+  --sidebar-text: #747f89;
+  --sidebar-light-text: #b0bac1;
+  --neutral-gray: #cccccc;
+  --bitcoin-yellow: #ebc256;
+  --header-background: #252C36;
+  --header-separator: #B0BAC1;
+  --nav-background: #161A1E;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .is-hidden-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .is-hidden-touch {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
 }

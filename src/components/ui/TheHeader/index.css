@@ -1,0 +1,84 @@
+#app > .page > header {
+  display: flex;
+  background: var(--header-background);
+  align-items: center;
+  color: #B0BAC1;
+  user-select: none;
+  position: relative;
+}
+
+#app > .page > header > .logo {
+  display: flex;
+}
+
+#app > .page > header > .logo > img {
+  height: 30px;
+  padding: 18px 15px 18px 30px;
+  width: auto;
+}
+
+#app > .page > header > .title-page.money-exchange {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app > .page > header > .title-page.money-exchange > div {
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+
+#app > .page > header > .title-page.money-exchange > div:first-child {
+  border-left: 1px solid var(--header-separator);
+}
+
+#app > .page > header > .title-page.money-exchange > div:last-child {
+  border-right: 1px solid var(--header-separator);
+}
+
+#app > .page > header > nav > i {
+  cursor: pointer;
+  padding: 19px 20px;
+}
+
+#app > .page > header > nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #app > .page > header > .logo > img {
+    padding: 16px 11px 16px 16px;
+  }
+
+  #app > .page > header > .title-page.money-exchange > div {
+    padding: 5px 10px;
+  }
+
+  #app > .page > header > nav > ul {
+    display: none;
+  }
+
+  #app > .page > header > nav > ul.show {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    right: 0;
+    flex: 1;
+    background: var(--sidebar);
+  }
+
+  #app > .page > header > nav > ul.show > li {
+    padding: 10px 20px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+}
+
+@media screen and (min-width: 1024px) {
+}

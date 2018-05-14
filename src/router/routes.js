@@ -1,9 +1,10 @@
-import Home from '../views/Home'
+import React from 'react'
+import Exchange from '../views/Exchange'
 
 export default [
   {
     exact: true,
     path: '/',
-    component: Home
+    render: (props) => <Exchange page='exchange' {...props} />
   }
 ]

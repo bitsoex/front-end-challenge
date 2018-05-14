@@ -1,0 +1,73 @@
+@import '../../colors';
+
+.orders-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    background-color: @navy-headers;
+    flex-shrink: 0;
+    padding: 5px 10px;
+    color: @light-text;
+    span {
+      color: @dark-text;
+    }
+    .title {
+      text-transform: uppercase;
+    }
+  }
+  .item {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    p {
+      text-align: right;
+
+      flex-grow: 1;
+      margin-right: 10px;
+      &.price {
+        text-align: center;
+      }
+    }
+    &.--order {
+      p:nth-child(5) {
+        color: @regular-green;
+      }
+    }
+  }
+  &:last-child {
+    margin-right: 0;
+    .header {
+      background-color: @regular-navy;
+      .title {
+        order: 1;
+      }
+    }
+    .item {
+      p {
+        &:nth-child(1) {
+          order: -1;
+        }
+        &:nth-child(2) {
+          order: -2;
+        }
+        &:nth-child(3) {
+          order: -3;
+        }
+        &:nth-child(4) {
+          order: -4;
+        }
+        &:nth-child(5) {
+          order: -5;
+        }
+      }
+      &.--order {
+        p:nth-child(5) {
+          color: @medium-red;
+        }
+      }
+    }
+  }
+}

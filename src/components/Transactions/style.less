@@ -1,0 +1,30 @@
+@import '../../colors.less';
+
+.transactions-container {
+  width: 300px;
+  height: 100%;
+  padding: 10px;
+  .header {
+    background-color: @regular-navy;
+    padding: 5px 10px;
+    .title {
+      text-transform: uppercase;
+      color: @light-text;
+    }
+  }
+  .item {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: @dark-text;
+    &.--sell {
+      .price {
+        color: @regular-red;
+      }
+    }
+    &.--buy {
+      .price {
+        color: @regular-green;
+      }
+    }
+  }
+}

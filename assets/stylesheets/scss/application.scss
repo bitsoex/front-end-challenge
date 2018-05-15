@@ -34,13 +34,28 @@
   }
 }
 
+.bi-moon, .bi-sun{
+  width: 1em;
+  height: 1em;
+  background-color: $dark-text;
+  border-radius: 100%;
+}
+
+.bi-moon{
+  // background-color: teal;
+}
+
+.bi-sun{
+  // background-color: yellow;
+}
+
 /* Main
 ------------------------------------- */
 
 #main-logo{
   width: 93px;
   height: 31px;
-  margin-right: 1.4em;
+  margin: 1.1em 1.4em 1.1em 0;
   vertical-align: middle;
 
   @include background-image(bitso_logo);
@@ -61,6 +76,7 @@
 ------------------------------------- */
 
 #main-header{
+  padding: 0 2vw;
   color: $light-text;
   background-color: $regular-navy;
   vertical-align: middle;
@@ -197,7 +213,57 @@
 }
 
 #night-mode{
-  display: none;
+  margin-left: 1vw;
+  padding: 0.2em;
+  display: inline-block;
+  background-color: $background-navy;
+  position: relative;
+  border-radius: 1em;
+  cursor: pointer;
+
+  .switch{
+    width: 1.2rem;
+    height: 1.2rem;
+    top: 0.1em;
+    left: 0.1em;
+    position: absolute;
+    background-color: $dark-text;
+    border-radius: 100%;
+    @extend %transition;
+
+    &:before{
+      content: "";
+      top: 2px;
+      right: 2px;
+      bottom: 2px;
+      left: 2px;
+      position: absolute;
+      border: 1px solid $background-navy;
+      border-radius: 100%;
+      display: block;
+    }
+  }
+  &.on{
+    .switch{
+      left: 1.8em;
+    }
+  }
+
+  ul.night-mode-icons{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    line-height: 1em;
+    
+    li{
+      display: inline-block;
+      line-height: 1em;
+
+      &:first-child{
+        margin-right: 0.4em;
+      }
+    }
+  }  
 }
 
 /* Markets Sidebar

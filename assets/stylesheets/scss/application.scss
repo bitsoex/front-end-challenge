@@ -14,7 +14,199 @@
 @import "global";     /* Global Selectors and classes */
 @import "components"; /* Theme components */
 
-/* Section Name
+/* General
 ------------------------------------- */
 
+[class^="bi-"],
+[class*="bi-"]{
+  display: inline-block;
+  background-repeat: no-repeat;
+}
 
+.bi-chevron-down{
+  width: 10px;
+  height: 7px;
+  @include background-image(icon_dropdown);
+
+  @include media-breakpoint-retina(){
+    width: 19px;
+    height: 13px;
+  }
+}
+
+/* Main
+------------------------------------- */
+
+#main-logo{
+  width: 93px;
+  height: 31px;
+  margin-right: 1.4em;
+  vertical-align: middle;
+
+  @include background-image(bitso_logo);
+  display: inline-block;
+  background-repeat: no-repeat;
+
+  @include media-breakpoint-retina(){
+    width: 19px;
+    height: 13px;
+  }
+}
+
+#main{
+  background-color: $background-navy;
+}
+
+/* Main Header
+------------------------------------- */
+
+#main-header{
+  color: $light-text;
+  background-color: $regular-navy;
+  vertical-align: middle;
+
+  h1{
+    margin: 0;
+    padding-left: 1.6em;
+    display: inline-block;
+    line-height: 1em;
+    position: relative;
+
+    &:before{
+      content: "";
+      height: 0.7em;
+      width: 1px;
+      background-color: $light-text;
+      top: 3px;
+      left: 0;
+      display: block;
+      position: absolute;
+    }
+  }
+
+  a{
+    color: $light-text;
+
+    &:hover, &:active, &:focus{
+      text-decoration: none;
+      color: lighten($light-text, 10%);
+    }
+  }
+
+  .current.trading-pair{
+    display: none;
+  }
+}
+
+#utilities{
+  text-align: right;
+}
+
+#trading-pair-value{
+  display: inline-block;
+  margin-right: 2.3em;
+}
+
+#main-menu{
+  display: inline-block;
+  margin-bottom: 0;
+  padding-left: 1em;
+  @extend .dropdown;
+  list-style-type: none;
+  position: relative;
+
+  &:before{
+    content: "";
+    width: 1px;
+    height: 1.8em;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: $light-text;
+    display: block;
+  }
+
+  > li{
+    display: inline-block;
+    vertical-align: middle;
+
+    > a{
+      padding: 1.5em;
+
+      i{
+        margin-left: 0.4em;
+      }
+    }
+  }
+
+  ul.sub-menu{
+    padding: 0;
+    background-color: $regular-navy;
+    list-style-type: none;
+    text-align: center;
+
+    li{
+      a{
+        padding: 0.7em 1em;
+      }
+    }
+  }
+}
+
+#profile-nav{
+  padding: 0 1em;
+}
+
+#profile-pic{
+  width: 50px;
+  height: 50px;
+  margin-right: 1em;
+  border-radius: 100%;
+  overflow: hidden;
+  display: inline-block;
+  border: 1px solid $dark-text;
+  position: relative;
+  vertical-align: middle;
+  background-color: $dark-text;
+
+  &:before{
+    content: "";
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+    position: absolute;
+    border: 2px solid $regular-navy;
+    border-radius: 100%;
+  }
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+
+#user-name{
+  cursor: default;
+
+  i{
+    margin-left: 1em;
+  }
+}
+
+#night-mode{
+  display: none;
+}
+
+/* Markets Sidebar
+------------------------------------- */
+
+#markets-button{
+  display: none;
+}
+
+#markets-sidebar{
+  display: none;
+}

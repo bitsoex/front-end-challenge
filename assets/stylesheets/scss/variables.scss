@@ -47,5 +47,8 @@ $warning:                   #FFF8C4;
 $danger:                    #FFD5DF;
 
 /* Font Size */
-$base-fontsize:             18px;
+$base-fontsize:             14px;
 
+$image-path: '../../images' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';

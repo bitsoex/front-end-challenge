@@ -1,5 +1,15 @@
-html{ font-size: $base-fontsize; }
-body{ font-family: $primaryFontFamily; }
+html{ font-size: $base-fontsize; background-color: $background-navy; }
+body{ 
+  font-family: $primaryFontFamily; 
+  background-color: $background-navy; 
+  font-weight: 300;
+}
+
+h1{
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 300;
+}
 
 // h1, h2, h3, h4, h5, h6{ font-family: $primaryFontFamily; }
 
@@ -11,7 +21,11 @@ li{}
 
 p {}
 
-a{}
+a{
+  &:hover, &:active, &:focus{
+    // text-decoration: none;
+  }
+}
 
 blockquote{}
 
@@ -104,3 +118,40 @@ button[type="submit"]{
 %transition{
   @include transition(0.2s);
 }
+
+.swatch{
+  border: 1px solid white;
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
+
+  p{
+    color: $white;
+    margin: 0;
+  }
+}
+
+.dark-green{ background-color: $dark-green; }
+.medium-green{ background-color: $medium-green; }
+.regular-green{ background-color: $regular-green; }
+.light-green{ background-color: $light-green; }
+.dark-red{ background-color: $dark-red; }
+.regular-red{ background-color: $regular-red; }
+.medium-red{ background-color: $medium-red; }
+.dark-navy{ background-color: $dark-navy; }
+.background-navy{ background-color: $background-navy; }
+.regular-navy{ background-color: $regular-navy; }
+.medium-navy{ background-color: $medium-navy; }
+.navy-headers{ background-color: $navy-headers; }
+.dark-text{ background-color: $dark-text; }
+.light-text{ background-color: $light-text; }
+.sidebar-background{ background-color: $sidebar-background; }
+.sidebar{ background-color: $sidebar; }
+.sidebar-header{ background-color: $sidebar-header; }
+.sidebar-text{ background-color: $sidebar-text; }
+.sidebar-light-text{ background-color: $sidebar-light-text; }
+.neutral-gray{ background-color: $neutral-gray; }
+.bitcoin-yellow{ background-color: $bitcoin-yellow; }
+
+
+

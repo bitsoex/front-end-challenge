@@ -16,9 +16,9 @@
 */
 $DINProPath: '../../fonts/';
 
-@include font-face('OpenSans',normal,300,$DINProPath,'DINPro-Light.otf');
-@include font-face('OpenSans',normal,400,$DINProPath,'DINPro-Regular.otf');
-@include font-face('OpenSans',normal,800,$DINProPath,'DINPro-Medium.otf');
+@include font-face('DINPro',normal,300,$DINProPath,'DINPro-Light.otf');
+@include font-face('DINPro',normal,400,$DINProPath,'DINPro-Regular.otf');
+@include font-face('DINPro',normal,800,$DINProPath,'DINPro-Medium.otf');
 
 /* Variables */
 $DINPro: "DINPro", Arial, sans-serif;

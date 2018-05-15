@@ -7,80 +7,62 @@ import ExchangeContext from "./Contexts/ExchangeContext";
 import Orders from "./Components/Orders";
 import OrderData from "./Modules/OrderData";
 import Charts from "./Components/Charts";
-import { parseChartData } from "./Utils";
-
-const websocket = new WebSocket("wss://ws.bitso.com");
-
-websocket.onopen = function() {
-  websocket.send(
-    JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "trades" })
-  );
-  websocket.send(
-    JSON.stringify({
-      action: "subscribe",
-      book: "btc_mxn",
-      type: "diff-orders"
-    })
-  );
-  websocket.send(
-    JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "orders" })
-  );
-};
 
 class App extends Component {
+  websocket = new WebSocket("wss://ws.bitso.com");
   state = {
     book: "btc_mxn",
     ticker: {},
     books: null,
+    tempOrders: null,
     orders: null,
     trades: null,
-    timeframe: "3months",
-    candleData: null,
-    volumeData: null,
     loading: true
   };
 
-  async componentDidMount() {
-    const orders = await axios.get("https://api.bitso.com/v3/order_book", {
-      params: { book: "btc_mxn", aggregate: true }
-    });
-    websocket.onmessage = message => {
+  componentDidMount() {
+    this.getOrders();
+    this.websocket.onopen = () => {
+      this.websocket.send(
+        JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "trades" })
+      );
+      this.websocket.send(
+        JSON.stringify({
+          action: "subscribe",
+          book: "btc_mxn",
+          type: "diff-orders"
+        })
+      );
+      this.websocket.send(
+        JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "orders" })
+      );
+    };
+    this.websocket.onmessage = async message => {
       var data = JSON.parse(message.data);
       if (data.type === "trades" && data.payload) {
       } else if (data.type === "diff-orders" && data.payload) {
-        // orders.data.payload
-        const orderedOrders = OrderData(orders, data);
+        const orderedOrders = await OrderData(this.state.tempOrders, data);
+        console.log(orderedOrders);
         this.setState({ orders: orderedOrders });
       } else if (data.type === "orders" && data.payload) {
       }
     };
-    this.getChartJSON();
   }
 
   componentWillUnmount() {
-    websocket.close();
+    this.websocket.close();
   }
 
-  getChartJSON = async () => {
-    const { book, timeframe } = this.state;
-    try {
-      const { data, status } = await axios.get(
-        `https://bitso.com/trade/chartJSON/${book}/${timeframe}`
-      );
-      if (status === 200) {
-        this.setState({ ...parseChartData(data) });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    this.setState({ loading: false });
+  getOrders = async () => {
+    const orders = await axios.get("https://api.bitso.com/v3/order_book", {
+      params: { book: "btc_mxn", aggregate: true }
+    });
+
+    this.setState({ tempOrders: orders });
   };
 
   render() {
-    const { loading } = this.state;
-    if (loading) {
-      return <div>Cargando...</div>;
-    }
+    const { book } = this.state;
     return (
       <ExchangeContext.Provider value={this.state}>
         <div className="App">
@@ -88,10 +70,10 @@ class App extends Component {
             <img src={bitso_logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Bitso Exchange</h1>
           </header>
-          <div style={{ display: "flex", flexDirection: "row", width: "90em" }}>
+          <div style={{ display: "flex", width: "90em", margin: "auto" }}>
             <Trades />
             <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
-              <Charts />
+              <Charts book={book} />
               <Orders />
             </div>
           </div>

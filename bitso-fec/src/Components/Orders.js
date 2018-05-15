@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import ExchangeContext from "../Context/ExchangeContext";
+import ExchangeContext from "../Contexts/ExchangeContext";
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 

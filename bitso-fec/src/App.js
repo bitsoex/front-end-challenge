@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import logo from "./logo.svg";
+import bitso_logo from "./assets/Images/SVG/bitso_logo.svg";
+
+import Trades from "./Components/Trades";
+import ExchangeContext from "./Contexts/ExchangeContext";
 import Orders from "./Components/Orders";
 import OrderData from "./Modules/OrderData";
-import ExchangeContext from "./Context/ExchangeContext";
+import Charts from "./Components/Charts";
+import { parseChartData } from "./Utils";
 
 const websocket = new WebSocket("wss://ws.bitso.com");
 
@@ -24,14 +28,17 @@ websocket.onopen = function() {
 };
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      book: "btc_mxn",
-      trades: null,
-      orders: null
-    };
-  }
+  state = {
+    book: "btc_mxn",
+    ticker: {},
+    books: null,
+    orders: null,
+    trades: null,
+    timeframe: "1month",
+    candleData: null,
+    volumeData: null,
+    loading: true
+  };
 
   async componentDidMount() {
     const orders = await axios.get("https://api.bitso.com/v3/order_book", {
@@ -47,21 +54,42 @@ class App extends Component {
       } else if (data.type === "orders" && data.payload) {
       }
     };
+    this.getChartJSON();
   }
+
+  getChartJSON = async () => {
+    const { book, timeframe } = this.state;
+    try {
+      const { data, status } = await axios.get(
+        `https://bitso.com/trade/chartJSON/${book}/${timeframe}`
+      );
+      if (status === 200) {
+        this.setState({ ...parseChartData(data) });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    this.setState({ loading: false });
+  };
+
   render() {
-    // console.log(process.env.REACT_APP_API_KEY);
+    const { loading } = this.state;
+    if (loading) {
+      return <div>Cargando...</div>;
+    }
     return (
       <ExchangeContext.Provider value={this.state}>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+            <img src={bitso_logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Bitso Exchange</h1>
           </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-          <div className="orders-view">
-            <Orders />
+          <div>
+            <Trades />
+            <div>
+              <Charts />
+              <Orders />
+            </div>
           </div>
         </div>
       </ExchangeContext.Provider>

@@ -1,0 +1,58 @@
+.div-block__content {
+  display: flex;
+  flex-direction: row;
+  height: 60rem;
+}
+
+table {
+  table-layout: fixed;
+  margin: auto;
+}
+th,
+td {
+  padding: 5px 5px;
+  width: 70px;
+  &.color-ask {
+    color: var(--Regular-green);
+  }
+  &.color-bid {
+    color: var(--Regular-red);
+  }
+  &.status__bar {
+    width: 30px;
+  }
+}
+
+thead,
+tfoot {
+  display: table;
+  width: 100%;
+}
+tbody {
+  height: 300px;
+  overflow: auto;
+  overflow-x: hidden;
+  display: block;
+  width: 100%;
+}
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.bar {
+  width: 100%;
+  height: 12px;
+  &.ask-color {
+    background-color: var(--Regular-green);
+  }
+  &.bid-color {
+    background-color: var(--Regular-red);
+  }
+}
+
+.status__bar--content {
+  display: flex;
+  justify-content: flex-end;
+}

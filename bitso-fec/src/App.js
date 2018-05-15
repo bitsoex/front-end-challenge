@@ -4,8 +4,28 @@ import bitso_logo from "./assets/Images/SVG/bitso_logo.svg";
 
 import Trades from "./Components/Trades";
 import ExchangeContext from "./Contexts/ExchangeContext";
+import Orders from "./Components/Orders";
+import OrderData from "./Modules/OrderData";
 import Charts from "./Components/Charts";
 import { parseChartData } from "./Utils";
+
+const websocket = new WebSocket("wss://ws.bitso.com");
+
+websocket.onopen = function() {
+  websocket.send(
+    JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "trades" })
+  );
+  websocket.send(
+    JSON.stringify({
+      action: "subscribe",
+      book: "btc_mxn",
+      type: "diff-orders"
+    })
+  );
+  websocket.send(
+    JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "orders" })
+  );
+};
 
 class App extends Component {
   state = {
@@ -20,7 +40,20 @@ class App extends Component {
     loading: true
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    const orders = await axios.get("https://api.bitso.com/v3/order_book", {
+      params: { book: "btc_mxn", aggregate: true }
+    });
+    websocket.onmessage = message => {
+      var data = JSON.parse(message.data);
+      if (data.type === "trades" && data.payload) {
+      } else if (data.type === "diff-orders" && data.payload) {
+        // orders.data.payload
+        const orderedOrders = OrderData(orders, data);
+        this.setState({ orders: orderedOrders });
+      } else if (data.type === "orders" && data.payload) {
+      }
+    };
     this.getChartJSON();
   }
 
@@ -53,11 +86,11 @@ class App extends Component {
           </header>
           <div>
             <Trades />
-            <Charts />
+            <div>
+              <Charts />
+              <Orders />
+            </div>
           </div>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
         </div>
       </ExchangeContext.Provider>
     );

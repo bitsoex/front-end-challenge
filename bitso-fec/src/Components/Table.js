@@ -1,6 +1,5 @@
 import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import order_selector from "../assets/Images/1x/order_selector.png";
 import _ from "lodash";
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];

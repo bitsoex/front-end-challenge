@@ -1,0 +1,76 @@
+@font-face {
+    font-family: DINPro-Light;
+    src: url('../../../Assets/Fonts/DINPro-Light.otf');
+  }
+  
+  @font-face {
+    font-family: DINPro-Medium;
+    src: url('../../../Assets/Fonts/DINPro-Medium.otf');
+  }
+  
+  @font-face {
+    font-family: DINPro-Regular;
+    src: url('../../../Assets/Fonts/DINPro-Regular.otf');
+  }
+
+.trades-section{
+    font-family: 'DINPro-Medium';
+    width: 250px;
+    height: calc(100vh - 125px);
+.trades-list-result{
+    height:calc(100vh - 246px);
+    overflow-y: auto;
+}
+
+    .trades-header-tittle{
+        width: 220px;
+        color: #b0bac1;
+        height: 30px;
+        padding-top: 7px;
+        margin-left: 20px;
+        text-align: left;
+        padding-left: 10px;
+        background-color: #313d4c;
+        margin-bottom: 5px;
+    }
+
+    .trades-header-column{
+        display: inline-flex;
+        color:#747f89;
+        font-size: 14px;
+        width: 250px;
+    }
+    .trades-list-row{
+        font-family:'DINPro-Light';
+        width: 250px;
+        padding-left: 5px;
+        font-size: 13px;
+        display: inline-flex;
+        color:#747f89;
+        
+    }
+    .tradeBuy{
+        width: 33%;
+        color:#466830;
+    }
+     
+    .tradeSell{
+        width: 33%;
+        color:#722837;
+    }
+    .coin{
+        color: #2e353d;
+    }
+    
+    .column{
+        width: 33%;
+
+    }
+}
+
+
+
+
+
+
+

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {URL_SERVICES} from './../../../Config.js';
-import {PARAMS_SERVICES} from './../../../Config.js';
-import {callGetServices} from './../../../Utils/CallServices.js';
+
 import './CoinSection.css';
 
 class CoinSection extends Component {
@@ -9,46 +7,38 @@ class CoinSection extends Component {
     super(props);
     
     this.state={
-      btc_to_mxn:0
+      changeAmount:0,
+      activeCoin:this.props.activeCoin,
+      ticketInfo:this.props.ticketInfo
     }
-
-    this.getBtcCost();
   }
 
-
-  getBtcCost(){
-
-    var arrayParams=[];
-    var objParam={param:'', value:''}
-
-    objParam.param='book';
-    objParam.value=PARAMS_SERVICES.book_btc_mx;
-
-    arrayParams.push(objParam);
-    callGetServices(URL_SERVICES.Ticker,arrayParams).then(response => {
-      
-      
-      
-      console.log('Last '+response.payload.last)
-      this.setState({btc_to_mxn:response.payload.last})
+  componentWillReceiveProps(nextProps){
+    if(nextProps!==this.props){
+        this.setState({ticketInfo:nextProps.ticketInfo, activeCoin:nextProps.activeCoin})
     }
-  
-  );
+}
 
-
-  }
 
   render() {
+    if(this.state.ticketInfo!==null){
     return (
       <section className="coin-section">
         <section className="view-exchange">
-          <p>1 BTC = {this.state.btc_to_mxn}</p>
+          <p>1 {this.state.activeCoin.fromCoin} = {this.state.ticketInfo.payload.last} {this.state.activeCoin.toCoin}</p>
           
         </section>
-       
+        
+      </section>
+    );
+  }else{
+    return (
+    <section className="coin-section">
       </section>
     );
   }
+  }
+
 }
 
 export default CoinSection;

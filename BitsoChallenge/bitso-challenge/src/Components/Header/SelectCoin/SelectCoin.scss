@@ -1,0 +1,61 @@
+@font-face {
+    font-family: DINPro-Light;
+    src: url('../../../Assets/Fonts/DINPro-Light.otf');
+  }
+  
+  @font-face {
+    font-family: DINPro-Medium;
+    src: url('../../../Assets/Fonts/DINPro-Medium.otf');
+  }
+  
+  @font-face {
+    font-family: DINPro-Regular;
+    src: url('../../../Assets/Fonts/DINPro-Regular.otf');
+  }
+
+
+.selectCoin-section{
+    display: inline-flex;
+    width: 100%;
+    height: 55px;
+    background-color: #161a1e;
+    .selectCoinOption{
+        margin-left: 40px;
+        width: 100px;
+        font-family: 'DINPro-Regular';
+        color:#98d372;
+        margin-right: 40px;
+        .options-select{
+            width: 100px;
+            
+            p:hover{
+                background-color: #252c36;
+            }
+            p{
+                color: #747f89;
+                margin-top: 0px;
+            margin-bottom: 20px;
+            }
+            position: absolute;
+            background-color: #161a1e;
+            display: block;
+            &.hidden{
+                display: none;
+            }
+        }
+    }
+
+
+    .info-section{
+        
+        font-family: 'DINPro-Light';
+        p{
+            margin-right: 40px;
+            color:#747f89;
+        }
+        span{
+            color:#2e353d;
+        }
+        display: inline-flex;
+    }
+}

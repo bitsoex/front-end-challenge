@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import {URL_SERVICES} from './../../../Config';
-import {PARAMS_SERVICES} from './../../../Config';
-import {callGetServices} from './../../../Utils/CallServices';
 import './LastTrades.css';
 
 class LastTrades extends Component {
@@ -9,47 +6,29 @@ class LastTrades extends Component {
         super(props);
         
         this.state={
-          array_trades:[],
           mxn:'MXN',
-          coinSelected:'BTC'
+          coinSelected:'BTC',
+          activeCoin:this.props.activeCoin,
+          array_trades:this.props.array_trades
         }
-
-        this.getTrades();
 
       }
 
-
-
-      getTrades(){
-        var arrayParams=[];
-        var objParam={param:'', value:''}
-    
-        objParam.param='book';
-        objParam.value=PARAMS_SERVICES.book_btc_mx;
-        arrayParams.push(objParam)
-    
-        callGetServices(URL_SERVICES.Trades,arrayParams).then(response => {
-                
-          
-          console.log(response)
-          this.setState({array_trades:response.payload})
-
-          // this.setState({array_trades:[{created_at:'20:04',price:10000, amount:2000,maker_side:'buy'},{created_at:'20:04',price:10000, amount:2000,maker_side:'sell'},{created_at:'20:04',price:10000, amount:2000,maker_side:'buy'}]})
-          // this.setState({btc_to_mxn:response.payload.last})
-        }
-      );
+      componentWillReceiveProps(nextProps){
+        this.setState({activeCoin:nextProps.activeCoin, array_trades:nextProps.array_trades})
       }
+
     
 
   render() {
     return (
       <section className="trades-section">
         <section className='trades-header'> 
-            <p className='trades-header-tittle'>Ultimos Trades</p>
+            <p className='trades-header-tittle'>ÚLTIMOS TRADES</p>
             <section className='trades-header-column'>
                 <p className='column'>Hora</p>
-                <p className='column'><span className='coin'>{this.state.mxn}</span> precio</p>
-                <p className='column'><span className='coin'>{this.state.coinSelected}</span> Monto</p>
+                <p className='column'><span className='coin'>{this.state.activeCoin.toCoin}</span> precio</p>
+                <p className='column'><span className='coin'>{this.state.activeCoin.fromCoin}</span> Monto</p>
             </section>
 
            
@@ -57,7 +36,7 @@ class LastTrades extends Component {
         </section>
         
         <section className='trades-list-result'>
-            {this.state.array_trades.map(trade => {
+            {this.state.array_trades.payload.map(trade => {
               return<section className='trades-list-row'> 
                 <p className='column'>{trade.created_at.substring(11,19)}</p>
                 <p className={trade.maker_side==='buy'?'tradeBuy':'tradeSell'}>{trade.price}</p>

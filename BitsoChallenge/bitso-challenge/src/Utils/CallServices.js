@@ -15,7 +15,6 @@ export const callGetServices = (url,params) => {
         return response.json()
     })
     .then((data) => {
-    console.log('Respuesta ' + JSON.stringify(data))
     return(data);
       
     })
@@ -35,7 +34,6 @@ export const callGetServices = (url,params) => {
                 "bid": "167521.40"
             }
         };
-        console.log('Respuesta')
         return(responseService);
 
     })

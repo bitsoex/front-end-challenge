@@ -9,6 +9,7 @@ class Orders extends Component {
     return (
       <ExchangeContext.Consumer>
         {({ orders, book }) => {
+          console.log(orders);
           const values = book.split("_");
           const biggestAmountAsk =
             orders && _.orderBy(orders.asks, ["amount"], ["desc"])[0].amount;
@@ -44,6 +45,9 @@ class Orders extends Component {
                       orders.asks.map((order, index) => {
                         const { price, amount, sum, value } = order;
                         let widthAsk = amount / biggestAmountAsk * 100;
+                        const integer = Number(amount)
+                          .toString()
+                          .split(".");
                         if (widthAsk < 1) widthAsk = 1;
                         return (
                           <tr key={index}>
@@ -66,9 +70,7 @@ class Orders extends Component {
                                 .slice(
                                   0,
                                   8 -
-                                    Number(amount)
-                                      .toString()
-                                      .split(".")[1].length
+                                    (integer.length > 1 ? integer[1].length : 0)
                                 )
                                 .join("")}
                             </td>
@@ -109,6 +111,9 @@ class Orders extends Component {
                         const { price, amount, sum, value } = order;
                         let widthBid = amount / biggestAmountBid * 100;
                         if (widthBid < 1) widthBid = 1;
+                        const integer = Number(amount)
+                          .toString()
+                          .split(".");
                         return (
                           <tr key={index}>
                             <td className="color-bid">
@@ -123,9 +128,7 @@ class Orders extends Component {
                                 .slice(
                                   0,
                                   8 -
-                                    Number(amount)
-                                      .toString()
-                                      .split(".")[1].length
+                                    (integer.length > 1 ? integer[1].length : 0)
                                 )
                                 .join("")}
                             </td>

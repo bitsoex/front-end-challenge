@@ -57,6 +57,10 @@ class App extends Component {
     this.getChartJSON();
   }
 
+  componentWillUnmount() {
+    websocket.close();
+  }
+
   getChartJSON = async () => {
     const { book, timeframe } = this.state;
     try {
@@ -84,9 +88,9 @@ class App extends Component {
             <img src={bitso_logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Bitso Exchange</h1>
           </header>
-          <div>
+          <div style={{ display: "flex", flexDirection: "row", width: "90em" }}>
             <Trades />
-            <div>
+            <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
               <Charts />
               <Orders />
             </div>

@@ -10,7 +10,7 @@ class Orders extends Component {
           return (
             <div className="div-block__content">
               <div>
-                <div>
+                <div className="header">
                   <h3>POSTURAS DE COMPRA</h3>
                 </div>
                 <Table

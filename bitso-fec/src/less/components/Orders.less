@@ -1,9 +1,6 @@
 .div-block__content {
   display: flex;
-  flex-direction: row;
-  height: 60rem;
 }
-
 table {
   table-layout: fixed;
   margin: auto;
@@ -11,8 +8,8 @@ table {
     direction: rtl;
   }
 }
-th,
-td {
+
+th, td {
   padding: 5px 5px;
   width: 70px;
   &.color-ask {
@@ -22,15 +19,15 @@ td {
     color: var(--Regular-red);
   }
   &.status__bar {
-    width: 30px;
+    width: 35px;
   }
 }
 
-thead,
-tfoot {
+thead, tfoot {
   display: table;
   width: 100%;
 }
+
 tbody {
   height: 300px;
   overflow: auto;
@@ -38,12 +35,13 @@ tbody {
   display: block;
   width: 100%;
 }
+
 tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
   &:hover {
-    background: rgba(216,212,212, 0.1) !important;
+    background: rgba(216, 212, 212, 0.1) !important;
   }
 }
 
@@ -61,4 +59,45 @@ tbody tr {
 .status__bar--content {
   display: flex;
   justify-content: flex-end;
+}
+
+.asks-enter {
+  background-color: var(--Regular-green);
+}
+
+.asks-enter-active {
+  background-color: transparent;
+  -webkit-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  transition: background-color 500ms linear;
+}
+
+.asks-exit {
+  opacity: 1;
+}
+
+.asks-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
+
+.bids-enter {
+  background-color: var(--Regular-red);
+}
+
+.bids-enter-active {
+  background-color: transparent;
+  -webkit-transition: background-color 500ms linear;
+  -ms-transition: background-color 500ms linear;
+  transition: background-color 500ms linear;
+}
+
+.bids-exit {
+  opacity: 1;
+  // content: url("../assets/Images/1x/order_selector.png")
+}
+
+.bids-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }

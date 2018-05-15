@@ -14,7 +14,7 @@ class App extends Component {
     books: null,
     orders: null,
     trades: null,
-    timeframe: "1month",
+    timeframe: "3months",
     candleData: null,
     volumeData: null,
     loading: true

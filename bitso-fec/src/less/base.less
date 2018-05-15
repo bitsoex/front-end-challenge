@@ -37,6 +37,27 @@
 @bp-small: 37.5em; // 600px
 @bp-smallest: 31.25em; // 500px
 
+@font-face {
+  font-family: "DINPro-regular";
+  src: url("../assets/Fonts/DINPro-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DINPro-medium";
+  src: url("../assets/Fonts/DINPro-Medium.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DINPro-light";
+  src: url("../assets/Fonts/DINPro-Light.otf");
+  font-weight: 200;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -58,8 +79,8 @@ html {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 400;
+  font-family: "DINPro-regular", sans-serif;
+  //   font-weight: 400;
   line-height: 1.6;
   color: var(--color-grey-dark-2);
   background-image: linear-gradient(

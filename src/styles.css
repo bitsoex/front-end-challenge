@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'DINPro';
+  font-weight: normal;
+  src: url('./fonts/DINPro-Regular.woff2'); /* Woff2 Best Modern Browser */
+  src: local('DinPro'),
+       url('./fonts/DINPro-Regular.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/DINPro-Regular.otf') format('opentype'), /* Older Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'DINPro';
+  font-weight: lighter;
+  src: url('./fonts/DINPro-Light.woff2'); /* Woff2 Best Modern Browser */
+  src: local('DinPro'),
+       url('./fonts/DINPro-Light.woff') format('woff'), /* Modern Browsers */
+       url('./fonts/DINPro-Light.otf') format('opentype'), /* Older Safari, Android, iOS */
+}
+
+
+body {
+    background-color: #161a1e;
+    margin: 0px;
+    font-family: 'DINPro';
+}
+
+.headerBitso {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    background-color: #252c36;
+}

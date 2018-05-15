@@ -43,7 +43,7 @@ const orderData = (orders, data) => {
       sum = data.amount;
       asks[index] = _.assign(data, { value, sum });
     } else {
-      sum = ((asks[index - 1].sum * 1e9) + (data.amount * 1e9)) / 1e9;
+      sum = (asks[index - 1].sum * 1e9 + data.amount * 1e9) / 1e9;
       asks[index] = _.assign(data, { value, sum });
     }
   });
@@ -54,7 +54,7 @@ const orderData = (orders, data) => {
       sum = data.amount;
       bids[index] = _.assign(data, { value, sum });
     } else {
-      sum = ((bids[index - 1].sum * 1e9) + (data.amount * 1e9)) / 1e9;
+      sum = (bids[index - 1].sum * 1e9 + data.amount * 1e9) / 1e9;
       bids[index] = _.assign(data, { value, sum });
     }
   });

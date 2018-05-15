@@ -7,6 +7,9 @@
 table {
   table-layout: fixed;
   margin: auto;
+  &.reverse {
+    direction: rtl;
+  }
 }
 th,
 td {
@@ -39,6 +42,9 @@ tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
+  &:hover {
+    background: rgba(216,212,212, 0.1) !important;
+  }
 }
 
 .bar {

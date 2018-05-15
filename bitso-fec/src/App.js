@@ -39,7 +39,9 @@ class App extends Component {
     volumeData: null,
     loading: true
   };
-
+  componentWillUnmount() {
+    websocket.close();
+  }
   async componentDidMount() {
     const orders = await axios.get("https://api.bitso.com/v3/order_book", {
       params: { book: "btc_mxn", aggregate: true }
@@ -84,9 +86,9 @@ class App extends Component {
             <img src={bitso_logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Bitso Exchange</h1>
           </header>
-          <div style={{ display: 'flex', flexDirection: 'row', width: '90em' }}>
+          <div style={{ display: "flex", width: "90em", margin: 'auto' }}>
             <Trades />
-            <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+            <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
               <Charts />
               <Orders />
             </div>

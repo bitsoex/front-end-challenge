@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import '../../assets/react-toolbox/theme.css';
 import theme from '../../assets/react-toolbox/theme'
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+import Layout from '../layout/Layout'
 
 class App extends Component {
   render() {
@@ -14,12 +15,12 @@ class App extends Component {
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet" />
           </Helmet>
-
-        <h1>My new Bitso App </h1>
+        <Layout>
+          <h1>My new Bitso App </h1>
+        </Layout>
         </div>
       </ThemeProvider>
     );
   }
 }
-
 export default App;

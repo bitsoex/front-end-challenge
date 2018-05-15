@@ -65,6 +65,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+import VueHead from 'vue-head'
+
+Vue.use(VueResource)
+Vue.use(VueHead)
+
 export default {
   name: 'App',
   computed: {
@@ -77,11 +84,18 @@ export default {
       dayMode: false,
       coins: {
         bitcoin: {
-          price: '168000.00'
+          price: '-'
         }
       },
       mobileMenu: {
         open: false
+      }
+    }
+  },
+  head: {
+    title: function () {
+      return {
+        inner: this.coins.bitcoin.price
       }
     }
   },
@@ -95,7 +109,38 @@ export default {
         str[1] = str[1].replace(/(\d{3})/g, '$1 ')
       }
       return str.join('.')
+    },
+    loadBitcoinTicker () {
+      var self = this
+      Vue.http.get('https://bitso-challenge.firebaseapp.com/ticker').then(function (data) {
+        console.log(data.body.payload)
+        self.coins.bitcoin.price = data.body.payload.last
+        self.title = data.body.payload.last
+        self.$emit('updateHead')
+      }, function (err) {
+        console.log(err)
+      })
     }
+  },
+  mounted () {
+    var self = this
+    var websocket = new WebSocket('wss://ws.bitso.com')
+    websocket.onopen = function () {
+      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }))
+      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }))
+      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }))
+    }
+
+    websocket.onmessage = function (message) {
+      console.log(message)
+    }
+
+    self.loadBitcoinTicker()
+
+    setInterval(function () {
+      console.log('load')
+      self.loadBitcoinTicker()
+    }, 30000)
   }
 }
 </script>

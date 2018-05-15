@@ -32,7 +32,7 @@ export default ({ orders, book, type }) => {
         {orders &&
           orders.map(order => {
             const { price, amount, sum, value, oid } = order;
-            let width = (amount / biggestAmount) * 100;
+            let width = amount / biggestAmount * 100;
             const integer = Number(amount)
               .toString()
               .split(".");

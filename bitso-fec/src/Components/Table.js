@@ -1,6 +1,5 @@
 import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import order_selector from "../assets/Images/1x/order_selector.png";
 import _ from "lodash";
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
@@ -32,8 +31,8 @@ export default ({ orders, book, type }) => {
       <TransitionGroup component="tbody" className="content">
         {orders &&
           orders.map(order => {
-            const { price, amount, sum, value } = order;
-            let width = amount / biggestAmount * 100;
+            const { price, amount, sum, value, oid } = order;
+            let width = (amount / biggestAmount) * 100;
             const integer = Number(amount)
               .toString()
               .split(".");

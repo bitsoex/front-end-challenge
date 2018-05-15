@@ -1,4 +1,6 @@
 import React from "react";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import order_selector from "../assets/Images/1x/order_selector.png";
 import _ from "lodash";
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
@@ -27,44 +29,59 @@ export default ({ orders, book, type }) => {
           </th>
         </tr>
       </thead>
-      <tbody className="content">
+      <TransitionGroup component="tbody" className="content">
         {orders &&
-          orders.map((order, index) => {
+          orders.map(order => {
             const { price, amount, sum, value } = order;
             let width = amount / biggestAmount * 100;
             const integer = Number(amount)
               .toString()
               .split(".");
-            if (width < 5) width = 1.5;
+            if (width < 5) {
+              width = 1.5;
+            } else if (width > 100) {
+              width = 100;
+            }
             return (
-              <tr key={index}>
-                <td className="status__bar">
-                  <div
-                    className={`bar ${
-                      type === "bids" ? "bid-color" : "ask-color"
-                    }`}
-                    style={{
-                      width: `${width}%`
-                    }}
-                  />
-                </td>
-                <td className="lighter-text">{Number(sum).toFixed(2)}</td>
-                <td>
-                  <span className="lighter-text">
-                    {integer.length > 1 ? Number(amount) : `${Number(amount)}.`}
-                  </span>
-                  {round
-                    .slice(0, 8 - (integer.length > 1 ? integer[1].length : 0))
-                    .join("")}
-                </td>
-                <td>{Number(value).toFixed(2)}</td>
-                <td className={type === "bids" ? "color-bid" : "color-ask"}>
-                  {Number(price).toFixed(2)}
-                </td>
-              </tr>
+              <CSSTransition
+                key={order.oid}
+                timeout={700}
+                classNames={type === "bids" ? "bids" : "asks"}
+              >
+                <tr>
+                  <td className="status__bar">
+                    <div
+                      className={`bar ${
+                        type === "bids" ? "bid-color" : "ask-color"
+                      }`}
+                      style={{
+                        width: `${width}%`
+                      }}
+                    />
+                  </td>
+                  <td className="lighter-text">{Number(sum).toFixed(2)}</td>
+                  <td>
+                    <span className="lighter-text">
+                      {integer.length > 1
+                        ? Number(amount)
+                        : `${Number(amount)}.`}
+                    </span>
+                    {round
+                      .slice(
+                        0,
+                        8 - (integer.length > 1 ? integer[1].length : 0)
+                      )
+                      .join("")}
+                  </td>
+                  <td>{Number(value).toFixed(2)}</td>
+                  <td className={type === "bids" ? "color-bid" : "color-ask"}>
+                    {Number(price).toFixed(2)}
+                  </td>
+                </tr>
+              </CSSTransition>
             );
           })}
-      </tbody>
+      </TransitionGroup>
     </table>
   );
 };

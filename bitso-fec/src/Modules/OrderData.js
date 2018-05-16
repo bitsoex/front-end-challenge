@@ -1,5 +1,4 @@
 import _ from "lodash";
-import uuid from "uuid";
 
 const orderData = (orders, data) => {
   let { asks, bids, sequence } = orders.data.payload;
@@ -10,7 +9,7 @@ const orderData = (orders, data) => {
           book: "btc_mxn",
           price: order.r,
           amount: order.a,
-          oid: uuid()
+          oid: order.o
         };
         if (order.t === 0) {
           asks.splice(

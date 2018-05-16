@@ -43,7 +43,7 @@ export default ({ orders, book, type }) => {
             }
             return (
               <CSSTransition
-                key={order.oid}
+                key={oid}
                 timeout={700}
                 classNames={type === "bids" ? "bids" : "asks"}
               >

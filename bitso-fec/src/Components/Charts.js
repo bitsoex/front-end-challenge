@@ -4,13 +4,15 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
 import { parseChartData } from "../Utils";
+import ChartBar from "./ChartBar";
 
 class Charts extends React.Component {
   state = {
     loading: true,
     candleData: null,
     volumeData: null,
-    timeframe: "1month"
+    timeframe: "1month",
+    currentChart: "candles" // candles o deep
   };
 
   componentDidMount() {
@@ -25,7 +27,6 @@ class Charts extends React.Component {
         `https://bitso.com/trade/chartJSON/${book}/${timeframe}`
       );
       if (status === 200) {
-        console.log(data);
         this.setState({ ...parseChartData(data) });
       }
     } catch (err) {
@@ -34,10 +35,14 @@ class Charts extends React.Component {
     this.setState({ loading: false });
   };
 
+  toggleChart = () => {
+    this.setState({
+      currentChart: this.state.currentChart === "candles" ? "deep" : "candles"
+    });
+  };
+
   render() {
-    console.log("Render Charts");
-    const { book } = this.props;
-    const { loading, candleData } = this.state;
+    const { loading, candleData, currentChart } = this.state;
     const options = {
       navigator: {
         enabled: false
@@ -54,8 +59,7 @@ class Charts extends React.Component {
       series: [
         {
           type: "candlestick",
-          // timestamp, open, high, low, close
-          data: candleData
+          data: candleData // timestamp, open, high, low, close
         }
       ]
     };
@@ -66,8 +70,7 @@ class Charts extends React.Component {
 
     return (
       <div>
-        <h3>Charts</h3>
-        <span>{book}</span>
+        <ChartBar currentChart={currentChart} toggleChart={this.toggleChart} />
         <HighchartsReact
           highcharts={Highcharts}
           constructorType={"stockChart"}

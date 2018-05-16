@@ -1,13 +1,13 @@
 import _ from "lodash";
 import uuid from "uuid";
 
-const orderData = (orders, data) => {
+const orderData = (orders, data, book) => {
   let { asks, bids, sequence } = orders.data.payload;
   if (data.sequence > sequence) {
     _.map(data.payload, order => {
       if (order.s === "open") {
         const value = {
-          book: "btc_mxn",
+          book,
           price: order.r,
           amount: order.a,
           oid: order.o || uuid()

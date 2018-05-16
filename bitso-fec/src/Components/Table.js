@@ -7,7 +7,9 @@ const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 export default ({ orders, book, type }) => {
   const values = book.split("_");
   const biggestAmount =
-    orders && _.orderBy(orders, ["amount"], ["desc"])[0].amount;
+    orders &&
+    orders.length &&
+    _.orderBy(orders, ["amount"], ["desc"])[0].amount;
   return (
     <table className={type === "bids" ? "reverse" : null}>
       <thead>

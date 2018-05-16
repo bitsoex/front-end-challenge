@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import bitso_logo from "./assets/Images/SVG/bitso_logo.svg";
 
 import Trades from "./Components/Trades";
@@ -10,31 +9,28 @@ import Charts from "./Components/Charts";
 class App extends Component {
   websocket = new WebSocket("wss://ws.bitso.com");
   state = {
-    loading: true,
     book: "btc_mxn",
     ticker: {},
     books: null,
-    tempOrders: null,
     orders: null,
     trades: null
   };
 
   componentDidMount() {
-    this.getOrders();
-
+    const { book } = this.state;
     this.websocket.onopen = () => {
       this.websocket.send(
-        JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "trades" })
+        JSON.stringify({ action: "subscribe", book, type: "trades" })
       );
       this.websocket.send(
         JSON.stringify({
           action: "subscribe",
-          book: "btc_mxn",
+          book,
           type: "diff-orders"
         })
       );
       this.websocket.send(
-        JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "orders" })
+        JSON.stringify({ action: "subscribe", book, type: "orders" })
       );
     };
   }
@@ -43,19 +39,8 @@ class App extends Component {
     this.websocket.close();
   }
 
-  getOrders = async () => {
-    const orders = await axios.get("https://api.bitso.com/v3/order_book", {
-      params: { book: "btc_mxn", aggregate: true }
-    });
-
-    this.setState({ tempOrders: orders, loading: false });
-  };
-
   render() {
-    const { loading, book, tempOrders } = this.state;
-    if (loading) {
-      return <div>Cargando...</div>;
-    }
+    const { book } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -66,11 +51,7 @@ class App extends Component {
           <Trades />
           <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
             <Charts book={book} />
-            <Orders
-              book={book}
-              tempOrders={tempOrders}
-              websocket={this.websocket}
-            />
+            <Orders book={book} websocket={this.websocket} />
           </div>
         </div>
       </div>

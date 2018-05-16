@@ -34,7 +34,6 @@ class Dashboard extends React.Component {
     return firstTrades.data.payload;
   };
 
-
   async componentDidMount() {
     const { websocket, book } = this.props;
     const firstOrders = await this.getFirstOrders();
@@ -67,7 +66,7 @@ class Dashboard extends React.Component {
     const { book } = this.props;
     const { orders, trades } = this.state;
     return (
-      <div style={{ display: "flex", width: "90em", margin: "auto" }}>
+      <div style={{ display: "flex", width: "120em", margin: "auto" }}>
         <Trades book={book} trades={trades} />
         <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
           <Charts book={book} />

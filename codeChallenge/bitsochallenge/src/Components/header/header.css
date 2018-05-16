@@ -1,0 +1,52 @@
+@font-face {
+  font-family: DINPro-Light;
+  src: url('../../Assets/Fonts/DINPro-Light.otf');
+}
+
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../../Assets/Fonts/DINPro-Medium.otf');
+}
+
+@font-face {
+  font-family: DINPro-Regular;
+  src: url('../../Assets/Fonts/DINPro-Regular.otf');
+}
+
+//***************Header Styles********/
+.header {
+width: 25%;
+display: inline-flex;
+}
+.ToolbarGroup {
+  background-color: #252c36;
+  color:#191e23;
+  width: 100%;
+}
+.ToolbarTitle {
+  font-family: DINPro-Light;
+  color: #b0bac1;
+  display: inline;
+  font-size:1.5em;
+}
+.ToolbarTitle:default{
+  font-family: DINPro-Light;
+  color: #b0bac1;
+  display: inline;
+  font-size:1.5em;
+}
+
+.background-color{
+  background-color: #252c36;
+  color:#191e23;
+}
+.bitsoLogo{
+width: 90px;
+margin-left: 25px;
+margin-right: 5px;
+}
+
+.Toolbar {
+  background-color: #252c36;
+  color:#191e23;
+}

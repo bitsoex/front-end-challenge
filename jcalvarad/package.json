@@ -27,7 +27,9 @@
     "include": [
       "APP_BAR",
       "LINK",
-      "NAVIGATION"
+      "NAVIGATION",
+      "SWITCH",
+      "MENU"
     ],
     "customProperties": {
       "color-primary": "var(--palette-blue-grey-700)",

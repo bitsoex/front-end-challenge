@@ -1,0 +1,18 @@
+.logo{
+    height: 50%
+}
+
+.separator-sm{
+    margin: 0 10px;
+    height: 20%;
+    border-right: 1px solid #FFFF;
+}
+
+.title{
+    font-size: 0.8em
+}
+
+.nav{
+    margin: auto;
+    margin-right: 0px;
+}

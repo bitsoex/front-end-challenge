@@ -7,7 +7,9 @@ const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 export default ({ orders, book, type }) => {
   const values = book.split("_");
   const biggestAmount =
-    orders && _.orderBy(orders, ["amount"], ["desc"])[0].amount;
+    orders &&
+    orders.length &&
+    _.orderBy(orders, ["amount"], ["desc"])[0].amount;
   return (
     <table className={type === "bids" ? "reverse" : null}>
       <thead>
@@ -72,8 +74,14 @@ export default ({ orders, book, type }) => {
                       )
                       .join("")}
                   </td>
-                  <td>{Number(value).toFixed(2)}</td>
-                  <td className={type === "bids" ? "color-bid" : "color-ask"}>
+                  <td className="order-value">{Number(value).toFixed(2)}</td>
+                  <td
+                    className={
+                      type === "bids"
+                        ? "color-bid__orders"
+                        : "color-ask__orders"
+                    }
+                  >
                     {Number(price).toFixed(2)}
                   </td>
                 </tr>

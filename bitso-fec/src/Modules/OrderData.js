@@ -1,27 +1,28 @@
 import _ from "lodash";
 
-const orderData = (orders, data) => {
+const orderData = (orders, data, book) => {
   let { asks, bids, sequence } = orders.data.payload;
   if (data.sequence > sequence) {
     _.map(data.payload, order => {
       if (order.s === "open") {
-        const value = {
-          book: "btc_mxn",
+        const item = {
+          book,
           price: order.r,
           amount: order.a,
-          oid: order.o
+          oid: order.o,
+          value: order.a * order.r
         };
         if (order.t === 0) {
           asks.splice(
             _.sortedIndexBy(asks, { price: order.r }, "price"),
             0,
-            value
+            item
           );
         } else {
           bids.splice(
             _.sortedIndexBy(bids, { price: order.r }, "price"),
             0,
-            value
+            item
           );
         }
       } else {
@@ -32,33 +33,30 @@ const orderData = (orders, data) => {
         }
       }
     });
+    asks = _.orderBy(asks, ["price"], ["desc"]).slice(-10);
+    bids = _.orderBy(bids, ["price"], ["asc"]).slice(-10);
+
+    _.forEach(asks, (data, index) => {
+      let sum = 0;
+      if (!index > 0) {
+        sum = data.amount;
+        asks[index] = _.assign(data, { sum });
+      } else {
+        sum = (asks[index - 1].sum * 1e9 + data.amount * 1e9) / 1e9;
+        asks[index] = _.assign(data, { sum });
+      }
+    });
+    _.forEach(bids, (data, index) => {
+      let sum = 0;
+      if (!index > 0) {
+        sum = data.amount;
+        bids[index] = _.assign(data, { sum });
+      } else {
+        sum = (bids[index - 1].sum * 1e9 + data.amount * 1e9) / 1e9;
+        bids[index] = _.assign(data, { sum });
+      }
+    });
   }
-  asks = _.orderBy(asks, ["price"], ["desc"]);
-  bids = _.orderBy(bids, ["price"], ["desc"]);
-
-  _.forEach(asks, (data, index) => {
-    const value = data.price * data.amount;
-    let sum = 0;
-    if (!index > 0) {
-      sum = data.amount;
-      asks[index] = _.assign(data, { value, sum });
-    } else {
-      sum = (asks[index - 1].sum * 1e9 + data.amount * 1e9) / 1e9;
-      asks[index] = _.assign(data, { value, sum });
-    }
-  });
-  _.forEach(bids, (data, index) => {
-    const value = data.price * data.amount;
-    let sum = 0;
-    if (!index > 0) {
-      sum = data.amount;
-      bids[index] = _.assign(data, { value, sum });
-    } else {
-      sum = (bids[index - 1].sum * 1e9 + data.amount * 1e9) / 1e9;
-      bids[index] = _.assign(data, { value, sum });
-    }
-  });
-
   return { asks, bids };
 };
 

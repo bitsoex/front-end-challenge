@@ -8,11 +8,24 @@ class Trades extends React.Component {
     const { trades, book } = this.props;
     const values = book.split("_");
     return (
-      <div style={{ height: "100%", width: "22em", margin: 10 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flex: "0 0 20%"
+        }}
+      >
         <div className="navy-header trades">
           <h4 className="lighter-text bold">ÚLTIMOS TRADES</h4>
         </div>
-        <div style={{ marginRight: 10 }}>
+        <div
+          style={{
+            flex: 1,
+            marginRight: "10px",
+            display: "flex",
+            fontSize: "1.35rem"
+          }}
+        >
           <table>
             <thead>
               <tr className="fixed">
@@ -36,10 +49,14 @@ class Trades extends React.Component {
                     .split(".");
                   return (
                     <tr key={tid} className="trade-row">
-                      <td>{moment(created_at).format("H:mm:ss")}</td>
+                      <td className="lighting-text">
+                        {moment(created_at).format("H:mm:ss")}
+                      </td>
                       <td
                         className={
-                          maker_side === "buy" ? "color-bid" : "color-ask"
+                          maker_side === "buy"
+                            ? "color-bid__trades"
+                            : "color-ask__trades"
                         }
                       >
                         {Number(price).toFixed(2)}

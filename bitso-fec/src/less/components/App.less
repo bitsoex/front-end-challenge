@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
 }
 
 .App-logo {
@@ -15,21 +18,21 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
 
 .light--text {
   color: var(--sidebar-text);
@@ -48,7 +51,7 @@
   padding-right: 20px;
   padding-left: 20px;
   background-color: var(--Navy-headers);
-  align-items: center;
+  // align-items: center;
   &.orders {
     justify-content: space-between;
   }

@@ -15,21 +15,26 @@ class Dashboard extends React.Component {
   };
 
   getFirstOrders = async () => {
+    const { book } = this.props;
+    let value = 0;
     let orders = await axios.get("https://api.bitso.com/v3/order_book", {
-      params: { book: "btc_mxn", aggregate: true }
+      params: { book, aggregate: true }
     });
     orders.data.payload.asks = _.map(orders.data.payload.asks, order => {
-      if (!order.oid) return _.assign(order, { oid: uuid() });
+      value = order.amount * order.price;
+      if (!order.oid) return _.assign(order, { oid: uuid(), value });
     });
     orders.data.payload.bids = _.map(orders.data.payload.bids, order => {
-      if (!order.oid) return _.assign(order, { oid: uuid() });
+      value = order.amount * order.price;
+      if (!order.oid) return _.assign(order, { oid: uuid(), value });
     });
     return orders;
   };
 
   getFirstTrades = async () => {
+    const { book } = this.props;
     const firstTrades = await axios.get("https://api.bitso.com/v3/trades/", {
-      params: { book: "btc_mxn", sort: "desc", limit: 50 }
+      params: { book, sort: "desc", limit: 50 }
     });
     return firstTrades.data.payload;
   };
@@ -43,6 +48,7 @@ class Dashboard extends React.Component {
     websocket.onmessage = message => {
       var data = JSON.parse(message.data);
       if (data.type === "diff-orders" && data.payload) {
+        console.log(data)
         const orderedOrders = OrderData(firstOrders, data);
         this.setState({ orders: orderedOrders });
       } else if (data.type === "trades" && data.payload) {
@@ -50,7 +56,7 @@ class Dashboard extends React.Component {
         const { a, i, r, t } = data.payload[0];
         const trade = {
           book,
-          created_at: moment().toString(),
+          created_at: moment().toISOString(),
           amount: a,
           maker_side: t === 0 ? "buy" : "sell",
           price: r,
@@ -66,9 +72,16 @@ class Dashboard extends React.Component {
     const { book } = this.props;
     const { orders, trades } = this.state;
     return (
-      <div style={{ display: "flex", width: "120em", margin: "auto" }}>
+      <div className="dashboard-container">
         <Trades book={book} trades={trades} />
-        <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            flexDirection: "column",
+            paddingLeft: "1rem"
+          }}
+        >
           <Charts book={book} />
           <Orders book={book} orders={orders} />
         </div>

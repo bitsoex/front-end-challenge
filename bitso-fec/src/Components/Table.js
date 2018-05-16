@@ -33,7 +33,7 @@ export default ({ orders, book, type }) => {
       <TransitionGroup component="tbody" className="content">
         {orders &&
           orders.map(order => {
-            const { price, amount, sum, value } = order;
+            const { price, amount, sum, value, oid } = order;
             let width = amount / biggestAmount * 100;
             const integer = Number(amount)
               .toString()
@@ -45,7 +45,7 @@ export default ({ orders, book, type }) => {
             }
             return (
               <CSSTransition
-                key={order.oid}
+                key={oid}
                 timeout={700}
                 classNames={type === "bids" ? "bids" : "asks"}
               >

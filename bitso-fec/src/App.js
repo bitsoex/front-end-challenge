@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import bitso_logo from "./assets/Images/SVG/bitso_logo.svg";
-
-import Trades from "./Components/Trades";
-import Orders from "./Components/Orders";
-// import OrderData from "./Modules/OrderData";
-import Charts from "./Components/Charts";
+import Dashboard from "./Components/Dashboard";
 
 class App extends Component {
   websocket = new WebSocket("wss://ws.bitso.com");
@@ -47,13 +43,7 @@ class App extends Component {
           <img src={bitso_logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Bitso Exchange</h1>
         </header>
-        <div style={{ display: "flex", width: "90em", margin: "auto" }}>
-          <Trades />
-          <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
-            <Charts book={book} />
-            <Orders book={book} websocket={this.websocket} />
-          </div>
-        </div>
+        <Dashboard book={book} websocket={this.websocket} />
       </div>
     );
   }

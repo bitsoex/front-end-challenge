@@ -83,8 +83,7 @@ html {
 }
 
 body {
-  font-family: "DINPro-light";
-  font-size: 1.5rem;
+  font-family: "DINPro-light", sans-serif;
   line-height: 1.6;
   color: var(--dark-text);
   // background-image: linear-gradient(
@@ -98,4 +97,12 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: "transparent";
+  border-radius: 6px;
 }

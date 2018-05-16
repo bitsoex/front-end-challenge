@@ -69,7 +69,7 @@ class Charts extends React.Component {
     }
 
     return (
-      <div>
+      <div style={{ flex: 1 }}>
         <ChartBar currentChart={currentChart} toggleChart={this.toggleChart} />
         <HighchartsReact
           highcharts={Highcharts}

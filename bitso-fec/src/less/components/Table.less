@@ -1,0 +1,59 @@
+table {
+  // table-layout: fixed;
+  // margin: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.35rem;
+  &.reverse {
+    direction: rtl;
+  }
+}
+
+th,
+td {
+  padding: 3px 3px;
+  width: 70px;
+  &.color-ask {
+    color: var(--Regular-green);
+  }
+  &.color-bid {
+    color: var(--Regular-red);
+  }
+  &.status__bar {
+    width: 35px;
+  }
+}
+
+thead,
+tfoot {
+  display: table;
+  width: 100%;
+  padding: 3px 3px;
+}
+
+tbody {
+  // height: 370px;
+  overflow: scroll;
+  overflow-x: hidden;
+  // display: block;
+  // width: 100%;
+  // &.trades {
+  //   // height: 750px;
+  // }
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  &:hover {
+    background: rgba(216, 212, 212, 0.1) !important;
+  }
+  &.trade-row {
+    opacity: 0.9;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

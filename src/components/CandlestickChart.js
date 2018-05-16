@@ -16,13 +16,18 @@ class CandleStickStockScaleChart extends React.Component {
     const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
       d => d.date
     );
-    const { data, xScale, xAccessor, displayXAccessor } = xScaleProvider(
+    const { data, xScale, /*xAccessor,*/ displayXAccessor } = xScaleProvider(
       initialData
     );
+    const xAccessor = d => {
+      console.log("d", d);
+      return d.date;
+    };
+    console.log("data", data);
     console.log("last", last(data).date, data[0].date);
     console.log("xAccessor", xAccessor(last(data)), xAccessor(data[0]));
-    // const xExtents = [xAccessor(last(data)), xAccessor(data[0])];
-    const xExtents = [new Date(2018, 4, 15), new Date(new Date(2018, 5, 14))];
+    const xExtents = [xAccessor(last(data)), xAccessor(data[15])];
+    // const xExtents = [new Date(2018, 4, 15), new Date(new Date(2018, 5, 14))];
 
     return (
       <ChartCanvas

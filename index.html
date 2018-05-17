@@ -28,6 +28,7 @@
 
   <link href="//bitso.com/assets/images/b/favicons/safari-pinned-tab.svg" rel="mask-icon">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/css/application.css">
+  <script type="text/javascript" src="assets/javascripts/application.js"></script>
   <meta content="#86af6b" name="msapplication-TileColor">
   <meta content="#ffffff" name="theme-color">
 
@@ -71,7 +72,7 @@
   <div id="main">
     <header id="main-header">
       <div class="row">
-        <div class="col">
+        <div class="col col-md-4 col-lg-3">
           <button id="markets-button" target="#markets-sidebar">
             <i></i>
             <i></i>
@@ -82,11 +83,11 @@
 
           <div class="current trading-pair"></div>
         </div>
-        <div id="utilities" class="col ml-auto">
+        <div id="utilities" class="col-3 col-sm ml-auto">
           <div id="trading-pair-value">
             <p><span class="pair">1 BTC</span> = <span class="value">000,000.00</span> <span class="currency">MXN</span></p>
           </div>
-          <ul id="main-menu">
+          <ul id="main-menu" class="d-none d-lg-inline-block">
             <li>
               <a href="#wallet">Wallet <i class="bi-chevron-down"></i></a>
               <ul class="sub-menu">
@@ -120,7 +121,7 @@
             </li>
             <li>
               <div id="profile-nav">
-                <div id="profile-pic">
+                <div id="profile-pic" class="d-none d-xl-inline-block">
                   <img src="https://scontent.fmex7-2.fna.fbcdn.net/v/t1.0-9/23032898_613612398807696_5055203589310570227_n.jpg?_nc_cat=0&oh=de12d823fdfb0d10ae5288def1dc84d4&oe=5B8510B1" title="profile-pic" title="profile-pic">
                 </div>
                 <span id="user-name">Usuario <i class="bi-chevron-down"></i></span>
@@ -135,18 +136,36 @@
               </ul>
             </li>
           </ul>
-          <div id="night-mode" class="">
-            <div class="switch"></div>
-            <ul class="night-mode-icons">
-              <li><i class="bi-moon"></i></li>
-              <li><i class="bi-sun"></i></li>
-            </ul>
+          <div id="night-mode">
+            <div id="night-mode-wrapper">
+              <div class="switch"></div>
+              <ul class="night-mode-icons">
+                <li><i class="bi-moon"></i></li>
+                <li><i class="bi-sun"></i></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
     </header>
-  </div>
+
+    <footer id="main-footer">
+      <nav id="mobile-nav">
+        <ul id="mobile-menu">
+          <li>
+            <a href="#account"><i class="bi-account"></i> <span>Account</span></a>
+          </li>
+          <li>
+            <a href="#exchange"><i class="bi-exchange"></i> <span>Exchange</span></a>
+          </li>
+          <li>
+            <a href="#wallet"><i class="bi-wallet"></i> <span>Wallet</span></a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+  </div><!-- #main -->
 
 
 
@@ -172,8 +191,13 @@
 
 
 
-
-
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      /* Init App */
+      App.init();
+    });
+  </script>
 
 </body>
 </html>

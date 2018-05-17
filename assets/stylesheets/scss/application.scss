@@ -34,7 +34,11 @@
   }
 }
 
-.bi-moon, .bi-sun{
+.bi-moon, 
+.bi-sun,
+.bi-account,
+.bi-exchange,
+.bi-wallet{
   width: 1em;
   height: 1em;
   background-color: $dark-text;
@@ -121,6 +125,10 @@
 #trading-pair-value{
   display: inline-block;
   margin-right: 2.3em;
+
+  @include media-breakpoint-down(sm){
+    display: none;
+  }
 }
 
 #main-menu{
@@ -213,13 +221,29 @@
 }
 
 #night-mode{
-  margin-left: 1vw;
-  padding: 0.2em;
+  padding: 1.4em 0.6em;
   display: inline-block;
+  cursor: pointer;
+  margin-left: 1vw;
+
+  &:hover, &:focus{
+    .switch{
+      background-color: $light-text;
+    }
+  }
+
+  &.on{
+    .switch{
+      left: 1.8em;
+    }
+  }
+}
+
+#night-mode-wrapper{
+  padding: 0.2em;
   background-color: $background-navy;
   position: relative;
   border-radius: 1em;
-  cursor: pointer;
 
   .switch{
     width: 1.2rem;
@@ -243,11 +267,6 @@
       display: block;
     }
   }
-  &.on{
-    .switch{
-      left: 1.8em;
-    }
-  }
 
   ul.night-mode-icons{
     padding: 0;
@@ -265,6 +284,60 @@
     }
   }  
 }
+
+/* Mobile Nav
+------------------------------------- */
+
+#mobile-nav{
+  display: none;
+  width: 100%;
+  background-color: $regular-navy;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+
+  @include media-breakpoint-down(md){
+    display: table;
+  }
+
+  #mobile-menu{
+    padding: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+
+    @include media-breakpoint-down(md){
+      @include make-row();
+    }
+  }
+
+
+  li{
+    @include make-col-ready();
+    @include make-col(4);
+
+    a{
+      text-align: center;
+      display: block;
+      padding: 1em 0;
+      color: $light-text;
+
+      &:hover, &:active, &:focus{
+        text-decoration: none;
+        color: lighten($light-text, 10%);
+
+        i{
+          background-color: lighten($light-text, 10%);
+        }
+      }
+
+      span{
+        display: block;
+      }
+    }
+  }
+}
+
 
 /* Markets Sidebar
 ------------------------------------- */

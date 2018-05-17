@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import bitso_logo from "./assets/Images/SVG/bitso_logo.svg";
 import Dashboard from "./Components/Dashboard";
 import Subheader from "./Components/Subheader";
+import NavbarHeader from "./Components/NavbarHeader";
 
 class App extends Component {
   websocket = new WebSocket("wss://ws.bitso.com");
@@ -10,6 +10,7 @@ class App extends Component {
     ticker: {},
     books: null,
     orders: null,
+    last: null,
     trades: null
   };
 
@@ -36,29 +37,26 @@ class App extends Component {
     this.websocket.close();
   }
 
-  onSelectBook(book) {
-    this.setState({ book });
-    this.websocket.send(
-      JSON.stringify({
-        action: "subscribe",
-        book,
-        type: "diff-orders"
-      })
-    );
+  onSelectBook(book, last) {
+    this.setState({ book, last });
+    // this.websocket.send(
+    //   JSON.stringify({
+    //     action: "subscribe",
+    //     book,
+    //     type: "diff-orders"
+    //   })
+    // );
   }
   render() {
     const { book } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={bitso_logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Bitso Exchange</h1>
-        </header>
+        <NavbarHeader />
         <div className="div_block__container">
           <div className="div-block__container-subheader">
             <Subheader
               book={book}
-              onSelectBook={book => this.onSelectBook(book)}
+              onSelectBook={({ book, last }) => this.onSelectBook(book, last)}
             />
           </div>
         </div>

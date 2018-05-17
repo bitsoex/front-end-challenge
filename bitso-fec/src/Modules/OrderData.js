@@ -33,8 +33,8 @@ const orderData = (orders, data, book) => {
         }
       }
     });
-    asks = _.orderBy(asks, ["price"], ["desc"]).slice(-10);
-    bids = _.orderBy(bids, ["price"], ["asc"]).slice(-10);
+    asks = _.orderBy(asks, ["price"], ["desc"]).slice(-15);
+    bids = _.orderBy(bids, ["price"], ["asc"]).slice(-15);
 
     _.forEach(asks, (data, index) => {
       let sum = 0;

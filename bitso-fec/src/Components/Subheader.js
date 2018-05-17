@@ -35,7 +35,7 @@ class Subheader extends Component {
       book,
       loading: false
     });
-    this.props.onSelectBook(book);
+    this.props.onSelectBook({ book, last: ticker.last });
   }
 
   render() {
@@ -46,6 +46,7 @@ class Subheader extends Component {
       <div className="subheader-container">
         <Menu mode="horizontal" onSelect={book => this.handleSelect(book.key)}>
           <SubMenu
+            className="subheader_menu-item"
             key="available__books"
             title={book.replace("_", "/").toUpperCase()}
           >
@@ -66,7 +67,7 @@ class Subheader extends Component {
             display: "flex",
             justifyContent: "space-around",
             flex: 1,
-            marginRight: "50rem",
+            marginRight: "40rem",
             fontSize: "1.6rem"
           }}
         >

@@ -48,9 +48,8 @@ class Dashboard extends React.Component {
     websocket.onmessage = message => {
       var data = JSON.parse(message.data);
       if (data.type === "diff-orders" && data.payload) {
-        console.log(data)
         const orderedOrders = OrderData(firstOrders, data);
-        this.setState({ orders: orderedOrders });
+        setTimeout(this.setState({ orders: orderedOrders }), 100);
       } else if (data.type === "trades" && data.payload) {
         const trades = this.state.trades;
         const { a, i, r, t } = data.payload[0];

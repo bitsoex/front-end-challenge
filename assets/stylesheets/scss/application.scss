@@ -74,6 +74,7 @@
 
 #main{
   width: 100%;
+  min-height: 100vh;
   overflow: hidden;
   background-color: $background-navy;
 }
@@ -347,6 +348,72 @@
 
       span{
         display: block;
+      }
+    }
+  }
+}
+
+/* Market Meta
+------------------------------------- */
+
+#market-meta{
+  padding: 0.4em 0;
+
+  p{
+    margin: 0.4em 0;
+    color: $dark-text;
+    
+    span{
+      margin-left: 0.1em;
+      color: $light-text;
+    }
+  }
+}
+
+#market-select{
+  display: inline-block;
+  padding: 0;
+  margin-left: 2vw;
+  list-style-type: none;
+
+  @extend .dropdown;
+
+  > li{
+    &:hover, &:active, &:focus{
+      > a{
+        color: $light-green;
+        text-decoration: none;
+      }
+    }
+    > a{
+      padding: 0.4em 0;
+      font-size: 1.2em;
+      font-weight: 400;
+      color: $regular-green;
+    }
+  }
+
+  .sub-menu{
+    list-style-type: none;
+    padding: 0 0 0.6em;
+    margin: 0;
+    background-color: $sidebar-background;
+    text-align: center;
+    border-top: 1px solid transparentize($sidebar-text, 0.6);
+    border-bottom: 2px solid $regular-green;
+
+    a{
+      color: $sidebar-text;
+      padding: 0.4em 1em;
+      border-right: 0.6em solid $sidebar-background;
+      border-left: 0.6em solid $sidebar-background;
+      border-bottom: 1px solid transparentize($sidebar-text, 0.6);
+
+      &:hover, &:active, &:focus{
+        text-decoration: none;
+        border-right-color: $background-navy;
+        border-left-color: $background-navy;
+        background-color: $background-navy;
       }
     }
   }

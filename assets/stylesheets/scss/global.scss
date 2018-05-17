@@ -1,4 +1,8 @@
-html{ font-size: $base-fontsize; background-color: $background-navy; }
+html{ 
+  font-size: $base-fontsize; 
+  background-color: $background-navy; 
+  overflow-x: hidden;
+}
 body{ 
   font-family: $primaryFontFamily; 
   background-color: $background-navy; 

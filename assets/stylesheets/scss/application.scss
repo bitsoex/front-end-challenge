@@ -67,13 +67,19 @@
   background-repeat: no-repeat;
 
   @include media-breakpoint-retina(){
-    width: 19px;
-    height: 13px;
+    width: 30px*3;
+    height: 30px;
   }
 }
 
 #main{
+  width: 100%;
+  overflow: hidden;
   background-color: $background-navy;
+}
+
+#mobile-nav, #main, #main-header{
+  @include transition(margin-left 0.4s);
 }
 
 /* Main Header
@@ -84,6 +90,14 @@
   color: $light-text;
   background-color: $regular-navy;
   vertical-align: middle;
+
+  @include media-breakpoint-down(md){
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+  }
 
   h1{
     margin: 0;
@@ -344,8 +358,89 @@
 
 #markets-button{
   display: none;
+  width: 56px;
+  height: 56px;
+  padding: 0.6em 0;
+  background-color: transparent;
+  border: 0;
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+  // z-index: 99999;
+
+  @include media-breakpoint-down(md){
+    display: inline-block;
+  }
+
+  &.active{
+    i{
+      &:nth-child(1){
+        top: 0;
+        transform: rotate(40deg);
+      }
+      &:nth-child(2){
+        @include opacity(0);
+      }
+      &:nth-child(3){
+        top: 0;
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  i {
+    width: 24px;
+    height: 2px;
+    margin: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    position: absolute;
+    background-color: $light-text;
+    transition: 0.2s;
+
+    &:nth-child(1) { top: -14px; }
+    &:nth-child(2) { top: 0; }
+    &:nth-child(3) { top: 14px; }
+  }
 }
 
 #markets-sidebar{
   display: none;
+  height: 100%;
+  background-color: $background-navy;
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+  @include animation('animateleft 0.4s');
 }
+
+@include keyframes('animateleft'){
+  from{
+    left: -300px;
+    opacity: 0;
+  } 
+  to{
+    left: 0;
+    opacity: 1;
+  }
+}
+
+@include keyframes('animateleft'){
+  from{
+    left: -300px;
+    opacity: 0;
+  } 
+  to{
+    left: 0;
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+

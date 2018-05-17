@@ -60,7 +60,7 @@
  *   0% { opacity: 1; }
  *   90% { opacity: 0; }
  * }
-
+ *
  * .element {
  *   width: 100px;
  *   height: 100px;
@@ -103,7 +103,7 @@
  *
  * a {
  *   color: gray;
- *   @include transition(color .3s ease);
+ *   @include transition(color 0.3s ease);
  *   &:hover {
  *     color: black;
  *   }

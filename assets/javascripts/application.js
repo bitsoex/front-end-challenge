@@ -1,6 +1,13 @@
+/*
+ * Bitso App
+ *
+ * NightModeSwitch            Init Night Mode Switch
+ * MobileSidebar              Init Mobile Sidebar
+ */
+
 /* Night Mode Switch Handler
 ----------------------------------------- */
-function _toggleNightMode(){
+function _toggleNightModeHandler(){
 
   /* Toggle Night Mode */
   document.body.classList.toggle('night-mode');
@@ -9,24 +16,42 @@ function _toggleNightMode(){
 
 };
 
-var NightModeSwitchHandler = function(){
+/* Night Mode Switch Handler
+----------------------------------------- */
+function _toggleMobileSidebar(){
+
+  if (this.className.indexOf('active') === -1) {
+    /* Open Sidebar */
+    document.getElementById("main").style.marginLeft          = "300px";
+    document.getElementById("main-header").style.marginLeft   = "300px";
+    document.getElementById("mobile-nav").style.marginLeft    = "300px";
+    document.getElementById("markets-sidebar").style.width    = "300px";
+    document.getElementById("markets-sidebar").style.display  = "block";
+  } else{
+    /* Close Sidebar */
+    document.getElementById("main").style.marginLeft          = "0px";
+    document.getElementById("main-header").style.marginLeft   = "0px";
+    document.getElementById("mobile-nav").style.marginLeft    = "0px";
+    document.getElementById("markets-sidebar").style.display  = "none";
+  }
+
+  /* Toggle Sidebar */
+  this.classList.toggle('active');
+};
+
+/* Night Mode Switch Handler
+----------------------------------------- */
+var NightModeSwitch = function(){
 
   var nightModeBtn = document.getElementById('night-mode');
 
   /* Add Event Handler */
-  nightModeBtn.addEventListener('click', _toggleNightMode, false);
-};
+  nightModeBtn.addEventListener('click', _toggleNightModeHandler, false);
+},
+MobileSidebar = function(){
+  var marketsButton = document.getElementById('markets-button');
 
-
-
-function w3_open() {
-  document.getElementById("main").style.marginLeft = "25%";
-  document.getElementById("mySidebar").style.width = "25%";
-  document.getElementById("mySidebar").style.display = "block";
-}
-function w3_close() {
-  document.getElementById("main").style.marginLeft = "0%";
-  document.getElementById("mySidebar").style.display = "none";
+  marketsButton.addEventListener('click', _toggleMobileSidebar, false);
 }
 
 var App = function(){
@@ -34,7 +59,8 @@ var App = function(){
 
   return{
     init: function(){
-      NightModeSwitchHandler();
+      NightModeSwitch();
+      MobileSidebar();
     }
   };
 }();

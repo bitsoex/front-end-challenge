@@ -10,6 +10,8 @@
           <div class="header">
             Últimos Trades
           </div>
+          <ul>
+          </ul>
         </div>
       </div>
 
@@ -42,9 +44,12 @@
 
 <script>
 import Vue from 'vue'
+import vSelect from 'vue-select'
 
 var VueTouch = require('vue-touch')
 Vue.use(VueTouch, {name: 'v-touch'})
+
+Vue.component('v-select', vSelect)
 
 export default {
   name: 'Market',
@@ -176,6 +181,11 @@ export default {
     left: 16px;
     padding-left: 16px;
     display: none;
+  }
+
+  #last-trades .content ul {
+    margin: 0;
+    padding: 0;
   }
 /* END LAST TRADES */
 

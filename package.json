@@ -19,6 +19,7 @@
     "vue-jsonp": "^0.1.8",
     "vue-resource": "^1.5.0",
     "vue-router": "^3.0.1",
+    "vue-select": "^2.4.0",
     "vue-touch": "^2.0.0-beta.4"
   },
   "devDependencies": {

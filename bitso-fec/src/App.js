@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Redirect, Switch, Route, withRouter } from "react-router-dom";
 
-import bitso_logo from "./assets/Images/SVG/bitso_logo.svg";
 import Dashboard from "./Components/Dashboard";
+import NavbarHeader from "./Components/NavbarHeader";
 
 class App extends Component {
   state = {
@@ -19,10 +19,7 @@ class App extends Component {
     const { book } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={bitso_logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">EXCHANGE</h1>
-        </header>
+        <NavbarHeader />
         <Switch>
           <Redirect exact from="/" to="/btc_mxn" />
           <Route

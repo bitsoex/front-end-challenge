@@ -13,7 +13,7 @@
   max-width: 90em;
   margin: 0 auto;
   height: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2.5rem;
   align-items: center;
 }
 
@@ -22,9 +22,12 @@
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
-  // color: var(--Regular-green);
-  // font-family: "DINPro-medium";
-  // font-size: 2.1rem;
+
+  &.header__menu-item {
+    color: var(--light-text);
+    font-family: "DINPro-regular";
+    font-size: 1.6rem;
+  }
 }
 .rc-menu-hidden {
   display: none;
@@ -47,6 +50,7 @@
 }
 .rc-menu-item-active,
 .rc-menu-submenu-active > .rc-menu-submenu-title {
+  cursor: pointer;
   background-color: lighten(#161a1e, 5%);
 }
 .rc-menu-item-selected {
@@ -81,11 +85,43 @@
   position: relative;
   display: block;
   padding: 7px 7px 7px 16px;
+  white-space: nowrap;
+  &::after {
+    margin-left: 1rem;
+    background-image: url(../assets/Images/2x/icon_dropdown@2x.png);
+    background-repeat: no-repeat;
+    background-size: 12px;
+    background-position: center;
+    display: inline-block;
+    width: 15px;
+    height: 10px;
+    content: "";
+  }
+}
+
+.subheader_menu-item {
   color: var(--Regular-green);
   font-family: "DINPro-medium";
   font-size: 2rem;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+
+  // &::after {
+  //   background-image: url(../assets/Images/2x/icon_dropdown@2x.png);
+  //   background-repeat: no-repeat;
+  //   background-size: 12px;
+  //   background-position:  center;
+  //   display: inline-block;
+  //   width: 20px;
+  //   height: 15px;
+  //   content:"";
+  // }
+  // &:hover {
+  //   background-color: lighten(#161a1e, 5%);
+  //   border-bottom: 2px solid var(--Regular-green);
+  // }
 }
+
 .rc-menu-item.rc-menu-item-disabled,
 .rc-menu-submenu-title.rc-menu-item-disabled,
 .rc-menu-item.rc-menu-submenu-disabled,
@@ -116,13 +152,14 @@
 .rc-menu-horizontal {
   background-color: transparent;
   border: none;
-  // border-bottom: 1px solid transparent;
-  // border-bottom: 1px solid #d9d9d9;
   box-shadow: none;
 }
 .rc-menu-horizontal > .rc-menu-item,
 .rc-menu-horizontal > .rc-menu-submenu > .rc-menu-submenu-title {
-  padding: 8px 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .rc-menu-horizontal > .rc-menu-submenu,
 .rc-menu-horizontal > .rc-menu-item {
@@ -153,7 +190,7 @@
 .rc-menu-vertical-left > .rc-menu-submenu > .rc-menu-submenu-title,
 .rc-menu-vertical-right > .rc-menu-submenu > .rc-menu-submenu-title,
 .rc-menu-inline > .rc-menu-submenu > .rc-menu-submenu-title {
-  padding: 12px 8px 12px 24px;
+  padding: 12px 8px 12px 14px;
 }
 .rc-menu-vertical .rc-menu-submenu-arrow,
 .rc-menu-vertical-left .rc-menu-submenu-arrow,

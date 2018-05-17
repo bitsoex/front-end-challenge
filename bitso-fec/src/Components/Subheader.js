@@ -46,13 +46,17 @@ class Subheader extends Component {
       <div className="subheader-container">
         <Menu mode="horizontal" onSelect={book => onSelectBook(book.key)}>
           <SubMenu
+            className="subheader_menu-item"
             key="available__books"
             title={book.replace("_", "/").toUpperCase()}
           >
-            {availableBooks.map(book => {
-              const typeCoin = book.book.replace("_", "/");
+            {availableBooks.map(item => {
+              const typeCoin = item.book.replace("_", "/");
               return (
-                <MenuItem key={book.book}>
+                <MenuItem
+                  key={item.book}
+                  className={item.book === book ? "rc-menu-item-active" : ""}
+                >
                   <div style={{ paddingRight: 50 }}>
                     <span>{typeCoin.toUpperCase()}</span>
                   </div>
@@ -66,7 +70,7 @@ class Subheader extends Component {
             display: "flex",
             justifyContent: "space-around",
             flex: 1,
-            marginRight: "50rem",
+            marginRight: "40rem",
             fontSize: "1.6rem"
           }}
         >

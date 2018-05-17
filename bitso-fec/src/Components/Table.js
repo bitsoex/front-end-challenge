@@ -1,5 +1,6 @@
 import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import numeral from "numeral";
 import _ from "lodash";
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
@@ -74,7 +75,9 @@ export default ({ orders, book, type }) => {
                       )
                       .join("")}
                   </td>
-                  <td className="order-value">{Number(value).toFixed(2)}</td>
+                  <td className="order-value">
+                    {numeral(value).format("$0,0.00")}
+                  </td>
                   <td
                     className={
                       type === "bids"
@@ -82,7 +85,7 @@ export default ({ orders, book, type }) => {
                         : "color-ask__orders"
                     }
                   >
-                    {Number(price).toFixed(2)}
+                    {numeral(price).format("$0,0.00")}
                   </td>
                 </tr>
               </CSSTransition>

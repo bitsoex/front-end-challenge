@@ -71,8 +71,10 @@ class Dashboard extends React.Component {
           price: r,
           tid: i
         };
-        trades.unshift(trade);
-        this.setState({ trades });
+        if (trades && trades.length) {
+          trades.unshift(trade);
+          this.setState({ trades });
+        }
       }
       this.setState({ loading: false });
     };

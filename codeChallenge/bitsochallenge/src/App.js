@@ -2,16 +2,29 @@ import React, { Component } from 'react';
 import Header from './Components/header/header';
 import BodyContent from './Components/body/BodyComponent';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { grey100, grey300, grey400, grey500,
+  white, darkBlack, fullBlack,
+} from 'colors';
+
 import './App.css';
 
-
-
+const muiTheme = getMuiTheme({
+palette: {
+  textColor: grey400,
+  }
+});
 
 class App extends Component {
+  componentDidMount(){
+    document.title = "BitsoChallenge"
+  }
+
   render() {
     return (
+
       <div className="App">
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
           <Header />
           <BodyContent/>
           <footer className="App-intro">

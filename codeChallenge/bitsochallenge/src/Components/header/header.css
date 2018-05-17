@@ -14,6 +14,12 @@
 }
 
 //***************Header Styles********/
+.DropDownMenu{
+  font-family: DINPro-Light !important;
+  display:inline !important;
+  text-decoration: none !important;
+  color: #b0bac1 !important;
+}
 .header {
 width: 25%;
 display: inline-flex;
@@ -22,16 +28,21 @@ display: inline-flex;
   background-color: #252c36;
   color:#191e23;
   width: 100%;
-}
-.ToolbarTitle {
   font-family: DINPro-Light;
-  color: #b0bac1;
+  font-color: #b0bac1;
   display: inline;
   font-size:1.5em;
 }
-.ToolbarTitle:default{
+.ToolbarTitle {
   font-family: DINPro-Light;
-  color: #b0bac1;
+  color: #b0bac1 !important;
+  display: inline;
+  font-size:1.5em;
+}
+
+.MenuItem{
+  font-family: DINPro-Light !important;
+  color: #b0bac1 !important;
   display: inline;
   font-size:1.5em;
 }
@@ -49,4 +60,13 @@ margin-right: 5px;
 .Toolbar {
   background-color: #252c36;
   color:#191e23;
+}
+.flatButton{
+  font-family: DINPro-Light !important;
+  color: #b0bac1 !important;
+  display: inline !important;
+  font-size:1.5em !important;
+}
+.TickCollection{
+  background-color:#b0bac1 !important;
 }

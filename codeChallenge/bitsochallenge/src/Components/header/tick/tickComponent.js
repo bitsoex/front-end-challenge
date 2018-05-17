@@ -12,10 +12,16 @@ class TickCollection extends Component {
     this.state={
       btcMxn:0,
       ethMxn:0,
+      xrpMxn:0,
+      ltcMxn:0,
+      bchMxn:0,
       array_tick:[]
     }
     this.getBtcBook();
     this.getEthBook();
+    this.getXrpBook();
+    this.getLtcBook();
+    this.getBchBook();
     this.state = {value: 1};
   }
 
@@ -45,22 +51,53 @@ class TickCollection extends Component {
       var arrayParams=[];
       var objParam={param:'', value:'',mode:'',vmode:''}
       objParam.param='book';
-      objParam.value=SERVICE_REQUEST.book_eth_mx;
+      objParam.value=SERVICE_REQUEST.book_xrp_mx;
       arrayParams.push(objParam);
       callGetService(URL_SERVICES.Ticker,arrayParams).then(response => {
-      this.setState({btcMxn:response.payload.last})
+      this.setState({xrpMxn:response.payload.last})
       }
     );
+  }
+  getLtcBook(){
+      var arrayParams=[];
+      var objParam={param:'', value:'',mode:'',vmode:''}
+      objParam.param='book';
+      objParam.value=SERVICE_REQUEST.book_ltc_mx;
+      arrayParams.push(objParam);
+      callGetService(URL_SERVICES.TickerProd,arrayParams).then(response => {
+      this.setState({ltcMxn:response.payload.last})
+      }
+    );
+  }
+  getBchBook(){
+      var arrayParams=[];
+      var objParam={param:'', value:'',mode:'',vmode:''}
+      objParam.param='book';
+      objParam.value=SERVICE_REQUEST.book_bch_mx;
+      arrayParams.push(objParam);
+      callGetService(URL_SERVICES.TickerProd,arrayParams).then(response => {
+      this.setState({bchMxn:response.payload.last})
+      }
+    );
+  }
+  updatePrice(){
+    this.getBtcBook();
+    this.getEthBook();
+    this.getXrpBook();
+    this.getLtcBook();
+    this.getBchBook();
+
   }
   handleChange = (event, index, value) => this.setState({value});
   render() {
     return (
-      <div className="ToolbarTitle">
-          <DropDownMenu className="ToolbarTitle" value={this.state.value} onChange={this.handleChange} openImmediately={false}>
-            <MenuItem value={1} primaryText={"1 BTC "+this.state.btcMxn} />
-            <MenuItem value={2} primaryText={"1 ETH "+this.state.ethMxn} />
+          <DropDownMenu  value={this.state.value} onChange={this.handleChange} openImmediately={false} onClick={this.updatePrice.bind(this)}>
+            <MenuItem value={1} primaryText={"1 BTC = "+this.state.btcMxn} />
+            <MenuItem value={2} primaryText={"1 ETH = "+this.state.ethMxn} />
+            <MenuItem value={3} primaryText={"1 XRP = "+this.state.xrpMxn} />
+            <MenuItem value={4} primaryText={"1 LTC = "+this.state.ltcMxn} />
+            <MenuItem value={5} primaryText={"1 BCH = "+this.state.bchMxn} />
           </DropDownMenu>
-      </div>
     );
   }
 }

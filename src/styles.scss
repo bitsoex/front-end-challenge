@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files  letras claro #2C3A49*/
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import './src/assets/styles/colors.scss';
+
+body {
+    background-color: $dark-blue;
+    color: $light-blue;
+}

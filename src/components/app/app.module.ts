@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatToolbarModule } from "@angular/material";
 import { AppComponent } from "./app.component";
 import { LoginModule } from "../login/login.module";
 
@@ -15,9 +16,10 @@ const routes: Routes = [
     AppComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     RouterModule.forRoot(routes),
-    FlexLayoutModule,
+    MatToolbarModule,
     LoginModule
   ],
   providers: [],

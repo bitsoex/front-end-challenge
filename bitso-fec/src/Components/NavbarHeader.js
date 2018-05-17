@@ -78,31 +78,31 @@ class NavbarHeader extends Component {
             </Menu>
             <div>Ayuda</div>
             <div className="div_block_content-profile">
-            <div className="div_block-circle">
-              <div className="div_block-circle in-circle" >
-                <div className="div_block-circle in__in-circle" />
+              <div className="div_block-circle">
+                <div className="div_block-circle in-circle">
+                  <div className="div_block-circle in__in-circle" />
+                </div>
               </div>
-            </div>
-            <Menu
-              mode="horizontal"
-              className="header__menu-item"
-              // onSelect={book => this.handleSelect(book.key)}
-            >
-              <SubMenu
+              <Menu
+                mode="horizontal"
                 className="header__menu-item"
-                key="user"
-                title="Usuario"
-                onTitleClick={() => console.log("Usuario")}
+                // onSelect={book => this.handleSelect(book.key)}
               >
-                {user.map(item => (
-                  <MenuItem key={item}>
-                    <div style={{ paddingRight: 50 }}>
-                      <span>{item}</span>
-                    </div>
-                  </MenuItem>
-                ))}
-              </SubMenu>
-            </Menu>
+                <SubMenu
+                  className="header__menu-item"
+                  key="user"
+                  title="Usuario"
+                  onTitleClick={() => console.log("Usuario")}
+                >
+                  {user.map(item => (
+                    <MenuItem key={item}>
+                      <div style={{ paddingRight: 50 }}>
+                        <span>{item}</span>
+                      </div>
+                    </MenuItem>
+                  ))}
+                </SubMenu>
+              </Menu>
             </div>
             <label class="switch">
               <input type="checkbox" />

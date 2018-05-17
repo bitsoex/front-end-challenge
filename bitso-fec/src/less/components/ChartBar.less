@@ -1,14 +1,82 @@
 .chart-bar-container {
-  margin: 1rem 0;
+  display: flex;
+  padding: 0.5rem 1rem;
+}
+
+.chart-bar-left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.chart-bar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .chart-toggle-button {
+  min-height: 2.75rem;
+  display: flex;
   padding: 0rem 1.2rem;
   border: none;
-  border-radius: 3.5rem;
+  border-radius: 3rem;
+  background: var(--Medium-navy);
 }
 
 .chart-toggle-image {
-  height: 2.3rem;
-  width: 2.3rem;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.chart-bar-select-div {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+
+  // float: left;
+  min-width: 10rem;
+  // margin: 50px 33%;
+  margin: 0 1.5rem;
+
+  &::after {
+    content: url(../assets/Images/1x/icon_dropdown.png);
+    font: normal normal normal 1.3rem/1 sans-serif;
+    // color: #0ebeff;
+    right: 1.2rem;
+    top: 0.6rem;
+    // height: 34px;
+    padding: 0.2rem 0px 0px 1rem;
+    // border-left: 1px solid #0ebeff;
+    position: absolute;
+    pointer-events: none;
+  }
+}
+
+.chart-bar-filter-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+
+  // display: block;
+  width: 100%;
+  max-width: 30rem;
+  height: 2.7rem;
+  // float: right;
+  // margin: 5px 0px;
+  padding: 0 1.5rem;
+  font-size: 1.3rem;
+  // line-height: 1.75;
+  color: var(--light-text);
+  background-color: transparent;
+  // background-image: none;
+  border: 1px solid var(--Medium-navy);
+  border-radius: 3rem;
+  -ms-word-break: normal;
+  word-break: normal;
+
+  &::-ms-expand {
+    display: none;
+  }
 }

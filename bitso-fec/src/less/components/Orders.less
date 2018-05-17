@@ -2,7 +2,6 @@
   display: flex;
   flex: 1;
   margin-top: 10px;
-  // margin-bottom: 10px
 }
 
 .bar {
@@ -22,7 +21,11 @@
 }
 
 .asks-enter {
-  background-color: var(--Regular-green);
+  background-color: var(--Dark-green);
+}
+
+.asks-enter .order-value {
+  color: var(--light-text);
 }
 
 .asks-enter-active {
@@ -44,7 +47,9 @@
 .bids-enter {
   background-color: var(--Dark-red);
 }
-
+.bids-enter .order-value {
+  color: var(--light-text);
+}
 .bids-enter-active {
   background-color: transparent;
   -webkit-transition: background-color 500ms linear;

@@ -1,6 +1,4 @@
 table {
-  // table-layout: fixed;
-  // margin: auto;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -14,11 +12,17 @@ th,
 td {
   padding: 3px 3px;
   width: 70px;
-  &.color-ask {
+  &.color-ask__orders {
     color: var(--Regular-green);
   }
-  &.color-bid {
+  &.color-bid__orders {
     color: var(--Regular-red);
+  }
+  &.color-ask__trades {
+    color: var(--Dark-green);
+  }
+  &.color-bid__trades {
+    color: var(--Dark-red);
   }
   &.status__bar {
     width: 35px;
@@ -33,14 +37,8 @@ tfoot {
 }
 
 tbody {
-  // height: 370px;
   overflow: scroll;
   overflow-x: hidden;
-  // display: block;
-  // width: 100%;
-  // &.trades {
-  //   // height: 750px;
-  // }
 }
 
 tbody tr {
@@ -49,6 +47,18 @@ tbody tr {
   table-layout: fixed;
   &:hover {
     background: rgba(216, 212, 212, 0.1) !important;
+  }
+  &:hover .lighting-text {
+    color: white;
+  }
+  &:hover span {
+    color: white;
+  }
+  &:hover .color-ask__trades {
+    color: var(--Light-green)
+  }
+  &:hover .color-bid__trades {
+    color: var(--Regular-red)
   }
   &.trade-row {
     opacity: 0.9;

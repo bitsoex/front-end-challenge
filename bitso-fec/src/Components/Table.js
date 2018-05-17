@@ -74,8 +74,14 @@ export default ({ orders, book, type }) => {
                       )
                       .join("")}
                   </td>
-                  <td>{Number(value).toFixed(2)}</td>
-                  <td className={type === "bids" ? "color-bid" : "color-ask"}>
+                  <td className="order-value">{Number(value).toFixed(2)}</td>
+                  <td
+                    className={
+                      type === "bids"
+                        ? "color-bid__orders"
+                        : "color-ask__orders"
+                    }
+                  >
                     {Number(price).toFixed(2)}
                   </td>
                 </tr>

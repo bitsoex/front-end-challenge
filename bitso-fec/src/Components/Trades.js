@@ -49,10 +49,14 @@ class Trades extends React.Component {
                     .split(".");
                   return (
                     <tr key={tid} className="trade-row">
-                      <td>{moment(created_at).format("H:mm:ss")}</td>
+                      <td className="lighting-text">
+                        {moment(created_at).format("H:mm:ss")}
+                      </td>
                       <td
                         className={
-                          maker_side === "buy" ? "color-bid" : "color-ask"
+                          maker_side === "buy"
+                            ? "color-bid__trades"
+                            : "color-ask__trades"
                         }
                       >
                         {Number(price).toFixed(2)}

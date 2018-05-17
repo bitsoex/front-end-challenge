@@ -125,6 +125,9 @@ export default {
         max: '-',
         min: '-',
         price: '-'
+      },
+      websocket: {
+        open: false
       }
     }
   },
@@ -155,15 +158,17 @@ export default {
         console.log(err)
       })
 
-      websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
-      websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
+      if (this.websocket.open) {
+        websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
+        websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
+      }
 
       this.loadTicker()
     },
     commafy (num) { /* function to style strings into money format */
       var str = num.toString().split('.')
       if (str[0].length >= 5) {
-        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1\'')
       }
       if (str[1] && str[1].length >= 5) {
         str[1] = str[1].replace(/(\d{3})/g, '$1 ')
@@ -196,6 +201,15 @@ export default {
         console.log(err)
       })
     },
+    loadTrades () {
+      var self = this
+      Vue.http.get('https://api.bitso.com/v3/trades?book=' + this.books.selected.url + '&limit=50').then(function (data) {
+        var allTrades = data.body.payload
+        self.$store.commit('tradesAll', allTrades)
+      }, function (err) {
+        console.log(err)
+      })
+    },
     toggleDayMode () {
       var move = !this.dayMode
       this.dayMode = move
@@ -213,6 +227,7 @@ export default {
 
     /* websockets */
     websocket.onopen = function () {
+      self.websocket.open = true
       websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }))
       // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }))
       // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }))
@@ -225,6 +240,8 @@ export default {
           if (data.book === self.books.selected.url) {
             self.ticker.price = data.payload[0].r
             self.$emit('updateHead')
+            console.log(data.payload[0])
+            self.$store.commit('tradesPush', data.payload[0])
           }
           break
       }
@@ -233,6 +250,10 @@ export default {
 
     this.loadTicker('btc_mxn')
     this.loadAvailableBooks()
+
+    /* load trades */
+    this.loadTrades()
+    /* end load trades */
   }
 }
 </script>
@@ -255,18 +276,18 @@ export default {
   }
 
   @font-face {
-      font-family: 'DIN_Light';
-      src: url('./assets/font/DINPro-Light.otf');
+    font-family: 'DIN_Light';
+    src: url('./assets/font/DINPro-Light.otf');
   }
 
   @font-face {
-      font-family: 'DIN_Medium';
-      src: url('./assets/font/DINPro-Medium.otf');
+    font-family: 'DIN_Medium';
+    src: url('./assets/font/DINPro-Medium.otf');
   }
 
   @font-face {
-      font-family: 'DIN_Regular';
-      src: url('./assets/font/DINPro-Regular.otf');
+    font-family: 'DIN_Regular';
+    src: url('./assets/font/DINPro-Regular.otf');
   }
 
   #app {
@@ -497,6 +518,10 @@ export default {
       color: #97BB7E;
       font-family: 'DIN_Medium';
       font-size: 16px;
+    }
+
+    #status-bar .dropdown * {
+      transition: all 0s;
     }
 
     #status-bar .dropdown.v-select .dropdown-toggle {

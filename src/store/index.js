@@ -1,0 +1,52 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+const state = {
+  trades: [],
+  diffOrders: [],
+  orders: []
+}
+
+const mutations = {
+  tradesAll (state, payload) {
+    state.trades = payload
+  },
+  tradesPush (state, payload) {
+    var buyOrSell
+    if (payload.t === 1) {
+      buyOrSell = 'sell'
+    } else {
+      buyOrSell = 'buy'
+    }
+
+    var trade = {
+      amount: payload.a,
+      book: 'btc_mxn',
+      created_at: new Date().toISOString().split('.')[0],
+      maker_side: buyOrSell,
+      price: payload.r,
+      tid: payload.i
+    }
+
+    console.log('here')
+    console.log(trade)
+    state.trades.unshift(trade)
+  }
+}
+
+const actions = {
+  tradesAll (context, payload) {
+    context.commit('tradesAll', payload)
+  },
+  tradesPush (context, payload) {
+    context.commit('tradesPush', payload)
+  }
+}
+
+export default new Vuex.Store({
+  state,
+  mutations,
+  actions
+})

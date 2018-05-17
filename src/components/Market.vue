@@ -11,6 +11,16 @@
             Últimos Trades
           </div>
           <ul>
+            <li class="head">
+              <div class="hour">hora</div>
+              <div class="price">Precio</div>
+              <div class="amount">Monto</div>
+            </li>
+            <li class="trade" v-for="trade in trades" v-bind:key="trade.tid">
+              <div class="hour">{{trade.created_at.split('T')[1].split('+')[0]}}</div>
+              <div class="price">{{parseFloat(Math.round(trade.price * 100) / 100).toFixed(2)}}</div>
+              <div class="amount">{{trade.amount}}</div>
+            </li>
           </ul>
         </div>
       </div>
@@ -52,6 +62,11 @@ Vue.use(VueTouch, {name: 'v-touch'})
 Vue.component('v-select', vSelect)
 
 export default {
+  computed: {
+    trades: function () {
+      return this.$store.state.trades
+    }
+  },
   name: 'Market',
   data () {
     return {
@@ -83,10 +98,9 @@ export default {
       var x = document.getElementById('tab-bar-audio')
       x.play()
       console.log(t)
-    },
-    toggleMarkets () {
-
     }
+  },
+  mounted () {
   }
 }
 </script>
@@ -163,7 +177,6 @@ export default {
 
   #last-trades .content {
     height: calc(100vh - 111px);
-    background: blue;
     width: 258px;
   }
 
@@ -184,8 +197,58 @@ export default {
   }
 
   #last-trades .content ul {
-    margin: 0;
+    margin: 40px 0 0 0;
     padding: 0;
+    list-style: none;
+    max-height: calc(100vh - 151px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  #last-trades .content ul li.head {
+    color: #949da2;
+    text-transform: uppercase;
+    width: calc(100% - 20px);
+    margin-left: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 11px;
+    text-align: left;
+  }
+
+  #last-trades .content ul li.head div {
+    display: inline-block;
+    width: 32%;
+  }
+
+  #last-trades .content ul li.head div.hour {
+    width: 64px;
+  }
+
+  #last-trades .content ul li.trade {
+    color: #606b76;
+    font-size: 12px;
+    transition: all 0s;
+    cursor: pointer;
+    margin-left: 32px;
+    text-align: left;
+  }
+
+  #last-trades .content ul li.trade:hover {
+    color: #ffffff;
+    background: #363e45;
+  }
+
+  #last-trades .content ul li.trade div {
+    display: inline-block;
+    width: calc(50% - 35px);
+    line-height: 20px;
+    height: 20px;
+    transition: all 0s;
+  }
+
+  #last-trades .content ul li.trade div.hour {
+    width: 64px;
   }
 /* END LAST TRADES */
 

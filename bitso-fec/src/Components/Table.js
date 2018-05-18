@@ -7,10 +7,8 @@ const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 
 export default ({ orders, book, type }) => {
   const values = book.split("_");
-  const biggestAmount =
-    orders &&
-    orders.length &&
-    _.orderBy(orders, ["amount"], ["desc"])[0].amount;
+  const biggestAmount = orders && orders.length && _.maxBy(orders, "amount").amount;
+    // console.log(orders, biggestAmount)
   return (
     <table className={type === "bids" ? "reverse" : null}>
       <thead>
@@ -35,7 +33,8 @@ export default ({ orders, book, type }) => {
         {orders &&
           orders.map(order => {
             const { price, amount, sum, value, oid } = order;
-            let width = amount / biggestAmount * 100;
+            let width = (amount / biggestAmount) * 100;
+            // console.log(amount, biggestAmount);
             const integer = Number(amount)
               .toString()
               .split(".");
@@ -76,7 +75,9 @@ export default ({ orders, book, type }) => {
                       .join("")}
                   </td>
                   <td className="order-value">
-                    {numeral(value).format("$0,0.00")}
+                    {value < 1
+                      ? numeral(value).format("0.00000000")
+                      : numeral(value).format("$0,0.00")}
                   </td>
                   <td
                     className={
@@ -85,7 +86,9 @@ export default ({ orders, book, type }) => {
                         : "color-ask__orders"
                     }
                   >
-                    {numeral(price).format("$0,0.00")}
+                    {price < 1
+                      ? numeral(price).format("0.00000000")
+                      : numeral(price).format("$0,0.00")}
                   </td>
                 </tr>
               </CSSTransition>

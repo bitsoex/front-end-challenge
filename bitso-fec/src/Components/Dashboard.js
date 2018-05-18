@@ -12,6 +12,7 @@ import OrderData from "../Modules/OrderData";
 import ChartBar from "./ChartBar";
 
 import { parseChartData } from "../Utils";
+import SidebarMenu from "./SidebarMenu";
 
 class Dashboard extends React.Component {
   websocket = new WebSocket("wss://ws.bitso.com");
@@ -31,14 +32,14 @@ class Dashboard extends React.Component {
   componentDidMount() {
     console.log("%cDID MOUNT DASHBOARD", "background: white; color: black");
     const { book } = this.props.match.params;
-    console.log(book);
+    // console.log(book);
 
-    this.getFirstOrders(book);
     this.getFirstTrades(book);
+    this.getFirstOrders(book);
     this.getChartJSON(this.state.timeframe);
 
     this.websocket.onopen = e => {
-      console.log("connected", book);
+      // console.log("connected", book);
       this.websocket.send(
         JSON.stringify({
           action: "subscribe",
@@ -61,11 +62,11 @@ class Dashboard extends React.Component {
 
       // this.setState({ loading: false });
       if (data.type === "diff-orders" && data.payload) {
-        console.log(
-          "%cdiff-orders " + data.book,
-          "background: #222; color: #bada55"
-        );
-        console.log(data.payload);
+        // console.log(
+        //   "%cdiff-orders " + data.book,
+        //   "background: #222; color: #bada55"
+        // );
+        // console.log(data.payload);
         if (!_.isEmpty(this.state.firstOrders)) {
           const orderedOrders = OrderData(
             this.state.firstOrders,
@@ -89,6 +90,8 @@ class Dashboard extends React.Component {
         };
         if (trades && trades.length) {
           trades.unshift(trade);
+          // const lastBuy = _.find(trades, ["maker_side", "buy"]).price;
+          // const lastSell = _.find(trades, ["maker_side", "sell"]).price;
           this.setState({ trades });
         }
       }
@@ -101,17 +104,25 @@ class Dashboard extends React.Component {
 
   getFirstOrders = async book => {
     let value = 0;
+    let amount = 0;
+    let price = 0;
     let orders = await axios.get("https://api.bitso.com/v3/order_book", {
       params: { book, aggregate: true }
     });
 
     orders.data.payload.asks = _.map(orders.data.payload.asks, order => {
-      value = order.amount * order.price;
-      if (!order.oid) return _.assign(order, { oid: uuid(), value });
+      price = +order.price;
+      value = +order.amount * price;
+      amount = +order.amount;
+      if (!order.oid)
+        return _.assign(order, { oid: uuid(), value, amount, price });
     });
     orders.data.payload.bids = _.map(orders.data.payload.bids, order => {
-      value = order.amount * order.price;
-      if (!order.oid) return _.assign(order, { oid: uuid(), value });
+      price = +order.price;
+      value = +order.amount * price;
+      amount = +order.amount;
+      if (!order.oid)
+        return _.assign(order, { oid: uuid(), value, amount, price });
     });
     this.setState({ firstOrders: orders });
   };
@@ -120,6 +131,10 @@ class Dashboard extends React.Component {
     const firstTrades = await axios.get("https://api.bitso.com/v3/trades/", {
       params: { book, sort: "desc", limit: 50 }
     });
+    // const lastBuy = _.find(firstTrades.data.payload, ["maker_side", "buy"])
+    //   .price;
+    // const lastSell = _.find(firstTrades.data.payload, ["maker_side", "sell"])
+    //   .price;
     this.setState({ firstTrades: firstTrades.data.payload });
   };
 
@@ -220,6 +235,7 @@ class Dashboard extends React.Component {
                 orders={orders || firstOrders}
               />
             </div>
+            <SidebarMenu />
           </div>
         )}
       </div>

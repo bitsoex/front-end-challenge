@@ -1,4 +1,5 @@
 import React from "react";
+import numeral from "numeral";
 import moment from "moment";
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
@@ -12,6 +13,7 @@ class Trades extends React.Component {
         style={{
           display: "flex",
           flexDirection: "column",
+          padding: "1rem",
           flex: "0 0 20%"
         }}
       >
@@ -59,7 +61,9 @@ class Trades extends React.Component {
                             : "color-ask__trades"
                         }
                       >
-                        {Number(price).toFixed(2)}
+                        {price < 1
+                          ? numeral(price).format("0.00000000")
+                          : Number(price).toFixed(2)}
                       </td>
                       <td>
                         <span className="lighter-text">

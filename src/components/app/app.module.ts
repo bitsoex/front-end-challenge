@@ -2,8 +2,9 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
-import { MatToolbarModule } from "@angular/material";
 import { AppComponent } from "./app.component";
+import { HeaderModule } from "../header/header.module";
+import { FooterModule } from "../footer/footer.module";
 import { LoginModule } from "../login/login.module";
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     RouterModule.forRoot(routes),
-    MatToolbarModule,
+    HeaderModule,
+    FooterModule,
     LoginModule
   ],
   providers: [],

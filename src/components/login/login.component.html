@@ -1,21 +1,27 @@
-<div fxLayout="column">
-  <div id="loginContainer" fxFlex>
+<div fxLayout>
+  <div fxFlex="50">
+    <!-- <img id="loginImage" src="https://material.angular.io/assets/img/examples/shiba1.jpg"> -->
+  </div>
+  <div id="loginContainer" fxFlex="50">
     <mat-card>
       <mat-card-header>
-        <!-- <div mat-card-avatar>
-        </div> -->
+        <!-- <div mat-card-avatar class="example-header-image"></div> -->
         <mat-card-title>LOGIN</mat-card-title>
         <mat-card-subtitle>Just type in a "valid" email</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <mat-tab-group>
-          <mat-tab label="Login">
-            <mat-form-field>
-              <input matInput placeholder="Email">
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Password">
-            </mat-form-field>
+          <mat-tab label="Login" fxLayout>
+            <div fxFlex>
+              <mat-form-field>
+                <input matInput placeholder="Email">
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <mat-form-field>
+                <input matInput placeholder="Password">
+              </mat-form-field>
+            </div>
           </mat-tab>
           <mat-tab label="New User">
             <mat-form-field>
@@ -36,7 +42,4 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <!-- <div id="footer" fxFlex>
-        footer
-    </div> -->
 </div>

@@ -356,11 +356,16 @@
 /* Market Meta
 ------------------------------------- */
 
-#market-meta{
+#market-meta-container{
   padding: 0.4em 0;
 
+  @include media-breakpoint-down(md){
+    padding: 0;
+    margin-top: 62px;
+  }
+
   p{
-    margin: 0.4em 0;
+    margin: 0.7em 0;
     color: $dark-text;
     
     span{
@@ -368,11 +373,41 @@
       color: $light-text;
     }
   }
+
+  .select-wrapper{
+    margin:0 2em 0 1vw;
+
+    @include media-breakpoint-down(md){
+      #market-select{
+        display: block;
+        margin: 0;
+      }
+
+      text-align: center;
+
+      @include make-col-ready();
+      @include make-col(12);
+    }
+
+  }
+
+  .market-meta{
+    margin-right: 2em;
+
+    @include media-breakpoint-down(md){
+      margin-right: 0;
+      text-align: center;
+
+      @include make-col-ready();
+      @include make-col(6);
+    }
+  }
 }
 
 #market-select{
-  display: inline-block;
   padding: 0;
+  margin-right: 1em;
+  display: inline-block;
   margin-left: 2vw;
   list-style-type: none;
 
@@ -419,6 +454,111 @@
   }
 }
 
+@include media-breakpoint-down(md){
+  #vol-42hrs{ order: 1; }
+  #variation{ order: 2; }
+  #max{ order: 3; }
+  #min{ order: 4; }
+}
+
+/* Trading Data
+------------------------------------- */
+
+#trading-data{
+  padding: 1em;
+  border-top: 1px solid $medium-navy;
+  background-color: $background-navy;
+}
+
+.trading-table{
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 0.9em;
+
+  thead{
+
+    th{
+      color: $sidebar-light-text;
+      background-color: $navy-headers;
+      padding: 0.4em 1.2em;
+      font-weight: 600;
+    }
+
+    td{
+      color: $sidebar-text;
+      padding: 0.4em 1.2em;
+
+      span{
+        color: $dark-text;
+      }
+    }
+  }
+
+  tbody{
+    tr{
+      &.buy{
+        td:nth-child(2){
+          color: $dark-green;
+        }
+      }
+      &.sell{
+        td:nth-child(2){
+          color: $dark-red;
+        }
+      }
+
+      &:hover, &:active, &:focus{
+        background-color: $regular-navy;
+        
+        &.buy{
+          td:nth-child(2){
+            color: $regular-green;
+          }
+        }
+        &.sell{
+          td:nth-child(2){
+            color: $regular-red;
+          }
+        }
+
+        td{
+          color: $neutral-gray;
+        }
+      }
+    }
+
+    td{
+      color: $dark-text;
+      padding: 0.2em 1.2em;
+
+      &:nth-child(1){
+        text-align: right;
+      }
+
+      &:nth-child(2){
+        text-align: right;
+      }
+
+      &:nth-child(3){
+        text-align: left;
+        color: $sidebar-text;
+      }
+
+      span{
+        color: $dark-text;
+      }
+    }
+  }
+}
+
+/* Chart
+------------------------------------- */
+
+#chart{
+  width: 100%;
+  min-height: 300px;
+  background-color: $red;
+}
 
 /* Markets Sidebar
 ------------------------------------- */

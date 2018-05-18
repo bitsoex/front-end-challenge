@@ -149,8 +149,8 @@
 
     </header>
 
-    <aside id="market-meta" class="row">
-      <div class="col">
+    <aside id="market-meta-container" class="row">
+      <div class="select-wrapper">
         <ul id="market-select">
           <li><a href="#btc-mxn">BTC/MXN <i class="bi-chevron-down"></i></a>
             <ul class="sub-menu">
@@ -160,19 +160,101 @@
           </li>
         </ul>
       </div>
-      <div class="col">
-        <p>Volumen 24 hrs. <span id="vol-42hrs">170.5405818 BTC</span></p>
+      <div id="vol-42hrs" class="market-meta">
+        <p>Volumen 24 hrs. <span>170.5405818 BTC</span></p>
       </div>
-      <div class="col">
-        <p>Max. <span id="max">304,934.23 MXN</span></p>
+      <div id="max" class="market-meta">
+        <p>Max. <span>304,934.23 MXN</span></p>
       </div>
-      <div class="col">
-        <p>Min. <span id="max">274,934.23 MXN</span></p>
+      <div id="min" class="market-meta">
+        <p>Min. <span>274,934.23 MXN</span></p>
       </div>
-      <div class="col">
-        <p>Variación <span id="variation">+4,061.68 MXN (1.4%)</span></p>
+      <div id="variation" class="market-meta">
+        <p>Variación <span>+4,061.68 MXN (1.4%)</span></p>
       </div>
     </aside>
+
+    <section id="trading-data">
+      <div class="row">
+        <div class="d-none d-xl-flex col-xl-2">
+          <table class="trading-table">
+            <thead>
+              <tr>
+                <th colspan="3">Últimos trades</th>
+              </tr>
+              <tr>
+                <td>Hora</td>
+                <td><span class="price">MXN</span> Precio</td>
+                <td><span class="amount">BTC</span> Monto</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="buy active">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="buy">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="sell">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="sell">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="buy">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="sell">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="sell">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="sell">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="buy">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+              <tr class="buy">
+                <td>16:10:25</td>
+                <td>319,149.99</td>
+                <td>1.090484<span>00</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-12 col-xl-10">
+          <canvas id="chart"></canvas>
+
+          <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-6">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer id="main-footer">
       <nav id="mobile-nav">

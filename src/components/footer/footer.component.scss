@@ -1,0 +1,12 @@
+@import "./../../assets/styles/colors.scss";
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $blue;
+    color: $light-blue;
+    text-align: center;
+    height: 6%;
+}

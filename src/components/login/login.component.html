@@ -7,32 +7,27 @@
     </mat-card-header>
     <mat-card-content>
       <mat-tab-group>
-        <mat-tab label="Login" fxLayout>
-          <div fxFlex>
+        <mat-tab label="Login">
+          <div class="loginContainer">
             <mat-form-field>
               <input matInput placeholder="Email">
+              <mat-hint>Hint: asd@gmail.com</mat-hint>
             </mat-form-field>
-          </div>
-          <div fxFlex>
             <mat-form-field>
-              <input matInput placeholder="Password">
+              <input type="password" matInput placeholder="Password">
             </mat-form-field>
           </div>
         </mat-tab>
-        <mat-tab label="New User" fxLayout>
-          <div fxFlex>
+        <mat-tab label="New User">
+          <div class="loginContainer">
             <mat-form-field>
               <input matInput placeholder="Name">
             </mat-form-field>
-          </div>
-          <div fxFlex>
             <mat-form-field>
               <input matInput placeholder="Email">
             </mat-form-field>
-          </div>
-          <div fxFlex>
             <mat-form-field>
-              <input matInput placeholder="Password">
+              <input type="password" matInput placeholder="Password">
             </mat-form-field>
           </div>
         </mat-tab>

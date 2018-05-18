@@ -9,6 +9,9 @@ import Orders from "./Orders";
 import Charts from "./Charts";
 import Subheader from "./Subheader";
 import OrderData from "../Modules/OrderData";
+import ChartBar from "./ChartBar";
+
+import { parseChartData } from "../Utils";
 
 class Dashboard extends React.Component {
   websocket = new WebSocket("wss://ws.bitso.com");
@@ -17,7 +20,12 @@ class Dashboard extends React.Component {
     orders: null,
     trades: null,
     firstOrders: null,
-    firstTrades: null
+    firstTrades: null,
+    candleData: null,
+    volumeData: null,
+    isFirstChartRender: true,
+    timeframe: "1month",
+    currentChart: "candles" // candles or deep
   };
 
   componentDidMount() {
@@ -27,6 +35,7 @@ class Dashboard extends React.Component {
 
     this.getFirstOrders(book);
     this.getFirstTrades(book);
+    this.getChartJSON(this.state.timeframe);
 
     this.websocket.onopen = e => {
       console.log("connected", book);
@@ -47,7 +56,10 @@ class Dashboard extends React.Component {
     };
 
     this.websocket.onmessage = message => {
+      const { book: paramsBook } = this.props.match.params;
       var data = JSON.parse(message.data);
+
+      // this.setState({ loading: false });
       if (data.type === "diff-orders" && data.payload) {
         console.log(
           "%cdiff-orders " + data.book,
@@ -55,8 +67,12 @@ class Dashboard extends React.Component {
         );
         console.log(data.payload);
         if (!_.isEmpty(this.state.firstOrders)) {
-          const orderedOrders = OrderData(this.state.firstOrders, data);
-          setTimeout(this.setState({ orders: orderedOrders }), 100);
+          const orderedOrders = OrderData(
+            this.state.firstOrders,
+            data,
+            paramsBook || book
+          );
+          setTimeout(this.setState({ orders: orderedOrders }), 500);
         }
       } else if (data.type === "trades" && data.payload) {
         const trades = this.state.firstTrades;
@@ -76,7 +92,6 @@ class Dashboard extends React.Component {
           this.setState({ trades });
         }
       }
-      this.setState({ loading: false });
     };
   }
 
@@ -108,14 +123,56 @@ class Dashboard extends React.Component {
     this.setState({ firstTrades: firstTrades.data.payload });
   };
 
+  getChartJSON = async timeframe => {
+    const { book } = this.props;
+    try {
+      const { data, status } = await axios.get(
+        `https://bitso.com/trade/chartJSON/${book}/${timeframe}`
+      );
+      if (status === 200) {
+        this.setState({ ...parseChartData(data), loading: false });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  toggleChart = () => {
+    this.setState({
+      currentChart: this.state.currentChart === "candles" ? "deep" : "candles"
+    });
+  };
+
+  onChangeTimeframe = timeframe => {
+    this.setState({
+      timeframe
+    });
+    this.getChartJSON(timeframe);
+  };
+
+  handleFirstChartRender = () => {
+    this.setState({ isFirstChartRender: false });
+  };
+
   render() {
     const { book, match, onSelectBook } = this.props;
     const { book: paramsBook } = match.params;
-    const { loading, orders, trades, firstTrades } = this.state;
+    const {
+      loading,
+      orders,
+      trades,
+      firstTrades,
+      firstOrders,
+      currentChart,
+      timeframe,
+      volumeData,
+      candleData,
+      isFirstChartRender
+    } = this.state;
 
-    if (loading) {
-      return <div>Cargando...</div>;
-    }
+    // if (loading || _.isEmpty(orders)) {
+    //   return <div>Cargando...</div>;
+    // }
 
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -127,20 +184,44 @@ class Dashboard extends React.Component {
             />
           </div>
         </div>
-        <div className="dashboard-container">
-          <Trades book={book} trades={trades || firstTrades} />
-          <div
-            style={{
-              display: "flex",
-              flex: 1,
-              flexDirection: "column",
-              paddingLeft: "1rem"
-            }}
-          >
-            <Charts book={book} orders={orders} />
-            <Orders book={book} orders={orders} />
+        {loading || _.isEmpty(orders) ? (
+          <div>Cargando...</div>
+        ) : (
+          <div className="dashboard-container">
+            <Trades book={paramsBook || book} trades={trades || firstTrades} />
+            <div
+              style={{
+                display: "flex",
+                flex: 1,
+                flexDirection: "column",
+                paddingLeft: "1rem"
+              }}
+            >
+              <div style={{ flex: 1, minWidth: "70rem" }}>
+                <ChartBar
+                  currentChart={currentChart}
+                  timeframe={timeframe}
+                  toggleChart={this.toggleChart}
+                  onChangeTimeframe={this.onChangeTimeframe}
+                />
+                <Charts
+                  isFirstChartRender={isFirstChartRender}
+                  handleFirstRender={this.handleFirstChartRender}
+                  book={paramsBook || book}
+                  orders={orders}
+                  currentChart={currentChart}
+                  volumeData={volumeData}
+                  candleData={candleData}
+                  timeframe={timeframe}
+                />
+              </div>
+              <Orders
+                book={paramsBook || book}
+                orders={orders || firstOrders}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

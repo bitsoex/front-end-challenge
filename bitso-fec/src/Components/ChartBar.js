@@ -54,11 +54,7 @@ class ChartBar extends React.Component {
         </div>
 
         <div className="chart-bar-right">
-          {currentChart !== "candles" ? (
-            <span>Spread Zoom</span>
-          ) : (
-            <span>Candles Zoom</span>
-          )}
+          {currentChart !== "candles" ? <span /> : <span />}
         </div>
       </div>
     );

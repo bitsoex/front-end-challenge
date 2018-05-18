@@ -7,8 +7,9 @@ const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 
 export default ({ orders, book, type }) => {
   const values = book.split("_");
-  const biggestAmount = orders && orders.length && _.maxBy(orders, "amount").amount;
-    // console.log(orders, biggestAmount)
+  const biggestAmount =
+    orders && orders.length && _.maxBy(orders, "amount").amount;
+  // console.log(orders, biggestAmount)
   return (
     <table className={type === "bids" ? "reverse" : null}>
       <thead>
@@ -33,7 +34,7 @@ export default ({ orders, book, type }) => {
         {orders &&
           orders.map(order => {
             const { price, amount, sum, value, oid } = order;
-            let width = (amount / biggestAmount) * 100;
+            let width = amount / biggestAmount * 100;
             // console.log(amount, biggestAmount);
             const integer = Number(amount)
               .toString()

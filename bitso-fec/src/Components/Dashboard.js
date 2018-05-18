@@ -106,13 +106,15 @@ class Dashboard extends React.Component {
       price = +order.price;
       value = +order.amount * price;
       amount = +order.amount;
-      if (!order.oid) return _.assign(order, { oid: uuid(), value, amount, price });
+      if (!order.oid)
+        return _.assign(order, { oid: uuid(), value, amount, price });
     });
     orders.data.payload.bids = _.map(orders.data.payload.bids, order => {
       price = +order.price;
       value = +order.amount * price;
       amount = +order.amount;
-      if (!order.oid) return _.assign(order, { oid: uuid(), value, amount, price });
+      if (!order.oid)
+        return _.assign(order, { oid: uuid(), value, amount, price });
     });
     this.setState({ firstOrders: orders });
   };

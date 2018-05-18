@@ -30,10 +30,16 @@ class Markets extends React.Component {
         this.setState({bgColor: this.props.theme.headerMarketsHover})
     }
 
+    selectView ( b ) {
+
+        this.setState({currentBookMarket : b});
+    }
+
     graphics () {
         let graphs = [];
         for (let i = 0; i < this.props.books.length; i++) {
-            graphs.push(<GraphicMarket book={this.props.books[i].book} theme={this.props.theme} activeGraphic={true} key={i} />);
+            graphs.push(<GraphicMarket book={this.props.books[i].book} theme={this.props.theme} 
+                activeGraphic={this.props.books[i].book === this.state.currentBookMarket} key={i} onClick={ () => this.selectView(this.props.books[i].book) } /> );
         }
         return graphs;
     }
@@ -42,7 +48,7 @@ class Markets extends React.Component {
         return (
             <div id="markets" ref={this.panelMarket} style={{
                 position: 'absolute',
-                right: this.state.display==='none'? '0':'273' +'px',
+                right: this.state.display==='none'? '0':'275' +'px',
                 top: '0px',
                 border: '4px',
                 height: '80vh',

@@ -21,6 +21,7 @@ class Exchange extends React.Component {
     }
 
     componentWillMount() {
+
         fetch ('https://api.bitso.com/v3/available_books')
          .then ( (response) => {
             return response.json();

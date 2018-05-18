@@ -28,6 +28,7 @@ class Ticker extends React.Component {
     updateTicker() {
         fetch ('https://api.bitso.com/v3/ticker/?book=' + this.props.currentBook)
          .then ( (response) => {
+             console.info ('Response' + response);
             return response.json();
          })
          .then( (ticker) => {

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { css, cx } from "emotion";
-import bitsoLogo from "../../bitso_logo.svg";
 import { ThemeConsumer } from "../../context/Theme";
+import { BookConsumer } from "../../context/Book";
 import ThemeToggler from "../ThemeToggler";
 import DropDown from "../DropDown";
 
@@ -37,47 +38,73 @@ const styles = {
   `
 };
 
-export default class InfoBar extends Component {
-  render() {
-    return (
-      <ThemeConsumer>
-        {({ theme }) => (
-          <div
-            style={{
-              ...theme,
-              background: theme.name === "dark" ? "#191e23" : "#cccccc"
-            }}
-            className={styles.container}
-          >
-            <DropDown
-              items={["BTC/MXN", "ETH/MXN", "TY/MXN", "WTF/MXN"]}
-              selectedItem={"TY/MXN"}
-              containerClassName={cx(styles.item, styles.bookSelector)}
-              containerStyle={{
-                color: theme.name === "dark" ? "" : "#466830"
+export default () => (
+  <BookConsumer>
+    {({ books, book, changeBook }) => {
+      const {
+        minimum_price,
+        maximum_price,
+        minimum_amount,
+        maximum_amount,
+        minimum_value,
+        maximum_value
+      } = book;
+      const currency1 = book.book.split("_")[0].toUpperCase();
+      const currency2 = book.book.split("_")[1].toUpperCase();
+
+      return (
+        <ThemeConsumer>
+          {({ theme }) => (
+            <div
+              style={{
+                ...theme,
+                background: theme.name === "dark" ? "#191e23" : "#cccccc"
               }}
-            />
+              className={styles.container}
+            >
+              <DropDown
+                containerStyle={
+                  theme.name === "light" ? { color: "#466830" } : null
+                }
+                containerClassName={cx(styles.item, styles.bookSelector)}
+                items={books.map(b => ({
+                  value: b.book,
+                  displayValue: b.book
+                    .toUpperCase()
+                    .split("_")
+                    .join("/")
+                }))}
+                defaultSelectedItem={book.book}
+                onChange={e => {
+                  const bookValue = e.target.value;
+                  const book = books.find(b => b.book === bookValue);
+                  changeBook(book);
+                }}
+              />
 
-            <div className={styles.item}>
-              <span className={styles.itemPrefix}>Volúmen 24hrs.</span>{" "}
-              170.5405818 BTC
-            </div>
+              <div className={styles.item}>
+                <span className={styles.itemPrefix}>Volúmen 24hrs.</span>{" "}
+                {(+maximum_amount + +minimum_amount) / 2} {currency1}
+              </div>
 
-            <div className={styles.item}>
-              <span className={styles.itemPrefix}>Max.</span> 170.5405818 MXN
-            </div>
+              <div className={styles.item}>
+                <span className={styles.itemPrefix}>Max.</span> {maximum_price}{" "}
+                {currency2}
+              </div>
 
-            <div className={styles.item}>
-              <span className={styles.itemPrefix}>Min.</span> 170.5405818 MXN
-            </div>
+              <div className={styles.item}>
+                <span className={styles.itemPrefix}>Min.</span> {minimum_price}{" "}
+                {currency2}
+              </div>
 
-            <div className={styles.item}>
-              <span className={styles.itemPrefix}>Variacion.</span> 170.5405818
-              MXN
+              <div className={styles.item}>
+                <span className={styles.itemPrefix}>Variacion.</span> {}
+                {currency2} 1.4%
+              </div>
             </div>
-          </div>
-        )}
-      </ThemeConsumer>
-    );
-  }
-}
+          )}
+        </ThemeConsumer>
+      );
+    }}
+  </BookConsumer>
+);

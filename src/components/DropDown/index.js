@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { css, cx } from "emotion";
 
 const styles = {
@@ -11,24 +11,29 @@ const styles = {
 
 const DropDown = ({
   items,
-  selectedItem,
+  innerRef,
+  onChange,
+  defaultSelectedItem,
   itemStyle,
   itemClassName,
   containerStyle,
   containerClassName
 }) => (
   <select
+    ref={innerRef}
     style={containerStyle}
     className={cx(styles.select, containerClassName)}
+    value={defaultSelectedItem}
+    onChange={onChange}
   >
     {items.map(item => (
       <option
-        value={item}
-        selected={item === selectedItem}
+        key={item.value}
+        value={item.value}
         style={itemStyle}
         className={itemClassName}
       >
-        {item}
+        {item.displayValue}
       </option>
     ))}
   </select>

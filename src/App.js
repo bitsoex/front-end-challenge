@@ -1,39 +1,38 @@
 import React, { Component, Fragment } from "react";
+import { css } from "emotion";
 import { timeParse } from "d3-time-format";
 
-import { availableBooks, ticker, trade } from "./api";
-import { ThemeProvider, ThemeConsumer } from "./context/Theme";
-import Navbar from "./components/Navbar";
+import { ticker, trade } from "./api";
+import { BookProvider, BookConsumer } from "./context/Book";
+import { ThemeProvider } from "./context/Theme";
+import Header from "./components/Header";
 import InfoBar from "./components/InfoBar";
 import Candles from "./components/Candlestick";
+import LastTrades from "./components/LastTrades";
+
+const styles = {
+  asideLeft: css`
+    display: flex;
+    order: 2;
+  `
+};
 
 class App extends Component {
   state = {
-    loading: false,
+    loading: true,
+    books: [],
     data: []
   };
 
   async componentDidMount() {
-    // await availableBooks();
     // await ticker("btc_mxn");
     // const data = await this.getData();
-    // this.setState({
-    //   loading: false,
-    //   data
-    // });
+    this.setState({ loading: false });
   }
 
   getData = async () => {
     const parseDate = timeParse("%Y-%m-%d");
     const data = await trade({ book: "btc_mxn" });
-    // return data.map(d => ({
-    //   date: parseDate(d.date),
-    //   open: +d.open,
-    //   high: +d.high,
-    //   low: +d.low,
-    //   close: +d.close,
-    //   volume: +d.volume
-    // }));
     const darkGreen = "#466830";
     const darkRed = "#722837";
     const mediumGreen = "#86af6b";
@@ -67,11 +66,18 @@ class App extends Component {
     const { data } = this.state;
     return (
       <ThemeProvider>
-        <Fragment>
-          <Navbar />
-          <InfoBar />
-          <Candles data={data} />
-        </Fragment>
+        <BookProvider>
+          <Fragment>
+            <Header />
+            <InfoBar />
+            <Candles data={data} />
+            <aside className={styles.asideLeft}>
+              <BookConsumer>
+                {({ book }) => <LastTrades book={book.book} />}
+              </BookConsumer>
+            </aside>
+          </Fragment>
+        </BookProvider>
       </ThemeProvider>
     );
   }

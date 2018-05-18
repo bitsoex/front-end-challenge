@@ -14,7 +14,7 @@ const Switch = ({ on, className = "", ...props }) => (
   </div>
 );
 
-export default class Toggle extends React.Component {
+export default class Toggle extends Component {
   static defaultProps = { onToggle: () => {} };
   state = { on: false };
   toggle = () =>

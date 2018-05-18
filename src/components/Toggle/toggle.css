@@ -11,7 +11,7 @@ by Mauricio Allende (https://mallendeo.com/)
   position: relative;
   cursor: pointer;
   user-select: none;
-  background: #fbfbfb;
+  background: #4e5863;
   border-radius: 2em;
   padding: 2px;
   transition: all 0.4s ease;
@@ -37,7 +37,7 @@ by Mauricio Allende (https://mallendeo.com/)
   left: 50%; }
 
 .toggle-btn.toggle-btn-on {
-  background: #4e5863; }
+  background: #fbfbfb; }
 
 .toggle-btn.toggle-btn-on:active {
   box-shadow: none; }

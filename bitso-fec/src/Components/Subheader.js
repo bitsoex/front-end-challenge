@@ -5,11 +5,11 @@ import Menu, { SubMenu, MenuItem } from "rc-menu";
 
 class Subheader extends Component {
   state = {
-    book: null,
     availableBooks: null,
     ticker: null,
     loading: true
   };
+
   handleTicker = async book => {
     const ticker = await axios.get(
       `https://api.bitso.com/v3/ticker/?book=${book}`
@@ -28,32 +28,35 @@ class Subheader extends Component {
     });
   }
 
-  async handleSelect(book) {
-    const ticker = await this.handleTicker(book);
-    this.setState({
-      ticker,
-      book,
-      loading: false
-    });
-    this.props.onSelectBook({ book, last: ticker.last });
-  }
+  // handleSelect = async book => {
+  //   console.log(book);
+  //   const ticker = await this.handleTicker(book);
+  //   this.setState({
+  //     ticker,
+  //     loading: false
+  //   });
+  // };
 
   render() {
-    const { loading, availableBooks, ticker, book } = this.state;
+    const { onSelectBook, book } = this.props;
+    const { loading, availableBooks, ticker } = this.state;
     if (loading) return <div>Cargando...</div>;
     const coin = book.split("_");
     return (
       <div className="subheader-container">
-        <Menu mode="horizontal" onSelect={book => this.handleSelect(book.key)}>
+        <Menu mode="horizontal" onSelect={book => onSelectBook(book.key)}>
           <SubMenu
             className="subheader_menu-item"
             key="available__books"
             title={book.replace("_", "/").toUpperCase()}
           >
-            {availableBooks.map(book => {
-              const typeCoin = book.book.replace("_", "/");
+            {availableBooks.map(item => {
+              const typeCoin = item.book.replace("_", "/");
               return (
-                <MenuItem key={book.book}>
+                <MenuItem
+                  key={item.book}
+                  className={item.book === book ? "rc-menu-item-active" : ""}
+                >
                   <div style={{ paddingRight: 50 }}>
                     <span>{typeCoin.toUpperCase()}</span>
                   </div>

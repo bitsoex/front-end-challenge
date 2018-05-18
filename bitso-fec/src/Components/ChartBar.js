@@ -15,12 +15,51 @@ class ChartBar extends React.Component {
   };
 
   render() {
-    const { toggleChart } = this.props;
+    const {
+      currentChart,
+      toggleChart,
+      timeframe,
+      onChangeTimeframe
+    } = this.props;
     return (
       <div className="chart-bar-container">
-        <button className="chart-toggle-button" onClick={toggleChart}>
-          {this.renderIcon()}
-        </button>
+        <div className="chart-bar-left">
+          <button className="chart-toggle-button" onClick={toggleChart}>
+            {this.renderIcon()}
+          </button>
+          {currentChart !== "candles" ? null : (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "8rem"
+              }}
+            >
+              <span style={{ color: "var(--light-text)", fontSize: "1.4rem" }}>
+                Periodo
+              </span>
+              <div className="chart-bar-select-div">
+                <select
+                  defaultValue={timeframe}
+                  className="chart-bar-filter-select"
+                  onChange={e => onChangeTimeframe(e.target.value)}
+                >
+                  <option value="1month">1 mes</option>
+                  <option value="3months">3 meses</option>
+                  <option value="1year">1 año</option>
+                </select>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="chart-bar-right">
+          {currentChart !== "candles" ? (
+            <span>Spread Zoom</span>
+          ) : (
+            <span>Candles Zoom</span>
+          )}
+        </div>
       </div>
     );
   }

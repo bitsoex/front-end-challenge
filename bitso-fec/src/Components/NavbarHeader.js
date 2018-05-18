@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Menu, { SubMenu, MenuItem } from "rc-menu";
 import bitso_logo from "../assets/Images/SVG/bitso_logo.svg";
+// import sun_icon from "../assets/Images/SVG/sun-fill.svg";
 
 const exSubmenu = ["Trading", "Resumen", "Live Trades", "Posturas"];
 const user = ["Perfil", "Salir"];
@@ -104,9 +105,10 @@ class NavbarHeader extends Component {
                 </SubMenu>
               </Menu>
             </div>
-            <label class="switch">
+            {/* <img src={sun_icon} className="sun_icon" alt="icon" /> */}
+            <label className="switch">
               <input type="checkbox" />
-              <span class="slider round" />
+              <span className="slider round" />
             </label>
           </div>
         </div>

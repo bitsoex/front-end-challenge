@@ -1,4 +1,7 @@
 import React from 'react'
+
+import NumberFormat from 'react-number-format';
+
 import BookContext from './BookContext'
 
 class Ticker extends React.Component {
@@ -15,7 +18,6 @@ class Ticker extends React.Component {
 
     componentDidMount() {
         this.updateTicker();
-        console.info ('mount:');
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -40,17 +42,26 @@ class Ticker extends React.Component {
 
 
     render () {
-
+        const currency = 'MXN';
         return (
             <div id="headerTicker" className='headerTicker' >
-                <span> Volumen 24 hrs. </span>
-                <span> {this.state.volume} </span>
-                <span> Max. </span>
-                <span> {this.state.high} </span>
-                <span> Min. </span>
-                <span> {this.state.low}</span>
-                <span> Variación </span>
-                <span> {this.state.var} </span>
+                <span style={{ fontWeight: 'bold', color: this.props.theme.grayDark }}  > Volumen 24 hrs. </span>
+                <span style={{ color: this.props.theme.grayLight }}> 
+                    <NumberFormat value={this.state.volume} 
+                        displayType={'text'} thousandSeparator={true} suffix={' BTC'} /> 
+                </span>
+                <span style={{ fontWeight: 'bold', color: this.props.theme.grayDark }}> Max. </span>
+                <span style={{ color: this.props.theme.grayLight }}> 
+                    <NumberFormat value={this.state.high} 
+                        displayType={'text'} thousandSeparator={true} suffix={' ' + currency} prefix={'$'}/> 
+                </span>
+                <span style={{ fontWeight: 'bold', color: this.props.theme.grayDark }}> Min. </span>
+                <span style={{ color: this.props.theme.grayLight }}> 
+                    <NumberFormat value={this.state.low}
+                        displayType={'text'} thousandSeparator={true} suffix={' ' + currency} prefix={'$'}/> 
+                </span>
+                <span style={{ fontWeight: 'bold', color: this.props.theme.grayDark }}> Variación </span>
+                <span style={{ color: this.props.theme.grayLight }}> {this.state.var} </span>
             </div>
         )
     }
@@ -63,4 +74,3 @@ export default props => (
   </BookContext.Consumer>
 );
 
-// export default Ticker

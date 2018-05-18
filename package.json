@@ -12,10 +12,14 @@
   "author": "CodeMix",
   "license": "ISC",
   "dependencies": {
+    "konva": "^2.1.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-konva": "^1.7.3",
+    "react-number-format": "^3.3.4",
     "react-scripts": "^1.1.1"
   },
+  
   "devDependencies": {
     "react-testing-library": "^3.0.2"
   }

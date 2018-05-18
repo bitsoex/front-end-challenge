@@ -13,16 +13,13 @@
   src: url('../../Assets/Fonts/DINPro-Regular.otf');
 }
 
-//***************Header Styles********/
+/***************Bar Styles********/
+
 .DropDownMenu{
   font-family: DINPro-Light !important;
   display:inline !important;
   text-decoration: none !important;
   color: #b0bac1 !important;
-}
-.header {
-width: 25%;
-display: inline-flex;
 }
 .ToolbarGroup {
   background-color: #252c36;
@@ -32,14 +29,23 @@ display: inline-flex;
   font-color: #b0bac1;
   display: inline;
   font-size:1.5em;
+
 }
 .ToolbarTitle {
   font-family: DINPro-Light;
   color: #b0bac1 !important;
   display: inline;
   font-size:1.5em;
-}
 
+}
+.dark{
+  color:#4e5863 !important;
+  font-size:1em;
+}
+.light{
+  color:#b0bac1 !important;
+  font-size:1em;
+}
 .MenuItem{
   font-family: DINPro-Light !important;
   color: #b0bac1 !important;
@@ -48,8 +54,11 @@ display: inline-flex;
 }
 
 .background-color{
-  background-color: #252c36 !important;
+  background-color: #252c36;
   color:#191e23;
+}
+.black{
+  background-color: #191e23 !important;
 }
 .bitsoLogo{
 width: 90px;

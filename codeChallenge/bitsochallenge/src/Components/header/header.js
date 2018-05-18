@@ -35,7 +35,7 @@ class Header extends Component {
           <TickCollection/>
           <ToolbarSeparator className="TickCollection"/>
           <div className="DropDownMenu">
-          <DropDownMenu className="DropDownMenu" value={this.state.value} onChange={this.handleChange} openImmediately={false}>
+          <DropDownMenu className="DropDownMenu ToolbarTitle" value={this.state.value} onChange={this.handleChange} openImmediately={false}>
             <MenuItem  value={1} primaryText="EXCHANGE" />
             <MenuItem  value={2} primaryText="TRADING" />
             <MenuItem  value={3} primaryText="RESUMEN" />

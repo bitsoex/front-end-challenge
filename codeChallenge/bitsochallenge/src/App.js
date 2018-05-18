@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Components/header/header';
+import Currency from './Components/currencyCoin/currency';
 import BodyContent from './Components/body/BodyComponent';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -26,6 +27,7 @@ class App extends Component {
       <div className="App">
         <MuiThemeProvider muiTheme={muiTheme}>
           <Header />
+          <Currency/>
           <BodyContent/>
           <footer className="App-intro">
           © 2018 Bitso SAPI de CV. Todos los derechos reservados.

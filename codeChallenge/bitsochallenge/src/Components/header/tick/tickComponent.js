@@ -91,7 +91,7 @@ class TickCollection extends Component {
   handleChange = (event, index, value) => this.setState({value});
   render() {
     return (
-          <DropDownMenu  value={this.state.value} onChange={this.handleChange} openImmediately={false} onClick={this.updatePrice.bind(this)}>
+          <DropDownMenu id='tickMenu' className=" DropDownMenu ToolbarTitle" value={this.state.value} onChange={this.handleChange} openImmediately={false} onClick={this.updatePrice.bind(this)}>
             <MenuItem value={1} primaryText={"1 BTC = "+this.state.btcMxn} />
             <MenuItem value={2} primaryText={"1 ETH = "+this.state.ethMxn} />
             <MenuItem value={3} primaryText={"1 XRP = "+this.state.xrpMxn} />

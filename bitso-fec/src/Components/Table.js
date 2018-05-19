@@ -2,14 +2,13 @@ import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import numeral from "numeral";
 import _ from "lodash";
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 
 export default ({ orders, book, type }) => {
   const values = book.split("_");
   const biggestAmount =
     orders && orders.length && _.maxBy(orders, "amount").amount;
-  // console.log(orders, biggestAmount)
   return (
     <table className={type === "bids" ? "reverse" : null}>
       <thead>
@@ -30,9 +29,20 @@ export default ({ orders, book, type }) => {
           </th>
         </tr>
       </thead>
-      <TransitionGroup component="tbody" className="content">
-        {orders &&
-          orders.map(order => {
+      {!orders ? (
+        <SkeletonTheme
+          color="var(--Background-navy)"
+          highlightColor="var(--Regular-navy)"
+        >
+          <div style={{ fontSize: "2rem", borderRadius: 0 }}>
+            <p>
+              <Skeleton count={12} />
+            </p>
+          </div>
+        </SkeletonTheme>
+      ) : (
+        <TransitionGroup component="tbody" className="content">
+          {orders.map(order => {
             const { price, amount, sum, value, oid } = order;
             let width = amount / biggestAmount * 100;
             // console.log(amount, biggestAmount);
@@ -76,7 +86,7 @@ export default ({ orders, book, type }) => {
                       .join("")}
                   </td>
                   <td className="order-value">
-                    {value < 1
+                    {values[1] !== "mxn"
                       ? numeral(value).format("0.00000000")
                       : numeral(value).format("$0,0.00")}
                   </td>
@@ -87,7 +97,7 @@ export default ({ orders, book, type }) => {
                         : "color-ask__orders"
                     }
                   >
-                    {price < 1
+                    {values[1] !== "mxn"
                       ? numeral(price).format("0.00000000")
                       : numeral(price).format("$0,0.00")}
                   </td>
@@ -95,7 +105,8 @@ export default ({ orders, book, type }) => {
               </CSSTransition>
             );
           })}
-      </TransitionGroup>
+        </TransitionGroup>
+      )}
     </table>
   );
 };

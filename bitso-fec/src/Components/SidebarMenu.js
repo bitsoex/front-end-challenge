@@ -8,6 +8,7 @@ class SidebarMenu extends Component {
   };
   render() {
     const { toogle } = this.state;
+    console.log(this.props.trades);
     return (
       <Transition in={toogle} timeout={300}>
         {state => (
@@ -33,9 +34,11 @@ class SidebarMenu extends Component {
                 backgroundColor: "#23292d",
                 display: "flex",
                 position: "relative",
-                width: "270px"
+                width: "280px"
               }}
-            />
+            >
+              <span style={{ backgroundColor: "#727c84", width: "280px" }}>MERCADOS 24 HRS</span>
+            </div>
           </div>
         )}
       </Transition>
@@ -60,8 +63,8 @@ const transitionStyles = {
   },
   entered: {
     position: "relative",
-    left: -310,
-    width: "310px",
+    left: -280,
+    width: "320px",
     backgroundColor: "#191e23"
   },
   exiting: {

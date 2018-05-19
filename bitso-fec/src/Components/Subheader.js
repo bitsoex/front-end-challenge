@@ -42,6 +42,7 @@ class Subheader extends Component {
     const { loading, availableBooks, ticker } = this.state;
     if (loading) return <div>Cargando...</div>;
     const coin = book.split("_");
+    console.log(ticker);
     return (
       <div className="subheader-container">
         <Menu mode="horizontal" onSelect={book => onSelectBook(book.key)}>
@@ -70,7 +71,8 @@ class Subheader extends Component {
             display: "flex",
             justifyContent: "space-around",
             flex: 1,
-            marginRight: "40rem",
+            marginRight: "36rem",
+            marginLeft: "4rem",
             fontSize: "1.6rem"
           }}
         >
@@ -82,15 +84,19 @@ class Subheader extends Component {
           </div>
           <div>
             <span>Max. </span>
-            <span className="lighter-text">{`${numeral(ticker.high).format(
-              "0,0.00"
-            )} ${coin[1].toUpperCase()}`}</span>
+            <span className="lighter-text">{`${
+              ticker.high < 1
+                ? numeral(ticker.high).format("0.00000000")
+                : numeral(ticker.high).format("$0,0.00")
+            } ${coin[1].toUpperCase()}`}</span>
           </div>
           <div>
             <span>Min. </span>
-            <span className="lighter-text">{`${numeral(ticker.low).format(
-              "0,0.00"
-            )} ${coin[1].toUpperCase()}`}</span>
+            <span className="lighter-text">{`${
+              ticker.low < 1
+                ? numeral(ticker.low).format("0.00000000")
+                : numeral(ticker.low).format("$0,0.00")
+            } ${coin[1].toUpperCase()}`}</span>
           </div>
           <div>
             <span>Variación </span>

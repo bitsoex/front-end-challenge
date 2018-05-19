@@ -14,7 +14,7 @@ class Trades extends React.Component {
           display: "flex",
           flexDirection: "column",
           padding: "1rem",
-          flex: "0 0 20%"
+          flex: "0 0 22%"
         }}
       >
         <div className="navy-header trades">
@@ -61,9 +61,9 @@ class Trades extends React.Component {
                             : "color-ask__trades"
                         }
                       >
-                        {price < 1
+                        {values[1] !== "mxn"
                           ? numeral(price).format("0.00000000")
-                          : Number(price).toFixed(2)}
+                          : numeral(price).format("$0,0.00")}
                       </td>
                       <td>
                         <span className="lighter-text">

@@ -42,7 +42,8 @@ class NavbarHeader extends Component {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-around",
-              marginLeft: "2rem"
+              marginLeft: "2rem",
+              marginRight: "3rem"
             }}
           >
             <Menu
@@ -77,7 +78,7 @@ class NavbarHeader extends Component {
                 ))}
               </SubMenu>
             </Menu>
-            <div>Ayuda</div>
+            <span className="header__button-item">Ayuda</span>
             <div className="div_block_content-profile">
               <div className="div_block-circle">
                 <div className="div_block-circle in-circle">

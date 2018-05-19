@@ -4,23 +4,48 @@ import { timeParse } from "d3-time-format";
 
 import { ticker, trade } from "./api";
 import { BookProvider, BookConsumer } from "./context/Book";
-import { ThemeProvider } from "./context/Theme";
+import { ThemeProvider, ThemeConsumer } from "./context/Theme";
 import Header from "./components/Header";
 import InfoBar from "./components/InfoBar";
 import Candles from "./components/Candlestick";
 import LastTrades from "./components/LastTrades";
 
 const styles = {
-  asideLeft: css`
+  container: css`
     display: flex;
-    order: 2;
+    flex-flow: row wrap;
+    & > * {
+      flex: 1 100%;
+    }
+
+    @media all and (min-width: 600px) {
+      .aside {
+        flex: 1 auto;
+      }
+    }
+
+    @media all and (min-width: 800px) {
+      .main {
+        flex: 3 0px;
+      }
+      .aside-left {
+        order: 1;
+      }
+      .main {
+        order: 2;
+      }
+      .aside-right {
+        order: 3;
+      }
+      .footer {
+        order: 4;
+      }
+    }
   `
 };
 
 class App extends Component {
   state = {
-    loading: true,
-    books: [],
     data: []
   };
 
@@ -58,25 +83,29 @@ class App extends Component {
   };
 
   render() {
-    const { loading } = this.state;
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-
     const { data } = this.state;
     return (
       <ThemeProvider>
         <BookProvider>
-          <Fragment>
-            <Header />
-            <InfoBar />
-            <Candles data={data} />
-            <aside className={styles.asideLeft}>
-              <BookConsumer>
-                {({ book }) => <LastTrades book={book.book} />}
-              </BookConsumer>
-            </aside>
-          </Fragment>
+          <ThemeConsumer>
+            {({ theme }) => (
+              <div style={theme} className={styles.container}>
+                <Header />
+                <InfoBar />
+                <section className="main">
+                  <Candles data={data} />
+                </section>
+                <aside className="aside aside-left">
+                  <BookConsumer>
+                    {({ book }) => <LastTrades book={book.book} />}
+                  </BookConsumer>
+                </aside>
+                <aside className="aside aside-right">
+                  <div>Aside right</div>
+                </aside>
+              </div>
+            )}
+          </ThemeConsumer>
         </BookProvider>
       </ThemeProvider>
     );

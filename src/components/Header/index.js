@@ -3,6 +3,7 @@ import { css, cx } from "emotion";
 import bitsoLogo from "../../bitso_logo.svg";
 import { ThemeConsumer } from "../../context/Theme";
 import ThemeToggler from "../ThemeToggler";
+import { colors } from "../../themes";
 
 const styles = {
   container: css`
@@ -18,7 +19,6 @@ const styles = {
     margin: 0;
     padding: 0 10px;
     list-style: none;
-    display: flex;
   `,
   navItem: css`
     &:not(:last-child):not(:first-child) {
@@ -41,7 +41,14 @@ const styles = {
 export default () => (
   <ThemeConsumer>
     {({ theme }) => (
-      <header style={theme} className={styles.container}>
+      <header
+        style={
+          theme.name === "dark"
+            ? { ...theme, background: colors.navy.header }
+            : { ...theme, background: colors.gray.regular }
+        }
+        className={styles.container}
+      >
         <ul className={styles.nav} role="navigation">
           <li className={cx(styles.left, styles.navItem)}>
             <img src={bitsoLogo} className={styles.logo} alt="Bisto logo" />

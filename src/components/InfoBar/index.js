@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { css, cx } from "emotion";
 import { ThemeConsumer } from "../../context/Theme";
 import { BookConsumer } from "../../context/Book";
-import ThemeToggler from "../ThemeToggler";
 import DropDown from "../DropDown";
+import { colors } from "../../themes";
 
 const styles = {
   container: css`
@@ -13,17 +12,6 @@ const styles = {
     background: hotpink;
     padding: 10px;
     justify-content: space-between;
-  `,
-  logo: css`
-    height: 30px;
-    margin: 0 10px;
-  `,
-  content: css`
-    display: flex;
-    align-items: center;
-  `,
-  contentRight: css`
-    display: flex;
   `,
   item: css`
     min-width: 70px;
@@ -55,16 +43,10 @@ export default () => (
       return (
         <ThemeConsumer>
           {({ theme }) => (
-            <div
-              style={{
-                ...theme,
-                background: theme.name === "dark" ? "#191e23" : "#cccccc"
-              }}
-              className={styles.container}
-            >
+            <div style={theme} className={styles.container}>
               <DropDown
                 containerStyle={
-                  theme.name === "light" ? { color: "#466830" } : null
+                  theme.name === "light" ? { color: colors.green.dark } : null
                 }
                 containerClassName={cx(styles.item, styles.bookSelector)}
                 items={books.map(b => ({

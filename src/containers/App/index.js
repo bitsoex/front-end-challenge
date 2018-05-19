@@ -1,9 +1,3 @@
-/**
- *
- * App
- *
- */
-
 import React, { PureComponent } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -40,7 +34,7 @@ class App extends PureComponent {
       .catch(error => {
         console.log({ error })
       })
-    //
+
     // NetworkOperation.getAvailableBooks()
     //   .then(({ data }) => {
     //     const { payload } = data

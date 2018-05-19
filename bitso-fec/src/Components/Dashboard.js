@@ -173,7 +173,7 @@ class Dashboard extends React.Component {
     const { book, match, onSelectBook } = this.props;
     const { book: paramsBook } = match.params;
     const {
-      loading,
+      // loading,
       orders,
       trades,
       firstTrades,
@@ -204,47 +204,43 @@ class Dashboard extends React.Component {
             />
           </div>
         </div>
-        {loading || _.isEmpty(orders) ? (
-          <div>Cargando...</div>
-        ) : (
-          <div className="dashboard-container">
-            <Trades book={paramsBook || book} trades={trades || firstTrades} />
-            <div
-              style={{
-                display: "flex",
-                flex: 1,
-                padding: "1rem",
-                paddingRight: "5px",
-                flexDirection: "column",
-                paddingLeft: "1rem"
-              }}
-            >
-              <div style={{ flex: 1, minWidth: "70rem" }}>
-                <ChartBar
-                  currentChart={currentChart}
-                  timeframe={timeframe}
-                  toggleChart={this.toggleChart}
-                  onChangeTimeframe={this.onChangeTimeframe}
-                />
-                <Charts
-                  isFirstChartRender={isFirstChartRender}
-                  handleFirstRender={this.handleFirstChartRender}
-                  book={paramsBook || book}
-                  orders={orders}
-                  currentChart={currentChart}
-                  volumeData={volumeData}
-                  candleData={candleData}
-                  timeframe={timeframe}
-                />
-              </div>
-              <Orders
+        {/* {loading || _.isEmpty(orders) ? (
+          <div>Cargando..</div>
+        ) : ( */}
+        <div className="dashboard-container">
+          <Trades book={paramsBook || book} trades={trades || firstTrades} />
+          <div
+            style={{
+              display: "flex",
+              flex: 1,
+              flexDirection: "column",
+              padding: "1rem",
+              paddingRight: "5px"
+            }}
+          >
+            <div style={{ flex: 1, minWidth: "70rem" }}>
+              <ChartBar
+                currentChart={currentChart}
+                timeframe={timeframe}
+                toggleChart={this.toggleChart}
+                onChangeTimeframe={this.onChangeTimeframe}
+              />
+              <Charts
+                isFirstChartRender={isFirstChartRender}
+                handleFirstRender={this.handleFirstChartRender}
                 book={paramsBook || book}
-                orders={orders || firstOrders}
+                orders={orders}
+                currentChart={currentChart}
+                volumeData={volumeData}
+                candleData={candleData}
+                timeframe={timeframe}
               />
             </div>
-            <SidebarMenu />
+            <Orders book={paramsBook || book} orders={orders || firstOrders} />
           </div>
-        )}
+          <SidebarMenu />
+        </div>
+        {/* )} */}
       </div>
     );
   }

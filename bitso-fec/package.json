@@ -17,16 +17,15 @@
     "react-collapse": "^4.0.3",
     "react-dom": "^16.3.2",
     "react-motion": "^0.5.2",
+    "react-loading-skeleton": "^0.4.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.3.1",
     "uuid": "^3.2.1"
   },
   "scripts": {
-    "build-css":
-      "less-watch-compiler --run-once --main-file=index.less src/less/ src/less/",
-    "watch-css":
-      "npm run build-css && less-watch-compiler --main-file=index.less src/less/ src/less/",
+    "build-css": "less-watch-compiler --run-once --main-file=index.less src/less/ src/less/",
+    "watch-css": "npm run build-css && less-watch-compiler --main-file=index.less src/less/ src/less/",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",

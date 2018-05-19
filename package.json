@@ -17,6 +17,7 @@
     "express": "^4.16.3",
     "helmet": "^3.12.0",
     "hpp": "^0.2.2",
+    "immutable": "^3.8.2",
     "query-string": "^6.1.0",
     "react": "^16.3.2",
     "react-d3-basic": "^1.6.11",

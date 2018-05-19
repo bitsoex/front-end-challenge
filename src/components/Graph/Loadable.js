@@ -7,6 +7,6 @@
 import Loadable from 'react-loadable'
 
 export default Loadable({
-  loader: () => import('./index' /* webpackChunkName: "not-found" */),
+  loader: () => import('./index' /* webpackChunkName: "chart" */),
   loading: () => null
 })

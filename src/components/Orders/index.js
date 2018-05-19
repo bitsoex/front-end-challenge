@@ -1,8 +1,40 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 
 import './style.less'
 
-function Order({ orders, title }) {
+class OrderItem extends PureComponent {
+  state = {
+    className: '--new'
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value) {
+      console.log('UP OR DOWN')
+      const className = this.props.value > prevProps.value ? '--up' : '--down'
+      this.setState({
+        className
+      })
+    }
+  }
+
+  render() {
+    const { orderId, rate, amount, value, transaction } = this.props
+    return (
+      <div key={orderId} className={`item --order ${this.state.className}`}>
+        <p />
+        <p />
+        <p>{amount}</p>
+        <p>{parseFloat(Math.round(value * 100) / 100).toFixed(2)}</p>
+        <p className="price">
+          {parseFloat(Math.round(rate * 100) / 100).toFixed(2)}
+        </p>
+      </div>
+    )
+  }
+}
+
+function Order({ orders, title, type }) {
   return (
     <div className="orders-container">
       <div className="header">
@@ -24,28 +56,24 @@ function Order({ orders, title }) {
           <span>MXN</span>PRECIO
         </p>
       </div>
-      {orders.map(
-        ({
-          o: orderId,
-          r: rate,
-          a: amount,
-          v: value,
-          t: transaction,
-          d: timestamp
-        }) => (
-          <div key={orderId + timestamp} className="item --order">
-            <p />
-            <p />
-            <p>{amount}</p>
-            <p>{parseFloat(Math.round(value * 100) / 100).toFixed(2)}</p>
-            <p className="price">
-              {parseFloat(Math.round(rate * 100) / 100).toFixed(2)}
-            </p>
-          </div>
-        )
-      )}
+      {orders[type] &&
+        orders[type].map(({ o, r, a, v, t }) => (
+          <OrderItem
+            key={o}
+            orderId={o}
+            rate={r}
+            amount={a}
+            value={v}
+            transaction={t}
+            // timestamp={d}
+          />
+        ))}
     </div>
   )
 }
 
-export default Order
+function mapStateToProps({ orders }) {
+  return { orders: orders }
+}
+
+export default connect(mapStateToProps)(Order)

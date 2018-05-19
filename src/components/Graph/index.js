@@ -1,140 +1,94 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CanvasJS from 'lib/canvasjs.min.js'
 
 class Graph extends Component {
-  componentDidMount() {
-    var chart = new CanvasJS.Chart('chartContainer', {
-      animationEnabled: true,
-      theme: 'light2', // "light1", "light2", "dark1", "dark2"
-      exportEnabled: true,
-      title: {
-        text: 'Facebook Stock Price - 2016'
-      },
-      subtitles: [
-        {
-          text: 'All Prices are in USD'
-        }
-      ],
-      axisX: {
-        valueFormatString: 'MMM'
-      },
-      axisY: {
-        includeZero: false,
-        prefix: '$',
-        title: 'Price'
+  componentDidUpdate() {
+    console.log('UPDATE...')
+    const chartData = this.props.chartData
+
+    console.log({ chartData })
+    const dataPoints = chartData.map(({ date, open, high, low, close }) => ({
+      x: new Date(date),
+      y: [
+        parseFloat(open),
+        parseFloat(high),
+        parseFloat(low),
+        parseFloat(close)
+      ]
+    }))
+
+    const chart = new CanvasJS.Chart('chartContainer', {
+      // animationEnabled: true,
+      backgroundColor: 'rgba(0,0,0,0.0)',
+      axisX2: {
+        labelFontColor: '#384555',
+        lineColor: '#252c36',
+        gridThickness: 1,
+        gridColor: '#252c36',
+        tickColor: '#252c36'
       },
       axisY2: {
-        prefix: '$',
-        suffix: 'bn',
-        title: 'Revenue & Income',
-        tickLength: 0
+        // minimum: 150000,
+        labelFontColor: '#384555',
+        valueFormatString: '#,##0,.',
+        suffix: 'K',
+        lineColor: '#191e23',
+        gridColor: '#252c36',
+        gridDashType: 'dash',
+        lineThickness: 1,
+        tickColor: '#252c36'
+      },
+      axisY: {
+        lineThickness: 1,
+        lineColor: '#252c36'
       },
       toolTip: {
-        shared: true
-      },
-      legend: {
-        reversed: true,
-        cursor: 'pointer',
-        itemclick: toggleDataSeries
+        shared: true,
+        borderColor: '#b0bac1',
+        fontColor: '#b0bac1',
+        borderThickness: 1,
+        cornerRadius: 10,
+        backgroundColor: 'rgba(56, 69, 85, 0.8)'
       },
       data: [
         {
+          axisYType: 'secondary',
+          axisXType: 'secondary',
           type: 'candlestick',
-          showInLegend: true,
-          name: 'Stock Price',
-          yValueFormatString: '$#,##0.00',
-          xValueFormatString: 'MMMM',
-          dataPoints: [
-            // Y: [Open, High ,Low, Close]
-            {
-              x: new Date(2016, 0),
-              y: [101.949997, 112.839996, 89.370003, 112.209999]
-            },
-            {
-              x: new Date(2016, 1),
-              y: [112.269997, 117.589996, 96.82, 106.919998]
-            },
-            {
-              x: new Date(2016, 2),
-              y: [107.830002, 116.989998, 104.400002, 114.099998]
-            },
-            {
-              x: new Date(2016, 3),
-              y: [113.75, 120.790001, 106.309998, 117.580002]
-            },
-            {
-              x: new Date(2016, 4),
-              y: [117.830002, 121.080002, 115.879997, 118.809998]
-            },
-            {
-              x: new Date(2016, 5),
-              y: [118.5, 119.440002, 108.230003, 114.279999]
-            },
-            {
-              x: new Date(2016, 6),
-              y: [114.199997, 128.330002, 112.970001, 123.940002]
-            },
-            {
-              x: new Date(2016, 7),
-              y: [123.849998, 126.730003, 122.07, 126.120003]
-            },
-            {
-              x: new Date(2016, 8),
-              y: [126.379997, 131.979996, 125.599998, 128.270004]
-            },
-            {
-              x: new Date(2016, 9),
-              y: [128.380005, 133.5, 126.75, 130.990005]
-            },
-            {
-              x: new Date(2016, 10),
-              y: [131.410004, 131.940002, 113.550003, 118.419998]
-            },
-            { x: new Date(2016, 11), y: [118.379997, 122.5, 114.0, 115.050003] }
-          ]
-        },
-        {
-          type: 'line',
-          showInLegend: true,
-          name: 'Net Income',
-          axisYType: 'secondary',
-          yValueFormatString: '$#,##0.00bn',
-          xValueFormatString: 'MMMM',
-          dataPoints: [
-            { x: new Date(2016, 2), y: 1.51 },
-            { x: new Date(2016, 5), y: 2.055 },
-            { x: new Date(2016, 8), y: 2.379 },
-            { x: new Date(2016, 11), y: 3.568 }
-          ]
-        },
-        {
-          type: 'line',
-          showInLegend: true,
-          name: 'Total Revenue',
-          axisYType: 'secondary',
-          yValueFormatString: '$#,##0.00bn',
-          xValueFormatString: 'MMMM',
-          dataPoints: [
-            { x: new Date(2016, 2), y: 5.382 },
-            { x: new Date(2016, 5), y: 6.436 },
-            { x: new Date(2016, 8), y: 7.011 },
-            { x: new Date(2016, 11), y: 8.809 }
-          ]
+          color: '#80c156',
+          risingColor: '#80c156',
+          fallingColor: '#cc4458',
+          border: 0,
+          whiskerThickness: 0.5,
+          fillOpacity: 0.8,
+          // name: 'Stock Price',
+          // yValueFormatString: '$#,##0.00',
+          // xValueFormatString: 'MMMM',
+          dataPoints
         }
+        // {
+        //   type: 'column',
+        //   // showInLegend: true,
+        //   // name: 'Net Income',
+        //   axisYType: 'secondary',
+        //   yValueFormatString: '$#,##0.00bn',
+        //   xValueFormatString: 'MMMM',
+        //   dataPoints: [
+        //     { x: new Date(2016, 2), y: 1.51 },
+        //     { x: new Date(2016, 5), y: 2.055 },
+        //     { x: new Date(2016, 8), y: 2.379 },
+        //     { x: new Date(2016, 11), y: 3.568 }
+        //   ]
+        // }
       ]
     })
 
-    function toggleDataSeries(e) {
-      if (typeof e.dataSeries.visible === 'undefined' || e.dataSeries.visible) {
-        e.dataSeries.visible = false
-      } else {
-        e.dataSeries.visible = true
-      }
-      e.chart.render()
-    }
     chart.render()
   }
+
+  componentDidMount() {}
 
   render() {
     return (
@@ -162,4 +116,10 @@ class Graph extends Component {
   }
 }
 
-export default Graph
+function mapStateToProps({ chartData }) {
+  return {
+    chartData
+  }
+}
+
+export default connect(mapStateToProps)(Graph)

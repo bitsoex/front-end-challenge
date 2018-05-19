@@ -1,10 +1,34 @@
+// import { fromJS } from 'immutable'
+
 const initialState = {
   books: [],
-  selectedBook: {}
+  selectedBook: {},
+  transactions: [],
+  orders: {
+    bids: [],
+    asks: []
+  },
+  orderAsks: [],
+  chartData: []
 }
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case 'SET_CHART_DATA':
+      return {
+        ...state,
+        chartData: action.data
+      }
+    case 'SET_TRANSACTIONS':
+      return {
+        ...state,
+        transactions: action.transactions
+      }
+    case 'SET_ORDERS':
+      return {
+        ...state,
+        orders: action.orders
+      }
     case 'SET_BOOKS': {
       const selectedBook = action.books[0]
       return {

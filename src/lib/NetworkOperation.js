@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://api-dev.bitso.com/v3'
+const baseUrl = 'https://api.bitso.com/v3'
 
 class NetworkOperation {
   static getTicker() {
@@ -14,7 +14,11 @@ class NetworkOperation {
   }
 
   static getAvailableBooks() {
-    return axios.get('https://api.bitso.com/v3/available_books')
+    return axios.get(`${baseUrl}/available_books`)
+  }
+
+  static getChartData({ book, period }) {
+    return axios.get(`https://bitso.com/trade/chartJSON/${book}/${period}`)
   }
 }
 

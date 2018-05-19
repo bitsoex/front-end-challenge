@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import './style.less'
 
 class Transactions extends PureComponent {
   render() {
     const { transactions } = this.props
+    // console.log(transactions)
+    // transactions.map(console.log)
+
     return (
       <div className="transactions-container">
         <div className="header">
@@ -52,11 +56,15 @@ class Transactions extends PureComponent {
 }
 
 Transactions.propTypes = {
-  transactions: PropTypes.array
+  // transactions: PropTypes.object
 }
 
 Transactions.defaultProps = {
   transactions: []
 }
 
-export default Transactions
+function mapStateToProps({ transactions }) {
+  return { transactions }
+}
+
+export default connect(mapStateToProps)(Transactions)

@@ -6,6 +6,7 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import {
@@ -19,6 +20,7 @@ import Sidebar from 'components/Sidebar'
 import Transactions from 'components/Transactions'
 import Orders from 'components/Orders'
 import Graph from 'components/Graph'
+import * as ALL_ACTIONS from 'actions'
 
 import './style.less'
 
@@ -26,54 +28,42 @@ class Home extends PureComponent {
   static propTypes = {
     bitso: PropTypes.shape({
       selectedBook: PropTypes.object
-    })
-  }
-
-  state = {
-    selectedBook: 'BTC',
-    transactions: [],
-    orders: {
-      bids: [],
-      asks: []
-    },
-    orderAsks: []
+    }),
+    actions: PropTypes.object
   }
 
   componentDidMount() {
-    const book = this.props.bitso.selectedBook.book
+    const book = this.props.selectedBook.book
     this.setupBook(book)
   }
 
-  componentDidUpdate({
-    bitso: {
-      selectedBook: { book: prevBook }
-    }
-  }) {
-    const book = this.props.bitso.selectedBook.book
+  componentDidUpdate({ selectedBook: { book: prevBook } }) {
+    const book = this.props.selectedBook.book
     if (book !== prevBook) {
       this.setupBook(book)
     }
   }
 
   setupBook = book => {
-    this.setState({
-      transactions: [],
-      orders: {
-        bids: [],
-        asks: []
-      },
-      orderAsks: []
-    })
-
     if (this.websocket) {
       this.websocket.close()
     }
 
+    NetworkOperation.getChartData({ book, period: '1month' }).then(
+      ({ data }) => {
+        console.log('')
+        this.props.actions.setChartData(data)
+      }
+    )
+
     NetworkOperation.getTrades({ book, limit: 39 })
       .then(({ data: { payload } }) => {
-        this.setState({
-          transactions: payload
-        })
+        this.props.actions.setTransactions(payload)
+        // this.setState(({ data }) => {
+        //   return {
+        //     data: data.set('transactions', payload)
+        //   }
+        // })
       })
       .catch(error => {
         console.log(error)
@@ -91,37 +81,28 @@ class Home extends PureComponent {
 
   onMessage = ({ data: stringData }) => {
     const { type, payload } = JSON.parse(stringData)
-    // console.log(type, payload)
+    console.log(type, payload)
     switch (type) {
       case 'transactions':
-        payload &&
-          this.setState(prev => ({
-            transactions: prev.transactions.concat(payload)
-          }))
+        payload && this.props.actions.setTransactions(payload)
         break
       case 'orders':
-        payload &&
-          this.setState({
-            orders: payload
-          })
+        payload && this.props.actions.setOrders(payload)
         break
       default:
     }
   }
 
   render() {
-    const {
-      state: { transactions, orders }
-    } = this
     return (
       <div className="dashboard">
         <div className="dashboard__main-container">
-          <Transactions transactions={transactions} />
+          <Transactions />
           <div className="realtime-container">
             <Graph />
             <div className="orders-wrapper">
-              <Orders orders={orders.bids} title="Posturas de compra" />
-              <Orders orders={orders.asks} title="Posturas de venta" />
+              <Orders type="bids" title="Posturas de compra" />
+              <Orders type="asks" title="Posturas de venta" />
             </div>
           </div>
         </div>
@@ -131,8 +112,18 @@ class Home extends PureComponent {
   }
 }
 
-function mapStateToProps({ books, selectedBook }) {
-  return { bitso: { books, selectedBook } }
+function mapDispatchToProps(dispatch) {
+  const ACTIONS = bindActionCreators(ALL_ACTIONS, dispatch)
+  return {
+    dispatch,
+    actions: ACTIONS
+  }
 }
 
-export default connect(mapStateToProps)(Home)
+function mapStateToProps({ selectedBook }) {
+  return {
+    selectedBook
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

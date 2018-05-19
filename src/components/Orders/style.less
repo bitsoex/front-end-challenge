@@ -1,5 +1,52 @@
 @import '../../colors';
 
+@keyframes newtransaction {
+  from {
+    background-color: @navy-headers;
+  }
+  to {
+    background-color: @background-navy;
+  }
+}
+
+@keyframes upanimation {
+  from {
+    color: white;
+    background-color: @dark-green;
+  }
+  to {
+    color: inherit;
+    background-color: @background-navy;
+  }
+}
+
+@keyframes downanimation {
+  from {
+    color: white;
+    background-color: @dark-red;
+  }
+  to {
+    color: inherit;
+    background-color: @background-navy;
+  }
+}
+
+.item {
+  background-color: @background-navy;
+  &.--new {
+    animation: newtransaction 2s;
+  }
+  &.--up {
+    animation: upanimation 4s;
+  }
+  &.--down {
+    animation: downanimation 4s;
+  }
+  &.--unmount {
+    animation: unmountanimation 2s;
+  }
+}
+
 .orders-container {
   flex-grow: 1;
   display: flex;
@@ -21,14 +68,16 @@
   }
   .item {
     font-size: 0.9rem;
-    margin-bottom: 5px;
+    padding: 3px 0;
     p {
       text-align: right;
-
       flex-grow: 1;
       margin-right: 10px;
       &.price {
         text-align: center;
+      }
+      &:first-child {
+        flex-basis: 80px;
       }
     }
     &.--order {

@@ -29,22 +29,18 @@ class App extends PureComponent {
     })
   }
 
-  state = {}
-
   componentDidMount() {
     NetworkOperation.getTicker()
       .then(({ data: { payload } }) => {
-        console.log('Ticker', payload)
         const selectedBook = payload[0]
 
         this.props.actions.setBooks(payload)
-
         this.props.actions.setSelectedBook(selectedBook)
       })
       .catch(error => {
         console.log({ error })
       })
-
+    //
     // NetworkOperation.getAvailableBooks()
     //   .then(({ data }) => {
     //     const { payload } = data
@@ -75,13 +71,14 @@ class App extends PureComponent {
   render() {
     const {
       props: {
-        bitso: { books, selectedBook },
+        books,
+        selectedBook,
         actions: { setSelectedBook }
       }
     } = this
 
     if (Object.keys(selectedBook).length === 0) {
-      return <div className="loading" />
+      return <div className="loading">Loading</div>
     }
 
     return (
@@ -112,7 +109,10 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps({ books, selectedBook }) {
-  return { bitso: { books, selectedBook } }
+  return {
+    books,
+    selectedBook
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

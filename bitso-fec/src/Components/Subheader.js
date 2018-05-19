@@ -80,7 +80,7 @@ class Subheader extends Component {
             <span>Volumen 24 hrs. </span>
             <span className="lighter-text">{`${
               ticker.volume
-              } ${coin[0].toUpperCase()}`}</span>
+            } ${coin[0].toUpperCase()}`}</span>
           </div>
           <div>
             <span>Max. </span>
@@ -88,7 +88,7 @@ class Subheader extends Component {
               ticker.high < 1
                 ? numeral(ticker.high).format("0.00000000")
                 : numeral(ticker.high).format("$0,0.00")
-              } ${coin[1].toUpperCase()}`}</span>
+            } ${coin[1].toUpperCase()}`}</span>
           </div>
           <div>
             <span>Min. </span>
@@ -96,7 +96,7 @@ class Subheader extends Component {
               ticker.low < 1
                 ? numeral(ticker.low).format("0.00000000")
                 : numeral(ticker.low).format("$0,0.00")
-              } ${coin[1].toUpperCase()}`}</span>
+            } ${coin[1].toUpperCase()}`}</span>
           </div>
           <div>
             <span>Variación </span>

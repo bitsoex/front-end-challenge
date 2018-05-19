@@ -41,71 +41,71 @@ export default ({ orders, book, type }) => {
           </div>
         </SkeletonTheme>
       ) : (
-          <TransitionGroup component="tbody" className="content">
-            {orders.map(order => {
-              const { price, amount, sum, value, oid } = order;
-              let width = amount / biggestAmount * 100;
-              const integer = Number(amount)
-                .toString()
-                .split(".");
-              if (width < 5) {
-                width = 1.5;
-              } else if (width > 100) {
-                width = 100;
-              }
-              return (
-                <CSSTransition
-                  key={oid}
-                  timeout={700}
-                  classNames={type === "bids" ? "bids" : "asks"}
-                >
-                  <tr>
-                    <td className="status__bar">
-                      <div
-                        className={`bar ${
-                          type === "bids" ? "bid-color" : "ask-color"
-                          }`}
-                        style={{
-                          width: `${width}%`
-                        }}
-                      />
-                    </td>
-                    <td className="lighter-text">{Number(sum).toFixed(2)}</td>
-                    <td>
-                      <span className="lighter-text">
-                        {integer.length > 1
-                          ? Number(amount)
-                          : `${Number(amount)}.`}
-                      </span>
-                      {round
-                        .slice(
-                          0,
-                          8 - (integer.length > 1 ? integer[1].length : 0)
-                        )
-                        .join("")}
-                    </td>
-                    <td className="order-value">
-                      {values[1] !== "mxn"
-                        ? numeral(value).format("0.00000000")
-                        : numeral(value).format("$0,0.00")}
-                    </td>
-                    <td
-                      className={
-                        type === "bids"
-                          ? "color-bid__orders"
-                          : "color-ask__orders"
-                      }
-                    >
-                      {values[1] !== "mxn"
-                        ? numeral(price).format("0.00000000")
-                        : numeral(price).format("$0,0.00")}
-                    </td>
-                  </tr>
-                </CSSTransition>
-              );
-            })}
-          </TransitionGroup>
-        )}
+        <TransitionGroup component="tbody" className="content">
+          {orders.map(order => {
+            const { price, amount, sum, value, oid } = order;
+            let width = amount / biggestAmount * 100;
+            const integer = Number(amount)
+              .toString()
+              .split(".");
+            if (width < 5) {
+              width = 1.5;
+            } else if (width > 100) {
+              width = 100;
+            }
+            return (
+              <CSSTransition
+                key={oid}
+                timeout={700}
+                classNames={type === "bids" ? "bids" : "asks"}
+              >
+                <tr>
+                  <td className="status__bar">
+                    <div
+                      className={`bar ${
+                        type === "bids" ? "bid-color" : "ask-color"
+                      }`}
+                      style={{
+                        width: `${width}%`
+                      }}
+                    />
+                  </td>
+                  <td className="lighter-text">{Number(sum).toFixed(2)}</td>
+                  <td>
+                    <span className="lighter-text">
+                      {integer.length > 1
+                        ? Number(amount)
+                        : `${Number(amount)}.`}
+                    </span>
+                    {round
+                      .slice(
+                        0,
+                        8 - (integer.length > 1 ? integer[1].length : 0)
+                      )
+                      .join("")}
+                  </td>
+                  <td className="order-value">
+                    {values[1] !== "mxn"
+                      ? numeral(value).format("0.00000000")
+                      : numeral(value).format("$0,0.00")}
+                  </td>
+                  <td
+                    className={
+                      type === "bids"
+                        ? "color-bid__orders"
+                        : "color-ask__orders"
+                    }
+                  >
+                    {values[1] !== "mxn"
+                      ? numeral(price).format("0.00000000")
+                      : numeral(price).format("$0,0.00")}
+                  </td>
+                </tr>
+              </CSSTransition>
+            );
+          })}
+        </TransitionGroup>
+      )}
     </table>
   );
 };

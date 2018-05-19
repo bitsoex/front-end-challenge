@@ -84,10 +84,10 @@ class SidebarMenu extends Component {
                 {loading ? (
                   <div>Cargando...</div>
                 ) : (
-                    _.map(listData, item => (
-                      <SidebarMenuItem key={item.book} item={item} />
-                    ))
-                  )}
+                  _.map(listData, item => (
+                    <SidebarMenuItem key={item.book} item={item} />
+                  ))
+                )}
               </div>
             </div>
           </div>

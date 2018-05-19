@@ -52,7 +52,10 @@ class DeepChart extends React.Component {
       chart: {
         type: "area",
         backgroundColor: "transparent",
-        borderColor: "transparent"
+        borderColor: "transparent",
+        style: {
+          fontFamily: "DINPro-regular, sans-serif"
+        }
       },
       title: {
         text: ""

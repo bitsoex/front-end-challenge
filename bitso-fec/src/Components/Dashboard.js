@@ -190,7 +190,12 @@ class Dashboard extends React.Component {
     // }
 
     return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
         <div className="div_block__container">
           <div className="div-block__container-subheader">
             <Subheader
@@ -208,6 +213,8 @@ class Dashboard extends React.Component {
               style={{
                 display: "flex",
                 flex: 1,
+                padding: "1rem",
+                paddingRight: "5px",
                 flexDirection: "column",
                 paddingLeft: "1rem"
               }}

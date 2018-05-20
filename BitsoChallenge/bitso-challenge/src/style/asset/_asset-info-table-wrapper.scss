@@ -1,0 +1,98 @@
+.info-table-wrapper {
+	padding: 0 24px;
+	background: #f5f5f5;
+	margin-bottom: 24px;
+
+	.info-wrapper {
+		position: relative;
+
+		&:not(:first-of-type):before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: currentColor;
+			opacity: .5;
+			content: '';
+		}
+	}
+
+	@include respond-to(M) {
+		padding: 16px 48px;
+
+		.info-wrapper {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			padding-bottom: 20px;
+			margin-bottom: 20px;
+			max-width: wrapper(M);
+			margin-left: auto;
+			margin-right: auto;
+
+			&:first-child {
+				border-bottom: 1px solid #bfc5c9;
+			}
+
+			&:not(:first-of-type):before {
+				display: none;
+			}
+		}
+
+		.table-info-wrapper {
+			margin: 0;
+			width: 50%;
+			font-size: 1.4rem;
+		}
+
+		.options-picker {
+			margin-left: auto;
+			margin-right: auto;
+			padding: 0 16px;
+			position: relative;
+
+			&:before {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				width: 1px;
+				background: currentColor;
+				opacity: .2;
+			    content: '';
+			}
+
+			.options-picker-wrapper {
+				padding-bottom: 0;
+			}
+		}
+	}
+
+	@include respond-to(L) {
+		padding: 24px 48px 8px;
+
+		.info-wrapper {
+			max-width: wrapper(L);
+			align-items: center;
+		}
+
+		.options-picker {
+			width: 50%;
+			padding: 0 0 0 32px;
+		}
+
+		.options-list {
+			display: flex;
+			flex-direction: row;
+
+			.option {
+				width: 50%;
+			}
+		}
+	}
+
+	@include respond-to(XL) {
+		padding: 0 0 8px;
+	}
+}

@@ -1,0 +1,48 @@
+.button-outline {
+	user-select: none;
+	width: 100%;
+	display: block;
+	text-transform: uppercase;
+	color: $colorSecondary;
+	font-size: 1.2rem;
+	padding: 8px;
+	line-height: 2;
+	font-weight: font-weight(bold);
+	text-indent: 0.025em;
+	letter-spacing: 0.025em;
+	text-rendering: optimizeLegibility;
+	position: relative;
+	cursor: pointer;
+	transition-duration: 250ms;
+
+	&:before {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border: 1px solid currentColor;
+		border-radius: 20px;
+		content: '';
+	}
+
+	@include respond-to(M) {
+		width: auto;
+		padding: 18px 80px;
+		font-size: 1.4rem;
+		font-weight: font-weight(medium);
+
+		&:before {
+			border-radius: 32px;
+		}
+	}
+
+	@include respond-to(XL) {
+		padding: 8px 48px;
+		font-size: 1.2rem;
+	}
+
+	&:hover {
+		color: $colorPrimary;
+	}
+}

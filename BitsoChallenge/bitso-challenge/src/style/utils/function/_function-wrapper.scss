@@ -1,0 +1,5 @@
+@function wrapper($size) {
+	@if (map-has-key($sizeWrapper, $size)) {
+		@return map-get($sizeWrapper, $size);
+	}
+}

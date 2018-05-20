@@ -1,0 +1,107 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: $sizeFontDefault;
+}
+
+html {
+	height: 100%;
+	min-height: 100%;
+	font-family: $fontDefault;
+	font-size: $sizeFontDefault;
+}
+
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	display: block;
+	position: relative;
+	background: #fff;
+}
+
+body {
+	font-size: 1.4rem;
+	overflow-x: hidden;
+	text-rendering: optimizeLegibility;
+	padding-top: 104px;
+
+	@include respond-to(M) {
+		padding-top: 110px;
+	}
+
+	@include respond-to(L) {
+		padding-top: 104px;
+	}
+
+	@include respond-to(XL) {
+		padding-top: 138px;
+	}
+}
+
+.app-wrapper {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: #f4f4f4;
+}
+
+button {
+	font-family: $fontDefault;
+	background: transparent;
+	border-radius: 0;
+	box-shadow: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+
+	&:focus,
+	&:active {
+		outline: none;
+	}
+}
+
+h1 {
+	font-size: 4rem;
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: font-weight(regular);
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+input {
+	border-radius: 0;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+	display: block;
+	width: 100%;
+
+	&:active,
+	&:focus {
+		outline: none;
+	}
+}

@@ -1,0 +1,47 @@
+.custom-radio-button {
+	margin-top: 4px;
+	display: block;
+	height: 16px;
+	width: 16px;
+	position: relative;
+	color: $colorPrimary;
+	flex-shrink: 0;
+
+	&:before,
+	&:after {
+		position: absolute;
+		border-radius: 50%;
+		content: '';
+		transition: all 250ms $easeInOutExpo;
+	}
+
+	&:before {
+		border: 1px solid currentColor;
+		background: $colorWhite;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	&:after {
+		background: $colorSecondary;
+		top: 4px;
+		bottom: 4px;
+		left: 4px;
+		right: 4px;
+		opacity: 0;
+	}
+
+	.is-selected & {
+		color: $colorSecondary;
+
+		&:before {
+			background: transparent;
+		}
+
+		&:after {
+			opacity: 1;
+		}
+	}
+}

@@ -1,0 +1,69 @@
+@import './../style/utils/utils';
+
+.button {
+	color: rgba(255, 255, 255, 0.5);
+	padding: 10px 20px;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 30px;
+	text-decoration: none;
+	font-weight: 500;
+	display: block;
+	transition-duration: 250ms;
+	background: none;
+	outline: none;
+	text-align: center;
+	cursor: default;
+	font-size: 1rem;
+
+	@include respond-to(M) {
+		padding: 20px;
+		font-size: 1.4rem;
+	}
+
+	&.invert {
+		color: rgba(0, 0, 0, 0.2);
+		border-color: rgba(0, 0, 0, 0.2);
+	}
+
+	&.full-width {
+		width: 100%;
+	}
+
+	&.active {
+		background: #ff8200;
+		border: none;
+		color: #fff;
+		cursor: pointer;
+
+		&:hover {
+			background: #ea7802;
+			color: rgba(#fff, 0.9);
+		}
+	}
+
+	&.light {
+		background: #fff;
+		color: #425563;
+		border: 1px solid #425563;
+		cursor: pointer;
+	}
+
+	&.power {
+		background: #fff;
+		color: #ea7802;
+		border: none;
+		cursor: pointer;
+		width: auto;
+	}
+
+	&.small {
+		padding: 10px 20px;
+	}
+
+	&.selected {
+		background: #426da9;
+		border: none;
+		color: #fff;
+		cursor: default;
+	}
+}

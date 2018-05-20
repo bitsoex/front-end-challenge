@@ -5,6 +5,7 @@ import BodySection from './Components/BodySection/BodySection';
 import {BOOKS_AVAILABLES} from './Config'
 import {URL_SERVICES} from './Config.js';
 import {PARAMS_SERVICES} from './Config.js';
+import {getData} from './Utils/CallServices.js';
 import {callGetServices} from './Utils/CallServices.js';
 
 class App extends Component {
@@ -14,10 +15,12 @@ class App extends Component {
     this.state={
       activeCoin:BOOKS_AVAILABLES[0],
       ticketInfo:null,
-      array_trades:null
+      array_trades:null,
+      array_post:null
     }
     this.getBtcCost();
     this.getTrades();
+    this.getGraphic();
     this.changeBook=this.changeBook.bind(this);
     
   }
@@ -51,6 +54,16 @@ class App extends Component {
   );
   }
 
+  getGraphic(){
+    getData().then(data => {
+			console.log('Dataaa ' + JSON.stringify(data))
+			data.forEach((d, i) => {
+						d.date = new Date((d.date));
+					});
+					console.log('Dataaa ' + JSON.stringify(data))
+			this.setState({ array_post:data })
+		})
+  }
 
   getTrades(){
 
@@ -73,11 +86,11 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.ticketInfo!==null && this.state.array_trades!==null){
+    if(this.state.ticketInfo!==null && this.state.array_trades!==null && this.state.array_post!==null){
     return (
       <div className="App">
        <Header changeBook={this.changeBook} ticketInfo={this.state.ticketInfo} activeCoin={this.state.activeCoin}/>
-       <BodySection array_trades={this.state.array_trades} activeCoin={this.state.activeCoin} />
+       <BodySection array_post={this.state.array_post} array_trades={this.state.array_trades} activeCoin={this.state.activeCoin} />
       </div>
     );}
     else{

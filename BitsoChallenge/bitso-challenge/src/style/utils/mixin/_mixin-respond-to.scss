@@ -1,0 +1,7 @@
+@mixin respond-to($name) {
+	@if map-has-key($mediaQueries, $name) {
+		@media #{map-get($mediaQueries, $name)} {
+			@content;
+		}
+	}
+}

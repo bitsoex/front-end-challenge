@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "http://devmonks.nl/c/club_premier/redesign",
   "dependencies": {
+    "d3-dsv": "^1.0.8",
+    "d3-format": "^1.3.0",
+    "d3-scale": "^2.0.0",
+    "d3-time-format": "^2.1.1",
     "node-sass-chokidar": "^1.3.0",
     "npm-run-all": "^4.1.3",
     "react": "^16.3.2",

@@ -1,5 +1,28 @@
 
 
+
+
+
+export function getData() {
+
+	return(
+	fetch("https://bitso.com/trade/chartJSON/btc_mxn/1month")
+		.then(response => response.json())
+		.then(data => {
+			// console.log('Data ' + JSON.stringify(data))
+			// var data2=parseData(data);
+			// console.log('Data2 ' + JSON.stringify(data2))
+			return(
+				data
+				// parseData(data).then(
+				// 	data2=>{return(data2)
+				// 	})
+			);
+		}
+		)
+	)
+}
+
 export const callGetServices = (url,params) => {
 
     var url_params=url;

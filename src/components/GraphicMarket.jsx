@@ -78,7 +78,7 @@ class GraphicMarket extends React.Component {
 
                         <div style={{ display: 'inline-block', position: 'absolute', right: '0px', color: colorBook }}>
                             <NumberFormat value={value} 
-                                displayType={'text'} thousandSeparator={true} prefix={'$'}  decimalScale={ currency==='MXN'?2:8} suffix={' ' + currency} />
+                                displayType={'text'} thousandSeparator={true} prefix={'$'}  decimalScale={currency==='MXN'?2:8} suffix={' ' + currency} />
                         </div>
                     </div>
                     <div style={{ display:  this.props.activeGraphic?'block':'none' }}>

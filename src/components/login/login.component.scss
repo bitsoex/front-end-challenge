@@ -1,14 +1,12 @@
 #loginContainer {
-  // width: 100%;
-  // height: 100vh;
   margin: 5% 40% 5% 40%;
 }
 
-.loginContainer {
+.formContainer {
   display: flex;
   flex-direction: column;
 }
 
-.loginContainer > * {
+.formContainer > * {
   width: 100%;
 }

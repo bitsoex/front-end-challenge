@@ -10,24 +10,23 @@
         <mat-tab label="Login">
           <div class="formContainer">
             <mat-form-field>
-              <input matInput placeholder="Email">
-              <mat-hint>Hint: asd@gmail.com</mat-hint>
+              <input matInput placeholder="Email" [(ngModel)]="user.email">
             </mat-form-field>
             <mat-form-field>
-              <input type="password" matInput placeholder="Password">
+              <input type="password" matInput placeholder="Password" [(ngModel)]="user.pwd">
             </mat-form-field>
           </div>
         </mat-tab>
         <mat-tab label="New User">
           <div class="formContainer">
             <mat-form-field>
-              <input matInput placeholder="Name">
+              <input matInput placeholder="Name" [(ngModel)]="user.name">
             </mat-form-field>
             <mat-form-field>
-              <input matInput placeholder="Email">
+              <input matInput placeholder="Email" [(ngModel)]="user.email">
             </mat-form-field>
             <mat-form-field>
-              <input type="password" matInput placeholder="Password">
+              <input type="password" matInput placeholder="Password" [(ngModel)]="user.pwd">
             </mat-form-field>
           </div>
         </mat-tab>
@@ -35,7 +34,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>Cancel</button>
-      <button mat-button>Enter!</button>
+      <button mat-button (click)="loginUser()">Enter!</button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -9,10 +9,10 @@ import {
     MatTabsModule
 } from "@angular/material";
 import { LoginComponent } from "./login.component";
+import { FormsModule } from "@angular/forms";
 
 const routes: Routes = [
-    { path: "", redirectTo: "login", pathMatch: "full" },
-    { path: "login", component: LoginComponent, pathMatch: "full" }
+    { path: "", component: LoginComponent, pathMatch: "full" }
 ];
 
 @NgModule({
@@ -20,6 +20,7 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         FlexLayoutModule,
+        FormsModule,
         MatButtonModule,
         MatCardModule,
         MatFormFieldModule,

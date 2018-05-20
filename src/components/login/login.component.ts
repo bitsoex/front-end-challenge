@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "login",
@@ -6,4 +7,16 @@ import { Component } from "@angular/core";
     styleUrls: ["./login.component.scss"]
 })
 
-export class LoginComponent {}
+export class LoginComponent {
+    private user: Object = {
+        name: "John",
+        email: "john.doe@gmail.com",
+        pwd: "asd123"
+    };
+    constructor(private router: Router) { }
+
+    private loginUser(): void {
+        console.log(this.user);
+        this.router.navigate(["/home"]);
+    }
+}

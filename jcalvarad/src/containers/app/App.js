@@ -4,6 +4,7 @@ import '../../assets/react-toolbox/theme.css';
 import theme from '../../assets/react-toolbox/theme'
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 import Layout from '../layout/Layout'
+import Trades from '../trades/Trades'
 
 class App extends Component {
   render() {
@@ -15,9 +16,9 @@ class App extends Component {
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet" />
           </Helmet>
-        <Layout>
-          <h1>My new Bitso App </h1>
-        </Layout>
+          <Layout>
+            <Trades/>
+          </Layout>
         </div>
       </ThemeProvider>
     );

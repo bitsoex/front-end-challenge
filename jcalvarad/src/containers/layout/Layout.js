@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppHeader from '../header_bar/HeaderBar'
+import AppHeader from '../../components/header_bar/HeaderBar'
 
 class Layout extends Component {
   render() {

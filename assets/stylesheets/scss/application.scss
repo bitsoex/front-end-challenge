@@ -77,6 +77,10 @@
   min-height: 100vh;
   overflow: hidden;
   background-color: $background-navy;
+
+  @include media-breakpoint-down(md){
+    margin: 62px 0 70px;
+  }
 }
 
 #mobile-nav, #main, #main-header{
@@ -98,6 +102,7 @@
     left: 0;
     right: 0;
     position: fixed;
+    z-index: 9999;
   }
 
   h1{
@@ -361,7 +366,6 @@
 
   @include media-breakpoint-down(md){
     padding: 0;
-    margin-top: 62px;
   }
 
   p{
@@ -470,21 +474,46 @@
   background-color: $background-navy;
 }
 
+#last-trades{
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
+#trading-bid{
+  padding-right: 3px;
+}
+
+#trading-ask{
+  padding-left: 3px;
+}
+
 .trading-table{
   width: 100%;
   text-transform: uppercase;
   font-size: 0.9em;
+  text-align: right;
+
+  /* General Table
+  ---------------------------------------- */
 
   thead{
 
-    th{
-      color: $sidebar-light-text;
+    tr.thead{
       background-color: $navy-headers;
-      padding: 0.4em 1.2em;
+      color: $sidebar-light-text;
       font-weight: 600;
-    }
+      text-align: left;
 
-    td{
+      td,th{
+        padding: 0.4em 1.2em;
+      }
+
+      #max-bid{
+        text-align: right;
+      }
+    } 
+
+    tr:not(.thead) td{
       color: $sidebar-text;
       padding: 0.4em 1.2em;
 
@@ -497,12 +526,12 @@
   tbody{
     tr{
       &.buy{
-        td:nth-child(2){
+        td.price{
           color: $dark-green;
         }
       }
       &.sell{
-        td:nth-child(2){
+        td.price{
           color: $dark-red;
         }
       }
@@ -511,12 +540,12 @@
         background-color: $regular-navy;
         
         &.buy{
-          td:nth-child(2){
+          td.price{
             color: $regular-green;
           }
         }
         &.sell{
-          td:nth-child(2){
+          td.price{
             color: $regular-red;
           }
         }
@@ -531,21 +560,230 @@
       color: $dark-text;
       padding: 0.2em 1.2em;
 
-      &:nth-child(1){
-        text-align: right;
-      }
-
-      &:nth-child(2){
-        text-align: right;
-      }
-
-      &:nth-child(3){
-        text-align: left;
+      &.amount{
         color: $sidebar-text;
       }
 
       span{
         color: $dark-text;
+      }
+    }
+  }
+
+  /* Bid & Ask Table
+  ---------------------------------------- */
+
+  #max-bid,
+  #max-ask{
+    text-transform: capitalize;
+    color: $sidebar-text;
+    font-weight: 600;
+
+    .currency{
+      color: $dark-text;
+    }
+
+    @include media-breakpoint-down(sm){
+      display: none;
+    }
+  }
+
+  &.bid, &.ask{
+    &:hover{
+      thead tr.thead{
+        background-color: $navy-headers;
+      }
+    }
+
+    thead{
+      tr.thead{
+        background-color: $regular-navy;
+        @extend %transition;
+      }
+    }
+
+    tbody{
+      tr{
+        &.active, &:active, &:focus{
+          td{
+            color: $neutral-gray;
+
+            &.amount{
+              span{
+                color: lighten($sidebar-text, 10%);
+              }
+            }
+          }
+        }
+      }
+
+      td{
+        width: 20%;
+
+        @include media-breakpoint-down(md){
+          width: 25%;
+        }
+
+        @include media-breakpoint-down(sm){
+          width: 50%;
+        }
+
+        &.bar span{
+          height: 1em;
+          display: block;
+        }
+      }
+    }
+
+    td.bar{
+      min-width: 70px;
+    }
+
+    td.select{
+      width: 1em;
+      padding: 0;
+
+      i{
+        display: block;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+      }
+
+      label{
+        padding: 0.2em;
+        vertical-align: middle;
+        margin: auto;
+        cursor: pointer;
+        width: 1em;
+        height: 1em;
+      }
+    }
+
+    input[type="checkbox"]{
+      display: none;
+    }
+
+    @include media-breakpoint-down(md){
+      tr:not(.thead) .bar{
+        display: none;
+      }
+    }
+
+    @include media-breakpoint-down(sm){
+      tr:not(.thead) {
+        .amount,
+        .value,
+        .select{
+          display: none;
+        }
+      }
+    }
+  }
+
+  /* Bid Table
+  ---------------------------------------- */
+  &.bid{
+    &:hover{
+      thead tr.thead{
+        border-left-color: $light-green;
+      }
+    }
+
+    thead{
+      tr.thead{
+        border-left: 3px solid transparent;
+      }
+    }
+
+    tbody{
+      tr{
+        &.active, &:active, &:focus{
+          background-color: transparentize($light-green, 0.7);
+          
+          td{
+            &.price{ color: $light-green; }
+          }
+        }
+      }
+
+      td{
+        &.bar span{ background-color: $light-green; }
+        &.price{ color: $regular-green; }
+      }
+    }
+
+    td.select{
+      label{
+        i{ border-right: 5px solid transparent; }
+
+        &:hover, &:active, &:focus{
+          i{
+            border-right-color: $light-text;
+          }
+        }
+
+        input[type="checkbox"]{
+          &:checked + i{
+            border-right-color: $light-text;
+          }
+        }
+      }
+    }
+  }
+
+  /* Ask Table
+  ---------------------------------------- */
+  &.ask{
+    &:hover{
+      thead tr.thead{
+        border-right-color: $regular-red;
+      }
+    }
+
+    thead{
+      tr.thead{
+        border-right: 3px solid transparent;
+      }
+
+      th{
+        text-align: right;
+      }
+    }
+
+    tbody{
+      tr{
+        &.active, &:active, &:focus{
+          background-color: transparentize($regular-red, 0.7);
+          
+          td{
+            &.price{ color: $regular-red; }
+          }
+        }
+      }
+
+      td{
+        &.bar span{ background-color: $regular-red; }
+        &.price{ color: $medium-red; }
+      }
+    }
+
+    td.select{
+      text-align: left;
+      
+      label{
+        i{ border-left: 5px solid transparent; }
+
+        &:hover, &:active, &:focus{
+          i{
+            border-left-color: $light-text;
+          }
+        }
+
+        input[type="checkbox"]{
+          &:checked + i{
+            border-left-color: $light-text;
+          }
+        }
       }
     }
   }

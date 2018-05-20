@@ -23,15 +23,15 @@ class InfoCurrency extends Component {
       bchMxn:0,
       volume24:0,
       value: 1,
-        book :'',
-        volume:'',
-        high:'',
-        last:'',
-        low:'',
-        vwap:'',
-        ask:'',
-        bid:'',
-        created_at:''
+      book :'',
+      volume:'',
+      high:'',
+      last:'',
+      low:'',
+      vwap:'',
+      ask:'',
+      bid:'',
+      created_at:''
 
     }
   }
@@ -41,7 +41,8 @@ class InfoCurrency extends Component {
     this.getEthBook();
     this.getXrpBook();
     this.getLtcBook();
-    this.getBchBook()
+    this.getBchBook();
+
   }
   getBtcBook(){
       var arrayParams=[];
@@ -218,15 +219,13 @@ class InfoCurrency extends Component {
   render() {
     return (
       <ToolbarGroup>
-        <div className="greenText">
-            <DropDownMenu  id="curren" value={this.state.value} onChange={this.onChangeEvent.bind(this,this)} openImmediately={false}>
-              <MenuItem value={0} primaryText={"1 BTC = "+this.state.btcMxn} />
-              <MenuItem value={1} primaryText={"1 ETH = "+this.state.ethMxn} />
-              <MenuItem value={2} primaryText={"1 XRP = "+this.state.xrpMxn} />
-              <MenuItem value={3} primaryText={"1 LTC = "+this.state.ltcMxn} />
-              <MenuItem value={4} primaryText={"1 BCH = "+this.state.bchMxn} />
+            <DropDownMenu   value={this.state.value} onChange={this.onChangeEvent.bind(this,this)} openImmediately={false}>
+              <MenuItem value={0} primaryText="BTC/MXN" />
+              <MenuItem value={1} primaryText="ETH/MXN" />
+              <MenuItem value={2} primaryText="XRP/MXN" />
+              <MenuItem value={3} primaryText="LTC/MXN" />
+              <MenuItem value={4} primaryText="BCH/MXN" />
             </DropDownMenu>
-        </div>
         <div className="ToolbarTitle dark"> <ToolbarTitle text="Volume 24 hours: " /><span className="light">{this.state.volume}</span> </div>
         <div className="ToolbarTitle dark"> <ToolbarTitle text="Max.: " /><span className="light">{this.state.high}</span> </div>
         <div className="ToolbarTitle dark"> <ToolbarTitle text="Min.: " /><span className="light">{this.state.low}</span> </div>

@@ -14,6 +14,9 @@
 }
 
 //***************Header Styles********/
+.avatarSettings{
+  display:inline-flex !important;
+}
 .DropDownMenu{
   font-family: DINPro-Light !important;
   display:inline !important;
@@ -27,7 +30,7 @@ display: inline-flex;
 .ToolbarGroup {
   background-color: #252c36;
   color:#191e23;
-  width: 100%;
+  width: 90% !important;
   font-family: DINPro-Light;
   font-color: #b0bac1;
   display: inline;
@@ -69,4 +72,10 @@ margin-right: 5px;
 }
 .TickCollection{
   background-color:#b0bac1 !important;
+}
+.Toagleblock{
+  maxWidth: 250;
+}
+.Toggle-toggle{
+  marginBottom: 16;
 }

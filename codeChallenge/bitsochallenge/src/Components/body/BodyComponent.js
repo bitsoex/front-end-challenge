@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LastTrades from './Trades/Trades'
-// import './Header.css';
+ import './BodyComponent.css';
 
 class BodyContent extends Component {
     constructor(props) {
@@ -14,9 +14,9 @@ class BodyContent extends Component {
 
   render() {
     return (
-      <section className="body-section">
-        <LastTrades/>
-      </section>
+      <div className="navContent">
+        <LastTrades />
+      </div>
     );
   }
 }

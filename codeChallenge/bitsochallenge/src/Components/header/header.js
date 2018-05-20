@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import bitsoLogo from '../../Assets/Images/SVG/bitso_logo.svg'
+import twotone from '../../Assets/Images/SVG/twotone.svg'
 import TickCollection from './tick/tickComponent.js';
-import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
-import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
-import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
+import Avatar from 'material-ui/Avatar';
+
+
+
 import './header.css';
 
+const iconStyles = {
+  marginRight: 24,
+};
 
 class Header extends Component {
   constructor(props) {
       super(props);
       this.state = {
         value: 1,
+        theme:'darkBaseTheme',
 
       };
     }
+
 
   handleChange = (event, index, value) => this.setState({value});
   render() {
@@ -45,6 +51,12 @@ class Header extends Component {
           </div>
           <div><FlatButton  className="flatButton" label="Ayuda" id="help"/></div>
           <ToolbarSeparator className="TickCollection"/>
+          <div className="ToolbarTitle">
+            <Avatar
+            icon={<FontIcon className="muidocs-icon-communication-voicemail avatarSettings" />}
+            size={30}
+            />
+          </div>
           <div className="ToolbarTitle"><ToolbarTitle text="Usuario"/>
           </div>
 

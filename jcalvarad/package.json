@@ -29,7 +29,8 @@
       "LINK",
       "NAVIGATION",
       "SWITCH",
-      "MENU"
+      "MENU",
+      "TABLE"
     ],
     "customProperties": {
       "color-primary": "var(--palette-blue-grey-700)",

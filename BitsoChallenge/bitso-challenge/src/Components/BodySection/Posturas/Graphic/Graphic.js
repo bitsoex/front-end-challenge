@@ -106,9 +106,10 @@ class Graphic extends React.Component {
 		const xExtents = [start, end];
 
 		return (
+			<section className='section-graphic'>
 			<ChartCanvas
 				height={400}
-				width={1000}
+				width={width}
 				ratio={ratio}
 				margin={margin}
 				type={type}
@@ -122,9 +123,7 @@ class Graphic extends React.Component {
 				<Chart
 					id={1}
 					yExtents={[
-						d => [d.high, d.low],
-						ema20.accessor(),
-						ema50.accessor()
+						d => [d.high, d.low]
 					]}
 					padding={{ top: 10, bottom: 20 }}
 				>
@@ -144,7 +143,7 @@ class Graphic extends React.Component {
 					/>
 
 					<HoverTooltip
-						yAccessor={ema50.accessor()}
+						yAccessor={d => d.close}
 						tooltipContent={tooltipContent()}
 						fontSize={15}
 					/>
@@ -168,6 +167,7 @@ class Graphic extends React.Component {
 					/>
 				</Chart>
 			</ChartCanvas>
+			</section>
 		);
 	}
 }

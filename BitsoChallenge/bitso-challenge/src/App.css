@@ -24,7 +24,16 @@
 .App-intro {
   font-size: large;
 }
-
+.loading-background{
+  background-color: #191e23;
+  width: 100%;
+  justify-content: center;
+  height: 100vh;
+}
+.spinner-section{
+  color: #b0bac1;
+  text-align: center;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

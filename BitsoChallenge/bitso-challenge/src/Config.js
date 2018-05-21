@@ -1,6 +1,8 @@
 export const URL_SERVICES={
     Ticker : 'https://api.bitso.com/v3/ticker/',
-    Trades: 'https://api.bitso.com/v3/trades/'    
+    Trades: 'https://api.bitso.com/v3/trades/',
+    TradeP:'https://bitso.com/trade/chartJSON/',
+    OrderBook:'https://api.bitso.com/v3/order_book/'    
 }
 
 
@@ -10,6 +12,11 @@ export const PARAMS_SERVICES={
 
 }
 
+export const ARRAY_TRADE_DATES=[
+  {'name':'1m', 'value' :'1month'},
+  {'name':'3m', 'value' :'3months'},
+  {'name':'1a', 'value' :'1year'}
+]
 
 export const BOOKS_AVAILABLES=[
     {

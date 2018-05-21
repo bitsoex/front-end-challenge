@@ -1,0 +1,36 @@
+.body-section-posturas{
+    width: 100%;
+    display:block;
+
+    .change-items{
+        display: inline-flex;
+
+        .select-range{
+            margin-left: 40px;
+            width: 100px;
+            // font-family: 'DINPro-Regular';
+            color:#98d372;
+            margin-right: 40px;
+            .options-select{
+                width: 100px;
+                
+                p:hover{
+                    background-color: #252c36;
+                }
+                p{
+                    color: #747f89;
+                    margin-top: 0px;
+                margin-bottom: 20px;
+                }
+                z-index: 8;
+                position: absolute;
+                background-color: #161a1e;
+                display: block;
+                &.hidden{
+                    display: none;
+                }
+            }
+        }
+    }
+
+}

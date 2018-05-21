@@ -22,10 +22,7 @@ class Header extends Component {
     }
 }
 
-changeBook(){
-  console.log('Change2')
-  this.props.changeBook();
-}
+
 
 
 

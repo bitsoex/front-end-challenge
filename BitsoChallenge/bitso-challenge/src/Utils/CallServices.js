@@ -3,21 +3,13 @@
 
 
 
-export function getData() {
-
+export function getData(book, range,url) {
+    console.log('Asi llega el rango ' + range )
 	return(
-	fetch("https://bitso.com/trade/chartJSON/btc_mxn/1month")
+	fetch(url+book+'/'+range)
 		.then(response => response.json())
 		.then(data => {
-			// console.log('Data ' + JSON.stringify(data))
-			// var data2=parseData(data);
-			// console.log('Data2 ' + JSON.stringify(data2))
-			return(
-				data
-				// parseData(data).then(
-				// 	data2=>{return(data2)
-				// 	})
-			);
+			return(data);
 		}
 		)
 	)

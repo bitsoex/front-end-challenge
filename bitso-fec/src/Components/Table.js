@@ -1,8 +1,19 @@
 import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import numeral from "numeral";
 import _ from "lodash";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { formatNumber } from "../Utils";
+import Loading from "./Loading";
+/**
+ * Trades table component for recent trades from the specified book.
+ * @param {Array<String>} round Ceros to round out number for price and value
+ * @param {Array<Object>} orders first orders and diff-orders parsed
+ * @param {string} book Active book
+ * @param {string} type Specifies the style of the table
+ * @param {number} biggestAmount Get biggest amount for the orders
+ * @param {number} width Get percentage depending on biggestAmount and amount for each order
+ * @param {number} integer Number to be lighted
+ */
+
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 
 export default ({ orders, book, type }) => {
@@ -12,7 +23,7 @@ export default ({ orders, book, type }) => {
   return (
     <table className={type === "bids" ? "reverse" : null}>
       <thead>
-        <tr className="fixed">
+        <tr>
           <th className="status__bar" />
           <th>SUM</th>
           <th>
@@ -30,22 +41,14 @@ export default ({ orders, book, type }) => {
         </tr>
       </thead>
       {!orders ? (
-        <SkeletonTheme
-          color="var(--Background-navy)"
-          highlightColor="var(--Regular-navy)"
-        >
-          <div style={{ fontSize: "2rem", borderRadius: 0 }}>
-            <p>
-              <Skeleton count={12} />
-            </p>
-          </div>
-        </SkeletonTheme>
+        /* Loading placeholder for order tables */
+        <Loading rows={12} />
       ) : (
+        /* TransitionGroup animation for cancelled, completed or open orders */
         <TransitionGroup component="tbody" className="content">
           {orders.map(order => {
             const { price, amount, sum, value, oid } = order;
             let width = amount / biggestAmount * 100;
-            // console.log(amount, biggestAmount);
             const integer = Number(amount)
               .toString()
               .split(".");
@@ -85,11 +88,7 @@ export default ({ orders, book, type }) => {
                       )
                       .join("")}
                   </td>
-                  <td className="order-value">
-                    {values[1] !== "mxn"
-                      ? numeral(value).format("0.00000000")
-                      : numeral(value).format("$0,0.00")}
-                  </td>
+                  <td className="order-value">{formatNumber(values, value)}</td>
                   <td
                     className={
                       type === "bids"
@@ -97,9 +96,7 @@ export default ({ orders, book, type }) => {
                         : "color-ask__orders"
                     }
                   >
-                    {values[1] !== "mxn"
-                      ? numeral(price).format("0.00000000")
-                      : numeral(price).format("$0,0.00")}
+                    {formatNumber(values, price)}
                   </td>
                 </tr>
               </CSSTransition>

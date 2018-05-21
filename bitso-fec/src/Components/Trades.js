@@ -1,6 +1,13 @@
 import React from "react";
-import numeral from "numeral";
 import moment from "moment";
+import { formatNumber } from "../Utils";
+
+/**
+ * Trades table component for recent trades from the specified book.
+ * @param {Array<String>} round Ceros to round out number for lighting text
+ * @param {string} values Split book to get coin values
+ * @param {Number} integer Number to be lighted
+ */
 
 const round = ["0", "0", "0", "0", "0", "0", "0", "0"];
 
@@ -9,28 +16,14 @@ class Trades extends React.Component {
     const { trades, book } = this.props;
     const values = book.split("_");
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "1rem",
-          flex: "0 0 22%"
-        }}
-      >
-        <div className="navy-header trades">
+      <div className="dashboard-trades">
+        <div className="dashboard__navy-header trades">
           <h4 className="lighter-text bold">ÚLTIMOS TRADES</h4>
         </div>
-        <div
-          style={{
-            flex: 1,
-            marginRight: "10px",
-            display: "flex",
-            fontSize: "1.35rem"
-          }}
-        >
+        <div className="dashboard-trades__table">
           <table>
             <thead>
-              <tr className="fixed">
+              <tr>
                 <th>HORA</th>
                 <th>
                   {values[1].toUpperCase()}
@@ -42,7 +35,7 @@ class Trades extends React.Component {
                 </th>
               </tr>
             </thead>
-            <tbody className="trades">
+            <tbody>
               {trades &&
                 trades.map(trade => {
                   const { created_at, price, amount, tid, maker_side } = trade;
@@ -61,9 +54,7 @@ class Trades extends React.Component {
                             : "color-ask__trades"
                         }
                       >
-                        {values[1] !== "mxn"
-                          ? numeral(price).format("0.00000000")
-                          : numeral(price).format("$0,0.00")}
+                        {formatNumber(values, price)}
                       </td>
                       <td>
                         <span className="lighter-text">

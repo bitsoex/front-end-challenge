@@ -1,3 +1,4 @@
+// Color theme vars
 :root {
   --color-primary: #252c36;
   --color-primary-light: #384555;
@@ -31,12 +32,14 @@
   --bitcoin-yellow: #ebc256;
 }
 
+// Screen sizes
 @bp-largest: 90em; // 1440px
 @bp-large: 68.75em; // 1100px
 @bp-medium: 56.25em; // 900px
 @bp-small: 37.5em; // 600px
 @bp-smallest: 31.25em; // 500px
 
+// Theme fonts
 @font-face {
   font-family: "DINPro-regular";
   src: url("../assets/Fonts/DINPro-Regular.otf");
@@ -58,6 +61,7 @@
   font-style: normal;
 }
 
+// Main config styles
 * {
   margin: 0;
   padding: 0;
@@ -84,26 +88,11 @@ html {
 
 body {
   font-family: "DINPro-light";
-  // font-size: 1.5rem;
+  font-size: 1.5rem;
   line-height: 1.6;
   color: var(--dark-text);
-  // background-image: linear-gradient(
-  //   to right bottom,
-  //   var(--color-primary-light),
-  //   var(--color-primary-dark)
-  // );
   background-color: var(--Background-navy);
-  background-size: cover;
-  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-}
-
-::-webkit-scrollbar {
-  width: 0px;
-}
-::-webkit-scrollbar-track-piece {
-  background-color: "transparent";
-  border-radius: 6px;
 }

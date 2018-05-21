@@ -12,7 +12,7 @@ class NavbarHeader extends Component {
       <header className="navbar-header">
         <div className="header-container">
           <div style={{ display: "flex", flex: 1 }}>
-            <img src={bitso_logo} className="App-logo" alt="logo" />
+            <img src={bitso_logo} className="navbar__App-logo" alt="logo" />
             <div
               style={{
                 display: "flex",
@@ -106,7 +106,6 @@ class NavbarHeader extends Component {
                 </SubMenu>
               </Menu>
             </div>
-            {/* <img src={sun_icon} className="sun_icon" alt="icon" /> */}
             <label className="switch">
               <input type="checkbox" />
               <span className="slider round" />

@@ -173,7 +173,7 @@ class Dashboard extends React.Component {
     const { book, match, onSelectBook } = this.props;
     const { book: paramsBook } = match.params;
     const {
-      loading,
+      // loading,
       orders,
       trades,
       firstTrades,
@@ -190,7 +190,12 @@ class Dashboard extends React.Component {
     // }
 
     return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
         <div className="div_block__container">
           <div className="div-block__container-subheader">
             <Subheader

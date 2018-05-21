@@ -1,12 +1,12 @@
-#loginContainer {
-  margin: 5% 40% 5% 40%;
-}
-
-.formContainer {
+.conteiner-form {
   display: flex;
   flex-direction: column;
 }
 
-.formContainer > * {
+.conteiner-form > * {
   width: 100%;
+}
+
+#container-login {
+  margin: 5% 40% 5% 40%;
 }

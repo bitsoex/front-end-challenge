@@ -9,7 +9,6 @@ import _ from "lodash";
  */
 const orderData = (orders, data, book) => {
   let { asks, bids, sequence } = orders.data.payload;
-  // console.log(orders);
   if (data.sequence > sequence) {
     _.map(data.payload, order => {
       if (order.s === "open") {
@@ -41,17 +40,10 @@ const orderData = (orders, data, book) => {
         }
       }
     });
-    // console.log('INDEX Desordenado',_.sortedIndexBy(asks, { price: lastBuy }, "price"));
+
     asks = _.orderBy(asks, ["price"], ["desc"]).slice(-15);
     bids = _.orderBy(bids, ["price"], ["asc"]).slice(-15);
-    // let i = 0;
-    // for (i; i < asks.length - 1; i++) {
-    //   if (lastBuy > asks[i]) {
-    //     console.log('I',i);
-    //     break;
-    //   }
-    // }
-    // console.log('INDEX',i, asks.length);
+
     _.forEach(asks, (data, index) => {
       let sum = 0;
       if (!index > 0) {

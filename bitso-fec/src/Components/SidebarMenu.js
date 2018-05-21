@@ -22,11 +22,14 @@ class SidebarMenu extends Component {
     const books = (await axios.get("https://api.bitso.com/v3/available_books/"))
       .data.payload;
     map(books, this.getListData, (err, results) => {
-      // console.log(results, err);
       this.setState({ listData: results, loading: false });
     });
   }
 
+  /**
+   * Just update the component when its toogle the sidebar
+   * @returns {boolean} The current value of the tag.
+   */
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.listData) {
       return true;
@@ -39,6 +42,9 @@ class SidebarMenu extends Component {
     return false;
   }
 
+  /**
+   * Fetch the trades data for 1 month
+   */
   getListData = (item, callback) => {
     axios
       .get(`https://bitso.com/trade/chartJSON/${item.book}/1month`)
@@ -60,6 +66,9 @@ class SidebarMenu extends Component {
       .catch(err => callback(err));
   };
 
+  /**
+   * Changes the state to animate each item of the list
+   */
   toggleSidebar = () => {
     this.setState({ toggle: !this.state.toggle });
   };
@@ -67,7 +76,7 @@ class SidebarMenu extends Component {
   render() {
     const { loading, toggle, listData } = this.state;
     return (
-      <Transition in={toggle} timeout={100}>
+      <Transition in={toggle} timeout={300}>
         {state => (
           <div
             style={{
@@ -111,21 +120,14 @@ const defaultStyle = {
 
 const transitionStyles = {
   entering: {
-    backgroundColor: "var(--sidebar-background)",
-    width: "320px",
-    letf: 0
+    backgroundColor: "var(--sidebar-background)"
   },
   entered: {
     position: "relative",
-    left: -280,
-    width: "320px",
-    backgroundColor: "var(--sidebar-background)"
+    left: -280
   },
   exiting: {
-    position: "relative",
-    width: "320px",
-    left: 0,
-    backgroundColor: "var(--sidebar-background)"
+    position: "relative"
   }
 };
 

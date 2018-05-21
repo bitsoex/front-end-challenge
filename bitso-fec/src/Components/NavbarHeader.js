@@ -11,7 +11,7 @@ class NavbarHeader extends Component {
       <header className="navbar-header">
         <div className="header-container">
           <div className="header-container__content">
-            <img src={bitso_logo} className="App-logo" alt="logo" />
+            <img src={bitso_logo} className="navbar__App-logo" alt="logo" />
             <div className="header-container__left">
               <span className="header-container__title">EXCHANGE</span>
               <span style={{ paddingRight: "4rem" }}>
@@ -80,7 +80,6 @@ class NavbarHeader extends Component {
                 </SubMenu>
               </Menu>
             </div>
-            {/* <img src={sun_icon} className="sun_icon" alt="icon" /> */}
             <label className="switch">
               <input type="checkbox" />
               <span className="slider round" />

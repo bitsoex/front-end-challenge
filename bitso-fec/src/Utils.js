@@ -88,3 +88,16 @@ export const parsePrice = (price, ticker) => {
   const parsedPrice = priceFormat(+price);
   return `${parsedPrice} ${Minor.toUpperCase()}`;
 };
+
+/**
+ * Takes book and number to be format depends on the book type
+ * @param {Array<String>} values Split the name of the book
+ * @param {Number} number Number to be format
+ */
+
+export const formatNumber = (values, number) => {
+  if (values[1] !== "mxn") {
+    return numeral(number).format("0.00000000");
+  }
+  return numeral(number).format("$0,0.00");
+};

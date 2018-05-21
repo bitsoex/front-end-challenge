@@ -19,7 +19,6 @@ class App extends Component {
    * @param {string} book selected ticker
    */
   onSelectBook = book => {
-    console.log(book);
     this.setState({ book });
     this.props.history.push(`/${book}`);
   };

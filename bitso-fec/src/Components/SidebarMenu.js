@@ -37,7 +37,9 @@ class SidebarMenu extends Component {
                 width: "280px"
               }}
             >
-              <span style={{ backgroundColor: "#727c84", width: "280px" }}>MERCADOS 24 HRS</span>
+              <span style={{ backgroundColor: "#727c84", width: "280px" }}>
+                MERCADOS 24 HRS
+              </span>
             </div>
           </div>
         )}

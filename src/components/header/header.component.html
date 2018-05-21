@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <span>Bitso Challenge</span>
     <span class="example-spacer"></span>
-    <!-- <mat-icon class="example-icon">favorite</mat-icon>
-          <mat-icon class="example-icon">delete</mat-icon> -->
+    <mat-icon *ngIf="this.isUsrLogged" class="menuIcons">favorite</mat-icon>
+    <mat-icon *ngIf="this.isUsrLogged" class="menuIcons">delete</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>

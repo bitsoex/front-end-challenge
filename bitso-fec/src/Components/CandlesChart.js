@@ -2,25 +2,21 @@ import React from "react";
 import HighStock from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
+import chartOptions from "../Modules/ChartOptions";
+
+/**
+ * Candles Chart Component
+ */
 class CandlesChart extends React.Component {
-  chartOptions = {
-    navigator: {
-      enabled: false
-    },
-    scrollbar: {
-      enabled: false
-    },
-    credits: {
-      enabled: false
-    },
-    rangeSelector: {
-      enabled: false
-    }
-  };
   render() {
+    /**
+     * candleData Array of parsed price history
+     * volumeData Array of array of numbers of volume history trades
+     */
     const { candleData, volumeData } = this.props;
+
     const candleOptions = {
-      ...this.chartOptions,
+      ...chartOptions,
       colors: [
         "rgba(114,40,55,0.7)",
         "#8085e9",
@@ -88,9 +84,6 @@ class CandlesChart extends React.Component {
           tickWidth: 0
         }
       ],
-      //   tooltip: {
-      //     split: true
-      //   },
       plotOptions: {
         candlestick: {
           lineColor: "#722837",
@@ -105,9 +98,6 @@ class CandlesChart extends React.Component {
         borderRadius: 5,
         borderWidth: 2,
         shadow: false,
-        // headerFormat: "<span>Precio: {point.key:,.2f}</span><br/>",
-        // pointFormat: "Sum: {point.y:,.2f}<br/>",
-        // pointFormat: "<span style="color:{point.color};">\u25CF</span> {series.name} Sum <b>{point.y:,.0f}</b><br/> {point.x}"
         style: {
           color: "#b0bac1",
           fontSize: "1.3rem"
@@ -117,12 +107,12 @@ class CandlesChart extends React.Component {
         {
           type: "candlestick",
           name: "Precio",
-          data: candleData // timestamp, open, high, low, close
+          data: candleData // [timestamp, open, high, low, close]
         },
         {
           type: "column",
           name: "Volumen",
-          data: volumeData,
+          data: volumeData, // [timestamp, volume]
           yAxis: 1,
           color: "var(--Navy-headers)"
         }

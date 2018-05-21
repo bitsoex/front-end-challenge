@@ -4,6 +4,9 @@ import _ from "lodash";
 import DeepChart from "./DeepChart";
 import CandlesChart from "./CandlesChart";
 
+/**
+ * Charts Container component to determine what chart to render.
+ */
 class Charts extends React.Component {
   componentDidMount() {
     this.props.handleFirstRender();

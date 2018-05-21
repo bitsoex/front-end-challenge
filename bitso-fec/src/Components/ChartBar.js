@@ -2,7 +2,13 @@ import React from "react";
 import icon_candles from "../assets/Images/SVG/icon_candles.svg";
 import icon_deep from "../assets/Images/SVG/icon_deep.svg";
 
+/**
+ * Charts Top Bar Component for toggle charts & render charts options.
+ */
 class ChartBar extends React.Component {
+  /**
+   * Fuction renderIcon to render the image for toggle chart.
+   */
   renderIcon = () => {
     const { currentChart } = this.props;
     if (currentChart === "candles") {
@@ -28,16 +34,8 @@ class ChartBar extends React.Component {
             {this.renderIcon()}
           </button>
           {currentChart !== "candles" ? null : (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginLeft: "8rem"
-              }}
-            >
-              <span style={{ color: "var(--light-text)", fontSize: "1.4rem" }}>
-                Periodo
-              </span>
+            <div className="chart-bar-left__content">
+              <span className="chart-bar-left__text">Periodo</span>
               <div className="chart-bar-select-div">
                 <select
                   defaultValue={timeframe}

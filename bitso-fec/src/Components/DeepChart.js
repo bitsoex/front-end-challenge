@@ -4,28 +4,15 @@ import HighchartsReact from "highcharts-react-official";
 import _ from "lodash";
 import numeral from "numeral";
 
+import chartOptions from "../Modules/ChartOptions";
+
+/**
+ * Deep Market Chart component to render orders book ask/bid positions
+ */
 class DeepChart extends React.Component {
   state = {
     deepBidsData: null,
     deepAsksData: null
-  };
-
-  chartOptions = {
-    navigator: {
-      enabled: false
-    },
-    scrollbar: {
-      enabled: false
-    },
-    credits: {
-      enabled: false
-    },
-    rangeSelector: {
-      enabled: false
-    },
-    legend: {
-      enabled: false
-    }
   };
 
   componentDidMount() {
@@ -39,6 +26,10 @@ class DeepChart extends React.Component {
     }
   }
 
+  /**
+   * Function to parse data for deep chart.
+   * @param {Array<Object>} data orders data
+   */
   parseDeepData = data => {
     const deepBidsData = _.map(data.bids, item => [+item.price, +item.sum]);
     const deepAsksData = _.map(data.asks, item => [+item.price, +item.sum]);
@@ -48,7 +39,7 @@ class DeepChart extends React.Component {
   render() {
     const { deepBidsData, deepAsksData } = this.state;
     const options = {
-      ...this.chartOptions,
+      ...chartOptions,
       chart: {
         type: "area",
         backgroundColor: "transparent",
@@ -97,7 +88,6 @@ class DeepChart extends React.Component {
         shadow: false,
         headerFormat: "<span>Precio: {point.key:,.2f}</span><br/>",
         pointFormat: "Sum: {point.y:,.2f}<br/>",
-        // pointFormat: "<span style="color:{point.color};">\u25CF</span> {series.name} Sum <b>{point.y:,.0f}</b><br/> {point.x}"
         style: {
           color: "#b0bac1",
           fontSize: "1.3rem"
@@ -105,7 +95,6 @@ class DeepChart extends React.Component {
       },
       plotOptions: {
         area: {
-          //   pointStart: 1940,
           marker: {
             enabled: false,
             symbol: "circle",

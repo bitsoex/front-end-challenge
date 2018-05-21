@@ -31,20 +31,20 @@ class App extends Component {
         {/* Main exchange navbar */}
         <NavbarHeader />
         {/* Exhange Router for books Dashboard rendering */}
-        <Switch>
-          <Redirect exact from="/" to="/btc_mxn" />
-          <Route
-            path="/:book"
-            key={book}
-            render={props => (
-              <Dashboard
-                book={book}
-                onSelectBook={this.onSelectBook}
-                {...props}
-              />
-            )}
-          />
-        </Switch>
+        {/* <Switch> */}
+        <Redirect exact from="/" to="/btc_mxn" />
+        <Route
+          path="/:book"
+          key={book}
+          render={props => (
+            <Dashboard
+              book={book}
+              onSelectBook={this.onSelectBook}
+              {...props}
+            />
+          )}
+        />
+        {/* </Switch> */}
       </div>
     );
   }

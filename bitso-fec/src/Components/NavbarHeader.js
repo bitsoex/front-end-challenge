@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Menu, { SubMenu, MenuItem } from "rc-menu";
 import bitso_logo from "../assets/Images/SVG/bitso_logo.svg";
-// import sun_icon from "../assets/Images/SVG/sun-fill.svg";
 
 const exSubmenu = ["Trading", "Resumen", "Live Trades", "Posturas"];
 const user = ["Perfil", "Salir"];
@@ -11,41 +10,16 @@ class NavbarHeader extends Component {
     return (
       <header className="navbar-header">
         <div className="header-container">
-          <div style={{ display: "flex", flex: 1 }}>
+          <div className="header-container__content">
             <img src={bitso_logo} className="App-logo" alt="logo" />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                flex: 1,
-                alignItems: "center",
-                marginLeft: "3rem",
-                borderRight: "0.5px solid #b0bac1"
-              }}
-            >
-              <span
-                style={{
-                  paddingLeft: "3rem",
-                  borderLeft: "0.5px solid #b0bac1"
-                }}
-              >
-                EXCHANGE
-              </span>
+            <div className="header-container__left">
+              <span className="header-container__title">EXCHANGE</span>
               <span style={{ paddingRight: "4rem" }}>
                 1 BTC = 000,000.00 MXN
               </span>
             </div>
           </div>
-          <div
-            style={{
-              width: "45%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-around",
-              marginLeft: "2rem",
-              marginRight: "3rem"
-            }}
-          >
+          <div className="header-container__right">
             <Menu
               mode="horizontal"
               className="header__menu-item"

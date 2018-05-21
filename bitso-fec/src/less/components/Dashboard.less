@@ -20,7 +20,11 @@
 
 .dashboard-wrapper {
   flex: 1;
-  min-width: 80rem;
+  min-width: 107rem;
+
+  @media only screen and (max-width: @bp-large) {
+    min-width: 80rem;
+  }
 }
 
 .dashboard-trades {

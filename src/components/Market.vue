@@ -13,10 +13,10 @@
           <ul>
             <li class="head">
               <div class="hour">hora</div>
-              <div class="price">Precio</div>
-              <div class="amount">Monto</div>
+              <div class="price">MXN Precio</div>
+              <div class="amount">BTC Monto</div>
             </li>
-            <li class="trade" v-for="trade in trades" v-bind:key="trade.tid">
+            <li class="trade" v-for="trade in trades" v-bind:key="trade.tid" v-bind:class="{sell: trade.maker_side === 'sell'}">
               <div class="hour">{{trade.created_at.split('T')[1].split('+')[0]}}</div>
               <div class="price">{{parseFloat(Math.round(trade.price * 100) / 100).toFixed(2)}}</div>
               <div class="amount">{{trade.amount}}</div>
@@ -152,7 +152,8 @@ export default {
     top: 0;
     left: 0;
     overflow-y: scroll;
-    width: 302px;
+    overflow-x: hidden;
+    width: 256px;
     transform: translate3d(-258px, 0 , 0);
     transition: all 0.3s;
   }
@@ -177,7 +178,7 @@ export default {
 
   #last-trades .content {
     height: calc(100vh - 111px);
-    width: 258px;
+    width: 280px;
   }
 
   #last-trades .content .header {
@@ -198,9 +199,9 @@ export default {
 
   #last-trades .content ul {
     margin: 40px 0 0 0;
-    padding: 0;
+    padding: 34px 0 0 0;
     list-style: none;
-    max-height: calc(100vh - 151px);
+    max-height: calc(100vh - 186px);
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -208,21 +209,32 @@ export default {
   #last-trades .content ul li.head {
     color: #949da2;
     text-transform: uppercase;
-    width: calc(100% - 20px);
-    margin-left: 32px;
+    width: 100%;
+    margin-left: 16px;
     height: 32px;
     line-height: 32px;
     font-size: 11px;
     text-align: left;
+    position: fixed;
+    top: 42px;
+    left: 0;
+    background: #21282f;
+    padding-left: 14px;
   }
 
   #last-trades .content ul li.head div {
     display: inline-block;
-    width: 32%;
+    height: 32px;
+    width: 30%;
   }
 
   #last-trades .content ul li.head div.hour {
-    width: 64px;
+    width: 56px;
+  }
+
+  #last-trades .content ul li.head div.amount {
+    margin-left: 10px;
+    width: 80px;
   }
 
   #last-trades .content ul li.trade {
@@ -230,7 +242,8 @@ export default {
     font-size: 12px;
     transition: all 0s;
     cursor: pointer;
-    margin-left: 32px;
+    margin-left: 16px;
+    padding-left: 12px;
     text-align: left;
   }
 
@@ -241,7 +254,7 @@ export default {
 
   #last-trades .content ul li.trade div {
     display: inline-block;
-    width: calc(50% - 35px);
+    width: calc(50% - 44px);
     line-height: 20px;
     height: 20px;
     transition: all 0s;
@@ -250,6 +263,31 @@ export default {
   #last-trades .content ul li.trade div.hour {
     width: 64px;
   }
+
+  #last-trades .content ul li.trade div.price {
+    color: #5e814e;
+  }
+
+  #last-trades .content ul li.trade.sell div.price {
+    color: #7f3741;
+  }
+
+  #last-trades .content ul li.trade:hover div.price {
+    color: #90c969;
+  }
+
+  #last-trades .content ul li.trade.sell:hover div.price {
+    color: #ba3040;
+  }
+
+  #last-trades .content ul li.trade div.amount {
+    color: #bdc6cc;
+  }
+
+  #last-trades .content ul li.trade:hover div.amount {
+    color: #FFFFFF;
+  }
+
 /* END LAST TRADES */
 
 /* PURCHASE AND SELL POSITIONS */

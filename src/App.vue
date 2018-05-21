@@ -300,6 +300,11 @@ export default {
     margin: 66px 0 0 0;
   }
 
+  ::-webkit-scrollbar { width: 0 !important }
+
+  * {
+    -ms-overflow-style: none;
+  }
   /* SHARED COMPONENTS */
     .divider-line {
       width: 1px;

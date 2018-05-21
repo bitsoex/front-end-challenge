@@ -7,6 +7,9 @@ import HighchartsReact from "highcharts-react-official";
 
 import { parseTicker, parsePrice } from "../Utils";
 
+/**
+ * Item Sidebar Component for each book in Market List.
+ */
 class SidebarMenuItem extends React.Component {
   constructor(props) {
     super(props);
@@ -144,6 +147,7 @@ class SidebarMenuItem extends React.Component {
         }
       ]
     };
+
     return (
       <React.Fragment>
         <div

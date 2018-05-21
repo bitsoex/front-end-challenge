@@ -8,6 +8,9 @@ import { parseChartData } from "../Utils";
 import icon_dropdown from "../assets/Images/SVG/icon_dropdown.svg";
 import SidebarMenuItem from "./SidebarMenuItem";
 
+/**
+ * Sidebar Component for Market List last prices & history charts.
+ */
 class SidebarMenu extends Component {
   state = {
     toggle: false,

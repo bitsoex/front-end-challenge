@@ -1,5 +1,12 @@
 import _ from "lodash";
 
+/**
+ * Parse orders to bids/asks tables.
+ * @param {Array<Object>} orders last orders
+ * @param {Array<Object>} data diff-orders
+ * @param {string} book ticker
+ * @returns {Object} asks & bids array of orders
+ */
 const orderData = (orders, data, book) => {
   let { asks, bids, sequence } = orders.data.payload;
   // console.log(orders);

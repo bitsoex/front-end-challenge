@@ -1,0 +1,17 @@
+@import "./../../assets/styles/colors.scss";
+
+#sidenav {
+  width: 20%;
+  background-color: $background-color;
+}
+
+.sidenav-container {
+  width: 100%;
+  height: 85vh;
+  background-color: transparent;
+}
+
+.sidenav-content {
+  display: flex;
+  justify-content: center;
+}

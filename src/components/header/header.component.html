@@ -3,7 +3,8 @@
     <img src="./../../assets/images/1x/bitso_logo.png">
     <span id="sub-title">Challenge</span>
     <span id="full-space"></span>
-    <mat-icon *ngIf="this.isUsrLogged" class="icons-menu">favorite</mat-icon>
-    <mat-icon *ngIf="this.isUsrLogged" class="icons-menu">delete</mat-icon>
+    <button *ngIf="this.isUsrLogged" mat-button (click)="sidebarToggle()">Wallet</button>
+    <button *ngIf="this.isUsrLogged" mat-button color="primary">Profile</button>
+    <button *ngIf="this.isUsrLogged" mat-button color="accent">Dashboard</button>
   </mat-toolbar-row>
 </mat-toolbar>

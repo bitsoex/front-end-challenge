@@ -1,0 +1,40 @@
+@font-face {
+  font-family: DINPro-Light;
+  src: url('../../Assets/Fonts/DINPro-Light.otf');
+}
+
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../../Assets/Fonts/DINPro-Medium.otf');
+}
+
+@font-face {
+  font-family: DINPro-Regular;
+  src: url('../../Assets/Fonts/DINPro-Regular.otf');
+}
+.lasTrades{
+  position:relative !important;
+  display: inline;
+}
+.chartContent{
+    position:relative !important;
+    background-color: #23292d !important;
+    height: 0px !important;
+    width: 949px  !important;
+    display: inline;
+    text-align: right !important;
+  }
+.canvasForm{
+  display: inline;
+  position:relative !important;
+  background-color: #23292d !important;
+  height: 300px !important;
+  width: 949px  !important;
+  text-align: right !important;
+}
+.backgroundBody{
+  background-color: #23292d !important;
+}
+.inlineDisplay{
+  display:inline !important;
+}

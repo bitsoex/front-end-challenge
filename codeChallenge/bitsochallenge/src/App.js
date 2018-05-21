@@ -30,11 +30,9 @@ changeTheme = () => {
    var newTheme =this.state.theme;
       if (this.state.theme==="darkBaseTheme"){
         newTheme='lightBaseTheme';
-        console.log('CAMBIOLIGHT: '+newTheme);
         this.setState({muiTheme: getMuiTheme(lightBaseTheme),theme:newTheme})
       }else{
         newTheme='darkBaseTheme';
-        console.log('CAMBIODARK: '+newTheme);
         this.setState({muiTheme: getMuiTheme(darkBaseTheme),theme:newTheme})
       }
 
@@ -48,22 +46,19 @@ changeTheme = () => {
 
       <div className="App">
         <MuiThemeProvider id='muiTheme'  muiTheme={this.state.muiTheme}>
-        <div>
           <Header />
           <div className="Toagleblock">
             <Toggle id="theme"
               valueLink={this.state.theme}
               onToggle={this.changeTheme.bind(this)}
               className="Toggle-toggle"
-            />
-
+              />
           </div>
           <Currency/>
           <BodyContent/>
           <footer className="App-intro">
           © 2018 Bitso SAPI de CV. Todos los derechos reservados.
           </footer>
-        </div>
         </MuiThemeProvider>
       </div>
     );

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import bitsoLogo from '../../Assets/Images/SVG/bitso_logo.svg'
-import twotone from '../../Assets/Images/SVG/twotone.svg'
 import TickCollection from './tick/tickComponent.js';
 import FontIcon from 'material-ui/FontIcon';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -13,9 +12,7 @@ import Avatar from 'material-ui/Avatar';
 
 import './header.css';
 
-const iconStyles = {
-  marginRight: 24,
-};
+
 
 class Header extends Component {
   constructor(props) {

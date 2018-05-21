@@ -25,6 +25,12 @@
   position: absolute;
   top:20px;
   padding-left: 90%;
+  width: 20px !important;
+  height: 0px !important;
+
+}
+.Toggle-toggle{
+  width: 60px !important;
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

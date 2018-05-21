@@ -3,7 +3,7 @@ import {URL_SERVICES} from './../../../config/Config.js';
 import {SERVICE_REQUEST} from './../../../config/Config.js';
 import {callGetService} from './../../../Utils/CallServices.js';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import { ToolbarGroup,  ToolbarTitle} from 'material-ui/Toolbar';
 import MenuItem from 'material-ui/MenuItem';
 import './infoCurrency.css';
 

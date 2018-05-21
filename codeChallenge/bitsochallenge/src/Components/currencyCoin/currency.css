@@ -57,6 +57,8 @@
 .background-color{
   background-color: #252c36;
   color:#191e23;
+  position:relative;
+  display: inline;
 }
 .black{
   background-color: #191e23 !important;

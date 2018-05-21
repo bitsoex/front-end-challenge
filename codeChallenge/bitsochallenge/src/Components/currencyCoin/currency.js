@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InfoCurrency from './tick/infoCurrency.js';
 import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
+import DrawerMarkets from './DrawerMarkets/DrawerMarkets.js';
 import './currency.css';
 
 
@@ -16,16 +17,15 @@ class Currency extends Component {
   handleChange = (event, index, value) => this.setState({value});
   render() {
     return (
-
       <div className="background-color black">
       <Toolbar className="Toolbar background-color black">
         <ToolbarGroup className="ToolbarGroup black">
           <InfoCurrency/>
+          <DrawerMarkets/>
+
         </ToolbarGroup>
       </Toolbar>
       </div>
-
-
     );
   }
 }

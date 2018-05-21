@@ -1,0 +1,54 @@
+#tablaData{
+  background-color: #23292d !important;
+  overflow-y: hidden !important;
+  overflow-x:hidden !important;
+}
+.bodyTable {
+    height: 440px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.table{
+  background-color: black !important;
+  overflow-y: hidden !important;
+  overflow-x:hidden !important;
+}
+
+.trades-table{
+    background-color: #23292d !important;
+    width: 100%;
+    padding-top: 0px;
+    position:absolute;
+    overflow-y:hidden !important;
+    overflow-x:hidden !important;
+}
+
+
+.trades-header-column{
+    display: inline-flex;
+    color:#747f89;
+    width: 400px;
+    height: 0px;
+
+}
+
+.column{
+    background-color: black !important;
+    width: 33%;
+
+}
+.tradeBuy{
+    color:#466830 !important;
+    background-color: #23292d !important;
+}
+.tradeSell{
+    color:#722837 !important;
+    background-color: #23292d !important;
+}
+.coin{
+    color: #2e353d;
+}
+.trades-list-result{
+  height: 800px;
+
+}

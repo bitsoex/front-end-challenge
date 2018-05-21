@@ -21,6 +21,8 @@ const styles = {
     @media all and (min-width: 600px) {
       .aside {
         flex: 1 auto;
+        max-width: 300px;
+        padding: 10px;
       }
     }
 
@@ -36,9 +38,6 @@ const styles = {
       }
       .aside-right {
         order: 3;
-      }
-      .footer {
-        order: 4;
       }
     }
   `

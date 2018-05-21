@@ -2,23 +2,18 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { css, cx, keyframes } from "emotion";
 import dayjs from "dayjs";
+import { ThemeConsumer } from "../../context/Theme";
+import { colors } from "../../themes";
 import { trades as getTrades } from "../../api";
+import Amount from "../Amount";
 
 const styles = {
-  container: css`
-    max-width: 300px;
-  `,
+  container: css``,
   title: css`
-    padding 10px;
+    padding 10px 20px;
   `,
-  listContainer: css``,
-  ul: css`
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    padding 0;
-    margin: 0;
-    list-style: none;
+  listContainer: css`
+    color: ${colors.sidebar.text};
   `,
   row: css`
     display: flex;
@@ -30,6 +25,13 @@ const styles = {
       transform: translateX(50%);
       opacity: 0;
     }
+  `
+};
+
+const animations = {
+  slideLeft: css`
+    animation: ${styles.slideLeft} 0.3s both;
+    animation-delay: calc(var(--i) * 0.1s);
   `
 };
 
@@ -51,12 +53,10 @@ export default class LastTrades extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
     this.fetchTrades();
   }
 
   componentDidUpdate() {
-    console.log("componentDidUpdate");
     this.fetchTrades();
   }
 
@@ -71,53 +71,66 @@ export default class LastTrades extends Component {
   render() {
     const { trades } = this.state;
     return (
-      <div className={styles.container}>
-        <div className={styles.title}>ÚLTIMOS TRADES</div>
-        <div className={styles.listContainer}>
-          {/* <ul className={styles.ul}>
-            <li className={cx(styles.item, styles.listHeader)}>
-              <span>HORA</span> <span>MXN PRECIO</span> <span>BTC MONTO</span>
-            </li>
-            {trades.map((trade, i) => (
-              <li
-                key={trade.tid}
-                style={{ "--i": i }}
+      <ThemeConsumer>
+        {({ theme }) => (
+          <div className={styles.container}>
+            <div
+              style={
+                theme.name === "dark"
+                  ? { ...theme, background: colors.navy.header }
+                  : { ...theme, background: colors.gray.light }
+              }
+              className={styles.title}
+            >
+              ÚLTIMOS TRADES
+            </div>
+            <div className={styles.listContainer}>
+              <div
                 className={css`
-                  animation: ${styles.slideLeft} 0.3s both;
-                  animation-delay: calc(var(--i) * 0.1s);
+                  ${styles.row};
+                  padding: 10px 0;
                 `}
               >
-                <span>{this.formatDate(trade.created_at)}</span>{" "}
-                <span>{trade.price}</span> <span>{trade.amount}</span>
-              </li>
-            ))}
-          </ul> */}
-          <div
-            className={css`
-              ${styles.row} ${styles.title};
-            `}
-          >
-            <div>HORA</div>
-            <div>MXN PRECIO</div>
-            <div>BTC MONTO</div>
-          </div>
-          {trades.map((trade, i) => (
-            <div
-              key={trade.tid}
-              style={{ "--i": i }}
-              className={css`
-                ${styles.row}
-                animation: ${styles.slideLeft} 0.3s both;
-                animation-delay: calc(var(--i) * 0.1s);
-              `}
-            >
-              <div>{this.formatDate(trade.created_at)}</div>{" "}
-              <div>{trade.price}</div>
-              <div>{trade.amount}</div>
+                <div>HORA</div>
+                <div>MXN PRECIO</div>
+                <div>BTC MONTO</div>
+              </div>
+              {trades.map((trade, i) => (
+                <div
+                  key={trade.tid}
+                  style={{ "--i": i }}
+                  className={css`
+                    ${styles.row} ${animations.slideLeft}
+                    &:hover {
+                      background: ${colors.navy.regular};
+                      color: ${colors.sidebar.light};
+                      .price {
+                        color: ${trade.maker_side === "buy"
+                          ? colors.green.light
+                          : colors.red.light};
+                      }
+                    }
+                    .price {
+                      color: ${trade.maker_side === "buy"
+                        ? colors.green.dark
+                        : colors.red.dark};
+                    }
+                    .amount {
+                      color: ${colors.sidebar.light};
+                    }
+                  `}
+                >
+                  <div>{this.formatDate(trade.created_at)}</div>{" "}
+                  <div className="price">{trade.price}</div>
+                  <div className="amount">
+                    <Amount amount={trade.amount} />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        )}
+      </ThemeConsumer>
     );
   }
 }

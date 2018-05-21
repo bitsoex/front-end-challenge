@@ -9,9 +9,9 @@ const styles = {
   container: css`
     display: flex;
     align-items: center;
-    background: hotpink;
-    padding: 10px;
     justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid ${colors.navy.header};
   `,
   item: css`
     min-width: 70px;

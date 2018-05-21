@@ -1,4 +1,19 @@
+@font-face {
+  font-family: DINPro;
+  font-weight: 100;
+  src: url("./assets/fonts/DINPro-Light.otf") format("opentype"); }
+
+@font-face {
+  font-family: DINPro;
+  font-weight: normal;
+  src: url("./assets/fonts/DINPro-Regular.otf") format("opentype"); }
+
+@font-face {
+  font-family: DINPro;
+  font-weight: bold;
+  src: url("./assets/fonts/DINPro-Medium.otf") format("opentype"); }
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif; }
+  font-family: DINPro; }

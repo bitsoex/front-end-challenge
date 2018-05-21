@@ -45,7 +45,7 @@ export default () => (
         style={
           theme.name === "dark"
             ? { ...theme, background: colors.navy.header }
-            : { ...theme, background: colors.gray.regular }
+            : { ...theme, background: colors.gray.light }
         }
         className={styles.container}
       >

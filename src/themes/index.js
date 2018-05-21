@@ -10,6 +10,7 @@ const LIGHT_GREEN = "#98d372";
 const DARK_RED = "#722837";
 const REGULAR_RED = "#cc4458";
 const MEDIUM_RED = "#ba3040";
+const LIGHT_RED = "#ff0033";
 
 const DARK_NAVY = "#161a1e";
 const BACKGROUND_NAVY = "#191e23";
@@ -19,12 +20,14 @@ const NAVY_HEADERS = "#313d4c";
 
 const DARK_TEXT = "#4e5863";
 const LIGHT_TEXT = "#b0bac1";
+const LIGHT_BACKGROUND = "#eeeeee";
 
 const SIDEBAR_BACKGROUND = "#23292d";
 const SIDEBAR = "#2e353d";
 const SIDEBAR_HEADER = "#727c84";
 const SIDEBAR_TEXT = "#747f89";
 const SIDEBAR_LIGHT_TEXT = "#b0bac1";
+const LIGHT_GRAY = "#ababab";
 const NEUTRAL_GRAY = "#cccccc";
 const BITCOIN_YELLOW = "#ebc256";
 
@@ -38,7 +41,8 @@ export const colors = {
   red: {
     dark: DARK_RED,
     medium: MEDIUM_RED,
-    regular: REGULAR_RED
+    regular: REGULAR_RED,
+    light: LIGHT_RED
   },
   navy: {
     header: NAVY_HEADERS,
@@ -55,6 +59,7 @@ export const colors = {
     light: SIDEBAR_LIGHT_TEXT
   },
   gray: {
+    light: LIGHT_GRAY,
     regular: NEUTRAL_GRAY
   },
   yellow: {
@@ -66,7 +71,7 @@ export default {
   light: {
     name: "light",
     color: DARK_TEXT,
-    background: "#eeeeee"
+    background: LIGHT_BACKGROUND
   },
   dark: {
     name: "dark",

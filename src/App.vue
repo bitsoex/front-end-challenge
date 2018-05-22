@@ -300,6 +300,14 @@ export default {
     margin: 66px 0 0 0;
   }
 
+  .transparent {
+    opacity: 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+
   ::-webkit-scrollbar { width: 0 !important }
 
   * {
@@ -545,6 +553,10 @@ export default {
       position: absolute;
       top: -2px;
       left: -20px;
+    }
+
+    #status-bar .v-select.open .open-indicator::before {
+      top: -4px;
     }
 
     #status-bar .dropdown button.clear {

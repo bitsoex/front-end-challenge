@@ -37,7 +37,11 @@
     ],
     "customProperties": {
       "color-primary": "var(--palette-blue-grey-700)",
-      "color-primary-dark": "var(--palette-blue-grey-900)"
+      "color-primary-dark": "var(--palette-blue-grey-900)",
+      "table-row-color": "var(--palette-blue-grey-100)",
+      "table-header-color": "var(--palette-blue-grey-100)",
+      "table-hover-color": "var(--palette-blue-grey-700)",
+      "table-dividers": "0px"
     },
     "output": "src/assets/react-toolbox"
   }

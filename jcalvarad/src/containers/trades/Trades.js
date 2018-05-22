@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { inject, observer } from "mobx-react";
 import {toJS} from 'mobx';
 import Trades from '../../components/trades/Trades'
+import theme from './Trades.module.css';
 
 @inject('TradesStore')
 @observer
@@ -23,7 +24,7 @@ class TradesContainer extends Component {
 
         return (
             <div>
-                <Trades trades={toJS(TradesStore.trades)}/>
+                <Trades trades={toJS(TradesStore.trades)} theme={theme}/>
             </div>
         );
     }

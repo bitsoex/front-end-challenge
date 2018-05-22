@@ -23,26 +23,30 @@ const styles = {
   `,
   itemPrefix: css`
     font-weight: 100;
+    color: ${colors.sidebar.text};
   `
 };
 
 export default () => (
-  <BookConsumer>
-    {({ books, book, changeBook }) => {
-      const {
-        minimum_price,
-        maximum_price,
-        minimum_amount,
-        maximum_amount,
-        minimum_value,
-        maximum_value
-      } = book;
-      const currency1 = book.book.split("_")[0].toUpperCase();
-      const currency2 = book.book.split("_")[1].toUpperCase();
+  <ThemeConsumer>
+    {({ theme }) => (
+      <BookConsumer>
+        {({ books, book, changeBook }) => {
+          const {
+            minimum_price,
+            maximum_price,
+            minimum_amount,
+            maximum_amount
+          } = book;
+          const currency1 = book.book.split("_")[0].toUpperCase();
+          const currency2 = book.book.split("_")[1].toUpperCase();
 
-      return (
-        <ThemeConsumer>
-          {({ theme }) => (
+          // const high = +book.high;
+          // const low = +book.low;
+          // const variation = high - low;
+          // const variationPercentage = variation / low * 100; // Formula to get variation?
+
+          return (
             <div style={theme} className={styles.container}>
               <DropDown
                 containerStyle={
@@ -80,13 +84,13 @@ export default () => (
               </div>
 
               <div className={styles.item}>
-                <span className={styles.itemPrefix}>Variacion.</span> {}
+                <span className={styles.itemPrefix}>Variacion.</span>{" "}
                 {currency2} 1.4%
               </div>
             </div>
-          )}
-        </ThemeConsumer>
-      );
-    }}
-  </BookConsumer>
+          );
+        }}
+      </BookConsumer>
+    )}
+  </ThemeConsumer>
 );

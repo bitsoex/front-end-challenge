@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { css } from "emotion";
 import { timeParse } from "d3-time-format";
 
-import { ticker, trade } from "./api";
+import { trade } from "./api";
+import { colors } from "./themes";
 import { BookProvider, BookConsumer } from "./context/Book";
 import { ThemeProvider, ThemeConsumer } from "./context/Theme";
 import Header from "./components/Header";
@@ -50,35 +51,36 @@ class App extends Component {
 
   async componentDidMount() {
     // await ticker("btc_mxn");
-    // const data = await this.getData();
-    this.setState({ loading: false });
+    const data = await this.getData();
+    this.setState({ data });
   }
 
-  getData = async () => {
+  dataMapperFormat = (d, i) => {
     const parseDate = timeParse("%Y-%m-%d");
+    return {
+      date: parseDate(d.date),
+      x: i,
+      yHigh: +d.high,
+      yOpen: +d.open,
+      yClose: +d.close,
+      yLow: +d.low
+    };
+  };
+
+  dataMapperValues = d => {
+    const y = d => (d.yOpen + d.yClose) / 2;
+    return {
+      ...d,
+      y: y(d),
+      stroke: d.yOpen > d.yClose ? colors.green.medium : colors.red.medium,
+      color: d.yOpen > d.yClose ? colors.green.dark : colors.red.dark,
+      opacity: y(d) > 75 ? 0.7 : 1
+    };
+  };
+
+  getData = async () => {
     const data = await trade({ book: "btc_mxn" });
-    const darkGreen = "#466830";
-    const darkRed = "#722837";
-    const mediumGreen = "#86af6b";
-    const mediumRed = "#ba3040";
-    const y = d => (d.open + d.close) / 2;
-    return data
-      .map((d, i) => ({
-        // x: i,
-        date: parseDate(d.date),
-        x: parseDate(d.date).getDate(),
-        yHigh: +d.high,
-        yOpen: +d.open,
-        yClose: +d.close,
-        yLow: +d.low
-      }))
-      .map(d => ({
-        ...d,
-        y: (d.yOpen + d.yClose) / 2,
-        stroke: d.yOpen > d.yClose ? mediumGreen : mediumRed,
-        color: d.yOpen > d.yClose ? darkGreen : darkRed,
-        opacity: y(d) > 75 ? 0.7 : 1
-      }));
+    return data.map(this.dataMapperFormat).map(this.dataMapperValues);
   };
 
   render() {
@@ -88,21 +90,23 @@ class App extends Component {
         <BookProvider>
           <ThemeConsumer>
             {({ theme }) => (
-              <div style={theme} className={styles.container}>
-                <Header />
-                <InfoBar />
-                <section className="main">
-                  <Candles data={data} />
-                </section>
-                <aside className="aside aside-left">
-                  <BookConsumer>
-                    {({ book }) => <LastTrades book={book.book} />}
-                  </BookConsumer>
-                </aside>
-                <aside className="aside aside-right">
-                  <div>Aside right</div>
-                </aside>
-              </div>
+              <BookConsumer>
+                {({ book }) => (
+                  <div style={theme} className={styles.container}>
+                    <Header />
+                    <InfoBar />
+                    <section className="main">
+                      <Candles data={data} />
+                    </section>
+                    <aside className="aside aside-left">
+                      <LastTrades book={book.book} />}
+                    </aside>
+                    <aside className="aside aside-right">
+                      <div>Aside right</div>
+                    </aside>
+                  </div>
+                )}
+              </BookConsumer>
             )}
           </ThemeConsumer>
         </BookProvider>

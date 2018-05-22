@@ -1,6 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { XAxis, YAxis, LineSeries, FlexibleWidthXYPlot } from "react-vis";
+import {
+  XAxis,
+  YAxis,
+  VerticalGridLines,
+  HorizontalGridLines,
+  LineSeries,
+  FlexibleXYPlot
+} from "react-vis";
+import { format } from "d3-format";
 
 import Candlestick from "./Candlestick";
 
@@ -37,8 +45,7 @@ function buildRandomBinnedData(total) {
     });
   return result;
 }
-
-export default class CandlestickExample extends React.Component {
+export default class CandlestickExample extends Component {
   state = {
     data: buildRandomBinnedData(30)
   };
@@ -58,21 +65,22 @@ export default class CandlestickExample extends React.Component {
     ).isRequired
   };
 
+  formatYAxis = v => format("~s")(v);
+
   render() {
     const { data: otherData } = this.state;
     const { data } = this.props;
     console.log("props data", data);
     // console.log("state data", otherData);
     return (
-      <div className="candlestick-example">
+      <div className="candlestick">
         <div className="chart">
-          <FlexibleWidthXYPlot
-            animation
-            height={500}
-            yDomain={[130000, 180000]}
-          >
-            <XAxis />
-            <YAxis />
+          <FlexibleXYPlot animation height={500} yDomain={[150000, 190000]}>
+            <VerticalGridLines />
+            <HorizontalGridLines />
+
+            <XAxis orientation="top" />
+            <YAxis orientation="right" tickFormat={this.formatYAxis} />
             {/* <LineSeries color="#12939A" data={data} /> */}
             {/* <LineSeries
               color="#FF9833"
@@ -91,7 +99,7 @@ export default class CandlestickExample extends React.Component {
               stroke="#79C7E3"
               data={data}
             />
-          </FlexibleWidthXYPlot>
+          </FlexibleXYPlot>
         </div>
       </div>
     );

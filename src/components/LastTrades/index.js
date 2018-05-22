@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css, cx, keyframes } from "emotion";
+import { css, keyframes } from "emotion";
 import dayjs from "dayjs";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
@@ -42,26 +42,34 @@ export default class LastTrades extends Component {
 
   state = { trades: [] };
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const { book } = this.props;
     const { trades } = this.state;
     console.log(
       "shouldComponentUpdate",
       book !== nextProps.book || trades.length === 0
     );
-    return book !== nextProps.book || trades.length === 0;
+    return (
+      book !== nextProps.book ||
+      trades.length === 0 ||
+      trades[0].book !== nextState.trades[0].book
+    );
   }
 
   componentDidMount() {
-    this.fetchTrades();
-  }
-
-  componentDidUpdate() {
-    this.fetchTrades();
-  }
-
-  fetchTrades = async () => {
     const { book } = this.props;
+    this.fetchTrades(book);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { book } = this.props;
+    const { trades } = this.state;
+    if (book !== prevProps.book || trades.length === 0) {
+      this.fetchTrades(book);
+    }
+  }
+
+  fetchTrades = async book => {
     const trades = await getTrades({ book });
     this.setState({ trades });
   };
@@ -69,7 +77,10 @@ export default class LastTrades extends Component {
   formatDate = date => dayjs(date).format("HH:mm:ss");
 
   render() {
+    const { book } = this.props;
     const { trades } = this.state;
+    const currency1 = book.split("_")[0].toUpperCase();
+    const currency2 = book.split("_")[1].toUpperCase();
     return (
       <ThemeConsumer>
         {({ theme }) => (
@@ -92,8 +103,14 @@ export default class LastTrades extends Component {
                 `}
               >
                 <div>HORA</div>
-                <div>MXN PRECIO</div>
-                <div>BTC MONTO</div>
+                <div>
+                  {currency2}&nbsp;
+                  <span style={{ color: colors.sidebar.light }}>PRECIO</span>
+                </div>
+                <div>
+                  {currency1}&nbsp;
+                  <span style={{ color: colors.sidebar.light }}>MONTO</span>
+                </div>
               </div>
               {trades.map((trade, i) => (
                 <div

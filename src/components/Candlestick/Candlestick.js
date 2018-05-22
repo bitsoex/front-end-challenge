@@ -15,12 +15,11 @@ class CandlestickSeries extends AbstractSeries {
 
     const xFunctor = this._getAttributeFunctor("x");
     const yFunctor = this._getAttributeFunctor("y");
-    const strokeFunctor = this._getAttributeFunctor("stroke");
     const fillFunctor = this._getAttributeFunctor("color");
     const opacityFunctor = this._getAttributeFunctor("opacity");
 
     // const distance = Math.abs(xFunctor(data[1]) - xFunctor(data[0])) * 0.2;
-    const distance = 4;
+    const distance = 8;
 
     return (
       <g
@@ -35,11 +34,7 @@ class CandlestickSeries extends AbstractSeries {
           const yClose = yFunctor({ ...d, y: d.yClose });
           const yLow = yFunctor({ ...d, y: d.yLow });
 
-          const lineAttrs = {
-            stroke: strokeFunctor && strokeFunctor(d)
-          };
-
-          const xWidth = distance * 2;
+          const xWidth = distance;
           return (
             <g
               key={i}
@@ -49,27 +44,28 @@ class CandlestickSeries extends AbstractSeries {
               onMouseOver={e => this._valueMouseOverHandler(d, e)}
               onMouseOut={e => this._valueMouseOutHandler(d, e)}
             >
-              <line
+              {/* <line
                 x1={-xWidth}
                 x2={xWidth}
                 y1={yHigh}
                 y2={yHigh}
                 {...lineAttrs}
-              />
-              <line x1={0} x2={0} y1={yHigh} y2={yLow} {...lineAttrs} />
-              <line
+              /> */}
+              <line x1={0} x2={0} y1={yHigh} y2={yLow} stroke={d.stroke} />
+              {/* <line
                 x1={-xWidth}
                 x2={xWidth}
                 y1={yLow}
                 y2={yLow}
                 {...lineAttrs}
-              />
+              /> */}
               <rect
                 x={-xWidth}
                 width={Math.max(xWidth * 2, 0)}
                 y={yOpen}
                 height={Math.abs(yOpen - yClose)}
                 fill={fillFunctor && fillFunctor(d)}
+                stroke={d.stroke}
               />
             </g>
           );

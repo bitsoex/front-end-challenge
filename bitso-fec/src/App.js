@@ -31,7 +31,6 @@ class App extends Component {
         <NavbarHeader />
         {/* Exhange Router for books Dashboard rendering */}
         <Switch>
-          <Redirect exact from="/" to="/btc_mxn" />
           <Route
             path="/:book"
             key={book}
@@ -43,6 +42,7 @@ class App extends Component {
               />
             )}
           />
+          <Redirect exact from="/" to="/btc_mxn" />
         </Switch>
       </div>
     );

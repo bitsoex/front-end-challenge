@@ -4,6 +4,27 @@
   max-width: @bp-largest;
   margin: 0 auto;
   overflow: hidden;
+
+  @media only screen and (max-width: @bp-large) {
+    margin: 0;
+  }
+}
+
+.dashboard-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem;
+  padding-right: 0.5rem;
+}
+
+.dashboard-wrapper {
+  flex: 1;
+  min-width: 107rem;
+
+  @media only screen and (max-width: @bp-large) {
+    min-width: 80rem;
+  }
 }
 
 .dashboard-trades {

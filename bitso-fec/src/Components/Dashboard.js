@@ -14,6 +14,9 @@ import ChartBar from "./ChartBar";
 import { parseChartData } from "../Utils";
 import SidebarMenu from "./SidebarMenu";
 
+/**
+ * Dashboard component that renders all ticker data
+ */
 class Dashboard extends React.Component {
   websocket = new WebSocket("wss://ws.bitso.com");
   state = {
@@ -32,14 +35,12 @@ class Dashboard extends React.Component {
   componentDidMount() {
     console.log("%cDID MOUNT DASHBOARD", "background: white; color: black");
     const { book } = this.props.match.params;
-    // console.log(book);
 
     this.getFirstTrades(book);
     this.getFirstOrders(book);
     this.getChartJSON(this.state.timeframe);
 
     this.websocket.onopen = e => {
-      // console.log("connected", book);
       this.websocket.send(
         JSON.stringify({
           action: "subscribe",
@@ -60,7 +61,6 @@ class Dashboard extends React.Component {
       const { book: paramsBook } = this.props.match.params;
       var data = JSON.parse(message.data);
 
-      // this.setState({ loading: false });
       if (data.type === "diff-orders" && data.payload) {
         // console.log(
         //   "%cdiff-orders " + data.book,
@@ -102,6 +102,9 @@ class Dashboard extends React.Component {
     this.websocket.close();
   }
 
+  /**
+   * Function for get first last orders charge.
+   */
   getFirstOrders = async book => {
     let value = 0;
     let amount = 0;
@@ -127,6 +130,10 @@ class Dashboard extends React.Component {
     this.setState({ firstOrders: orders });
   };
 
+  /**
+   * Function for get first last trades charge.
+   * @param {string} book ticker for get data
+   */
   getFirstTrades = async book => {
     const firstTrades = await axios.get("https://api.bitso.com/v3/trades/", {
       params: { book, sort: "desc", limit: 50 }
@@ -138,6 +145,10 @@ class Dashboard extends React.Component {
     this.setState({ firstTrades: firstTrades.data.payload });
   };
 
+  /**
+   * Function for get trade data for chandles chart.
+   * @param {string} timeframe 1month, 3months or 1year data.
+   */
   getChartJSON = async timeframe => {
     const { book } = this.props;
     try {
@@ -152,12 +163,18 @@ class Dashboard extends React.Component {
     }
   };
 
+  /**
+   * Function for toggle chart type.
+   */
   toggleChart = () => {
     this.setState({
       currentChart: this.state.currentChart === "candles" ? "deep" : "candles"
     });
   };
 
+  /**
+   * Function for change timeframe to get new data.
+   */
   onChangeTimeframe = timeframe => {
     this.setState({
       timeframe
@@ -165,6 +182,9 @@ class Dashboard extends React.Component {
     this.getChartJSON(timeframe);
   };
 
+  /**
+   * Function for set isFistChartRender state to false.
+   */
   handleFirstChartRender = () => {
     this.setState({ isFirstChartRender: false });
   };
@@ -173,7 +193,6 @@ class Dashboard extends React.Component {
     const { book, match, onSelectBook } = this.props;
     const { book: paramsBook } = match.params;
     const {
-      // loading,
       orders,
       trades,
       firstTrades,
@@ -184,10 +203,6 @@ class Dashboard extends React.Component {
       candleData,
       isFirstChartRender
     } = this.state;
-
-    // if (loading || _.isEmpty(orders)) {
-    //   return <div>Cargando...</div>;
-    // }
 
     return (
       <div
@@ -204,21 +219,10 @@ class Dashboard extends React.Component {
             />
           </div>
         </div>
-        {/* {loading || _.isEmpty(orders) ? (
-          <div>Cargando..</div>
-        ) : ( */}
         <div className="dashboard-container">
           <Trades book={paramsBook || book} trades={trades || firstTrades} />
-          <div
-            style={{
-              display: "flex",
-              flex: 1,
-              flexDirection: "column",
-              padding: "1rem",
-              paddingRight: "5px"
-            }}
-          >
-            <div style={{ flex: 1, minWidth: "70rem" }}>
+          <div className="dashboard-content">
+            <div className="dashboard-wrapper">
               <ChartBar
                 currentChart={currentChart}
                 timeframe={timeframe}
@@ -240,7 +244,6 @@ class Dashboard extends React.Component {
           </div>
           <SidebarMenu />
         </div>
-        {/* )} */}
       </div>
     );
   }

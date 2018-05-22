@@ -10,7 +10,8 @@ const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
     { path: "login", loadChildren: "../login/login.module#LoginModule" },
     { path: "home", loadChildren: "../home/home.module#HomeModule" },
-    { path: "**", loadChildren: "../error/error.module#ErrorModule" }
+    { path: "notfound", loadChildren: "../error/error.module#ErrorModule"},
+    { path: "**", redirectTo: "notfound", pathMatch: "full"}
 ];
 
 @NgModule({

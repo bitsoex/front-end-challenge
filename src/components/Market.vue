@@ -265,6 +265,8 @@ export default {
     width: 302px;
     transform: translate3d(-258px, 0 , 0);
     transition: all 0.3s;
+    z-index: 500;
+    background: #21282f;
   }
 
   #last-trades.open {
@@ -677,6 +679,22 @@ export default {
   #chart {
     margin: 0 0 0 280px;
     padding-top: 16px;
+  }
+}
+
+@media screen and (max-width:1200px) {
+  #chart .select.chartTypeChange {
+    position: absolute;
+    top: 16px;
+    left: 56px;
+  }
+
+  #chart .select.chartPeriodicityChange {
+    margin-left: 140px;
+  }
+
+  #chart .select.chartIntervalChange {
+    margin-left: 32px;
   }
 }
 

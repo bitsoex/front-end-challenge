@@ -14,11 +14,12 @@ export class TradesStore {
     @action
     getTrades = message => {
         var data = JSON.parse(message.data);
+        var now = new Date();
 
         if (data.type === 'trades' && data.payload) {
             const wspayload = data.payload[0];
             this.trades.push({
-                time: (new Date()).getTime(),
+                time: now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds(),
                 rate: wspayload.r,
                 amount:wspayload.a
             });

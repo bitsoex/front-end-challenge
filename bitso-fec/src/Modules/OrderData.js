@@ -5,6 +5,7 @@ import _ from "lodash";
  * @param {Array<Object>} orders last orders
  * @param {Array<Object>} data diff-orders
  * @param {string} book ticker
+ * @param {number} sum Iterates data to get the correct sum of each type of orders
  * @returns {Object} asks & bids array of orders
  */
 const orderData = (orders, data, book) => {

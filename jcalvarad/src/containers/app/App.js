@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import '../../assets/react-toolbox/theme.css';
 import theme from '../../assets/react-toolbox/theme'
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+import styles from './App.module.css';
 import Layout from '../layout/Layout'
 import Trades from '../trades/Trades'
 
@@ -17,7 +18,13 @@ class App extends Component {
               rel="stylesheet" />
           </Helmet>
           <Layout>
-            <Trades/>
+            <div className={styles['grid-container']}>
+              <div className={styles.header}>Header</div>
+              <div className={styles.trades}><Trades/></div>
+              <div className={styles.chart}>Chart</div>  
+              <div className={styles.buy}>Buy</div>
+              <div className={styles.sell}>Sell</div>
+            </div>
           </Layout>
         </div>
       </ThemeProvider>

@@ -1,0 +1,15 @@
+.header { grid-area: header; }
+.trades { grid-area: trades; }
+.chart { grid-area: chart; }
+.buy { grid-area: buy; }
+.sell { grid-area: sell; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header header'
+    'trades chart chart chart chart chart chart'
+    'trades buy buy buy sell sell sell';
+  grid-gap: 10px;
+  padding: 10px;
+}

@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
+import { TradesStore } from './stores/TradesStore';
 import App from './containers/app/App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const tradesStore = new TradesStore();
+
+ReactDOM.render((
+    <Provider TradesStore={tradesStore}><App /></Provider>
+), document.getElementById('root'));
 registerServiceWorker();

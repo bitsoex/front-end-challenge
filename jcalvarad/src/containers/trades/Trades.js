@@ -1,46 +1,29 @@
 import React, { Component } from 'react';
+import { inject, observer } from "mobx-react";
+import {toJS} from 'mobx';
 import Trades from '../../components/trades/Trades'
 
-const websocket = new WebSocket('wss://ws.bitso.com');
-
-websocket.onopen = function () {
-    websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }));
-};
-
+@inject('TradesStore')
+@observer
 class TradesContainer extends Component {
-    state = {
-        trades:[]
-    };
-    render() {
-        const generateTrade = wspayload => {
-            this.setState((prevState)=>{
-                return {
-                    ...prevState,
-                    trades: [
-                        ...prevState.trades,
-                        {
-                            time: (new Date()).getTime(),
-                            rate: wspayload.r,
-                            amount:wspayload.a
-                        }
-                    ]
-                }
-            })
-        }
 
-        websocket.onmessage = function (message) {
-            var data = JSON.parse(message.data);
+    constructor(props) {
+        super(props);
+        const websocket = new WebSocket('wss://ws.bitso.com');
 
-            if (data.type === 'trades' && data.payload) {
-                generateTrade(data.payload[0]);
-                console.log(data);
-            } else {
-                console.log("error", data);
-            }
+        websocket.onopen = function () {
+            websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }));
         };
+
+        websocket.onmessage = props.TradesStore.getTrades;
+    }
+
+    render() {
+        const { TradesStore } = this.props;
+
         return (
             <div>
-                <Trades trades={this.state.trades}/>
+                <Trades trades={toJS(TradesStore.trades)}/>
             </div>
         );
     }

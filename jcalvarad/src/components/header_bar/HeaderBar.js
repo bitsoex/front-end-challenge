@@ -24,7 +24,7 @@ class HeaderBar extends Component {
                             <MenuItem value='help' icon='favorite' caption='Favorite' />
                         </IconMenu>
                 <AppBar>
-                    <img className={styles.logo} src={BitsoLogo} />
+                    <img className={styles.logo} src={BitsoLogo} alt={'Bitso Logo'}/>
                     <span className={styles['separator-sm']} />
                     <span className={styles.title}> EXCHANGE </span>
                     <Navigation className={styles.nav} type='horizontal'>

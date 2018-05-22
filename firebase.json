@@ -33,6 +33,7 @@
     ],
     "rewrites": [
       { "source": "/ticker", "function": "bitsoTicker" },
+      { "source": "/chart", "function": "bitsoChart" },
       {
         "source": "**",
         "destination": "/index.html"

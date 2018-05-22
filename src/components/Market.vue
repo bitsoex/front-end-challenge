@@ -71,6 +71,10 @@
             </li>
           </ul>
         </div>
+
+        <div id="candles-chart">
+          <div class="column" v-for="column in chart.candles.data" v-bind:style="{width: chart.candles.width + 'px'}"></div>
+        </div>
       </div>
 
       <div id="positions">
@@ -100,9 +104,12 @@
 <script>
 import Vue from 'vue'
 import vSelect from 'vue-select'
+import VueResource from 'vue-resource'
 
 var VueTouch = require('vue-touch')
 Vue.use(VueTouch, {name: 'v-touch'})
+
+Vue.use(VueResource)
 
 Vue.component('v-select', vSelect)
 
@@ -122,14 +129,18 @@ export default {
           selectVisible: false
         },
         periodicity: {
-          selected: '3d',
-          options: ['1d', '3d', '1w', '1m'],
+          selected: '3m',
+          options: ['1m', '3m', '1y'],
           selectVisible: false
         },
         interval: {
-          selected: '3d',
+          selected: '1d',
           options: ['1d', '3d', '1w', '1m'],
           selectVisible: false
+        },
+        candles: {
+          data: [],
+          width: '10px'
         }
       },
       lastTrades: {
@@ -188,6 +199,19 @@ export default {
       var x = document.getElementById('tab-bar-audio')
       x.play()
       console.log(t)
+    },
+    chartLoad () {
+      var self = this
+      Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + 'btc_mxn' + '&' + '3months').then(function (data) {
+        var w = document.getElementById('candles-chart').offsetWidth
+
+        var candleWidth = w / data.body.length
+
+        self.chart.candles.width = candleWidth
+        self.chart.candles.data = data.body
+      }, function (err) {
+        console.log(err)
+      })
     }
   },
   mounted () {
@@ -210,6 +234,9 @@ export default {
       }
     })
     /* end select */
+    /* chart */
+    this.chartLoad()
+    /* end chart */
   }
 }
 </script>
@@ -641,6 +668,26 @@ export default {
 
   #chart .chartPeriodicityChange ul li span, #chart .chartIntervalChange ul li span {
     margin-right: 0;
+  }
+
+  #candles-chart {
+    height: 282px;
+    width: calc(100vw - 374px);
+    background: red;
+    margin-top: 32px;
+    font-size: 0;
+  }
+
+  #candles-chart .column {
+    display: inline-block;
+    height: 282px;
+    width: 20px;
+    background: blue;
+    transition: all 0;
+  }
+
+  #candles-chart .column:hover {
+    background: purple;
   }
 /* END CHART */
 

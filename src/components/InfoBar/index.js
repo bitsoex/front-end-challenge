@@ -31,7 +31,7 @@ export default () => (
   <ThemeConsumer>
     {({ theme }) => (
       <BookConsumer>
-        {({ books, book, changeBook }) => {
+        {({ availableBooks: books, book, changeBook }) => {
           const {
             minimum_price,
             maximum_price,

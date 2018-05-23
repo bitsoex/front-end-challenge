@@ -9,47 +9,26 @@ import {
   FlexibleXYPlot
 } from "react-vis";
 import { format } from "d3-format";
-
+import { css } from "emotion";
+import dayjs from "dayjs";
+import { colors } from "../../themes";
 import Candlestick from "./Candlestick";
 
-import "./candlestick.scss";
-
-/**
- * Generate random random for candle stick chart
- * @param {number} total - Total number of values.
- * @returns {Array} Array of data.
- */
-function buildRandomBinnedData(total) {
-  const result = Array(total)
-    .fill(0)
-    .map((x, i) => {
-      const values = [
-        Math.random(),
-        Math.random(),
-        Math.random(),
-        Math.random()
-      ]
-        .sort()
-        .map(d => Math.floor(d * 100));
-      const y = (values[2] + values[1]) / 2;
-      return {
-        x: i,
-        y,
-        yHigh: values[3],
-        yOpen: values[2],
-        yClose: values[1],
-        yLow: values[0],
-        color: y < 25 ? "#EF5D28" : "#12939A",
-        opacity: y > 75 ? 0.7 : 1
-      };
-    });
-  return result;
-}
+const styles = {
+  candlestick: css`
+    width: 100%;
+  `,
+  chart: css`
+    width: 100%;
+  `,
+  xyPlot: css`
+    .rv-xy-plot__inner {
+      width: 106%;
+      padding-top: 15px;
+    }
+  `
+};
 export default class CandlestickExample extends Component {
-  state = {
-    data: buildRandomBinnedData(30)
-  };
-
   static propTypes = {
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -65,34 +44,52 @@ export default class CandlestickExample extends Component {
     ).isRequired
   };
 
-  formatYAxis = v => format("~s")(v);
+  tickFormatY = v => format("~s")(v);
+
+  tickValuesX = () => {
+    const { data } = this.props;
+    const flatten = list =>
+      list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+    const result = data.map(d => {
+      const date = d.date;
+      const datePlus12Hours = dayjs(date).add(12, "hours");
+      return [date.valueOf(), datePlus12Hours.valueOf()];
+    });
+    console.log(flatten(result));
+    return flatten(result);
+  };
 
   render() {
-    const { data: otherData } = this.state;
     const { data } = this.props;
     console.log("props data", data);
-    // console.log("state data", otherData);
     return (
-      <div className="candlestick">
-        <div className="chart">
-          <FlexibleXYPlot animation height={500} yDomain={[150000, 190000]}>
-            <VerticalGridLines />
-            <HorizontalGridLines />
-
-            <XAxis orientation="top" />
-            <YAxis orientation="right" tickFormat={this.formatYAxis} />
-            {/* <LineSeries color="#12939A" data={data} /> */}
-            {/* <LineSeries
-              color="#FF9833"
-              className="dashed-example-line"
-              data={[{ x: 0, y: 25 }, { x: 30, y: 25 }]}
+      <div className={styles.candlestick}>
+        <div className={styles.chart}>
+          <FlexibleXYPlot
+            className={styles.xyPlot}
+            animation
+            height={500}
+            yDomain={[150000, 190000]}
+            xType="time"
+          >
+            <VerticalGridLines
+              style={{
+                stroke: colors.navy.header,
+                strokeDasharray: "2, 2"
+              }}
             />
-            <LineSeries
-              color="#1A3177"
-              className="dashed-example-line"
-              opacity={0.3}
-              data={[{ x: 0, y: 75 }, { x: 30, y: 75 }]}
-            /> */}
+            <HorizontalGridLines
+              style={{
+                stroke: colors.navy.header,
+                strokeDasharray: "2, 2"
+              }}
+            />
+
+            <XAxis orientation="top" tickValues={this.tickValuesX()} hideLine />
+            <YAxis orientation="right" tickFormat={this.tickFormatY} hideLine />
+
+            {/* <LineSeries color="#12939A" data={data} /> */}
+
             <Candlestick
               colorType="literal"
               opacityType="literal"

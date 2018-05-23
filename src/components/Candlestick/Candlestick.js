@@ -1,6 +1,5 @@
 import React from "react";
 import { AbstractSeries } from "react-vis";
-import "./candlestick.scss";
 
 const predefinedClassName =
   "rv-xy-plot__series rv-xy-plot__series--candlestick";
@@ -18,9 +17,9 @@ class CandlestickSeries extends AbstractSeries {
     const fillFunctor = this._getAttributeFunctor("color");
     const opacityFunctor = this._getAttributeFunctor("opacity");
 
-    // const distance = Math.abs(xFunctor(data[1]) - xFunctor(data[0])) * 0.2;
-    const distance = 8;
-
+    const distance = Math.abs(xFunctor(data[1]) - xFunctor(data[0])) * 0.2;
+    // const distance = 4;
+    const xWidth = distance * 2;
     return (
       <g
         className={`${predefinedClassName} ${className}`}
@@ -34,7 +33,6 @@ class CandlestickSeries extends AbstractSeries {
           const yClose = yFunctor({ ...d, y: d.yClose });
           const yLow = yFunctor({ ...d, y: d.yLow });
 
-          const xWidth = distance;
           return (
             <g
               key={i}
@@ -44,27 +42,16 @@ class CandlestickSeries extends AbstractSeries {
               onMouseOver={e => this._valueMouseOverHandler(d, e)}
               onMouseOut={e => this._valueMouseOutHandler(d, e)}
             >
-              {/* <line
-                x1={-xWidth}
-                x2={xWidth}
-                y1={yHigh}
-                y2={yHigh}
-                {...lineAttrs}
-              /> */}
+              {/* Each line inside each candlestick */}
               <line x1={0} x2={0} y1={yHigh} y2={yLow} stroke={d.stroke} />
-              {/* <line
-                x1={-xWidth}
-                x2={xWidth}
-                y1={yLow}
-                y2={yLow}
-                {...lineAttrs}
-              /> */}
+
+              {/* Each one of the candlesticks */}
               <rect
                 x={-xWidth}
-                width={Math.max(xWidth * 2, 0)}
                 y={yOpen}
+                width={Math.max(xWidth * 2, 0)}
                 height={Math.abs(yOpen - yClose)}
-                fill={fillFunctor && fillFunctor(d)}
+                fill={fillFunctor(d)}
                 stroke={d.stroke}
               />
             </g>

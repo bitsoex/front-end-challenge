@@ -10,7 +10,7 @@ export const BookConsumer = BookContext.Consumer;
 export class BookProvider extends Component {
   state = { book: null };
 
-  books = [];
+  availableBooks = [];
 
   async componentDidMount() {
     const books = await availableBooks();
@@ -22,12 +22,11 @@ export class BookProvider extends Component {
 
   getContext = memoize(book => ({
     book,
-    books: this.books,
-    changeBook: this.changeBook
+    changeBook: this.changeBook,
+    availableBooks: this.availableBooks
   }));
 
   render() {
-    console.log("render book provider");
     const { book } = this.state;
 
     if (!book) return null;

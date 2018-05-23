@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import { timeParse } from "d3-time-format";
+// import { timeParse } from "d3-time-format";
+import dayjs from "dayjs";
 
 import { trade } from "./api";
 import { colors } from "./themes";
@@ -8,6 +9,7 @@ import { BookProvider, BookConsumer } from "./context/Book";
 import { ThemeProvider, ThemeConsumer } from "./context/Theme";
 import Header from "./components/Header";
 import InfoBar from "./components/InfoBar";
+import Fetch from "./components/Fetch";
 import Candles from "./components/Candlestick";
 import LastTrades from "./components/LastTrades";
 
@@ -51,15 +53,17 @@ class App extends Component {
 
   async componentDidMount() {
     // await ticker("btc_mxn");
-    const data = await this.getData();
-    this.setState({ data });
+    // const data = await this.getData();
+    // this.setState({ data });
   }
 
   dataMapperFormat = (d, i) => {
-    const parseDate = timeParse("%Y-%m-%d");
+    // const parseDate = timeParse("%Y-%m-%d");
+    const date = dayjs(d.date);
     return {
-      date: parseDate(d.date),
-      x: i,
+      // date: parseDate(d.date),
+      date,
+      x: date.valueOf(),
       yHigh: +d.high,
       yOpen: +d.open,
       yClose: +d.close,
@@ -68,13 +72,13 @@ class App extends Component {
   };
 
   dataMapperValues = d => {
-    const y = d => (d.yOpen + d.yClose) / 2;
+    const y = d => (d.yOpen - d.yClose) * 2;
     return {
       ...d,
       y: y(d),
+      opacity: 0.7,
       stroke: d.yOpen > d.yClose ? colors.green.medium : colors.red.medium,
-      color: d.yOpen > d.yClose ? colors.green.dark : colors.red.dark,
-      opacity: y(d) > 75 ? 0.7 : 1
+      color: d.yOpen > d.yClose ? colors.green.dark : colors.red.dark
     };
   };
 
@@ -96,7 +100,15 @@ class App extends Component {
                     <Header />
                     <InfoBar />
                     <section className="main">
-                      <Candles data={data} />
+                      <Fetch promise={async () => trade({ book: book.book })}>
+                        {({ data }) => (
+                          <Candles
+                            data={data
+                              .map(this.dataMapperFormat)
+                              .map(this.dataMapperValues)}
+                          />
+                        )}
+                      </Fetch>
                     </section>
                     <aside className="aside aside-left">
                       <LastTrades book={book.book} />}

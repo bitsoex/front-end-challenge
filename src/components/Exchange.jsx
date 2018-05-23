@@ -61,11 +61,19 @@ class Exchange extends React.Component {
                     <div style={{ width: '100%' , height: '2px',  backgroundColor: '#1f252c' }}></div>
 
                     <div id="bodyExchange" style={{ backgroundColor: theme.bodyExchangeColor, position: 'relative'}}>
-                        <div>
+                        <div >
                             <Traders theme={theme} books={this.state.books} />
-                            <div style={{ display: 'inline-block' }}>
-                                <GraphicExchange />
-                                <OrderBooks />
+                            <div style={{
+                                position: 'relative',
+                                display: 'inline-block',
+                                left: '271px',
+                                top: '0px',
+                                width: '80em',
+                                paddingLeft: '1px',
+                                
+                            }}>
+                                <GraphicExchange theme={theme} />
+                                <OrderBooks theme={theme}  />
                             </div>
                         </div>
                         <Markets theme={theme} books={this.state.books} />

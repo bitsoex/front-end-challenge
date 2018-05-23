@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {ThemeContext, themes} from './ThemeContext'
-
+import {isMobile} from 'react-device-detect';
 
 
 
@@ -19,7 +19,9 @@ class DashboardBITSO extends React.Component {
     }
 
     updateDimensions () {
-        this.setState({width: window.innerWidth});
+        //this.setState({width: window.innerWidth});
+        this.setState({width: window.screen.width});
+        console.info ('width:' + this.state.width + isMobile);
     }
 
     componentWillMount() {
@@ -42,9 +44,8 @@ class DashboardBITSO extends React.Component {
     }
 
     render () {
-
-        const isMobile = this.state.width <= 700;
-
+        console.info ('width:' + this.state.width + isMobile);
+        const widthScreen = this.state.width;
         if (isMobile) {
             return (
                 <div style={{minHeight: '95vh', backgroundColor: this.state.theme.background }}>
@@ -64,7 +65,7 @@ class DashboardBITSO extends React.Component {
                     </div>
 
                     <ThemeContext.Provider value={this.state.theme}>
-                        <Exchange mobile={isMobile} />
+                        <Exchange mobile={isMobile} widthScreen={widthScreen} />
                     </ThemeContext.Provider>
                     
                 </div>
@@ -117,7 +118,7 @@ class DashboardBITSO extends React.Component {
                     </div>
 
                     <ThemeContext.Provider value={this.state.theme}>
-                        <Exchange mobile={isMobile} />
+                        <Exchange mobile={isMobile}  widthScreen={widthScreen} />
                     </ThemeContext.Provider>
                 </div>
             )

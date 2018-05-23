@@ -5,7 +5,7 @@ export const themes = {
         foreground: '#000000',
         background: '#eeeeee',
         themeImage: 'light.png',
-        greenDark: '#86af6b',
+        greenDark: '#98d372',
         greenLight: '#60af2c',
         grayDark: '#cccccc',
         grayLight: '#636a70',
@@ -20,6 +20,7 @@ export const themes = {
         redDark: '#cc4447',
         activeMarket: '#161a1e',
         headerTrader: '#27313c',
+        greenHover: '#6e8f66',
     },
 
     night: {
@@ -27,7 +28,7 @@ export const themes = {
         background: '#161a1e',
         themeImage: 'dark.png',
         greenDark: '#86af6b',
-        greenLight: '#60af2c',
+        greenLight: '#98d372',
         grayDark: '#636a70',
         grayLight: '#cccccc',
         gray: '#4e5863',
@@ -41,6 +42,9 @@ export const themes = {
         redDark: '#cc4447',
         activeMarket: '#161a1e',
         headerTrader: '#27313c',
+        headerBid: '#27313c',
+        headerAsk: '#1f252d',
+        greenHover: '#6e8f66',
     }
 }
 

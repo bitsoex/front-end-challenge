@@ -12,14 +12,17 @@
   "author": "CodeMix",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.5",
     "konva": "^2.1.3",
     "moment": "^2.22.1",
     "react": "^16.2.0",
+    "react-device-detect": "^1.3.4",
     "react-dom": "^16.2.0",
     "react-konva": "^1.7.3",
     "react-moment": "^0.7.0",
     "react-number-format": "^3.3.4",
-    "react-scripts": "^1.1.1"
+    "react-scripts": "^1.1.1",
+    "react-select": "^1.2.1"
   },
   "devDependencies": {
     "react-testing-library": "^3.0.2"

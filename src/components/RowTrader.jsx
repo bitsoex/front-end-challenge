@@ -21,10 +21,10 @@ class RowTrader extends React.Component {
 
     getPriceColor () {
         if (this.props.makerSide==='buy') {
-            if (this.state.hover) return this.props.theme.greenLight;
+            if (this.state.hover) return '#adff49';
             else return this.props.theme.greenDark;
         } else {
-            if (this.state.hover) return this.props.theme.redLight;
+            if (this.state.hover) return '#ff8179';
                 else return this.props.theme.redDark;
         }
     }
@@ -41,7 +41,7 @@ class RowTrader extends React.Component {
                     <Moment format="HH:mm:ss">{this.props.hour}</Moment>
                 </div>
                 <div style={{display:'inline-block', width: '8em', textAlign: 'right', 
-                        color: this.getPriceColor() , mixBlendMode: this.state.hover?'screen':'initial' }}>
+                        color: this.getPriceColor() , }}>
                     <NumberFormat value={this.props.price}
                                 displayType={'text'} thousandSeparator={true} decimalScale={ this.props.currency==='MXN'?2:8}  />
                 </div>

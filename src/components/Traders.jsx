@@ -62,6 +62,7 @@ class Traders extends React.Component {
         return (
             <div id="traders" style={{
                 position: 'absolute',
+                display: 'inline-block',
                 left: '0px',
                 width: '270px',
                 top: '0px',

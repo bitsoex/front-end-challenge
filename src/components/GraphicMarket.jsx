@@ -4,6 +4,8 @@ import NumberFormat from 'react-number-format';
 import { Stage, Layer, Line, Text } from 'react-konva';
 import Konva from 'konva';
 
+
+
 class GraphicMarket extends React.Component {
 
     constructor(props) {

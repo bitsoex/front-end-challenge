@@ -10,7 +10,7 @@ class Markets extends React.Component {
             bgColor : props.theme.headerMarkets,
             translate: 0,
             duration: 1,
-            display: 'inline-block',
+            display: 'none',
             currentBookMarket: 'btc_mxn',
         }
         this.panelMarket = React.createRef();
@@ -47,9 +47,9 @@ class Markets extends React.Component {
     render () {
         return (
             <div id="markets" ref={this.panelMarket} style={{
-                position: 'absolute',
+                position: 'fixed',
                 right: this.state.display==='none'? '0':'275' +'px',
-                top: '0px',
+                top: '100px',
                 border: '4px',
                 height: '80vh',
                 backgroundColor: this.props.theme.bodyMarkets,

@@ -21,6 +21,12 @@ export const themes = {
         activeMarket: '#161a1e',
         headerTrader: '#27313c',
         greenHover: '#6e8f66',
+        headerBid: '#27313c',
+        headerAsk: '#1f252d',
+        greenLine: '#44583f',
+        redLine: '#59252e',
+        greenFill: '#618e47',
+        redFill: '#892b36',
     },
 
     night: {
@@ -42,9 +48,13 @@ export const themes = {
         redDark: '#cc4447',
         activeMarket: '#161a1e',
         headerTrader: '#27313c',
+        greenHover: '#6e8f66',
         headerBid: '#27313c',
         headerAsk: '#1f252d',
-        greenHover: '#6e8f66',
+        greenLine: '#618e47',
+        redLine: '#892b36',
+        greenFill: '#44583f',
+        redFill: '#59252e',
     }
 }
 

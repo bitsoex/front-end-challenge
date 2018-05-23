@@ -116,13 +116,13 @@ class OrderBooks extends React.Component {
 
     render () {
         return (
-            <div>
-                <div style={{width: '50%', display: 'inline-block'}}>
+            <div style={{margin: 'auto', width: '100%', position: 'relative', textAlign: 'center' }}>
+                <div style={{width: 'auto', display: 'inline-block', margin: 'auto'}}>
                     <div title='headerBid' style={{paddingTop: '0.25em', paddingBottom: '0.25em', backgroundColor: this.props.theme.headerBid , 
-                            borderRight: '5px solid ' + this.props.theme.bodyExchangeColor , position: 'relative'}}>
+                            position: 'relative'}}>
 
-                        <span>
-                            <span style={{color: this.props.theme.blueLight, paddingLeft: '2em', }}>POSTURAS DE COMPRA</span>
+                        <span style={{ left: '0', }}>
+                            <span style={{color: this.props.theme.blueLight, paddingRight: '15em', }}>POSTURAS DE COMPRA</span>
                         </span>
 
                         <span style={{color: this.props.theme.blueLight, display: 'inline-block', right: '0', position: 'absolute'}}>
@@ -136,17 +136,17 @@ class OrderBooks extends React.Component {
                     </div>
 
                     <div title='headersBid' style={{paddingTop: '0.25em', paddingBottom: '0.25em', color: this.props.theme.grayLight}}>
-                        <span style={{ width: '5em', display: 'inline-block'}}></span>
-                        <span style={{ width: '5em', display: 'inline-block', textAlign: 'right'}}>SUM</span>
-                        <span style={{ width: '9em', display: 'inline-block', textAlign: 'right'}}>
+                        <span style={{ width: '3em', display: 'inline-block'}}></span>
+                        <span style={{ width: '3em', display: 'inline-block', textAlign: 'right'}}>SUM</span>
+                        <span style={{ width: '8em', display: 'inline-block', textAlign: 'right'}}>
                             <span style={{color: this.props.theme.grayDark}}> {this.state.coin} </span>
                             MONTO
                         </span>
-                        <span style={{ width: '9em', display: 'inline-block', textAlign: 'right'}}>
+                        <span style={{ width: '8em', display: 'inline-block', textAlign: 'right'}}>
                             <span style={{color: this.props.theme.grayDark}}> {this.state.currency} </span> 
                             VALOR
                         </span>
-                        <span style={{ width: '9em', display: 'inline-block', textAlign: 'right'}}>
+                        <span style={{ width: '8em', display: 'inline-block', textAlign: 'right'}}>
                             <span style={{color: this.props.theme.grayDark}}> {this.state.currency} </span> 
                             PRECIO
                         </span>
@@ -154,10 +154,11 @@ class OrderBooks extends React.Component {
 
                     { this.rowsBids() }
                 </div>
-                <div style={{width: '50%', display: 'inline-block'}}>
+                <div style={{width: '0.5em', display: 'inline-block'}}></div>
+                <div style={{width: 'auto', display: 'inline-block'}}>
                      <div title='headerAsk' style={{paddingTop: '0.25em', paddingBottom: '0.25em', backgroundColor: this.props.theme.headerAsk , position: 'relative' }} >
 
-                        <span style={{color: this.props.theme.blueLight, display: 'inline-block'}} >
+                        <span style={{color: this.props.theme.blueLight, display: 'inline-block', paddingRight: '20em',}} >
                             <span style={{paddingLeft: '1.5em', paddingRight: '1em'}}>
                                 <NumberFormat value={this.state.ask}
                                     displayType={'text'} thousandSeparator={true} decimalScale={ this.state.currency==='MXN'?2:8}  />
@@ -167,28 +168,28 @@ class OrderBooks extends React.Component {
                         </span>
 
                         <span style={{color: this.props.theme.blueLight, display: 'inline-block', right: '0', position: 'absolute', paddingRight: '2em',}}>
-                            POSTURAS DE COMPRA
+                            POSTURAS DE VENTA
                         </span>
                     </div>
 
                     <div title='headersAsk' style={{paddingTop: '0.25em', paddingBottom: '0.25em', color: this.props.theme.grayLight, paddingLeft: '1.5em'}}>
-                        <span style={{ width: '9em', display: 'inline-block', textAlign: 'left'}}>
+                        <span style={{ width: '8em', display: 'inline-block', textAlign: 'left'}}>
                             <span style={{color: this.props.theme.grayDark}}> {this.state.currency} </span> 
                             PRECIO
                         </span>
 
-                        <span style={{ width: '9em', display: 'inline-block', textAlign: 'left'}}>
+                        <span style={{ width: '8em', display: 'inline-block', textAlign: 'left'}}>
                             <span style={{color: this.props.theme.grayDark}}> {this.state.currency} </span> 
                             VALOR
                         </span>
 
-                        <span style={{ width: '9em', display: 'inline-block', textAlign: 'left'}}>
+                        <span style={{ width: '8em', display: 'inline-block', textAlign: 'left'}}>
                             <span style={{color: this.props.theme.grayDark}}> {this.state.coin} </span>
                             MONTO
                         </span>
 
-                        <span style={{ width: '5em', display: 'inline-block', textAlign: 'left'}}>SUM</span>
-                        <span style={{ width: '5em', display: 'inline-block'}}></span>
+                        <span style={{ width: '3em', display: 'inline-block', textAlign: 'left'}}>SUM</span>
+                        <span style={{ width: '3em', display: 'inline-block'}}></span>
                     </div>
 
                     { this.rowsAsks() }

@@ -20,8 +20,18 @@ class DashboardBITSO extends React.Component {
 
     updateDimensions () {
         //this.setState({width: window.innerWidth});
-        this.setState({width: window.screen.width});
-        console.info ('width:' + this.state.width + isMobile);
+        this.setState({width: Math.min(document.body.scrollWidth,
+                document.documentElement.scrollWidth,
+                document.body.offsetWidth,
+                document.documentElement.offsetWidth, 
+                document.documentElement.clientWidth)});
+        // console.info ('width:' + this.state.width + isMobile);
+        // console.info (document.body.scrollWidth);
+        // console.info (document.documentElement.scrollWidth);
+        // console.info (document.body.offsetWidth);
+        // console.info (document.documentElement.offsetWidth);
+        // console.info (document.documentElement.clientWidth);
+  
     }
 
     componentWillMount() {
@@ -44,9 +54,11 @@ class DashboardBITSO extends React.Component {
     }
 
     render () {
-        console.info ('width:' + this.state.width + isMobile);
+        //console.info ('width:' + this.state.width + isMobile);
         const widthScreen = this.state.width;
-        if (isMobile) {
+        const viewMobile = isMobile || this.state.width < 825;
+
+        if (viewMobile) {
             return (
                 <div style={{minHeight: '95vh', backgroundColor: this.state.theme.background }}>
                     <div className="headerBitso" style={{ position: 'relative'}}>
@@ -65,7 +77,7 @@ class DashboardBITSO extends React.Component {
                     </div>
 
                     <ThemeContext.Provider value={this.state.theme}>
-                        <Exchange mobile={isMobile} widthScreen={widthScreen} />
+                        <Exchange mobile={viewMobile} widthScreen={widthScreen} />
                     </ThemeContext.Provider>
                     
                 </div>
@@ -118,7 +130,7 @@ class DashboardBITSO extends React.Component {
                     </div>
 
                     <ThemeContext.Provider value={this.state.theme}>
-                        <Exchange mobile={isMobile}  widthScreen={widthScreen} />
+                        <Exchange mobile={viewMobile}  widthScreen={widthScreen} />
                     </ThemeContext.Provider>
                 </div>
             )

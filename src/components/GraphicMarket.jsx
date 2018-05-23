@@ -1,10 +1,7 @@
 import React from 'react'
 import NumberFormat from 'react-number-format';
 
-import { Stage, Layer, Line, Text } from 'react-konva';
-import Konva from 'konva';
-
-
+import {Stage, Layer, Line} from 'react-konva';
 
 class GraphicMarket extends React.Component {
 
@@ -41,26 +38,25 @@ class GraphicMarket extends React.Component {
         let max = 0;
         let min = 5000000;
         let pasoX = 270 / (this.state.period-1);
-        const colorBook = (this.state.data[ this.state.data.length - 1].value - this.state.data[ this.state.data.length - 2].value) >= 0 ? this.props.theme.greenLight:this.props.theme.redLight
+        const colorBook = (this.state.data[ this.state.data.length - 1].close - this.state.data[ this.state.data.length - 2].close) >= 0 ? this.props.theme.greenLight:this.props.theme.redLight
         for (let i = 0; i < this.state.data.length-1; i++) {
-            max = Math.max (this.state.data[i].value, max);
-            min = Math.min (this.state.data[i].value, min);
+            max = Math.max (this.state.data[i].close, max);
+            min = Math.min (this.state.data[i].close, min);
         }
         let scale = max - min; 
         for (let i = 0; i < this.state.data.length-1; i++) {
-            let y0 = mmY * ((this.state.data[i].value - min) / scale) + minY;
-            let y1 = mmY * ((this.state.data[i+1].value - min) / scale) + minY;
+            let y0 = mmY * ((this.state.data[i].close - min) / scale) + minY;
+            let y1 = mmY * ((this.state.data[i+1].close - min) / scale) + minY;
             lines.push( <Line points={[ i * pasoX + pasoX/2 , y0, (i+1)*pasoX + pasoX/2, y1]} fill={colorBook} stroke={colorBook} key={i} onMouseEnter={ (e) => this.clicPoint(e)} /> );
         }
         return lines;
     }
 
     clicPoint (e) {
-        console.info (e);
+        
     }
 
     render () {
-        const book = this.props.book;
         const bookHeader = this.props.book.toUpperCase().replace(/_/g,'/');
         const currency = bookHeader.substr(bookHeader.length-3);
         if (this.state.data.length > 0) {

@@ -33,25 +33,26 @@ export default class RowOrderBook extends React.Component {
                 <div style={{paddingTop: '0.125em', paddingBottom: '0.125em', fontWeight: 'lighter', backgroundColor: this.getOrderColor() }}
                     onMouseOver={()=>this.onOver()} onMouseOut={()=>this.onOut()} >
 
-                    <span style={{ width: '5em', display: 'inline-block'}} >
+                    <span style={{ width: '3em', display: 'inline-block', textAlign: 'left', }} >
                         <span style={{width: (this.props.data.length * 100)+'%', minWidth: '5%', 
                             backgroundColor: this.props.theme.greenLight, display: 'inline-block', height: '0.75em'}}></span> 
                     </span>
-                    <span style={{ width: '5em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'white':this.props.theme.blueLight}}>
+
+                    <span style={{ width: '3em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'white':this.props.theme.blueLight}}>
                         <NumberFormat value={this.props.data.sum}
                                     displayType={'text'} decimalScale={4}  />
                     </span>
-                    <span style={{ width: '9em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'white':this.props.theme.blueLight}}>
+                    <span style={{ width: '8em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'white':this.props.theme.blueLight}}>
                         <NumberFormat value={this.props.data.amount}
                                 displayType={'text'} decimalScale={8}  />
                     </span>
 
-                    <span style={{ width: '9em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'white':this.props.theme.blueLight}}>
+                    <span style={{ width: '8em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'white':this.props.theme.blueLight}}>
                         <NumberFormat value={this.props.data.value}
                                     displayType={'text'} thousandSeparator={true} decimalScale={ this.props.currency==='MXN'?2:8}  />
                     </span>
 
-                    <span style={{ width: '9em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'#adff49':this.props.theme.greenLight}}>
+                    <span style={{ width: '8em', display: 'inline-block', textAlign: 'right', color: this.state.hover?'#adff49':this.props.theme.greenLight}}>
                         <NumberFormat value={this.props.data.price}
                                     displayType={'text'} thousandSeparator={true} decimalScale={ this.props.currency==='MXN'?2:8}  />
                     </span>
@@ -63,28 +64,28 @@ export default class RowOrderBook extends React.Component {
                 <div style={{paddingTop: '0.125em', paddingBottom: '0.125em', fontWeight: 'lighter', backgroundColor: this.getOrderColor(), textAlign: 'left', paddingLeft: '1.5em'}}
                     onMouseOver={()=>this.onOver()} onMouseOut={()=>this.onOut()} >
 
-                    <span style={{ width: '9em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'#cc4458':this.props.theme.redLight}}>
+                    <span style={{ width: '8em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'#cc4458':this.props.theme.redLight}}>
                         <NumberFormat value={this.props.data.price}
                                     displayType={'text'} thousandSeparator={true} decimalScale={ this.props.currency==='MXN'?2:8}  />
                     </span>
 
-                    <span style={{ width: '9em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'white':this.props.theme.blueLight}}>
+                    <span style={{ width: '8em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'white':this.props.theme.blueLight}}>
                         <NumberFormat value={this.props.data.value}
                                     displayType={'text'} thousandSeparator={true} decimalScale={ this.props.currency==='MXN'?2:8}  />
                     </span>
 
-                    <span style={{ width: '9em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'white':this.props.theme.blueLight}}>
+                    <span style={{ width: '8em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'white':this.props.theme.blueLight}}>
                         <NumberFormat value={this.props.data.amount}
                                 displayType={'text'} decimalScale={8}  />
                     </span>
 
-                    <span style={{ width: '5em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'white':this.props.theme.blueLight}}>
+                    <span style={{ width: '3em', display: 'inline-block', textAlign: 'left', color: this.state.hover?'white':this.props.theme.blueLight}}>
                         <NumberFormat value={this.props.data.sum}
                                     displayType={'text'} decimalScale={4}  />
                     </span>
 
-                    <span style={{ width: '5em', display: 'inline-block', textAlign: 'right'}} >
-                        <span style={{width: (this.props.data.length * 100)+'%', minWidth: '5%', 
+                    <span style={{ width: '3em', display: 'inline-block', textAlign: 'right'}} >
+                        <span style={{width: (this.props.data.length * 90)+'%', minWidth: '5%', 
                             backgroundColor: this.props.theme.redLight, display: 'inline-block', height: '0.75em'}}></span> 
                     </span>
                     

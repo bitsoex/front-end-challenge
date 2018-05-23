@@ -71,7 +71,7 @@ class Traders extends React.Component {
             }}>
                 <div style={{backgroundColor: this.props.theme.headerTrader}}>
                     <h1 style={{ paddingLeft: '1.5em', color: this.props.theme.blueLight , marginTop: '0px', marginBottom: '0px'}} >
-                        ÚLTIMOS TRADERS 
+                        &Uacute;TIMOS TRADERS 
                     </h1>
                 </div>
 

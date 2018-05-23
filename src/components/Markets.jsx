@@ -45,11 +45,12 @@ class Markets extends React.Component {
     }
 
     render () {
+        const displaySize = this.state.display==='none'? '0px':'275px';
         return (
             <div id="markets" ref={this.panelMarket} style={{
                 position: 'fixed',
-                right: this.state.display==='none'? '0':'275' +'px',
-                top: '100px',
+                right: displaySize,
+                top: '150px',
                 border: '4px',
                 height: '80vh',
                 backgroundColor: this.props.theme.bodyMarkets,

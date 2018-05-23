@@ -53,7 +53,22 @@ const TheHeader = (props) => (
         text='BTC/MXN'
       />
       <div className='list'>
-        <div className='stat'>Volumen 24hrs</div>
+        <div className='stat'>
+          <span className='label'>Volumen 24hrs</span>
+          <span className='value'>170.5405818 BTC</span>
+        </div>
+        <div className='stat'>
+          <span className='label'>Max</span>
+          <span className='value'>304,934.23 MXN</span>
+        </div>
+        <div className='stat'>
+          <span className='label'>Min</span>
+          <span className='value'>274,934.23 MXN</span>
+        </div>
+        <div className='stat'>
+          <span className='label'>Valoración</span>
+          <span className='value'>+4,061.68 MXN (1.4%)</span>
+        </div>
       </div>
     </div>
   </div>

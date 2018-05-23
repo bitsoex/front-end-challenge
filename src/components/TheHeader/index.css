@@ -75,7 +75,20 @@
   overflow-x: scroll;
   color: var(--header-color);
   display: flex;
-  padding: 11px 16px;
+}
+
+#app > .page > .header-container > .stats > .list > .stat {
+  opacity: .5;
+  font-size: .93rem;
+  white-space: nowrap;
+}
+
+#app > .page > .header-container > .stats > .list > .stat > .label {
+  padding-right: .3rem;
+}
+
+#app > .page > .header-container > .stats > .list > .stat > .value {
+  color: white;
 }
 
 @media screen and (max-width: 768px) {
@@ -131,6 +144,10 @@
     color: var(--sidebar-light-text);
   }
 
+  #app > .page > .header-container > .stats > .list > .stat {
+    padding: 11px 16px 11px 0;
+  }
+  
   li.user {
     padding: 10px 20px;
   }

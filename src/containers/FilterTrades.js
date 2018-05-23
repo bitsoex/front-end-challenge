@@ -2,21 +2,21 @@ import { connect } from 'react-redux'
 import TradesTable from '../components/TradesTable'
 import PosturaCompraTable from '../components/PosturaCompraTable'
 import PosturaVentaTable from '../components/PosturaVentaTable'
-import ChartToRender from '../components/graph/LineChart'
+import ChartBidsAsks from '../components/ChartBidsAsks'
 
 const LOAD_TRADES = 'LOAD_TRADES';
 
 const ping = () => {
-	console.log("connect.method.ping FilterTrades");
+	//console.log("connect.method.ping FilterTrades");
 	return ({ type: LOAD_TRADES, trades: [] })
 };
 
 const mapStateToProps = state => {
-	console.log("state.FilterTrades", state);
+	//console.log("state.FilterTrades", state);
 	return state.tradesReducer;
 }
 const mapStateToProps2 = state => {
-	console.log("state.FilterTrades", state);
+	//console.log("state.FilterTrades", state);
 	return state.websocketReducer;
 }
 
@@ -48,4 +48,4 @@ export const FilterAsks = connect(
 export const FilterLineChart = connect(
 	mapStateToProps3,
 	{ping}
-)(ChartToRender);
+)(ChartBidsAsks);

@@ -29,7 +29,7 @@ class PosturaVentaTable extends Component {
 			type: "bar",
 			dataIndex: "percent"
 		}];
-		console.log("Render PosturaVentaTable", this.props);
+		//console.log("Render PosturaVentaTable", this.props);
 		return (
 			<TableComponent title="POSTURAS DE VENTA" fields={tableConfigFields} data={this.props.asks} keyDataIndex="o" idTable="asks" />			
 		);

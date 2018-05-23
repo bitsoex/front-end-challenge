@@ -8,7 +8,7 @@ const NDECIMALS = 8;
 
 function TradesList(props) {
 	const trades = props.trades;
-	console.log("render numbers", props);
+	//console.log("render numbers", props);
 	const listItems = trades.map((rowData, index) =>{
 		const time = new Date(rowData.created_at).toLocaleTimeString();
 		const price = rowData.price;
@@ -35,7 +35,7 @@ function TradesList(props) {
 class TradesTable extends Component {
 
 	render() {
-		console.log("Render TradesTable", this.props);
+		//console.log("Render TradesTable", this.props);
 		return (
 			<table className="trades">
 				<thead>
@@ -50,7 +50,7 @@ class TradesTable extends Component {
 							<span className="label">MXN</span>
 							<span>PRECIO</span>
 						</td>
-						<td class="amount"><span className="label">BTC</span>
+						<td className="amount"><span className="label">BTC</span>
 							<span>MONTO</span></td>
 					  </tr>
 				</thead>

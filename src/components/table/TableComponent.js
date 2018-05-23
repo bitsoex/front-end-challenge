@@ -8,7 +8,7 @@ function BodyTable(props) {
 		const fields = props.fields;
 		const keyDataIndex = props.keyDataIndex;
 		const idTable = props.idTable;
-		console.log("render BodyTable=" + idTable);
+		//console.log("render BodyTable=" + idTable);
 		const listItems = data.map((rowData, index) =>{
 			
 			const key = rowData[keyDataIndex] + "_" + idTable;

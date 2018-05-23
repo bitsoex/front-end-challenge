@@ -19,7 +19,7 @@ const bufferDataAsks = {};
 export const websocketEpic = action$ =>
   action$.ofType(CHANGE_BOOK)
 	.map(action=>{
-		console.log("Epic websocket, connecting websocket", action$, action); 
+		//console.log("Epic websocket, connecting websocket", action$, action); 
 		return action;
 	})
 	.map(action => {
@@ -27,7 +27,7 @@ export const websocketEpic = action$ =>
 		socket.next(JSON.stringify({ action: 'subscribe', book: book, type: 'trades' }));
 		socket.next(JSON.stringify({ action: 'subscribe', book: book, type: 'orders' }));
 		if(lastBook){
-			console.log("desubscribe book", lastBook);
+			//console.log("desubscribe book", lastBook);
 			socket.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'trades' }));
 			socket.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'orders' }));
 		}
@@ -37,7 +37,7 @@ export const websocketEpic = action$ =>
 	.filter(wsResponse=>wsResponse.payload)
 	.map(wsResponseData=>{
 		 if (wsResponseData.type == 'orders') {
-			console.log("bids:", wsResponseData.payload);
+			//console.log("bids:", wsResponseData.payload);
 			var sumBids = 0, sumAsks = 0;
 			const bidsData = wsResponseData.payload.bids.slice(0);
 			const asksData = wsResponseData.payload.asks.slice(0);
@@ -73,12 +73,12 @@ export const websocketEpic = action$ =>
 	})
 	//.map(wsResponse=>[wsResponse.payload[0].r, wsResponse.payload[0].a, 'btc_mxn'])
 	.map(wsResponse=>{
-		console.log("response websocketEpic", wsResponse);
+		//console.log("response websocketEpic", wsResponse);
 		return wsResponse;
 	});
 
 export const websocketReducer = (state = { message:"", monto: "", bids:[], asks:[] }, action) => {
-	console.log("booksReducer", state, action);
+	//console.log("booksReducer", state, action);
 	switch (action.type) {
 		case LOADED_TRADES:
 			return { 
@@ -100,7 +100,7 @@ export const websocketReducer = (state = { message:"", monto: "", bids:[], asks:
 			}
 		}
 		default:
-			//console.log("bookReducer default state", state);
+			////console.log("bookReducer default state", state);
 			return state;
 	}
 };

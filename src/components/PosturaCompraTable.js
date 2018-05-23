@@ -29,7 +29,7 @@ class PosturaCompraTable extends Component {
 			classColumn: "green",
 			dataIndex: 'r'
 		}];
-		console.log("Render PosturaCompraTable", this.props);
+		//console.log("Render PosturaCompraTable", this.props);
 		return (
 			<TableComponent title="POSTURAS DE COMPRA" fields={tableConfigFields} data={this.props.bids} keyDataIndex="o" idTable="bids"/>			
 		);

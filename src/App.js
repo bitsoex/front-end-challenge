@@ -1,30 +1,26 @@
 import React, { Component } from 'react'
-import logo from './assets/images/1x/bitso_logo.png'
-
-import { createEpicMiddleware, ReduxObservable, combineEpics } from 'redux-observable'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { Provider, connect } from 'react-redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createEpicMiddleware, ReduxObservable, combineEpics } from 'redux-observable'
+
+import bitsoLogo from './assets/images/1x/bitso_logo.png'
+
 import {tradesEpic, tradesReducer} from './reducers/trades'
 import {tickersEpic, tickersReducer} from './reducers/tickers'
 import {booksEpic, booksReducer} from './reducers/books'
 import {websocketEpic, websocketReducer} from './reducers/websocket'
 
-import FilterPing from './containers/FilterPing'
 import {FilterTrades, FilterBids, FilterAsks, FilterLineChart } from './containers/FilterTrades'
 import {FilterTickers } from './containers/FilterTrades'
-
 import FilterBooks from './containers/FilterBooks'
 import FilterLabelBook from './containers/FilterLabelBook'
 
-import mainLogo from './assets/images/1x/bitso_logo.png';
-
-import BarChart from './components/BarChart';
 import FloatingMenu from './components/FloatingMenu';
 
-const myLogger = (store) => (next) => (action) =>{
+/*const myLogger = (store) => (next) => (action) =>{
 	console.log("Logged action: ", action);
 	next(action);
-}
+}*/
 
 const tradesMiddleware = createEpicMiddleware(tradesEpic);
 const booksMiddleware = createEpicMiddleware(booksEpic);
@@ -39,7 +35,7 @@ const storeTrades = createStore(
 	}),
 	{},
 	applyMiddleware(
-		myLogger,
+		//myLogger,
 		tradesMiddleware,
 		booksMiddleware,
 		wsMiddleware,
@@ -47,29 +43,13 @@ const storeTrades = createStore(
 	)
 );
 
-
-
-storeTrades.subscribe(_=>{
-	console.log("Store updated!", storeTrades.getState());
-});
+/*storeTrades.subscribe(_=>{
+	//console.log("Store updated!", storeTrades.getState());
+});*/
 
 storeTrades.dispatch({
 	type: 'LOAD_BOOKS'
 })
-
-function createFakeData(){
-    // This function creates data that doesn't look entirely random
-    const data = []
-
-    for (let x = 0; x <= 30; x++) {
-      const random = Math.random();
-      const temp = data.length > 0 ? data[data.length-1].y : 50;
-      const y = random >= .45 ? temp + Math.floor(random * 20) : temp - Math.floor(random * 20);
-      data.push({x,y})
-    }
-	console.log("Fake data", data);
-    return data;
-  }
 
 class App extends Component {
 		
@@ -90,7 +70,7 @@ class App extends Component {
 	}
 	
 	render(){
-			 const { isChecked, theme } = this.state;
+		const { isChecked, theme } = this.state;
 		/*return (
 			<div className = {`${theme}`}>
 				<header className="header">
@@ -220,13 +200,15 @@ class App extends Component {
 			</div>
 			</div>
 		);*/
+		const classTheme = isChecked ? "" : "test";
+		
 		return (
-			<div className="wireframe">
+			<div className={"wireframe " + classTheme}>
 				<div className="row header1">
 					<div className="inner">
 						<div className="container">
 							<ul>
-								<li className="vcenter"><img src="./bitso_logo.png" /></li>
+								<li className="vcenter"><img src={bitsoLogo} /></li>
 								<li className="vcenter"><span>|</span></li>
 								<li className="vcenter title"><span>EXCHANGE</span></li>
 								<li className="vcenter floatRight">

@@ -33,7 +33,7 @@ function BooksMenuItem(props){
 }
 
 const MenuBooks = ({ bookSelected, books, ticker, selectBook }) => {
-	console.log("Render.MenuBooks", this);
+	//console.log("Render.MenuBooks", this);
 	const formatBook = bookSelected.toUpperCase().split('_').join('/');
 	const media = (ticker.high-ticker.low)/2 + ticker.low;
 	const variation = (ticker.last * 100)/media;
@@ -41,7 +41,7 @@ const MenuBooks = ({ bookSelected, books, ticker, selectBook }) => {
 	const sign = ticker.last > media ? "+" : "";
 	const percent = ((ticker.last - media) * 100)/ticker.last;
 	const percentFix  = percent.toFixed(2);
-	console.log("variation", media);
+	//console.log("variation", media);
 	return (
 		<ul className="header2-menu">
 			<li className="vcenter title" >

@@ -6,7 +6,7 @@ import {
 } from './types';
 
 const ajaxBook = (book) =>{
-	console.log("makin observable ajax trades="+book);
+	//console.log("makin observable ajax trades="+book);
 	return Observable.ajax({
 		url: 'https://api.bitso.com/v3/trades/?limit=30&book='+book,
 		//url: 'https://api.bitso.com/v3/trades/?limit=30&book='+book,
@@ -17,7 +17,7 @@ const ajaxBook = (book) =>{
 }
 
 const ajaxTicker = (book) =>{
-	console.log("makin observable ajax ticker="+book);
+	//console.log("makin observable ajax ticker="+book);
 	return Observable.ajax({
 		url: 'https://api.bitso.com/v3/ticker/?book='+book,
 		//url: 'https://api-dev.bitso.com/v3/ticker/?book='+book,
@@ -30,7 +30,7 @@ const ajaxTicker = (book) =>{
 export const tradesEpic = action$ =>
   action$.ofType(CHANGE_BOOK)
 	.map(action=>{
-		console.log("Epic Trades, load Async trades", action); 
+		//console.log("Epic Trades, load Async trades", action); 
 		return action.book;
 	})
 	//.flatMap(bookSelected => ajaxTicker(bookSelected).catch(_=>{success:false}))
@@ -58,7 +58,7 @@ export const tradesEpic = action$ =>
 	})
 	//.zip(ajaxBook, ajaxTicker)
 	/*.map(ajaxResponse=>{
-		console.log("response tradesEpic", ajaxResponse, action$);
+		//console.log("response tradesEpic", ajaxResponse, action$);
 		if(ajaxResponse.response.success)
 			return ajaxResponse.response.payload;
 		return [];

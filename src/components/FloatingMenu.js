@@ -16,7 +16,7 @@ export default class FloatingMenu extends React.Component {
 	}
 	componentDidMount() {
 		this.myMenu = ReactDOM.findDOMNode( this );
-		console.log("myMenu", this.myMenu);
+		//console.log("myMenu", this.myMenu);
 	}
 	
 	contains(cls){
@@ -55,7 +55,7 @@ export default class FloatingMenu extends React.Component {
 				type: 'LOAD_ALL_TICKERS'
 			});
 		} 
-		console.log("Render.floatingMenu", this.props);
+		//console.log("Render.floatingMenu", this.props);
 		return (
 			<div className = {className + ' ' + this.state.className} onTransitionEnd={this.OnTransitionEnd.bind(this)} onClick={_=>{this.toggleClassMenu(); loadTickers();}} >
 				<div className="app-menu">

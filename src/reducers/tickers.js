@@ -7,7 +7,7 @@ import {
 } from './types';
 
 const ajaxTickers = (book) =>{
-	console.log("makin observable ajax ticker="+book);
+	//console.log("makin observable ajax ticker="+book);
 	return Observable.ajax({
 		url: 'https://api.bitso.com/v3/ticker/',
 		method: 'GET',
@@ -19,7 +19,7 @@ const ajaxTickers = (book) =>{
 export const tickersEpic = action$ =>
   action$.ofType(LOAD_ALL_TICKERS)
 	.map(action=>{
-		console.log("Epic Trades, load Async trades", action); 
+		//console.log("Epic Trades, load Async trades", action); 
 		return action.book;
 	})
 	.flatMap(bookSelected => 

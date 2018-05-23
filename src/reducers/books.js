@@ -7,7 +7,7 @@ import{
 export const booksEpic = action$ =>
   action$.ofType(LOAD_BOOKS)
 	.map(_=>{
-		console.log("Epic book, load Async books", _); 
+		//console.log("Epic book, load Async books", _); 
 		return _;
 	})
 	.flatMap(
@@ -21,7 +21,7 @@ export const booksEpic = action$ =>
 		.catch(_=>{success:false})
 	)
 	.map(ajaxResponse=>{
-		console.log("response booksEpic", ajaxResponse, action$);
+		//console.log("response booksEpic", ajaxResponse, action$);
 		if(ajaxResponse.response.success)
 			return ajaxResponse.response.payload;
 		return [];

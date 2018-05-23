@@ -1,19 +1,5 @@
-import React, {Component} from "react"
-import { Observable, BehaviorSubject  } from 'rxjs'
-import logoA from '../../assets/images/1x/icon_deep.png';
-import logoDown from '../../assets/images/1x/icon_dropdown.png';
-var ReactDOM = require('react-dom')
+import React from 'react'
 
-
-var subject = new BehaviorSubject(null);
-var observer =  Observable.timer(300)
-	.merge(
-		subject,
-		Observable.fromEvent(window, 'resize')
-	)
-	.debounceTime(100);
-	
-	
 class LineChartGraph extends React.Component {
 	// GET MAX & MIN X
 	getMinX() {
@@ -86,30 +72,35 @@ class LineChartGraph extends React.Component {
 		);
 	}
 	// BUILD GRID AXIS
-	makeAxis(posX, widthMax, heightMax) {
-		const {data} = this.props;
+	makeAxis(posX, widthMax, heightMax, id) {
+		const {data, nAxis, marginAxis} = this.props;
 		if(data.length == 0)
 			return(
 				<path className="linechart_path_empty" /> 
 			)
 		const minX = this.getMinX(), maxX = this.getMaxX();
 		const minY = this.getMinY(), maxY = this.getMaxY();
-		const step = widthMax/3;
-		const stepValue = (maxX - minX)/4;
+		const step = (widthMax - 2*marginAxis)/(nAxis-1);
+		const stepValue = (maxX - minX)/nAxis;
+		
 		
 		var rows = [];
 		let value = minX ;
-		for (var i = 0; i < 4; i++) {
-			let valueInt = parseInt(value);
+		let axisX = marginAxis;
+		for (var i = 0; i < nAxis; i++) {
+			const keyText = id+'_labelT_'+i;
+			const keyLine = id+'_labelL_'+i;
+			const valueInt = parseInt(value);
 			rows.push(
-				<text y={20} transform={`translate(${step*i})`}>
+				<text key={keyText} y={20} transform={`translate(${axisX})`}>
 					<tspan x="0" textAnchor="middle" className="text_axis">{value.toFixed(2)}</tspan>
 				</text>
 				);
 			rows.push(
-				<line x1={step*i} y1="20" x2={step*i} y2={heightMax+20} className="axis" />
+				<line key={keyLine} x1={axisX} y1="20" x2={axisX} y2={heightMax+20} className="axis" />
 			);
 			value = value + stepValue;
+			axisX = axisX + step;
 		}
 
 		return (rows);
@@ -120,7 +111,7 @@ class LineChartGraph extends React.Component {
 		const transform = {translate:`'(${posx})'`}
 		return(
 			<g id={id} transform={`translate(${posx}, ${posy})`}>
-				{this.makeAxis(0 , width, height-30)}
+				{this.makeAxis(0 , width, height-30, id)}
 				<g transform={`translate(0, ${posy+30})`}>
 					{this.makeFill(0 , 0, width, height-30)}
 					{this.makePath(0 , 0, width, height-30)}
@@ -138,103 +129,10 @@ LineChartGraph.defaultProps = {
 	svgWidth: 700,
 	posx: 0,
 	posy: 0,
+	nAxis: 4,
+	marginAxis: 50,
 	axisXIndex: 'r',
 	axisYIndex: 'sum'
 }
 
-
-class LineChart extends React.Component {
-
-	//{this.makeAxis()}
-	render() {
-		const {svgHeight, svgWidth, bids, asks} = this.props;
-		const distance_between = 70;
-		let svgHeightWitoutHeader = svgHeight - 30;
-		console.log("render.LineChart", this.props);
-		return (
-			<div>
-				<div className="header">
-					<ul className="expand">
-						<li className="vcenter ">
-							<div className="menu_graph">
-								<img src={logoA} />
-								<img src={logoDown} />
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div className="graps">
-					<svg viewBox={`0 0 ${svgWidth} ${svgHeightWitoutHeader}`}>
-						<text y={svgHeightWitoutHeader/2} transform={`translate(${svgWidth/2})`}>
-							<tspan x="0" textAnchor="middle" className="text">9,048.7 MXN</tspan>
-							<tspan x="0" textAnchor="middle" className="text2" dy="15">0.49% spread</tspan>
-						</text>
-						<LineChartGraph id="bids" data={bids} posx={0} posy={0} width={svgWidth/2 - distance_between} height={svgHeightWitoutHeader} />
-						<LineChartGraph id="asks" data={asks} posx={svgWidth/2+distance_between} posy={0} width={svgWidth/2-distance_between} height={svgHeightWitoutHeader} />
-					</svg>
-				</div>
-			</div>
-		);
-	}
-}
-// DEFAULT PROPS
-LineChart.defaultProps = {
-  bids: [],
-  asks: [],
-  svgHeight: 300,
-  svgWidth: 700
-}
-
-class ChartToRender extends React.Component{
-	constructor(props) {
-		super(props);
-		this.state ={
-			widthParent: 300,
-			heightParent: 700
-		};
-	}
-	
-	componentDidMount() {
-		this.element = ReactDOM.findDOMNode( this );
-		observer.subscribe((event) => {
-			//console.log("resize window!!!");
-			this.setPointerLocation( this.element.clientWidth ,this.element.clientHeight);
-		});
-	}
-	
-	
-	componentWillUnmount() {
-		observer.unsubscribe();
-	}
-	
-	render() {
-		const {bids, asks} = this.props;
-
-		return(
-			<ResizeDirective >
-			   <LineChart bids={bids} asks={asks} svgWidth={this.state.widthParent}  svgHeight={this.state.heightParent}/>
-			</ResizeDirective>
-		);
-	}
-	setPointerLocation( width, height ) {
-		this.setState({
-			widthParent: width,
-			heightParent: height
-		});
-	}
-}
-		
- class ResizeDirective extends React.Component{
-	propTypes: {
-		children: React.PropTypes.element.isRequired,
-		setPointerLocation: React.PropTypes.func.isRequired
-	}
-
-	render() {
-		return( this.props.children );
-	}
-}
-
-
-
-export default ChartToRender;
+export default LineChartGraph;

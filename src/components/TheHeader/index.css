@@ -115,12 +115,12 @@
   }
 
   #app > .page > .header-container > header > nav > ul.hidden {
-    animation: hideSidebar .2s ease forwards;
+    animation: hideHeaderSidebar .2s ease forwards;
   }
 
   #app > .page > .header-container > header > nav > ul.show {
     display: flex;
-    animation: showSidebar .2s ease forwards;
+    animation: showHeaderSidebar .2s ease forwards;
   }
 
   #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {

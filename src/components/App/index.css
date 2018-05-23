@@ -47,6 +47,14 @@ body {
 
 #app > .page {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#app > .page > main {
+  background: var(--background-navy);
+  flex: 1;
+  color: var(--light-text);
 }
 
 .loading {
@@ -55,10 +63,6 @@ body {
   align-items: center;
   color: transparent;
   position: relative;
-}
-
-td.loading {
-  display: table-cell;
 }
 
 .loading::after {
@@ -72,6 +76,10 @@ td.loading {
   display: block;
   height: 1em;
   width: 1em;
+}
+
+td.loading {
+  display: table-cell;
 }
 
 td.loading::after {

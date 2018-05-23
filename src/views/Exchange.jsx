@@ -6,7 +6,9 @@ export default class Home extends Component {
     return (
       <div className='page'>
         <TheHeader page={this.props.page} exchange={100000.12} />
-        hello world
+        <main>
+          hello world
+        </main>
       </div>
     )
   }

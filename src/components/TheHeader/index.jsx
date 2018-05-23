@@ -35,7 +35,7 @@ const TheHeader = (props) => (
         >
           menu
         </i>
-        <ul className={classnames('menu', { show: props.sidebar, hidden: !props.sidebar })}>
+        <ul className={classnames('menu', { show: props.headerSidebar, hidden: !props.headerSidebar })}>
           <li><Dropdown options={[{ label: 'option 1' }]} text='Wallet' /></li>
           <li><Dropdown options={[{ label: 'option 2' }]} text='Exchange' /></li>
           <li><Dropdown options={[{ label: 'option 3' }]} text='Ayuda' /></li>
@@ -74,7 +74,7 @@ const TheHeader = (props) => (
   </div>
 )
 
-const mapStateToProps = ({ ui }) => ({ sidebar: ui.sidebar })
+const mapStateToProps = ({ ui }) => ({ headerSidebar: ui.headerSidebar })
 
 const mapDispatchToProps = (dispatch) => ({
   toggleSidebarAction: bindActionCreators(toggleSidebarAction, dispatch)

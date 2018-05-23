@@ -8,6 +8,10 @@ export class TradesStore {
     var data = JSON.parse(message.data);
     var now = new Date();
 
+    if (data.action === "subscribe") {
+      console.log("Websocket subscribed", data);
+    }
+
     if (data.type === "trades" && data.payload) {
       const wspayload = data.payload[0];
       this.trades.push({
@@ -16,9 +20,7 @@ export class TradesStore {
         amount: wspayload.a,
         marker: wspayload.t
       });
-      console.log(data);
-    } else {
-      console.log("error", data);
+      console.info(data);
     }
   };
 }

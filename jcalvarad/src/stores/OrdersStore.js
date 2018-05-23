@@ -14,9 +14,12 @@ export class OrdersStore {
   @action
   getTrades = message => {
     var data = JSON.parse(message.data);
-    var now = new Date();
 
-    if (data.type === "trades" && data.payload) {
+    if (data.action === "subscribe") {
+      console.log("Websocket subscribed", data);
+    }
+
+    if (data.type === "diff-orders" && data.payload) {
       const wspayload = data.payload[0];
       const arr = wspayload.t ? this.sell : this.buy;
       arr.push({
@@ -24,9 +27,7 @@ export class OrdersStore {
         amount: wspayload.a,
         value: wspayload.v
       });
-      console.log(data);
-    } else {
-      console.log("error", data);
+      console.info(data);
     }
   };
 }

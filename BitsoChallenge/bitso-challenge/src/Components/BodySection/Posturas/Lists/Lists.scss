@@ -1,17 +1,17 @@
 .list-section{
-     color: #b0bac1;
+    color: #b0bac1;
     width: 90%;
     display: inline-flex;
     justify-content: space-between;
     .bid-section{
         .bid-header{
+            height: 20px;
+            background-color: #384555;
             display: inline-flex;
             width: 100%;
             justify-content: space-between;
         }        
-
-        width: 49%;
-
+        width: 49.5%;
         .rows-section{
             display: block;
             overflow-y: auto;
@@ -25,10 +25,13 @@
                 }
                 text-align: right;
                 justify-content: space-between;
-                font-size: 10px;
+                font-size: 12px;
                 display: inline-flex;
                 p{
                     width: 17%;
+                }
+                .columnPrice{
+                    color:#80c156;
                 }
             }
         }
@@ -36,7 +39,14 @@
     }
 
     .asks-section{
-        width: 49%;
+        width: 49.5%;
+        .asks-header{
+            height: 20px;
+            background-color: #252c36;
+            display: inline-flex;
+            width: 100%;
+            justify-content: space-between;
+        }
 
         .rows-section{
             display: block;
@@ -50,10 +60,13 @@
                 }
                 text-align: right;
                 justify-content: space-between;
-                font-size: 10px;
+                font-size: 12px;
                 display: inline-flex;
                 p{
                     width: 17%;
+                }
+                .columnPrice{
+                    color:#cc4458;
                 }
             }
         }

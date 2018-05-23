@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LastTrades.css';
-
+import { Scrollbars } from 'react-custom-scrollbars';
 class LastTrades extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +36,7 @@ class LastTrades extends Component {
         </section>
         
         <section className='trades-list-result'>
+        <Scrollbars style={{ width: 290 }}>
             {this.state.array_trades.payload.map(trade => {
               return<section className='trades-list-row'> 
                 <p className='column'>{trade.created_at.substring(11,19)}</p>
@@ -44,6 +45,7 @@ class LastTrades extends Component {
                   </section>
 
             })}
+            </Scrollbars>
             </section>
       </section>
     );

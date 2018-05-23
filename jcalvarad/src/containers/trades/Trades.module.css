@@ -1,17 +1,17 @@
-@import '../../styles/colors.css';
-@import '../../styles/variables.css';
+@import "../../styles/colors.css";
+@import "../../styles/variables.css";
 :root {
-    --table-cell-padding: calc(1.4 * var(--unit));
-    --table-column-spacing: calc(0.6 * var(--unit));
-    --table-column-padding: calc(var(--table-column-spacing) / 8);
+  --table-cell-padding: calc(1.4 * var(--unit));
+  --table-column-spacing: calc(0.6 * var(--unit));
+  --table-column-padding: calc(var(--table-column-spacing) / 8);
 }
 
-.header{
-    background-color: var(--color-primary);
-    padding: 10px;
-    color: var(--palette-blue-grey-100);
+.header {
+  background-color: var(--color-primary);
+  padding: 10px;
+  color: var(--palette-blue-grey-100);
 }
 
 .table {
-    background-color: var(--color-primary-dark);
-  }
+  background-color: var(--color-primary-dark);
+}

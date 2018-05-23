@@ -1,0 +1,146 @@
+#app > .page > .header-container > header {
+  display: flex;
+  background: var(--header-background);
+  align-items: center;
+  color: var(--header-color);
+  user-select: none;
+  position: relative;
+}
+
+#app > .page > .header-container > header > .logo {
+  display: flex;
+}
+
+#app > .page > .header-container > header > .logo > img {
+  height: 30px;
+  width: auto;
+}
+
+#app > .page > .header-container > header > .title-page.money-exchange {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#app > .page > .header-container > header > .title-page.money-exchange > div {
+  text-transform: uppercase;
+  font-size: .85rem;
+}
+
+#app > .page > .header-container > header > .title-page.money-exchange > div:first-child {
+  border-left: 1px solid var(--header-separator);
+}
+
+#app > .page > .header-container > header > .title-page.money-exchange > div:last-child {
+  border-right: 1px solid var(--header-separator);
+}
+
+#app > .page > .header-container > header > nav > ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+#app > .page > .header-container > .stats {
+  display: flex;
+  align-items: center;
+  background: var(--nav-background);
+  position: relative;
+}
+
+#app > .page > .header-container > .stats > .exchange-type {
+  position: relative;
+}
+
+#app > .page > .header-container > .stats > .exchange-type > .text {
+  color: var(--exchange-type-color);
+  padding: 11px 16px;
+}
+
+#app > .page > .header-container > .stats > .exchange-type > ul {
+  background: var(--nav-background);
+  border-radius: 0;
+  width: 100%;
+}
+
+#app > .page > .header-container > .stats > .exchange-type > ul > li {
+  background: var(--nav-background);
+  color: var(--exchange-type-color);
+}
+
+#app > .page > .header-container > .stats > .list {
+  flex: 1;
+  overflow-x: scroll;
+  color: var(--header-color);
+  display: flex;
+  padding: 11px 16px;
+}
+
+@media screen and (max-width: 768px) {
+  #app > .page > .header-container > header > .logo > img {
+    padding: 16px 11px 16px 16px;
+  }
+
+  #app > .page > .header-container > header > .title-page.money-exchange > div {
+    padding: 5px 10px;
+  }
+
+  #app > .page > .header-container > header > nav > i {
+    cursor: pointer;
+    padding: 19px 20px;
+  }
+
+  #app > .page > .header-container > header > nav > ul {
+    position: fixed;
+    flex-direction: column;
+    height: calc(100% - 62px);
+    right: 0;
+    background: var(--sidebar);
+    overflow-y: scroll;
+  }
+
+  #app > .page > .header-container > header > nav > ul.hidden {
+    animation: hideSidebar .2s ease forwards;
+  }
+
+  #app > .page > .header-container > header > nav > ul.show {
+    display: flex;
+    animation: showSidebar .2s ease forwards;
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {
+    padding: 10px 20px;
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul {
+    position: relative;
+    border: none;
+    border-radius: 0;
+    background: var(--medium-navy);
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
+    background: var(--medium-navy);
+    color: var(--sidebar-light-text);
+  }
+
+  li.user {
+    padding: 10px 20px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #app > .page > .header-container > header > .logo > img {
+    padding: 18px 15px 18px 30px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+}

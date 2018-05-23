@@ -8,6 +8,7 @@ import Router from '../../router'
 
 import './index.css'
 import './animations.css'
+import './fonts.css'
 
 class App extends Component {
   render () {

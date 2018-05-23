@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TheHeader from '../components/ui/TheHeader'
+import TheHeader from '../components/TheHeader'
 
 export default class Home extends Component {
   render () {

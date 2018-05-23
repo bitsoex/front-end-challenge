@@ -24,7 +24,9 @@
   --bitcoin-yellow: #ebc256;
   --header-background: #252C36;
   --header-separator: #B0BAC1;
+  --header-color: #B0BAC1;
   --nav-background: #161A1E;
+  --exchange-type-color: #80C156;
 }
 
 html,
@@ -33,7 +35,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', 'sans-serif', 'DINPro Regular';
 }
 
 #app {
@@ -41,6 +43,10 @@ body {
   height: 100%;
   width: 100%;
   flex-direction: column;
+}
+
+#app > .page {
+  flex: 1;
 }
 
 .loading {
@@ -75,12 +81,14 @@ td.loading::after {
 }
 
 @media screen and (max-width: 768px) {
-  .is-hidden-mobile {
+  .is-hidden-mobile,
+  .is-hidden-touch {
     display: none;
   }
 }
 
 @media screen and (min-width: 769px) {
+  .is-hidden-tablet,
   .is-hidden-touch {
     display: none;
   }

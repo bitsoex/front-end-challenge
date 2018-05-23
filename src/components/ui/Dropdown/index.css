@@ -1,9 +1,24 @@
-.dropdown {
+.dropdown > .text {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.dropdown > i:last-child {
+.dropdown > i {
+  padding-left: 4px;
+}
+
+.dropdown i.short {
   display: none;
+}
+
+.dropdown:hover i.expand {
+  display: none;
+}
+
+.dropdown:hover i.short {
+  display: inline;
 }
 
 .dropdown > ul {

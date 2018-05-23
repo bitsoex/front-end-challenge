@@ -1,12 +1,15 @@
 import React from 'react'
+import classnames from 'classnames'
 
 import './index.css'
 
-const Dropdown = ({ options = [], text = '', ...props }) => (
-  <div className='dropdown'>
-    { text }
-    <i className='material-icons'>arrow_drop_down</i>
-    <i className='material-icons'>arrow_drop_up</i>
+const Dropdown = ({ options = [], text = '', className, ...props }) => (
+  <div className={classnames('dropdown', className)}>
+    <div className='text'>
+      { text }
+      <i className='material-icons expand'>arrow_drop_down</i>
+      <i className='material-icons short'>arrow_drop_up</i>
+    </div>
     <ul>
       {
         options.map((option, index) => (

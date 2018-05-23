@@ -14,13 +14,16 @@ class Posturas extends Component {
         this.state={
           array_post:this.props.array_post,
           activeTimeTrade:this.props.activeTimeTrade,
-          currentRange:this.props.activeTimeTrade
+          currentRange:this.props.activeTimeTrade,
+          orderBooks:this.props.orderBooks,
+          ticketInfo:this.props.ticketInfo
         }
     
       }
 
       componentWillReceiveProps(nextProps){
-        this.setState({array_post:nextProps.array_post,activeTimeTrade:nextProps.activeTimeTrade})
+        this.setState({array_post:nextProps.array_post,activeTimeTrade:nextProps.activeTimeTrade,
+          orderBooks:nextProps.orderBooks,ticketInfo:nextProps.ticketInfo})
       }
 
       showOptions(){
@@ -55,7 +58,7 @@ class Posturas extends Component {
 
         </section>
 				 <Graphic type={'hybrid'} data={this.state.array_post} />
-        <Lists array_post={this.state.array_post}/>
+        <Lists ticketInfo={this.state.ticketInfo}  orderBooks={this.state.orderBooks} array_post={this.state.array_post}/>
 
       </section>
     );

@@ -36,7 +36,7 @@ class App extends Component {
     this.getBtcCost();
     this.getTrades();
     this.getGraphic();
-
+    this.getOrderBook();
   }
 
   changeRangeGraphic(range){
@@ -52,6 +52,33 @@ class App extends Component {
     objParam.value=this.state.activeCoin.book;
     arrayParams.push(objParam);
     callGetServices(URL_SERVICES.OrderBook,arrayParams).then(response => {
+      if(response!=='error'){
+      var sumBid=0;
+      var totAmountBid=0;
+      response.payload.bids.forEach(bid => {
+        sumBid=(+sumBid)+(+bid.amount);
+        bid.valor=(bid.amount*bid.price)
+
+
+         bid.valor=(+bid.valor).toFixed(8);
+         bid.amount=(+bid.amount).toFixed(8);
+         bid.price=(+bid.price).toFixed(8);
+        bid.sum=sumBid.toFixed(8);
+      });
+      response.payload.totSumBid=sumBid;
+
+      var sumAsk=0
+      response.payload.asks.forEach(ask => {
+        sumAsk=(+sumAsk)+(+ask.amount);
+        ask.valor=(ask.amount*ask.price)
+
+        ask.valor=(+ask.valor).toFixed(8);
+        ask.amount=(+ask.amount).toFixed(8);
+        ask.price=(+ask.price).toFixed(8);
+        ask.sum=sumAsk.toFixed(8);
+      });
+      response.payload.totSumAsk=sumAsk;
+    }
       this.setState({orderBooks:response});
     }
   
@@ -73,9 +100,11 @@ class App extends Component {
 
   getGraphic(){
     getData(this.state.activeCoin.book,this.state.activeTimeTrade.value,URL_SERVICES.TradeP).then(data => {
+      if(data!=='error'){
 			data.forEach((d, i) => {
 						d.date = new Date((d.date));
-					});
+          });
+        }
 			this.setState({ array_post:data })
 		})
   }
@@ -97,13 +126,35 @@ class App extends Component {
 
   render() {
     if(this.state.ticketInfo!==null && this.state.array_trades!==null && this.state.array_post!==null && this.state.orderBooks!==null){
-    return (
-      <div className="App">
-       <Header changeBook={this.changeBook} ticketInfo={this.state.ticketInfo} activeCoin={this.state.activeCoin}/>
-       <BodySection orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade} array_post={this.state.array_post} array_trades={this.state.array_trades} activeCoin={this.state.activeCoin} />
-      </div>
-    );}
-    else{
+
+      if(this.state.ticketInfo!=='error' && this.state.array_trades!=='error' && this.state.array_post!=='error' && this.state.orderBooks!=='error'){
+        return (
+          <div className="App">
+           <Header changeBook={this.changeBook} ticketInfo={this.state.ticketInfo} activeCoin={this.state.activeCoin}/>
+           <BodySection orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} 
+           activeTimeTrade={this.state.activeTimeTrade} array_post={this.state.array_post} 
+           array_trades={this.state.array_trades} activeCoin={this.state.activeCoin}
+           ticketInfo={this.state.ticketInfo} />
+          </div>
+        );
+      }else{
+        return (
+          <section className="loading-background">
+          <section className='spinner-section'>
+          <Spinner
+                 type="Puff"
+                 color="#384555"
+                 height="300"	
+                 width="300"
+          />
+          <h1>Sistema no disponble intente mas tarde...</h1>
+          </section>
+          </section>
+        );
+  }
+  }
+    else {
+
       return (
         <section className="loading-background">
         <section className='spinner-section'>

@@ -12,14 +12,19 @@ class BodySection extends Component {
           activeCoin:this.props.activeCoin,
           array_trades:this.props.array_trades,
           array_post:this.props.array_post,
-          activeTimeTrade:this.props.activeTimeTrade
+          activeTimeTrade:this.props.activeTimeTrade,
+          orderBooks:this.props.orderBooks,
+          ticketInfo:this.props.ticketInfo
+
         }
         this.changeRangeGraphic=this.changeRangeGraphic.bind(this)
       }
 
       componentWillReceiveProps(nextProps){
           
-        this.setState({activeCoin:nextProps.activeCoin, array_trades:nextProps.array_trades,array_post:nextProps.array_post ,activeTimeTrade:nextProps.activeTimeTrade})
+        this.setState({activeCoin:nextProps.activeCoin, array_trades:nextProps.array_trades,
+          array_post:nextProps.array_post ,activeTimeTrade:nextProps.activeTimeTrade,orderBooks:nextProps.orderBooks,
+          ticketInfo:nextProps.ticketInfo})
       }
 
 
@@ -32,7 +37,7 @@ class BodySection extends Component {
     return (
       <section className="body-section">
         <LastTrades array_trades={this.state.array_trades} activeCoin={this.state.activeCoin}/>
-        <Posturas changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade}  array_post={this.state.array_post}/>
+        <Posturas ticketInfo={this.state.ticketInfo} orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade}  array_post={this.state.array_post}/>
 
       </section>
     );

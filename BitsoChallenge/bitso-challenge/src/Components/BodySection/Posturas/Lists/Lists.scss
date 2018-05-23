@@ -1,0 +1,62 @@
+.list-section{
+     color: #b0bac1;
+    width: 90%;
+    display: inline-flex;
+    justify-content: space-between;
+    .bid-section{
+        .bid-header{
+            display: inline-flex;
+            width: 100%;
+            justify-content: space-between;
+        }        
+
+        width: 49%;
+
+        .rows-section{
+            display: block;
+            overflow-y: auto;
+            height:300px;
+            .bid-list-row{
+                width: 100%;
+                div{
+                    
+                    height: 10px;
+                    background-color: green;
+                }
+                text-align: right;
+                justify-content: space-between;
+                font-size: 10px;
+                display: inline-flex;
+                p{
+                    width: 17%;
+                }
+            }
+        }
+        
+    }
+
+    .asks-section{
+        width: 49%;
+
+        .rows-section{
+            display: block;
+            overflow-y: auto;
+            height:300px;
+            .asks-list-row{
+                width: 100%;
+                div{
+                    height: 10px;
+                    background-color: red;
+                }
+                text-align: right;
+                justify-content: space-between;
+                font-size: 10px;
+                display: inline-flex;
+                p{
+                    width: 17%;
+                }
+            }
+        }
+
+    }
+}

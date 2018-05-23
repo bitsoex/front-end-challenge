@@ -5,13 +5,19 @@
 
 export function getData(book, range,url) {
     console.log('Asi llega el rango ' + range )
+    var responseService={}
 	return(
 	fetch(url+book+'/'+range)
 		.then(response => response.json())
 		.then(data => {
 			return(data);
 		}
-		)
+		)    .catch(function(error) {
+
+            responseService='error'
+            return(responseService);
+    
+        })
 	)
 }
 
@@ -35,20 +41,7 @@ export const callGetServices = (url,params) => {
     })
     .catch(function(error) {
 
-        responseService={
-            "success": true,
-            "payload": {
-                "high": "169592.64",
-                "last": "169008.75",
-                "created_at": "2018-05-13T19:24:20+00:00",
-                "book": "btc_mxn",
-                "volume": "11.79026906",
-                "vwap": "165887.24344596",
-                "low": "163500.00",
-                "ask": "169554.52",
-                "bid": "167521.40"
-            }
-        };
+        responseService='error'
         return(responseService);
 
     })

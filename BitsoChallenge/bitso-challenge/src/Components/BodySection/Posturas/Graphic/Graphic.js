@@ -11,7 +11,7 @@ import {
 	LineSeries
 } from "react-stockcharts/lib/series";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
-import { EdgeIndicator } from "react-stockcharts/lib/coordinates";
+import { EdgeIndicator,MouseCoordinateY,MouseCoordinateX,CrossHairCursor } from "react-stockcharts/lib/coordinates";
 
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { HoverTooltip } from "react-stockcharts/lib/tooltip";
@@ -52,7 +52,14 @@ function tooltipContent() {
 }
 
 const keyValues = ["high", "low"];
-
+const mouseEdgeAppearance = {
+	textFill: "#542605",
+	stroke: "#05233B",
+	strokeOpacity: 1,
+	strokeWidth: 3,
+	arrowWidth: 5,
+	fill: "#BCDEFA",
+};
 class Graphic extends React.Component {
 	removeRandomValues(data) {
 		return data.map(item => {
@@ -108,7 +115,7 @@ class Graphic extends React.Component {
 		return (
 			<section className='section-graphic'>
 			<ChartCanvas
-				height={400}
+				height={350}
 				width={width}
 				ratio={ratio}
 				margin={margin}
@@ -120,52 +127,44 @@ class Graphic extends React.Component {
 				displayXAccessor={displayXAccessor}
 				xExtents={xExtents}
 			>
-				<Chart
-					id={1}
-					yExtents={[
-						d => [d.high, d.low]
-					]}
-					padding={{ top: 10, bottom: 20 }}
-				>
-					<XAxis axisAt="bottom" orient="bottom" />
-
-					<YAxis axisAt="right" orient="right" ticks={5} />
-
-					<CandlestickSeries />
-
-
-					<EdgeIndicator
-						itemType="last"
-						orient="right"
-						edgeAt="right"
-						yAccessor={d => d.close}
-						fill={d => (d.close > d.open ? "#6BA583" : "#FF0000")}
+				<Chart id={1} height={230} yExtents={d => [d.high, d.low]} >
+				<XAxis axisAt="top" orient="top" stroke={'#384555'} tickStroke={'#384555'}/>
+					<YAxis axisAt="right" orient="right" ticks={5} stroke={'#384555'} tickStroke={'#384555'}/>
+					<CandlestickSeries opacity={0.4} width={25} 
+					fill={d => d.close > d.open ? "#80c156" : "#ba3040"} 
+					wickStroke={d => d.close > d.open ? "#80c156" : "#ba3040"} 
+					/>
+				
+					<MouseCoordinateY
+						at="left"
+						orient="left"
+						displayFormat={format(".2f")}
+						{...mouseEdgeAppearance}
 					/>
 
+
 					<HoverTooltip
+					bgFill={'transparent'}
 						yAccessor={d => d.close}
 						tooltipContent={tooltipContent()}
 						fontSize={15}
 					/>
 				</Chart>
-				<Chart
-					id={2}
-					yExtents={[d => d.volume]}
-					height={150}
-					origin={(w, h) => [0, h - 150]}
-				>
-					<YAxis
-						axisAt="left"
-						orient="left"
-						ticks={5}
-						tickFormat={format(".2s")}
-					/>
+				<Chart id={2} origin={(w, h) => [0, h - 40]} height={40} yExtents={d => d.volume}>
 
-					<BarSeries
-						yAccessor={d => d.volume}
-						fill={d => (d.close > d.open ? "#6BA583" : "#FF0000")}
+					<BarSeries width={25} yAccessor={d => d.volume} fill={"#384555"} />
+					<MouseCoordinateY
+						at="left"
+						orient="left"
+						displayFormat={format(".2f")}
+						{...mouseEdgeAppearance}
 					/>
+					<MouseCoordinateX
+						at="bottom"
+						orient="bottom"
+						displayFormat={timeFormat("%Y-%m-%d")} />
 				</Chart>
+				<CrossHairCursor strokeDasharray="LongDashDot" />
 			</ChartCanvas>
 			</section>
 		);

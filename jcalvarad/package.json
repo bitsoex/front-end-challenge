@@ -20,7 +20,11 @@
     "toolbox": "react-toolbox-themr"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
     "node-sass": "^4.9.0",
+    "prettier": "1.12.1",
     "react-app-rewire-css-modules": "github:codebandits/react-app-rewire-css-modules",
     "react-app-rewired": "^1.5.2",
     "react-toolbox-themr": "^1.0.2",
@@ -44,5 +48,8 @@
       "table-dividers": "0px"
     },
     "output": "src/assets/react-toolbox"
+  },
+  "prettier": {
+    "printWidth": 160
   }
 }

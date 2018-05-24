@@ -1,5 +1,9 @@
 import React from 'react'
 
+/**
+ * Valores de colores para lo temas night o day
+ * 
+ */
 export const themes = {
     day: {
         foreground: '#000000',
@@ -27,6 +31,9 @@ export const themes = {
         redLine: '#59252e',
         greenFill: '#618e47',
         redFill: '#892b36',
+        volFill: '#1c2228',
+        volLine: '#384555',
+        gridColor: '#2a333d',
     },
 
     night: {
@@ -55,9 +62,15 @@ export const themes = {
         redLine: '#892b36',
         greenFill: '#44583f',
         redFill: '#59252e',
+        volFill: '#384555',
+        volLine: '#1c2228',
+        gridColor: '#2a333d',
     }
 }
 
+/**
+ * Definicion del tema night por default
+ */
 export const ThemeContext = React.createContext(themes.night);
 
 export default ThemeContext ;

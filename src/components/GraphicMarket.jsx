@@ -3,19 +3,31 @@ import NumberFormat from 'react-number-format';
 
 import {Stage, Layer, Line} from 'react-konva';
 
+/**
+ * 
+ * Componente que genera la grafica de cada book en el componente Market
+ * Utiliza React-Konva, Konva para el trazado de las grÃ¡ficas (https://github.com/lavrton/react-konva) y (https://konvajs.github.io/)
+ * 
+ */
 class GraphicMarket extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [],
+            //periodo de 15 dias en la grafica
             period: 15,
             hoverColor: this.props.theme.bodyExchangeColor,
         }
     }
 
+    /**
+     * 
+     * Inicia los datos para generar la grafica
+     * 
+     */
     componentDidMount() {
-        // Para generar la gráfica de mercado solamente se puede obtener la información por día, se utilizan los últimos 15 días
+        // Para generar la graica de mercado solamente se puede obtener la informacióopor díaise utilizan los últuos 15 ddias
         fetch ('https://bitso.com/trade/chartJSON/'+ this.props.book +'/1month')
          .then ( (response) => {
             return response.json();
@@ -30,6 +42,11 @@ class GraphicMarket extends React.Component {
          })
     }
 
+    /**
+     * 
+     * Genera la grafica de lineas del book sobre el valor de close
+     * 
+     */
     chartClose () {
         let lines = [];
         let minY = 80;
@@ -56,6 +73,11 @@ class GraphicMarket extends React.Component {
         
     }
 
+    /**
+     * 
+     * Genera la vista del componente para visualizar la grafica del book
+     * 
+     */
     render () {
         const bookHeader = this.props.book.toUpperCase().replace(/_/g,'/');
         const currency = bookHeader.substr(bookHeader.length-3);

@@ -2,6 +2,11 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import Moment from 'react-moment';
 
+/**
+ * 
+ * Componente que encapsula una fila de la tabla de Traders
+ * 
+ */
 class RowTrader extends React.Component {
 
     constructor(props) {
@@ -11,14 +16,29 @@ class RowTrader extends React.Component {
         }
     }
 
+    /**
+     * 
+     * Soporte para hover de la fila
+     * 
+     */
     onOut() {
         this.setState({hover: false});
     }
 
+    /**
+     * 
+     * Soporte para hover de la fila
+     * 
+     */
     onOver () {
         this.setState({hover: true});
     }
 
+    /**
+     * 
+     * Soporte para seleccionar el color del precio
+     * 
+     */
     getPriceColor () {
         if (this.props.makerSide==='buy') {
             if (this.state.hover) return '#adff49';
@@ -29,6 +49,11 @@ class RowTrader extends React.Component {
         }
     }
 
+    /**
+     * 
+     * Genera la vista de cada fila de la tabla de datos de Traders
+     * 
+     */
     render () {
         
         return (

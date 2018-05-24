@@ -116,7 +116,7 @@ class OrderBooks extends React.Component {
 
     render () {
         return (
-            <div style={{margin: 'auto', width: '100%', position: 'relative', textAlign: 'center' }}>
+            <div style={{width: '100%', position: 'relative', textAlign: 'center' }}>
                 <div style={{width: 'auto', display: 'inline-block', margin: 'auto'}}>
                     <div title='headerBid' style={{paddingTop: '0.25em', paddingBottom: '0.25em', backgroundColor: this.props.theme.headerBid , 
                             position: 'relative'}}>

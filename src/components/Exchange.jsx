@@ -9,17 +9,28 @@ import Traders  from './Traders'
 import GraphicExchange from './GraphicExchange'
 import OrderBooks from './OrderBooks'
 
-
+/**
+ * 
+ * Componente que controla el cambio de los books disponibles, 
+ * Exchange provee del contexto BookContext para todos los componentes internos: Traders, GraphicExchange y OrderBooks
+ * 
+ */
 class Exchange extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             books : [],
+            //book por default btc_mxn
             currentBook : 'btc_mxn'
         }
     }
 
+    /**
+     * 
+     * Inicia los books disponibles
+     * 
+     */
     componentWillMount() {
 
         fetch ('https://api.bitso.com/v3/available_books')
@@ -34,6 +45,11 @@ class Exchange extends React.Component {
          })
     }
 
+    /**
+     * 
+     * Función para soporte de los elementos option de los books disponibles
+     * 
+     */
     createOptions() {
         let options = [];
         for (let i = 0; i < this.state.books.length; i++) {
@@ -42,10 +58,22 @@ class Exchange extends React.Component {
         return options;
     }
 
+    /**
+     * 
+     * Función soporte para el cambio de book disponible
+     * 
+     */
     changeBook (e) {
         this.setState({currentBook : e.target.value})
     }
 
+
+    /**
+     * 
+     * Genera la vista del componente, consume el tema y lo propaga a traves de los componentes hijos,
+     * tambien provee del book seleccionado para actualiza Ticker, Traders, GraphicExchange y OrderBook
+     * 
+     */
     render () {
         return (
             <ThemeContext.Consumer>

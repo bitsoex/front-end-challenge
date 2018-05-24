@@ -2,6 +2,11 @@ import React from 'react'
 
 import GraphicMarket from './GraphicMarket'
 
+/**
+ * 
+ * Componente que genera el panel de graficas de Market, contiene las graficas de los diferentes books disponibles
+ * 
+ */
 class Markets extends React.Component {
 
     constructor(props) {
@@ -11,30 +16,54 @@ class Markets extends React.Component {
             translate: 0,
             duration: 1,
             display: 'none',
+            //book visible por default
             currentBookMarket: 'btc_mxn',
         }
         this.panelMarket = React.createRef();
     }
 
-
-
+    /**
+     * 
+     * Oculta el componente de la vista en modo navegador
+     * 
+     */
     showHide () {
         this.setState({ display: this.state.display==='none'?'inline-block':'none' });
     }
 
+    /**
+     * 
+     * Cambia de color el fondo cuando el mouse deja el componente
+     * 
+     */
     mouseLeave () {
         this.setState({bgColor: this.props.theme.headerMarkets})
     }
 
+
+    /**
+     * 
+     * Cambia de color el fondo, en modo hover cuando el mouse entra al componente
+     */
     mouseEnter () {
         this.setState({bgColor: this.props.theme.headerMarketsHover})
     }
 
+    /**
+     * 
+     * Funcion que modifica el actual book a visualizar la grafica dentro del componente
+     * 
+     * @param {string} b 
+     */
     selectView ( b ) {
-
         this.setState({currentBookMarket : b});
     }
 
+    /**
+     * 
+     * Genera los componentes GraphicMarket de cada uno de los books disponibles
+     * 
+     */
     graphics () {
         let graphs = [];
         for (let i = 0; i < this.props.books.length; i++) {
@@ -44,6 +73,10 @@ class Markets extends React.Component {
         return graphs;
     }
 
+    /**
+     * 
+     * Genera la vista del componente flotante de Market
+     */
     render () {
         const displaySize = this.state.display==='none'? '0px':'275px';
         return (

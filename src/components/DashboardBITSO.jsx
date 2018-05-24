@@ -3,21 +3,29 @@ import React from 'react';
 import {ThemeContext, themes} from './ThemeContext'
 import {isMobile} from 'react-device-detect';
 
-
-
 import Exchange from './Exchange'
 
 
+/**
+ * 
+ * Componente principal, provee del contexto ThemeContext para el cambio de tema (night, day) que se propaga hacia los otros componentes hijos
+ *  
+ */
 class DashboardBITSO extends React.Component {
 
     constructor (props) {
         super(props);
-        this.state = { 
+        this.state = {
+            //tema default night
             theme: themes.night,
             width: window.innerWidth,
         };
     }
 
+    /**
+     * Actualiza la dimension de la pagina para obtener detalles de responsividad
+     * 
+     */
     updateDimensions () {
         //this.setState({width: window.innerWidth});
         this.setState({width: Math.min(document.body.scrollWidth,
@@ -25,27 +33,40 @@ class DashboardBITSO extends React.Component {
                 document.body.offsetWidth,
                 document.documentElement.offsetWidth, 
                 document.documentElement.clientWidth)});
-        // console.info ('width:' + this.state.width + isMobile);
-        // console.info (document.body.scrollWidth);
-        // console.info (document.documentElement.scrollWidth);
-        // console.info (document.body.offsetWidth);
-        // console.info (document.documentElement.offsetWidth);
-        // console.info (document.documentElement.clientWidth);
-  
     }
 
+    /**
+     *  
+     * Inicia el componente 
+     * 
+     * */
     componentWillMount() {
         this.updateDimensions();
     }
 
+    /**
+     * 
+     * Si es necesario desmontar el componente, elimina el listener 
+     * 
+     */
     componentWillUnmount () {
         window.removeEventListener('resize', this.updateDimensions.bind(this));
     }
 
+    /**
+     * 
+     * Al iniciar el componente se agrega un listener para monitorear el tamaño de la pagina en pantalla
+     * 
+     */
     componentDidMount() {
         window.addEventListener('resize', this.updateDimensions.bind(this));
     }
 
+    /**
+     * 
+     * Función que da soporte al cambio de tema night o day
+     * 
+     */
     changeTheme (e) {
         if (this.state.theme === themes.night) 
             this.setState({theme: themes.day})
@@ -53,6 +74,15 @@ class DashboardBITSO extends React.Component {
             this.setState({theme: themes.night})
     }
 
+    /**
+     * 
+     * Genera la vista principal. 
+     * 
+     * A) Verifica si el dispositivo es mobile
+     * B) Cabecera de BITSO
+     * C) Componente Exchange
+     * 
+     */
     render () {
         //console.info ('width:' + this.state.width + isMobile);
         const widthScreen = this.state.width;

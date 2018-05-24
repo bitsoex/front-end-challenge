@@ -1,6 +1,9 @@
 import React from 'react'
 import NumberFormat from 'react-number-format';
 
+/**
+ * Componente que describe una fila dentro del OrderBook
+ */
 export default class RowOrderBook extends React.Component {
 
     constructor(props) {
@@ -9,14 +12,24 @@ export default class RowOrderBook extends React.Component {
             hover: false,
         };
     }
+
+    /**
+     * Funcion de soporte para hover
+     */
     onOut() {
         this.setState({hover: false});
     }
 
+    /**
+     * Funcion de soporte para hover
+     */
     onOver () {
         this.setState({hover: true});
     }
 
+    /** 
+    * Funcion que soporta el valor del color que se subraya en cada fila
+    */
     getOrderColor () {
         if (this.props.orderSide==='bids') {
             if (this.state.hover) return '#597353';
@@ -27,6 +40,10 @@ export default class RowOrderBook extends React.Component {
         }
     }
 
+    /**
+     * 
+     * Genera la vista de cada fila del order book
+     */
     render () {
         if (this.props.orderSide === 'bids') {
             return (
@@ -88,12 +105,6 @@ export default class RowOrderBook extends React.Component {
                         <span style={{width: (this.props.data.length * 90)+'%', minWidth: '5%', 
                             backgroundColor: this.props.theme.redLight, display: 'inline-block', height: '0.75em'}}></span> 
                     </span>
-                    
-                    
-
-                    
-
-                    
 
                 </div>
             );

@@ -4,6 +4,11 @@ import BookContext from './BookContext'
 
 import RowTrader from './RowTrader'
 
+/**
+ * 
+ * Componente que visualiza la lista de ultimos traders del book seleccionado
+ * 
+ */
 class Traders extends React.Component {
 
     constructor(props) {
@@ -15,15 +20,31 @@ class Traders extends React.Component {
         };
 
     }
+
+    /** 
+     * 
+     * Componete montando, inicia la tabla de traders
+     * 
+    */
     componentDidMount() {
         this.updateTraders();
     }
 
+    /** 
+     * 
+     * Componete para actualiza cuando otro book del Exchange es seleccionado 
+     * 
+    */
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.currentBook !== this.props.currentBook) 
             this.updateTraders();
     }
-
+    
+    /**
+     * 
+     * Actualiza los datos de la tabla de traders desde Bitso API
+     * 
+     */
     updateTraders() {
         fetch ('https://api.bitso.com/v3/trades/?book=' + this.props.currentBook)
          .then ( (response) => {
@@ -38,12 +59,11 @@ class Traders extends React.Component {
          })
     }
 
-    RowTrader () {
-        return (<div></div>);
-    }
-
+    /**
+     * 
+     * Genera los componentes RowTrader por cada fila de la tabla de Traders
+     */
     rows() {
-        
         if (this.state.traders.length > 0) {
             let rows = [];
             for (let i = 0; i < this.state.traders.length; i++) {
@@ -57,8 +77,11 @@ class Traders extends React.Component {
         
     }
 
+    /**
+     * 
+     * Genera la vista del componente Traders, cabeceras y cuerpo
+     */
     render () {
-
         return (
             <div id="traders" style={{
                 position: 'absolute',
@@ -93,6 +116,11 @@ class Traders extends React.Component {
     }
 }
 
+/**
+ * 
+ * Definicion del consumo del contexto BookContext
+ * 
+ */
 export default props => (
   <BookContext.Consumer>
       { currentBook => <Traders {...props} currentBook={currentBook} />}

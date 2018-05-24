@@ -6,7 +6,7 @@
     <div class="subtitle">Exchange</div>
 
     <div class="bitcoin-price">
-      1 {{books.selected.unit}} = {{currentPriceStr}} {{books.selected.comparision}}
+      1 {{books.selected.unit}} = {{ticker.last}} {{books.selected.comparision}}
     </div>
 
     <div class="divider-line btc-line"></div>
@@ -57,14 +57,16 @@
 
 <script>
 export default {
+  computed: {
+    books: function () {
+      return this.$store.state.books
+    },
+    ticker: function () {
+      return this.$store.state.ticker
+    }
+  },
   data () {
     return {
-      books: {
-        available: [],
-        last: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'},
-        initial: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'},
-        selected: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'}
-      },
       mobileMenu: {
         open: false
       }
@@ -72,8 +74,7 @@ export default {
   },
   methods: {
     toggleDayMode () {
-      var move = !this.dayMode
-      this.dayMode = move
+      var move = !this.$store.state.dayMode
       console.log(move)
       localStorage.setItem('dayMode', this.dayMode)
       this.$store.commit('dayMode', move)

@@ -53,9 +53,9 @@ export default {
             low = data.body[i].low
           }
         }
-        this.candles.high = high
+        self.chart.high = high
         console.log(high)
-        this.candles.low = low
+        self.chart.low = low
         console.log(low)
       }, function (err) {
         console.log(err)

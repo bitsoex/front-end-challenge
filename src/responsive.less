@@ -1,0 +1,119 @@
+@mainWidth: 1200px;
+@tabletWidth: 768px;
+@wideMobileWidth2: 640px;
+@wideMobileWidth: 480px;
+@mobileLayout: 320px;
+
+/* Tablet Layout */
+@maxTabletWidth: @mainWidth;
+@media only screen and (min-width: @tabletWidth) and (max-width: @maxTabletWidth) {
+
+}
+
+/* Wide Mobile Layout */
+@maxWideMobileWidth: @tabletWidth;
+@media only screen and (min-width: @wideMobileWidth) and (max-width: @maxWideMobileWidth) {
+
+}
+
+/* Mobile Layout */
+@maxMobileWidth: @wideMobileWidth;
+@media only screen and (max-width: @maxMobileWidth) {
+
+}
+
+@maxTabletWidth: @mainWidth;
+@media only screen and (max-width: @maxTabletWidth) {
+
+    .wireframe{
+                
+            .row.content{
+                
+                .col.main{
+
+                    .row {
+
+                        .col.buying {
+                            width:100%;
+							height: 50%;
+                            }
+                        .col.separator {
+                            width:0;
+                        }
+                        .col.selling {
+                            width:100%;
+							height: 50%;
+                        }
+                    }
+					.row.graphic{
+						height: calc(40% - 2px);
+					}
+					.row.postures{
+						height: calc(60% - 2px);
+					}
+                }
+            }
+    }
+}
+
+
+@maxTabletWidth: @mainWidth;
+@media only screen and (max-width: @wideMobileWidth2) {
+
+    .wireframe{
+                
+		.row.content{
+			height: auto;
+			.col.trades{
+				width: 100%;
+				padding: 8px;
+				padding-bottom: 0px;
+			}
+			.col.main{
+				width: 100%;
+				padding: 8px;
+				padding-bottom: 0px;
+				.row.graphic{
+					.header{
+						background-color: rgba(49, 61, 76, 0.6);
+					}
+				}
+			}
+			/*.col.floating{
+				width: 100%;
+				padding: 8px;
+				padding-bottom: 0px;
+			}*/
+			
+			.col.floating{
+				width: 100%;
+				padding: 8px;
+				padding-bottom: 0px;
+				.inner{
+					height: auto;
+				}
+				.container{
+					.menu{
+						position: static;
+						width: 100%;
+						height: 100%;
+						li.header{
+							display: none;
+						}
+						.menu--visible .app-menu,
+						.app-menu{
+							-webkit-transform: none;
+							transform: none;
+							width: 100%;
+							height: 100%;
+							.body{
+								width: 100%;
+							}
+						}
+					}
+				}
+
+			}
+		}
+    }
+}

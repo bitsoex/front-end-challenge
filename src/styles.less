@@ -359,7 +359,7 @@ body{
 			padding: 8px;
 			width: 274px;
 			padding-bottom: 0px;
-			
+			height: 100%;
 			& .inner{
 				padding:3px 8px 0 8px;
 			}
@@ -368,7 +368,7 @@ body{
 		.col.main{
 			width: calc(100vw - 307px);
 			padding: 8px 0 0 0;
-			
+			height: 100%;
 			& .row{
 				padding: 3px 0 2px 0;
 				
@@ -452,7 +452,7 @@ body{
 .wireframe{
 	.fontlight();
 	color: @color-base;
-	
+
 	.header1{
 		background-color: @base-color-header1;
 		font-size: @size-header1_base;
@@ -484,6 +484,7 @@ body{
 	}
 	
 	.content{
+		overflow: auto;
 		.col.trades{
 			
 		}
@@ -888,7 +889,7 @@ body{
 	.app-menu {
 		background-color: @floating-background;
 		position: relative;
-		max-width: 400px;
+		/*max-width: 400px;*/
 		width: 90%;
 		height: 100%;
 		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
@@ -984,3 +985,7 @@ body{
 	transition: @param, @param2;
 }
 
+
+
+
+@import './responsive.less';

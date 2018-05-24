@@ -6,6 +6,7 @@ import ThemeProvider from "react-toolbox/lib/ThemeProvider";
 import styles from "./App.module.css";
 import Layout from "../layout/Layout";
 import Trades from "../trades/Trades";
+import Orders from "../orders/Orders";
 
 class App extends Component {
   render() {
@@ -23,7 +24,9 @@ class App extends Component {
                 <Trades />
               </div>
               <div className={styles.chart}>Chart</div>
-              <div className={styles.buy}>Buy</div>
+              <div className={styles.buy}>
+                <Orders />
+              </div>
               <div className={styles.sell}>Sell</div>
             </div>
           </Layout>

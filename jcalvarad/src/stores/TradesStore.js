@@ -20,6 +20,9 @@ export class TradesStore {
         amount: wspayload.a,
         marker: wspayload.t
       });
+      if (this.trades.length >= 30) {
+        this.trades.pop();
+      }
       console.info(data);
     }
   };

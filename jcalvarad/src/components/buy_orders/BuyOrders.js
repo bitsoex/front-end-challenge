@@ -3,7 +3,7 @@ import Table from "react-toolbox/lib/table/Table";
 import TableHead from "react-toolbox/lib/table/TableHead";
 import TableRow from "react-toolbox/lib/table/TableRow";
 import TableCell from "react-toolbox/lib/table/TableCell";
-import theme from "./Trades.module.css";
+import theme from "./BuyOrders.module.css";
 
 class BuyOrders extends Component {
   render() {
@@ -19,13 +19,15 @@ class BuyOrders extends Component {
             <TableCell>MXN VALOR</TableCell>
             <TableCell>MXN PRECIO</TableCell>
           </TableHead>
-          {this.props.trades.map((item, idx) => (
+          {this.props.orders.map((item, idx) => (
             <TableRow key={idx}>
-              <TableCell>{item.time}</TableCell>
-              <TableCell numeric>
-                <div className={theme["rate-buy"]}>{item.rate}</div>
-              </TableCell>
+              <TableCell />
+              <TableCell />
               <TableCell numeric>{item.amount}</TableCell>
+              <TableCell numeric>{item.value}</TableCell>
+              <TableCell numeric>
+                <div className={themeAll["rate-buy"]}>{item.rate}</div>
+              </TableCell>
             </TableRow>
           ))}
         </Table>

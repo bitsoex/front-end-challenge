@@ -1,18 +1,12 @@
 import { observable, action } from "mobx";
 
-const websocket = new WebSocket("wss://ws.bitso.com");
-
-websocket.onopen = function() {
-  websocket.send(JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "diff-orders" }));
-};
-
 export class OrdersStore {
   @observable buy = [];
 
   @observable sell = [];
 
   @action
-  getTrades = message => {
+  getOrders = message => {
     var data = JSON.parse(message.data);
 
     if (data.action === "subscribe") {
@@ -22,11 +16,14 @@ export class OrdersStore {
     if (data.type === "diff-orders" && data.payload) {
       const wspayload = data.payload[0];
       const arr = wspayload.t ? this.sell : this.buy;
-      arr.push({
+      arr.unshift({
         rate: new Intl.NumberFormat().format(wspayload.r),
-        amount: wspayload.a,
-        value: wspayload.v
+        amount: wspayload.a ? wspayload.a : "",
+        value: wspayload.v ? wspayload.v : ""
       });
+      if (arr.length >= 15) {
+        arr.pop();
+      }
       console.info(data);
     }
   };

@@ -1,0 +1,10 @@
+@import "../colors.css";
+@import "../variables.css";
+
+.header {
+  padding: 10px;
+}
+
+.rate-sell {
+  color: var(--palette-red-800);
+}

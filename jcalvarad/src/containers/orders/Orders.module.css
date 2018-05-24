@@ -15,3 +15,17 @@
 .table {
   background-color: var(--color-primary-dark);
 }
+
+.buy {
+  grid-area: buy;
+}
+.sell {
+  grid-area: sell;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "buy sell";
+  grid-gap: 5px;
+  padding: 5px;
+}

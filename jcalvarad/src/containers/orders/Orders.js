@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
 import BuyOrders from "../../components/buy_orders/BuyOrders";
+import SellOrders from "../../components/sell_orders/SellOrders";
 import theme from "./Orders.module.css";
+import styles from "./Orders.module.css";
 
 @inject("OrdersStore")
 @observer
@@ -22,8 +24,13 @@ class OrdersContainer extends Component {
     const { OrdersStore } = this.props;
 
     return (
-      <div>
-        <BuyOrders orders={toJS(OrdersStore.buy)} theme={theme} />
+      <div className={styles["grid-container"]}>
+        <div className={styles.buy}>
+          <BuyOrders orders={toJS(OrdersStore.buy)} theme={theme} />
+        </div>
+        <div className={styles.sell}>
+          <SellOrders orders={toJS(OrdersStore.sell)} theme={theme} />
+        </div>
       </div>
     );
   }

@@ -7,11 +7,8 @@
 .chart {
   grid-area: chart;
 }
-.buy {
-  grid-area: buy;
-}
-.sell {
-  grid-area: sell;
+.orders {
+  grid-area: orders;
 }
 
 .grid-container {
@@ -19,7 +16,7 @@
   grid-template-areas:
     "header header header header header header header"
     "trades chart chart chart chart chart chart"
-    "trades buy buy buy sell sell sell";
+    "trades orders orders orders orders orders orders";
   grid-gap: 10px;
   padding: 10px;
 }

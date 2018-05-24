@@ -24,10 +24,9 @@ class App extends Component {
                 <Trades />
               </div>
               <div className={styles.chart}>Chart</div>
-              <div className={styles.buy}>
+              <div className={styles.orders}>
                 <Orders />
               </div>
-              <div className={styles.sell}>Sell</div>
             </div>
           </Layout>
         </div>

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MatButtonModule, MatIconModule, MatToolbarModule } from "@angular/material";
+import { MatButtonModule, MatToolbarModule } from "@angular/material";
 import { HeaderComponent } from "./header.component";
 import { SidenavService } from "../../assets/utils/services/sidenav.service";
 
@@ -9,8 +9,7 @@ import { SidenavService } from "../../assets/utils/services/sidenav.service";
     imports: [
         CommonModule,
         MatButtonModule,
-        MatIconModule,
-        MatToolbarModule
+        MatToolbarModule,
     ],
     providers: [SidenavService],
     exports: [HeaderComponent]

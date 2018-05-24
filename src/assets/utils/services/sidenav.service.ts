@@ -5,21 +5,20 @@ import { MatSidenav } from "@angular/material";
 export class SidenavService {
     private sidenav: MatSidenav;
 
-    public setSidenav(sidenav: MatSidenav) {
+    public setSidenav(sidenav: MatSidenav): void {
         this.sidenav = sidenav;
-        console.log(this.sidenav, "----------------");
     }
 
-    public open() {
+    public open(): any {
         return this.sidenav.open();
     }
 
 
-    public close() {
+    public close(): any {
         return this.sidenav.close();
     }
 
     public toggle(): void {
-    this.sidenav.toggle();
-   }
+        this.sidenav.toggle();
+    }
 }

@@ -15,15 +15,16 @@ export class HeaderComponent {
     constructor(private router: Router, private sidenavMngr: SidenavService) {
         router.events.subscribe((val) => {
             if (val instanceof NavigationEnd) {
-                console.log(val.urlAfterRedirects);
                 this.isUsrLogged = (val.urlAfterRedirects !== "/login" && val.urlAfterRedirects !== "/error");
             }
         });
     }
 
     private sidebarToggle() {
-        // console.log(this.sidebar);
-        // this.sidebar.toggle();
         this.sidenavMngr.toggle();
+    }
+
+    private navigateTo(where: String): void {
+        this.router.navigate(["/" + where]);
     }
 }

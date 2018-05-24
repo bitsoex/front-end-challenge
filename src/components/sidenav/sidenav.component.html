@@ -1,9 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="push" opened="false" id="sidenav">
-    <h1>Some content</h1>
+    <div fxLayout="column">
+      <div fxFlex>
+        <div fxLayout>
+          <img fxFlex width="120px" height="250px" src="./../../assets/images/profile-icon.png">
+          <div fxLayout="column" id="info-container">
+            <mat-form-field class="user-info" fxFlex>
+              <input matInput placeholder="User Name" value="Name" disabled>
+            </mat-form-field>
+            <mat-form-field class="user-info" fxFlex>
+              <input matInput placeholder="User Email" value="Email" disabled>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxFlex>
+        <h1>Wallet</h1>
+        <mat-divider></mat-divider>
+        <p-chart type="doughnut" [data]="data"></p-chart>
+      </div>
+    </div>
   </mat-sidenav>
 
-  <mat-sidenav-content class="sidenav-content">
+  <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

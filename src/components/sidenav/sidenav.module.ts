@@ -1,9 +1,11 @@
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
-import { MatCheckboxModule, MatSidenavModule, MatFormFieldModule } from "@angular/material";
-import { SidenavComponent } from "./sidenav.component";
 import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule } from "@angular/forms";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { RouterModule, Routes } from "@angular/router";
+import { MatDividerModule, MatFormFieldModule, MatInputModule, MatSidenavModule } from "@angular/material";
+import { ChartModule } from "primeng/chart";
+import { SidenavComponent } from "./sidenav.component";
 import { SidenavService } from "../../assets/utils/services/sidenav.service";
 
 const routes: Routes = [
@@ -17,8 +19,11 @@ const routes: Routes = [
 @NgModule({
     declarations: [SidenavComponent],
     imports: [
+        ChartModule,
         CommonModule,
-        MatCheckboxModule,
+        FlexLayoutModule,
+        MatDividerModule,
+        MatInputModule,
         MatFormFieldModule,
         MatSidenavModule,
         ReactiveFormsModule,

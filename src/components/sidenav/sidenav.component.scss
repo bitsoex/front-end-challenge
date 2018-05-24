@@ -1,15 +1,21 @@
 @import "./../../assets/styles/colors.scss";
 
-#sidenav {
-  width: 30%;
-  background-color: $foreground-color;
-}
-
 .sidenav-container {
   background-color: transparent;
-}
+  height: 85vh;
+  & > #sidenav {
+    width: 30%;
+    background-color: $background-color;
+    color: $text-color;
+    // input, label, span  {
+    //   color: $text-color;
+    // }
+    #info-container {
+      margin-top: 5%;
+    }
 
-.sidenav-content {
-  // display: flex;
-  // justify-content: center;
+    mat-divider {
+      background-color: $text-color;
+    }
+  }
 }

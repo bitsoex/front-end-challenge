@@ -16,7 +16,6 @@ export class LoginComponent {
     constructor(private router: Router) { }
 
     private loginUser(): void {
-        console.log(this.user);
         this.router.navigate(["/home"]);
     }
 }

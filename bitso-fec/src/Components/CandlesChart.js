@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 
 import chartOptions from "../Modules/ChartOptions";
 
+console.log(window.innerHeight);
 /**
  * Candles Chart Component
  */
@@ -36,7 +37,8 @@ class CandlesChart extends React.Component {
         style: {
           fontFamily: "DINPro-regular, sans-serif"
         },
-        zoomType: "x"
+        zoomType: "x",
+        height: window.innerHeight < 730 ? "30%" : null
       },
       xAxis: [
         {

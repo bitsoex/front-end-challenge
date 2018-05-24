@@ -49,7 +49,11 @@ export const trade = async ({ book = "btc_mxn", timeFrame = "1month" }) =>
  *
  * @param {number} params.limit @default 25
  */
-export const trades = async ({ book = "", sort = "desc", limit = 25 }) => {
+export const getLastTrades = async ({
+  book = "",
+  sort = "desc",
+  limit = 25
+}) => {
   try {
     const response = await getRequest(
       `${tradesUrl}?book=${book}&sort=${sort}&limit=${limit}`

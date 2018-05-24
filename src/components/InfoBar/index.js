@@ -31,7 +31,7 @@ export default () => (
   <ThemeConsumer>
     {({ theme }) => (
       <BookConsumer>
-        {({ availableBooks: books, book, changeBook }) => {
+        {({ availableBooks, book, changeBook }) => {
           const {
             minimum_price,
             maximum_price,
@@ -53,7 +53,7 @@ export default () => (
                   theme.name === "light" ? { color: colors.green.dark } : null
                 }
                 containerClassName={cx(styles.item, styles.bookSelector)}
-                items={books.map(b => ({
+                items={availableBooks.map(b => ({
                   value: b.book,
                   displayValue: b.book
                     .toUpperCase()
@@ -63,7 +63,7 @@ export default () => (
                 defaultSelectedItem={book.book}
                 onChange={e => {
                   const bookValue = e.target.value;
-                  const book = books.find(b => b.book === bookValue);
+                  const book = availableBooks.find(b => b.book === bookValue);
                   changeBook(book);
                 }}
               />

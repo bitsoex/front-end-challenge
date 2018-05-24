@@ -4,7 +4,7 @@ import { css, keyframes } from "emotion";
 import dayjs from "dayjs";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
-import { trades as getTrades } from "../../api";
+import { getLastTrades } from "../../api";
 import Amount from "../Amount";
 
 const styles = {
@@ -40,19 +40,19 @@ export default class LastTrades extends Component {
     book: PropTypes.string.isRequired
   };
 
-  state = { trades: [] };
+  state = { lastTrades: [] };
 
   shouldComponentUpdate(nextProps, nextState) {
     const { book } = this.props;
-    const { trades } = this.state;
+    const { lastTrades } = this.state;
     console.log(
       "shouldComponentUpdate",
-      book !== nextProps.book || trades.length === 0
+      book !== nextProps.book || lastTrades.length === 0
     );
     return (
       book !== nextProps.book ||
-      trades.length === 0 ||
-      trades[0].book !== nextState.trades[0].book
+      lastTrades.length === 0 ||
+      lastTrades[0].book !== nextState.lastTrades[0].book
     );
   }
 
@@ -63,22 +63,22 @@ export default class LastTrades extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { book } = this.props;
-    const { trades } = this.state;
-    if (book !== prevProps.book || trades.length === 0) {
+    const { lastTrades } = this.state;
+    if (book !== prevProps.book || lastTrades.length === 0) {
       this.fetchTrades(book);
     }
   }
 
   fetchTrades = async book => {
-    const trades = await getTrades({ book });
-    this.setState({ trades });
+    const lastTrades = await getLastTrades({ book });
+    this.setState({ lastTrades });
   };
 
   formatDate = date => dayjs(date).format("HH:mm:ss");
 
   render() {
     const { book } = this.props;
-    const { trades } = this.state;
+    const { lastTrades } = this.state;
     const currency1 = book.split("_")[0].toUpperCase();
     const currency2 = book.split("_")[1].toUpperCase();
     return (
@@ -112,7 +112,7 @@ export default class LastTrades extends Component {
                   <span style={{ color: colors.sidebar.light }}>MONTO</span>
                 </div>
               </div>
-              {trades.map((trade, i) => (
+              {lastTrades.map((trade, i) => (
                 <div
                   key={trade.tid}
                   style={{ "--i": i }}

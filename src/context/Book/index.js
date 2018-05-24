@@ -14,7 +14,7 @@ export class BookProvider extends Component {
 
   async componentDidMount() {
     const books = await availableBooks();
-    this.books = books;
+    this.availableBooks = books;
     this.setState({ book: books[0] });
   }
 

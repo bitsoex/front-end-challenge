@@ -2,7 +2,9 @@ import React from 'react'
 import NumberFormat from 'react-number-format';
 
 /**
+ * 
  * Componente que describe una fila dentro del OrderBook
+ * 
  */
 export default class RowOrderBook extends React.Component {
 

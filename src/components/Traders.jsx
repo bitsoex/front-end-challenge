@@ -84,21 +84,22 @@ class Traders extends React.Component {
     render () {
         return (
             <div id="traders" style={{
-                position: 'absolute',
+                position: this.props.mobile?'relative':'absolute',
                 display: 'inline-block',
                 left: '0px',
-                width: '270px',
+                width: this.props.mobile?'100%':'270px',
                 top: '0px',
                 border: '4px',
                 backgroundColor: this.props.theme.bodyExchangeColor,
+                textAlign: 'center',
             }}>
-                <div style={{backgroundColor: this.props.theme.headerTrader}}>
+                <div style={{backgroundColor: this.props.theme.headerTrader, }}>
                     <h1 style={{ paddingLeft: '1.5em', color: this.props.theme.blueLight , marginTop: '0px', marginBottom: '0px'}} >
                         &Uacute;TIMOS TRADERS 
                     </h1>
                 </div>
 
-                <div className='headerTableTraders' style={{paddingLeft: '1.2em', paddingTop: '10px', paddingBottom: '10px', }} >
+                <div className='headerTableTraders' style={{paddingLeft: '1.2em', paddingTop: '10px', paddingBottom: '10px',}} >
                     <div style={{display:'inline-block', width: '3em' , textAlign: 'center', color: this.props.theme.blueLight}}>HORA</div>
                     <div style={{display:'inline-block', width: '8em', textAlign: 'right', color: this.props.theme.blueLight}}>
                         <div style={{display:'inline-block', color: this.props.theme.grayDark}}>{this.state.currency}</div> PRECIO

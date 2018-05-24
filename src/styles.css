@@ -157,3 +157,77 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: rgba(89, 101, 113, 0.78);
 }
+
+
+
+.navbar {
+    font-size: 14px;
+    overflow: hidden;
+    position: static;
+    left: 5em;
+    margin-top: -2em;
+    color: #d8e4ed;
+    padding-right: 5em;
+}
+
+.navbar a {
+    font-size: 14px;
+    float: right;
+    text-align: center;
+    text-decoration: none;
+    color: #d8e4ed;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.25em;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.25em;
+    
+}
+
+.dropdown .dropbtn {
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    color: #d8e4ed;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #3a4555;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #5c6d86;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1001;
+}
+
+.dropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

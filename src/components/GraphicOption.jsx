@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * 
+ * Componente de soporte para el select de GraphicExchange, seleccion entre candles y deep market
+ * 
+ */
 export default class GraphicOption extends React.Component {
 
     handleMouseDown (event) {

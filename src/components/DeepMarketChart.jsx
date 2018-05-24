@@ -79,9 +79,7 @@ export default class DeepMarketChart extends React.Component {
             let rangeBids = this.state.bids[0].price * (this.props.spead/100.0) / w2;
             //console.info ('spead: ' + this.props.spead + ' : ' + this.state.bids[0].price + ' : ' + w2 + ' : ' + rangeBids);
 
-            let rangeBi
             let sum = 0;
-            let jBid = 0;
 
             let rangeMax = parseFloat(this.state.bids[0].price);
             let rangeMin = parseFloat(rangeMax - rangeBids);
@@ -110,7 +108,6 @@ export default class DeepMarketChart extends React.Component {
 
             // - asks
             sum = 0;
-            this.state.bids[0].price * (this.props.spead/100.0) / w2;
             let rangeAsks = this.state.asks[0].price * (1.0 + this.props.spead/100.0) / w2;
             rangeMin = parseFloat(this.state.asks[0].price);
             rangeMax = rangeMin + rangeAsks;

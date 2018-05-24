@@ -50,7 +50,7 @@ export default class CandlesChart extends React.Component {
 
     /**
      * 
-     * Actualiza los valores OCHL para la gráfica de Candles
+     * Actualiza los valores OCHL para la graica de Candles
      */
     updateCandles() {
         fetch ('https://bitso.com/trade/chartJSON/'+ this.props.currentBook +'/' + this.props.period)
@@ -71,7 +71,7 @@ export default class CandlesChart extends React.Component {
     }
 
     /**
-     * Dibuja la gráfica de candles
+     * Dibuja la graica de candles
      */
     candles() {
         let lines = [];
@@ -92,7 +92,7 @@ export default class CandlesChart extends React.Component {
         }
         let scale = max - min;
 
-        // Calculo para la división de la malla en valores enteros.
+        // Calculo para la divisio de la malla en valores enteros.
         let gridScale = max - min;
         let factorScale = 1;
         if (gridScale > 1) {
@@ -126,7 +126,7 @@ export default class CandlesChart extends React.Component {
             gridInicial += factorScale;
         }
 
-        //Dibujas las líneas de separación de días.
+        //Dibujas las lieas de separacióode díai
         let stepAxisX = this.state.data.length / this.periodAxisX;
         for (let i = 0; i < this.state.data.length; i+=stepAxisX) {
             lines.push( <Line points={[ i * pasoX + pasoX/2 , 25, i*pasoX + pasoX/2, 1000]} 
@@ -150,8 +150,10 @@ export default class CandlesChart extends React.Component {
             let vol = this.state.data[i].volume / volMax * highVol;
             let xRect = i * pasoX + pasoX/4;
             lines.push( <Rect x={xRect} y={this.props.h - vol} width={pasoX/2} height={vol} 
-                fill={this.props.theme.volFill} stroke={this.props.theme.volLine}  key={k++} shadowBlur={5} 
-                onMouseMove={(e)=>this.handleMouseMove(e)} onMouseOut={(e)=>this.handleMouseOut(e)} data={this.state.data[i]} /> );
+                fill={this.props.theme.volFill} stroke={this.props.theme.volLine}  key={k++} shadowBlur={5}
+                data={this.state.data[i]} 
+                onMouseMove={(e)=>this.handleMouseMove(e)} onMouseOut={(e)=>this.handleMouseOut(e)} 
+                onTouchStart ={(e)=>this.handleMouseMove(e)}  onTouchEnd = {(e)=>this.handleMouseOut(e)} /> );
         }
 
         // Dibuja lineas high, low y rectangulos de open y close.
@@ -172,14 +174,17 @@ export default class CandlesChart extends React.Component {
 
             lines.push( <Rect x={xRect} y={yRect} width={pasoX/2} height={yHeight} 
                 fill={colorFill} stroke={colorBook}  key={k++} shadowBlur={5} 
-                onMouseMove={(e)=>this.handleMouseMove(e)} onMouseOut={(e)=>this.handleMouseOut(e)} data={this.state.data[i]} /> );
+                data={this.state.data[i]}
+                onMouseMove={(e)=>this.handleMouseMove(e)} onMouseOut={(e)=>this.handleMouseOut(e)} 
+                onTouchStart ={(e)=>this.handleMouseMove(e)}  onTouchEnd = {(e)=>this.handleMouseOut(e)}
+                /> );
         }
         return lines;
     }
     
     /**
      * 
-     * Función de soporte para generar formato para el tooltip dependiendo si es MXN ó cryptocurrency
+     * Funcio de soporte para generar formato para el tooltip dependiendo si es MXN óoryptocurrency
      * 
      */
     parseCurrency (v) {
@@ -194,7 +199,7 @@ export default class CandlesChart extends React.Component {
 
     /**
      * 
-     * Función de soporte para generar formato para el volumen en el tooltip
+     * Funcio de soporte para generar formato para el volumen en el tooltip
      * 
      */
     parseCurrencyVol (v) {
@@ -205,7 +210,7 @@ export default class CandlesChart extends React.Component {
 
     /**
      * 
-     * Función de soporte para mostrar el tooltip cuando se mueve el puntero sobre un componente de Candle o Volumen
+     * Funcio de soporte para mostrar el tooltip cuando se mueve el puntero sobre un componente de Candle o Volumen
      * 
      */
     handleMouseMove (e) {
@@ -270,7 +275,7 @@ export default class CandlesChart extends React.Component {
      * Renderiza la grafica de Candlestick, utiliza dos layers:
      * 
      * Layer A: Grafica de candles y volumen
-     * Layer B: Tooltip de información
+     * Layer B: Tooltip de informacio
      * 
      */
     render () {

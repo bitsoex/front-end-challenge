@@ -6,6 +6,12 @@ import RowOrderBook from './RowOrderBook'
 
 import NumberFormat from 'react-number-format';
 
+
+/**
+ * 
+ * Componente que contiene las tablas de bids y asks del order book,
+ * 
+ */
 class OrderBooks extends React.Component {
 
     constructor (props) {
@@ -21,15 +27,30 @@ class OrderBooks extends React.Component {
         };
     }
 
+    /** 
+     * 
+     * Componete montando, inicia las tablas del order book
+     * 
+    */
     componentDidMount() {
         this.updateOrderBooks();
     }
 
+    /** 
+     * 
+     * Componete para actualizar cuando otro book del Exchange es seleccionado 
+     * 
+    */
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.currentBook !== this.props.currentBook) 
              this.updateOrderBooks();
     }
 
+    /**
+     * 
+     * Actualiza los datos de las tablas de order book desde Bitso API
+     * 
+     */
     updateOrderBooks() {
         fetch ('https://api.bitso.com/v3/order_book/?book=' + this.props.currentBook)
          .then ( (response) => {
@@ -64,7 +85,6 @@ class OrderBooks extends React.Component {
                     let length = orderBooks.payload.bids[i].amount / maxBids;
                     bidsTmp.push( {length: length, sum: sumBids, amount: orderBooks.payload.bids[i].amount, value: value, price: orderBooks.payload.bids[i].price} );
                 }
-
                 
                 this.setState({
                     asks: asksTmp,
@@ -84,6 +104,11 @@ class OrderBooks extends React.Component {
          })
     }
 
+    /**
+     * 
+     * Genera las filas del lado de Bids
+     * 
+     */
     rowsBids () {
         if (this.state.bids.length > 0) {
             let rows = [];
@@ -99,6 +124,10 @@ class OrderBooks extends React.Component {
         }
     }
 
+    /**
+     * 
+     * Genera las filas del lado de Asks
+     */
     rowsAsks() {
         if (this.state.asks.length > 0) {
             let rows = [];
@@ -114,6 +143,13 @@ class OrderBooks extends React.Component {
         }
     }
 
+    /**
+     * 
+     * Genera la vista del order book:
+     * A) Tabla de Bids
+     * B) Tabla de Asks
+     * 
+     */
     render () {
         return (
             <div style={{width: '100%', position: 'relative', textAlign: 'center' }}>
@@ -199,14 +235,29 @@ class OrderBooks extends React.Component {
     }
 }
 
+/**
+ * 
+ * Numero de filas que se visualizan por default 
+ * 
+ */
 OrderBooks.propTypes = {
   maxOrderSize: PropTypes.number,
 };
 
+/**
+ * 
+ * 25 filas se visualizan por default
+ * 
+ */
 OrderBooks.defaultProps  = {
     maxOrderSize: 25,
 }
 
+/**
+ * 
+ * Definicion del consumo de BookContext
+ * 
+ */
 export default props => (
   <BookContext.Consumer>
       { currentBook => <OrderBooks {...props} currentBook={currentBook} />}

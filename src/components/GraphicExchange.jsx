@@ -42,9 +42,9 @@ class GraphicExchange extends React.Component {
 
         this.state = {
             //grafica candles default
-            graphic: 'deepmarket',
+            graphic: 'candles',
             //grafica candles default
-            value: this.graphics[1],
+            value: this.graphics[0],
             //tema default para los botones de zoom de graficas de candlestick
             colorButton: this.props.theme.bodyExchangeColor,
             //tema default para el texto de los botones de zoom de graficas de candlestick
@@ -111,7 +111,8 @@ class GraphicExchange extends React.Component {
      * Seleccion de componente a renderizar CandlesChart o DeepMarketChart
      */
     drawChart () {
-        const w = this.props.widthScreen - 270 - 30;
+
+        const w = this.props.widthScreen - (this.props.mobile?0:300);
         if (this.state.graphic === 'candles') {
             return (
                 <CandlesChart h={300} 

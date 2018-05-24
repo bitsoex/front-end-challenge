@@ -60,7 +60,7 @@ class Exchange extends React.Component {
 
     /**
      * 
-     * Función soporte para el cambio de book disponible
+     * Funcio soporte para el cambio de book disponible
      * 
      */
     changeBook (e) {
@@ -75,40 +75,36 @@ class Exchange extends React.Component {
      * 
      */
     render () {
-        return (
+        return(
             <ThemeContext.Consumer>
-             {theme => (
+            {theme => (
                 <BookContext.Provider value={this.state.currentBook} >
                     <div id="headerExchange" className='headerExchange'>
                         <select type="select" onChange={this.changeBook.bind(this)} style={{ backgroundColor: theme.background, color: theme.greenLight, 
                             outline: 'none', border: '0px'}}>
                             {this.createOptions()}
                         </select>
-                        <Ticker theme={theme} />
+                        <Ticker theme={theme} mobile={this.props.mobile} />
                     </div>
                     <div style={{ width: '100%' , height: '2px',  backgroundColor: '#1f252c' }}></div>
-
                     <div id="bodyExchange" style={{ backgroundColor: theme.bodyExchangeColor, position: 'absolute', width: '100%'}}>
-                        
-                        <Traders theme={theme} books={this.state.books} />
-
                         <div style={{
-                            position: 'absolute',
-                            top: '0px',
+                            position: this.props.mobile?'relative':'absolute',
+                            top: '0',
                             width: 'auto',
-                            left: '270px',
+                            left: this.props.mobile?'0px':'270px',
                             display: 'inline-block',
                         }}>
-                            <GraphicExchange theme={theme} widthScreen={this.props.widthScreen} />
+                            <GraphicExchange theme={theme} widthScreen={this.props.widthScreen} mobile={this.props.mobile} />
                             <OrderBooks theme={theme}  />
                         </div>
-                        
+                        <Traders theme={theme} books={this.state.books} mobile={this.props.mobile} />
                         <Markets theme={theme} books={this.state.books} />
                     </div>
                 </BookContext.Provider>
-             )}
+            )}
             </ThemeContext.Consumer>
-        )
+        );
     }
 }
 

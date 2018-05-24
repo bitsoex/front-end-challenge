@@ -4,11 +4,14 @@
 
 .table.last-trades > .header {
   text-transform: uppercase;
+  font-size: .93rem;
 }
 
 .table.last-trades > .container > table > thead > tr > th {
   text-transform: uppercase;
   color: var(--header-color);
+  font-size: .93rem;
+  padding: 8px;
 }
 
 .table.last-trades > .container > table > thead > tr > th > .last-trades-header > span {

@@ -16,6 +16,20 @@
             display: block;
             overflow-y: auto;
             height:300px;
+            .bid-list-row-header{
+                color:#b0bac1;
+                text-align: right;
+                justify-content: space-between;
+                font-size: 12px;
+                display: inline-flex;
+                width: 100%;
+                p{
+                    width: 17%;
+                }
+                span{
+                    color: #4e5863;
+                }
+            }
             .bid-list-row{
                 width: 100%;
                 div{
@@ -52,13 +66,23 @@
             display: block;
             overflow-y: auto;
             height:300px;
+            .asks-list-row-header{
+                width: 100%;
+                text-align: left;
+                justify-content: space-between;
+                font-size: 12px;
+                display: inline-flex;
+                p{
+                    width: 17%;
+                }
+            }
             .asks-list-row{
                 width: 100%;
                 div{
                     height: 10px;
                     background-color: red;
                 }
-                text-align: right;
+                text-align: left;
                 justify-content: space-between;
                 font-size: 12px;
                 display: inline-flex;

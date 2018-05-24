@@ -9,13 +9,15 @@ class Lists extends Component {
         this.state={
           array_post:this.props.array_post,
           orderBooks:this.props.orderBooks,
-          ticketInfo:this.props.ticketInfo
+          ticketInfo:this.props.ticketInfo,
+          activeCoin:this.props.activeCoin
         }
     
       }
 
       componentWillReceiveProps(nextProps){
-        this.setState({array_post:nextProps.array_post,orderBooks:nextProps.orderBooks,ticketInfo:nextProps.ticketInfo})
+        this.setState({array_post:nextProps.array_post,orderBooks:nextProps.orderBooks,ticketInfo:nextProps.ticketInfo,
+        activeCoin:nextProps.activeCoin})
       }
 
   render() {
@@ -23,8 +25,15 @@ class Lists extends Component {
       <section className="list-section">
       
       <section className='bid-section'>
-      <section className='bid-header'><span>Posturas de compra</span> <span>{this.state.ticketInfo.payload.bid}</span></section>
+      <section className='bid-header'><span>Posturas de compra</span> <span>{this.state.activeCoin.toCoin} Bid {this.state.ticketInfo.payload.bid}</span></section>
       <section className='rows-section'>
+      <section className='bid-list-row-header'> 
+               <p className='column' ></p>
+                <p className='column'>SUM</p>
+                <p className='column'><span>{this.state.activeCoin.fromCoin}</span> MONTO</p>
+                <p className='column'><span>{this.state.activeCoin.toCoin}</span> VALOR</p>
+                <p className='columnPrice'><span>{this.state.activeCoin.toCoin}</span> PRECIO</p>
+                  </section>
       <Scrollbars style={{ height: 200 }}>
       {this.state.orderBooks.payload.bids.map(bids => {
               return<section className='bid-list-row'> 
@@ -41,8 +50,15 @@ class Lists extends Component {
       </section>
 
       <section className='asks-section'>
-      <section className='asks-header'><span>Posturas de compra</span> <span>{this.state.ticketInfo.payload.ask}</span></section>
+      <section className='asks-header'><span>Posturas de compra</span> <span>{this.state.activeCoin.toCoin} Ask {this.state.ticketInfo.payload.ask}</span></section>
       <section className='rows-section'>
+      <section className='asks-list-row-header'> 
+               <p className='column' ><span>{this.state.activeCoin.toCoin}</span> PRECIO</p>
+                <p className='column'><span>{this.state.activeCoin.toCoin}</span> VALOR</p>
+                <p className='column'><span>{this.state.activeCoin.fromCoin}</span> MONTO</p>
+                <p className='column'>SUM</p>
+                <p className='columnPrice'></p>
+                  </section>
       <Scrollbars style={{ height: 200 }}>
       {this.state.orderBooks.payload.asks.map(asks => {
               return<section className='asks-list-row'> 

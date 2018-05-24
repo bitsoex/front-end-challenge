@@ -37,7 +37,7 @@ class BodySection extends Component {
     return (
       <section className="body-section">
         <LastTrades array_trades={this.state.array_trades} activeCoin={this.state.activeCoin}/>
-        <Posturas ticketInfo={this.state.ticketInfo} orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade}  array_post={this.state.array_post}/>
+        <Posturas activeCoin={this.state.activeCoin} ticketInfo={this.state.ticketInfo} orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade}  array_post={this.state.array_post}/>
 
       </section>
     );

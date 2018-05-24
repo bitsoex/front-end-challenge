@@ -1,6 +1,6 @@
 <template>
-  <div class="market">
-    <div class="market-content" v-bind:style="{transform: mobilePagePosition}">
+  <div class="exchange">
+    <div class="exchange-content" v-bind:style="{transform: mobilePagePosition}">
       <div id="last-trades" v-bind:class="{open: lastTrades.open}">
         <div class="slider" v-on:click="lastTrades.open = !lastTrades.open">
           <img src="../assets/images/dropdown.svg">
@@ -72,9 +72,8 @@
           </ul>
         </div>
 
-        <div id="candles-chart">
-          <div class="column" v-for="column in chart.candles.data" v-bind:style="{width: chart.candles.width + 'px'}"></div>
-        </div>
+        <candles-chart></candles-chart>
+
       </div>
 
       <div id="positions">
@@ -106,6 +105,8 @@ import Vue from 'vue'
 import vSelect from 'vue-select'
 import VueResource from 'vue-resource'
 
+import candlesChart from './exchange/candlesChart.vue'
+
 var VueTouch = require('vue-touch')
 Vue.use(VueTouch, {name: 'v-touch'})
 
@@ -114,12 +115,15 @@ Vue.use(VueResource)
 Vue.component('v-select', vSelect)
 
 export default {
+  components: {
+    'candles-chart': candlesChart
+  },
   computed: {
     trades: function () {
       return this.$store.state.trades
     }
   },
-  name: 'Market',
+  name: 'Exchange',
   data () {
     return {
       chart: {
@@ -137,10 +141,6 @@ export default {
           selected: '1d',
           options: ['1d', '3d', '1w', '1m'],
           selectVisible: false
-        },
-        candles: {
-          data: [],
-          width: '10px'
         }
       },
       lastTrades: {
@@ -199,19 +199,6 @@ export default {
       var x = document.getElementById('tab-bar-audio')
       x.play()
       console.log(t)
-    },
-    chartLoad () {
-      var self = this
-      Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + 'btc_mxn' + '&' + '3months').then(function (data) {
-        var w = document.getElementById('candles-chart').offsetWidth
-
-        var candleWidth = w / data.body.length
-
-        self.chart.candles.width = candleWidth
-        self.chart.candles.data = data.body
-      }, function (err) {
-        console.log(err)
-      })
     }
   },
   mounted () {
@@ -234,9 +221,6 @@ export default {
       }
     })
     /* end select */
-    /* chart */
-    this.chartLoad()
-    /* end chart */
   }
 }
 </script>
@@ -247,13 +231,13 @@ export default {
   transition: all 0.3s;
 }
 
-.market {
+.exchange {
   position: relative;
   width: 100vw;
   height: calc(100vh - 111px);
 }
 
-.market-content {
+.exchange-content {
   transition: all 0.3s;
 }
 
@@ -668,26 +652,6 @@ export default {
 
   #chart .chartPeriodicityChange ul li span, #chart .chartIntervalChange ul li span {
     margin-right: 0;
-  }
-
-  #candles-chart {
-    height: 282px;
-    width: calc(100vw - 374px);
-    background: red;
-    margin-top: 32px;
-    font-size: 0;
-  }
-
-  #candles-chart .column {
-    display: inline-block;
-    height: 282px;
-    width: 20px;
-    background: blue;
-    transition: all 0;
-  }
-
-  #candles-chart .column:hover {
-    background: purple;
   }
 /* END CHART */
 

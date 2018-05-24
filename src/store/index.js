@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  trades: [],
+  dayMode: false,
   diffOrders: [],
-  orders: []
+  orders: [],
+  trades: []
 }
 
 const mutations = {
+  dayMode (state, payload) {
+    state.dayMode = payload
+  },
   tradesAll (state, payload) {
     state.trades = payload
   },
@@ -37,6 +41,9 @@ const mutations = {
 }
 
 const actions = {
+  dayMode (context, payload) {
+    context.commit('dayMode', payload)
+  },
   tradesAll (context, payload) {
     context.commit('tradesAll', payload)
   },

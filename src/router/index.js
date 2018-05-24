@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Market from '@/components/Market'
+import Exchange from '@/components/Exchange'
 
 Vue.use(Router)
 
@@ -8,10 +8,10 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Market',
-      component: Market
+      path: '/exchange',
+      name: 'Exchange',
+      component: Exchange
     },
-    { path: '*', redirect: '/' }
+    { path: '*', redirect: '/exchange' }
   ]
 })

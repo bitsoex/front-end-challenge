@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Stage, Layer, Line, Text, Circle} from 'react-konva';
+import {Stage, Layer, Line, Text, Circle, Rect} from 'react-konva';
 
 /**
  * 
@@ -16,6 +16,7 @@ export default class DeepMarketChart extends React.Component {
         this.state = {
             bids: [],
             asks: [],
+            data: [],
             currency: this.props.currentBook.substr(this.props.currentBook.length-3).toUpperCase(),
             coin: this.props.currentBook.substr(0, 3).toUpperCase(),
         }
@@ -73,6 +74,7 @@ export default class DeepMarketChart extends React.Component {
     deepMarket() {
         let lines = [];
         if (this.state.bids.length > 0) {
+
             let k = 0;
             // -bids
             let w2 = Math.trunc(this.props.w / 2) - 5; // 500 -> 250-5=>245
@@ -84,7 +86,7 @@ export default class DeepMarketChart extends React.Component {
             let rangeMax = parseFloat(this.state.bids[0].price);
             let rangeMin = parseFloat(rangeMax - rangeBids);
 
-            let data = new Array(this.props.w);
+            this.data = new Array(this.props.w);
 
             for (let x = w2; x >= 0; x--) {
                 
@@ -95,14 +97,14 @@ export default class DeepMarketChart extends React.Component {
                     if (parseFloat(this.state.bids[j].price) < rangeMin) break;
                 }
                 sum += sumRange;    
-                data[x] = {x: x, max: rangeMax, min: rangeMin, side: 'bids', sum: sumRange, sumTotal: sum};
+                this.data[x] = {x: x, max: rangeMax, min: rangeMin, side: 'bids', sum: sumRange, sumTotal: sum};
                 rangeMax = rangeMin;
                 rangeMin = rangeMax - rangeBids;
             }
             
-            
+            this.sumBids = sum;
             for (let x = w2; x >= 0; x--) {
-                let y = data[x].sumTotal / sum;
+                let y = this.data[x].sumTotal / sum;
                 lines.push( <Line points={[ x , this.props.h - (y * (this.props.h-30)), x, this.props.h]} fill={'#455840'} stroke={'#455840'} key={k++} /> );
             }
 
@@ -119,16 +121,18 @@ export default class DeepMarketChart extends React.Component {
                     if (parseFloat(this.state.asks[j].price) > rangeMax) break;
                 }
                 sum += sumRange;
-                data[x] = {x: x, max: rangeMax, min: rangeMin, side: 'bids', sum: sumRange, sumTotal: sum};
+                this.data[x] = {x: x, max: rangeMax, min: rangeMin, side: 'asks', sum: sumRange, sumTotal: sum};
                 rangeMin = rangeMax;
                 rangeMax = rangeMin + rangeAsks;
             }
 
+            this.sumAsks = sum;
             for (let x = Math.trunc(this.props.w / 2) + 10; x < this.props.w; x++) {
-                let y = data[x].sumTotal / sum;
+                let y = this.data[x].sumTotal / sum;
                 lines.push( <Line points={[ x , this.props.h - (y * (this.props.h-30)), x, this.props.h]} fill={'#59252e'} stroke={'#59252e'} key={k++} /> );
             }
 
+            //this.setState({data: this.data});
         }
         return lines;
     }
@@ -136,24 +140,104 @@ export default class DeepMarketChart extends React.Component {
 
     /**
      * 
+     * Funcio de soporte para generar formato para el tooltip dependiendo si es MXN Ã³oryptocurrency
+     * 
+     */
+    parseCurrency (v) {
+        let tmp = parseFloat(v);
+        if (this.state.currency === 'MXN') {
+            tmp = '$' + tmp.toFixed(2) + ' MXN';
+        } else {
+            tmp = tmp.toFixed(8) + ' ' + this.state.currency;
+        }
+        return tmp;
+    }
+
+    /**
+     * 
+     * Manejo del movimiento del mouse en la grafica, muestra los datos de acumulacion y precio
+     * 
+     * @param {MouseEvent} e
+     *  
+     */
+    handleMouseMove(e) {
+
+        let pos = this.refs.stage.getStage().getPointerPosition();
+        let x = pos.x;
+
+        if (this.data !== undefined ) {
+            
+            let index = Math.trunc(x);
+            if (this.data[index] !== undefined ) {
+                let y = this.data[x].sumTotal;
+                if (this.data[x].side==='bids') { 
+                    y = y / this.sumBids;
+                    this.refs.lineAxis.fill('#85ad6b');
+                    this.refs.lineAxis.stroke('#85ad6b');
+                    this.refs.pointAxis.stroke('#85ad6b');
+                } else {
+                    y = y / this.sumAsks;
+                    this.refs.lineAxis.fill('#b32f3e');
+                    this.refs.lineAxis.stroke('#b32f3e');
+                    this.refs.pointAxis.stroke('#b32f3e');
+                }
+                y = this.props.h - (y * (this.props.h-30));
+
+                let price = (this.data[x].min + this.data[x].max)/2;
+                price = this.parseCurrency(price);
+                this.refs.textPrice.text(price);
+                this.refs.textSum.text( this.data[x].sumTotal );
+
+                this.refs.textPrice.position({x: x + 10, y: y - 30 });
+                this.refs.textSum.position({x: x + 10, y: y - 14 });
+                
+
+                this.refs.lineAxis.points([x, y - 30, x, this.props.h]);
+                this.refs.pointAxis.position({x: x, y: y });
+            }
+        }
+
+        
+        this.refs.textPrice.show();
+        this.refs.textSum.show();
+        this.refs.pointAxis.show();
+        this.refs.lineAxis.show();
+
+        this.refs.layerTooltip.batchDraw();
+    }
+
+    handleMouseOut (e) {
+        
+    }
+
+    /**
+     * 
      * Renderiza la grafica de DeepMarket, utiliza dos layers:
      * 
      * Layer A: Grafica de Deep Market 
-     * Layer B: Tooltip de información
+     * Layer B: Tooltip de informacio
      * 
      */
     render () {
         return (
-            <Stage width={this.props.w} height={this.props.h}  >
-                <Layer>
+            <Stage width={this.props.w} height={this.props.h} ref='stage'>
+                <Layer >
+
                     { this.deepMarket() }
+
+                    <Rect x={0} y={0} width={this.props.w} height={this.props.h} fill={'white'} stroke={'white'} opacity={0.01} 
+                    onMouseMove={(e)=>this.handleMouseMove(e)} onMouseOut={(e)=>this.handleMouseOut(e)} 
+                    onTouchStart ={(e)=>this.handleMouseMove(e)}  onTouchEnd = {(e)=>this.handleMouseOut(e)} />
                 </Layer>
 
                 <Layer ref='layerTooltip'>
+                    
+
+                    <Line ref='lineAxis' visible={false} dash={[3, 3]} />
+                    <Circle ref='pointAxis' visible={false} radius={5} x={100} y={100} fill='#191e23' stroke='white' />
+
                     <Text ref='textPrice' textFill={'white'} fill={'white'} alpha={0.75} visible={false} text='Open' />
                     <Text ref='textSum' textFill={'white'} fill={'white'} alpha={0.75} visible={false} text='Close' />
-                    <Line ref='lineAxis' visible={false} />
-                    <Circle ref='pointAxis' visible={false} />
                 </Layer>
             </Stage>
         );

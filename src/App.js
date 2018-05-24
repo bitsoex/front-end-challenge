@@ -9,11 +9,13 @@ import {tradesEpic, tradesReducer} from './reducers/trades'
 import {tickersEpic, tickersReducer} from './reducers/tickers'
 import {booksEpic, booksReducer} from './reducers/books'
 import {websocketEpic, websocketReducer} from './reducers/websocket'
+import {historyTradeEpic, historyTradeReducer} from './reducers/historytrade'
 
 import {FilterTrades, FilterBids, FilterAsks, FilterLineChart } from './containers/FilterTrades'
 import {FilterTickers } from './containers/FilterTrades'
 import FilterBooks from './containers/FilterBooks'
 import FilterLabelBook from './containers/FilterLabelBook'
+//import FilterHistoryTrades from './containers/FilterHistoryTrades'
 
 import FloatingMenu from './components/FloatingMenu';
 
@@ -26,12 +28,14 @@ const tradesMiddleware = createEpicMiddleware(tradesEpic);
 const booksMiddleware = createEpicMiddleware(booksEpic);
 const wsMiddleware = createEpicMiddleware(websocketEpic);
 const tickersMiddleware = createEpicMiddleware(tickersEpic);
+const historyTradeMiddleware = createEpicMiddleware(historyTradeEpic);
 const storeTrades = createStore(
 	combineReducers({
 		booksReducer,
 		tradesReducer,
 		websocketReducer,
-		tickersReducer
+		tickersReducer,
+		historyTradeReducer
 	}),
 	{},
 	applyMiddleware(
@@ -39,7 +43,8 @@ const storeTrades = createStore(
 		tradesMiddleware,
 		booksMiddleware,
 		wsMiddleware,
-		tickersMiddleware
+		tickersMiddleware,
+		historyTradeMiddleware
 	)
 );
 

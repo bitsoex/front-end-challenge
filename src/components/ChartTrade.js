@@ -2,8 +2,7 @@ import React from 'react'
 import { Observable, BehaviorSubject  } from 'rxjs'
 import ReactDOM from 'react-dom';
 
-import LineChart from './chart/LineChart'
-import StockChart from './chart/StockChart'
+import StockChartGraph from './chart/StockChartGraph'
 
 /**
 * 	Observer if the windows resize
@@ -16,13 +15,12 @@ var observer =  Observable.timer(300)
 	)
 	.debounceTime(100);
 
-class ChartBidsAsks extends React.Component{
+class ChartTrade extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state ={
 			widthParent: 300,
-			heightParent: 700,
-			showDefaultGraph: false
+			heightParent: 700
 		};
 	}
 	
@@ -37,22 +35,12 @@ class ChartBidsAsks extends React.Component{
 		observer.unsubscribe();
 	}
 	
-	changeGraph(){
-		this.setState({
-			showDefaultGraph: !this.state.showDefaultGraph
-		});
-	}
-	
 	render() {
-		const {bids, asks, bookSelected, historytrades, changePeriodInterval} = this.props;
-		//console.log("wtf",this.props);
+		const {bookSelected, historytrades, changePeriodInterval} = this.props;
+
 		return(
 			<ResizeDirective >
-				{this.state.showDefaultGraph ? 
-					(<LineChart bids={bids} asks={asks} svgWidth={this.state.widthParent}  svgHeight={this.state.heightParent} changeGraph={this.changeGraph.bind(this)}/>)
-					:
-					(<StockChart bookSelected={bookSelected} historytrades={historytrades} changeGraph={this.changeGraph.bind(this)} changePeriodInterval={changePeriodInterval} svgWidth={this.state.widthParent}  svgHeight={this.state.heightParent} />)
-				}
+			   <StockChartGraph bookSelected={bookSelected} historytrades={historytrades} changePeriodInterval={changePeriodInterval} svgWidth={this.state.widthParent}  svgHeight={this.state.heightParent}/>
 			</ResizeDirective>
 		);
 	}
@@ -75,6 +63,4 @@ class ChartBidsAsks extends React.Component{
 	}
 }
 
-
-
-export default ChartBidsAsks;
+export default ChartTrade;

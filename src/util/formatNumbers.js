@@ -19,3 +19,12 @@ export const formatCurrency = (value, disableCurrencyStyle = false) => {
 	}).format(value)
 	//return value.toLocaleString(FORMAT, { N_FRACTIONS: N_FRACTIONS });
 };
+
+
+export const formatDate = (value)=>{
+	
+	return new Intl.DateTimeFormat('en-GB', { 
+          month: 'long', 
+          day: '2-digit' 
+    }).format(value)
+};

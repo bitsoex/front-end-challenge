@@ -735,6 +735,7 @@ body{
 				}
 				.linechart_fill{
 					fill: fade(@color-green-graph, 40%);
+					stroke: @color-green-graph;
 				}				
 			}
 			
@@ -745,6 +746,27 @@ body{
 				}
 				.linechart_fill{
 					fill: fade(@color-red-graph, 40%);
+				}
+			}
+			#history{
+				.red{
+					fill: fade(@color-red, 40%);
+					stroke: @color-red;
+				}
+				.green{
+					fill: fade(@color-green-graph, 40%);
+					stroke: @color-green-graph;
+				}
+				text{
+					fill: @base-color3;
+				}
+				.axis,
+				.axisx{
+					fill: @graph_axis;
+					stroke: @graph_axis;
+				}
+				.axisx{
+					stroke-dasharray: 0;
 				}
 			}
 			.text{

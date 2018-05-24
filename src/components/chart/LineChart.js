@@ -6,7 +6,7 @@ import LineChartGraph from './LineChartGraph'
 class LineChart extends React.Component {
 
 	render() {
-		const {svgHeight, svgWidth, bids, asks} = this.props;
+		const {svgHeight, svgWidth, bids, asks, changeGraph} = this.props;
 		const distance_between = 70;
 		let svgHeightWitoutHeader = svgHeight - 30;
 		//console.log("render.LineChart", this.props);
@@ -15,7 +15,7 @@ class LineChart extends React.Component {
 				<div className="header">
 					<ul className="expand">
 						<li className="vcenter ">
-							<div className="menu_graph">
+							<div className="menu_graph" onClick={e=>changeGraph()}>
 								<img src={logoA} />
 								<img src={logoDown} />
 							</div>

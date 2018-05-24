@@ -35,13 +35,21 @@ export default class FloatingMenu extends React.Component {
 		});
 	}
 	
+	/**
+	*	Load Tickers when show the floating view
+	*/
+	
 	toggleClassMenu() {
+		const {store} = this.props;
 		this.add("menu--animatable");   
 		if(!this.contains("menu--visible")) {
 			this.add("menu--visible");
 		} else {
 			this.remove('menu--visible');       
-		}   
+		}
+		store.dispatch({
+			type: 'LOAD_ALL_TICKERS'
+		});
 	}
 	
 	OnTransitionEnd() {
@@ -50,17 +58,13 @@ export default class FloatingMenu extends React.Component {
 	
 	render(){
 		const {className, store} = this.props;
-		const loadTickers = ()=>{
-			store.dispatch({
-				type: 'LOAD_ALL_TICKERS'
-			});
-		} 
+		
 		//console.log("Render.floatingMenu", this.props);
 		return (
-			<div className = {className + ' ' + this.state.className} onTransitionEnd={this.OnTransitionEnd.bind(this)} onClick={_=>{this.toggleClassMenu(); loadTickers();}} >
+			<div className = {className + ' ' + this.state.className} onTransitionEnd={this.OnTransitionEnd.bind(this)} >
 				<div className="app-menu">
 					<ul className="expand">
-						<li className="header">
+						<li className="header" onClick={_=>{this.toggleClassMenu()}}>
 							<img src={collapseImg} /><div className="rotateText">MERCADOS</div>
 						</li>
 						<li className="body">

@@ -1,0 +1,29 @@
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table > .header {
+  padding: 5px 15px;
+  background: var(--table-header-background);
+}
+
+.table > .container > table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table > .container > table > thead > tr > th {
+  padding: 5px;
+  opacity: .7;
+}
+
+.table > .container > table > tbody > tr:hover {
+  background: var(--table-row-hover-background);
+}
+
+.table > .container > table > tbody > tr > td { 
+  padding: 2px;
+  text-align: center;
+}

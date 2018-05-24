@@ -1,0 +1,47 @@
+.last-trades {
+  padding: 15px;
+}
+
+.table.last-trades > .header {
+  text-transform: uppercase;
+}
+
+.table.last-trades > .container > table > thead > tr > th {
+  text-transform: uppercase;
+  color: var(--header-color);
+}
+
+.table.last-trades > .container > table > thead > tr > th > .last-trades-header > span {
+  padding-right: 4px;
+  color: var(--table-color);
+}
+
+.table.last-trades > .container > table > tbody > tr {
+  opacity: .5;
+}
+
+.table.last-trades > .container > table > tbody > tr:hover {
+  opacity: 1;
+}
+
+.table.last-trades > .container > table > tbody > tr > td.time {
+  color: var(--table-color);
+}
+
+.table.last-trades > .container > table > tbody > tr:hover > td.time {
+  color: white;
+}
+
+.table.last-trades > .container > table > tbody > tr > td.price > .revenue {
+  color: var(--exchange-type-color);
+}
+
+.table.last-trades > .container > table > tbody > tr > td.price > .loss {
+  color: var(--exchange-loss-color);
+}
+
+@media screen and (max-width: 768px) {
+  .table.last-trades > .container > table > tbody > tr:nth-child(n+6) {
+    display: none;
+  }
+}

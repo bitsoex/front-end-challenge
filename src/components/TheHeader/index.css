@@ -29,11 +29,11 @@
 }
 
 #app > .page > .header-container > header > .title-page.money-exchange > div:first-child {
-  border-left: 1px solid var(--header-separator);
+  border-left: 1px solid var(--header-color);
 }
 
 #app > .page > .header-container > header > .title-page.money-exchange > div:last-child {
-  border-right: 1px solid var(--header-separator);
+  border-right: 1px solid var(--header-color);
 }
 
 #app > .page > .header-container > header > nav > ul {

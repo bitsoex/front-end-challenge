@@ -23,10 +23,13 @@
   --neutral-gray: #cccccc;
   --bitcoin-yellow: #ebc256;
   --header-background: #252C36;
-  --header-separator: #B0BAC1;
   --header-color: #B0BAC1;
   --nav-background: #161A1E;
   --exchange-type-color: #80C156;
+  --table-header-background: #313D4C;
+  --table-color: #4E5863;
+  --table-row-hover-background: rgba(116, 127, 137, .4);
+  --exchange-loss-color: #BA3040;
 }
 
 html,

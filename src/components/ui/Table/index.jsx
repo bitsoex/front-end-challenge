@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import get from 'lodash/get'
 
-import style from './index.css'
+import './index.css'
 
 const EMPTY_DATA = 0
 
@@ -21,15 +21,15 @@ function printField (field, row) {
 }
 
 const Table = ({ className, data = [], columns = [], header = '', loading = false }) => (
-  <div className={classnames(style.table, className)}>
-    <div className={style.header}>{ header }</div>
-    <div className={style.container}>
+  <div className={classnames('table', className)}>
+    <div className='header'>{ header }</div>
+    <div className='container'>
       <table>
         <thead>
           <tr>
             {
               columns.map((column, index) => (
-                <th key={column.id || index}>{column.header}</th>
+                <th key={column.id || index} className={column.className}>{ column.header }</th>
               ))
             }
           </tr>
@@ -42,7 +42,7 @@ const Table = ({ className, data = [], columns = [], header = '', loading = fals
               <tr key={row.id || rowIndex}>
                 {
                   columns.map((field, fieldIndex) => (
-                    <td key={composeTdKey(row, rowIndex, field, fieldIndex)}>
+                    <td key={composeTdKey(row, rowIndex, field, fieldIndex)} className={field.className}>
                       {printField(field, row)}
                     </td>
                   ))

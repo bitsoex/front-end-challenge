@@ -62,13 +62,12 @@ margin-right: 5px;
 
 .Toolbar {
   background-color: #252c36;
-  color:#191e23;
+  
 }
 .flatButton{
   font-family: DINPro-Light !important;
-  color: #b0bac1 !important;
   display: inline !important;
-  font-size:1.5em !important;
+  font-size:1em ;
 }
 .TickCollection{
   background-color:#b0bac1 !important;

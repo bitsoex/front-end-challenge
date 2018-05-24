@@ -28,8 +28,8 @@ class DrawerMarkets extends Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({open})}
         >
-          <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
-          <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
+          <MenuItem onClick={this.handleClose}>BTC/MXN</MenuItem>
+          <MenuItem onClick={this.handleClose}>ETH/MXN</MenuItem>
         </Drawer>
       </div>
     );

@@ -15,16 +15,21 @@ class Trades extends Component {
           coinSelected:'BTC',
           arrayData:[]
         }
+
+      }
+      componentWillMount(){
         this.getTrades();
+
+
 
       }
       componentDidMount(){
-        this.delaySetter();
+
         //
       }
 
       componentDidUpdate(){
-        this.delaySetter();
+
       }
 
       delaySetter(){
@@ -38,6 +43,7 @@ class Trades extends Component {
         arrayParams.push(objParam)
         callGetService(URL_SERVICES.Trades,arrayParams).then(response => {
         this.setState({array_trades:response.payload})
+        this.delaySetter();
         }
       );
       }

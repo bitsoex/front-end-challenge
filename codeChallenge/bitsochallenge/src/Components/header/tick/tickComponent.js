@@ -80,12 +80,15 @@ class TickCollection extends Component {
       }
     );
   }
+
   updatePrice(){
-    this.getBtcBook();
-    this.getEthBook();
-    this.getXrpBook();
-    this.getLtcBook();
-    this.getBchBook();
+/*****This function could refresh the price in the tick but should
+/*****broke the app by the hits on service*******/
+    // this.getBtcBook();
+    // this.getEthBook();
+    // this.getXrpBook();
+    // this.getLtcBook();
+    // this.getBchBook();
 
   }
   handleChange = (event, index, value) => this.setState({value});

@@ -34,15 +34,6 @@ class TableTrades extends Component {
   }
   componentDidUpdate(){
     var tableData =JSON.stringify(this.props.tableData);
-
-    // {this.props.tableData.map(trade => {
-    //                   //  console.log(trade.created_at.substring(11,19))
-    //                   //  console.log(trade.price)
-    //                       //console.log(trade.amount)
-    //
-    //         //this.setState({tableData:trade})
-    //         })}
-
   }
   componentDidMount(){
 

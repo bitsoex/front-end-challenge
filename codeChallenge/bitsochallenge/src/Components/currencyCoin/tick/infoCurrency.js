@@ -7,6 +7,10 @@ import { ToolbarGroup,  ToolbarTitle} from 'material-ui/Toolbar';
 import MenuItem from 'material-ui/MenuItem';
 import './infoCurrency.css';
 
+const GreenMenu = {
+  color: '#98d372'
+}
+
 class InfoCurrency extends Component {
   constructor(props) {
     super(props);
@@ -126,16 +130,9 @@ class InfoCurrency extends Component {
                                ask:this.state.respBtc.payload.ask,
                                bid:this.state.respBtc.payload.bid,
                                created_at	:this.state.respBtc.payload.created_at  });
-                               console.log("book: "+this.state.book);
-                               console.log("Volume: "+this.state.volume);
-                               console.log("high: "+this.state.high);
-                               console.log("last: "+this.state.last);
-                               console.log("bid: "+this.state.bid);
-
                              }
         break;
       case 1:  this.getEthBook();
-              console.log('Etherium :' + JSON.stringify(this.state.respEth))
                {this.setState({book	:this.state.respEth.payload.book,
                            volume:this.state.respEth.payload.volume,
                            high:this.state.respEth.payload.high,
@@ -147,15 +144,8 @@ class InfoCurrency extends Component {
                            created_at	:this.state.respEth.payload.created_at  });
 
                          }
-                         console.log("book: "+this.state.book);
-                         console.log("Volume: "+this.state.volume);
-                         console.log("high: "+this.state.high);
-                         console.log("last: "+this.state.last);
-                         console.log("bid: "+this.state.bid);
-
         break;
       case 2:  this.getXrpBook();
-        console.log('RIPPLE :' + JSON.stringify(this.state.respXrp))
        {this.setState({book	:this.state.respXrp.payload.book,
                    volume:this.state.respXrp.payload.volume,
                    high:this.state.respXrp.payload.high,
@@ -167,15 +157,10 @@ class InfoCurrency extends Component {
                    created_at	:this.state.respXrp.payload.created_at  });
 
                  }
-                 console.log("book: "+this.state.book);
-                 console.log("Volume: "+this.state.volume);
-                 console.log("high: "+this.state.high);
-                 console.log("last: "+this.state.last);
-                 console.log("bid: "+this.state.bid);
 
                 break;
       case 3:  this.getLtcBook();
-      console.log('LITECOIN :' + JSON.stringify(this.state.respLtc))
+
      {this.setState({book	:this.state.respLtc.payload.book,
                  volume:this.state.respLtc.payload.volume,
                  high:this.state.respLtc.payload.high,
@@ -187,15 +172,10 @@ class InfoCurrency extends Component {
                  created_at	:this.state.respLtc.payload.created_at  });
 
                }
-               console.log("book: "+this.state.book);
-               console.log("Volume: "+this.state.volume);
-               console.log("high: "+this.state.high);
-               console.log("last: "+this.state.last);
-               console.log("bid: "+this.state.bid);
 
               break;
       case 4:  this.getBchBook();
-      console.log('BCH :' + JSON.stringify(this.state.respBch))
+
      {this.setState({book	:this.state.respBch.payload.book,
                  volume:this.state.respBch.payload.volume,
                  high:this.state.respBch.payload.high,
@@ -207,19 +187,13 @@ class InfoCurrency extends Component {
                  created_at	:this.state.respBch.payload.created_at  });
 
                }
-               console.log("book: "+this.state.book);
-               console.log("Volume: "+this.state.volume);
-               console.log("high: "+this.state.high);
-               console.log("last: "+this.state.last);
-               console.log("bid: "+this.state.bid);
-
               break;
     }
   }
   render() {
     return (
       <ToolbarGroup>
-            <DropDownMenu   value={this.state.value} onChange={this.onChangeEvent.bind(this,this)} openImmediately={false}>
+            <DropDownMenu id='coinSelect' labelStyle={GreenMenu}  value={this.state.value} onChange={this.onChangeEvent.bind(this,this)} openImmediately={false}>
               <MenuItem value={0} primaryText="BTC/MXN" />
               <MenuItem value={1} primaryText="ETH/MXN" />
               <MenuItem value={2} primaryText="XRP/MXN" />

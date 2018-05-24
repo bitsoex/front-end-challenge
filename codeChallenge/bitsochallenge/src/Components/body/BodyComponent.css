@@ -17,20 +17,14 @@
   display: inline;
 }
 .chartContent{
-    position:relative !important;
     background-color: #23292d !important;
-    height: 0px !important;
-    width: 949px  !important;
-    display: inline;
     text-align: right !important;
+    position:relative !important;
+    display: inline-flex !important;
   }
 .canvasForm{
-  display: inline;
-  position:relative !important;
   background-color: #23292d !important;
-  height: 300px !important;
-  width: 949px  !important;
-  text-align: right !important;
+  
 }
 .backgroundBody{
   background-color: #23292d !important;

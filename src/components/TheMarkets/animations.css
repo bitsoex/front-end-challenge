@@ -1,0 +1,17 @@
+@keyframes showMarketsSidebar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 240px;
+  }
+}
+
+@keyframes hideMarketsSidebar {
+  from {
+    width: 240px;
+  }
+  to {
+    width: 0;
+  }
+}

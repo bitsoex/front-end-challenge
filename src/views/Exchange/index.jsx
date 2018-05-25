@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+
 import TheHeader from '../../components/TheHeader'
+import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
 
 import { lastTradesData, purchasePositionData } from '../../../.hardcode'
@@ -106,6 +108,7 @@ export default class Home extends Component {
               data={purchasePositionData}
             />
           </div>
+          <TheMarkets />
         </main>
       </div>
     )

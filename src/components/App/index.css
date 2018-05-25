@@ -36,6 +36,9 @@
   --sell-position-border: #D23447;
   --purchase-position-hover-background: rgba(134, 175, 107, .4);
   --sell-position-hover-background: rgba(186, 48, 64, .4);
+  --markets-toggle-background: #2E353D;
+  --markets-header-background: #727C84;
+  --markets-content-background: #23292D;
 }
 
 html,
@@ -98,22 +101,27 @@ td.loading::after {
   position: absolute;
 }
 
+.header {
+  color: var(--header-color);
+  text-transform: uppercase;
+}
+
 @media screen and (max-width: 768px) {
   .is-hidden-mobile,
   .is-hidden-touch {
-    display: none;
+    display: none!important;
   }
 }
 
 @media screen and (min-width: 769px) {
   .is-hidden-tablet,
   .is-hidden-touch {
-    display: none;
+    display: none!important;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .is-hidden-desktop {
-    display: none;
+    display: none!important;
   }
 }

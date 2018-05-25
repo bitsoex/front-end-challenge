@@ -1,0 +1,53 @@
+.markets {
+  display: flex;
+}
+
+.markets > .toggle-martkets {
+  background: var(--markets-toggle-background);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--header-color);
+  font-size: .83rem;
+}
+
+.markets > .toggle-martkets > i {
+  padding: 4px;
+}
+
+.markets > .toggle-martkets > div {
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+}
+
+.markets > .content {
+  background: var(--markets-content-background);
+  white-space: nowrap;
+}
+
+.markets > .content > .header {
+  background: var(--markets-header-background);
+  padding: 8px 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .markets {
+    flex-direction: column;
+    padding: 0 15px 15px 15px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .markets {
+    height: 100%;
+  }
+
+  .markets > .content {
+    animation: hideMarketsSidebar .5s ease forwards;
+  }
+
+  .markets.active > .content {
+    animation: showMarketsSidebar .5s ease forwards;
+  }
+}

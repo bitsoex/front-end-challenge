@@ -11,7 +11,7 @@
 .purchase-position,
 .sell-position {
   padding: 0 15px 15px 15px;
-  flex: .5;
+  flex: 1;
 }
 
 .table.last-trades > .header,
@@ -160,6 +160,11 @@
 @media screen and (min-width: 769px) {
   #app > .page > main.exchange {
     display: flex;
+  }
+
+  .purchase-position,
+  .sell-position {
+    flex: .5;
   }
 
   .purchase-position {

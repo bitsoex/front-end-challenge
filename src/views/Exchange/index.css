@@ -2,19 +2,30 @@
   padding: 15px;
 }
 
-.table.last-trades > .header {
+.purchase-position,
+.sell-position {
+  padding: 0 15px 15px 15px;
+}
+
+.table.last-trades > .header,
+.table.purchase-position .purchase-position-header,
+.table.sell-position .sell-position-header {
   text-transform: uppercase;
   font-size: .93rem;
 }
 
-.table.last-trades > .container > table > thead > tr > th {
+.table.last-trades > .container > table > thead > tr > th,
+.table.purchase-position > .container > table > thead > tr > th,
+.table.sell-position > .container > table > thead > tr > th {
   text-transform: uppercase;
   color: var(--header-color);
   font-size: .93rem;
   padding: 8px;
 }
 
-.table.last-trades > .container > table > thead > tr > th > .last-trades-header > span {
+.table.last-trades > .container > table > thead > tr > th > .last-trades-header > span,
+.table.purchase-position > .container > table > thead > tr > th > div > span,
+.table.sell-position > .container > table > thead > tr > th > div > span {
   padding-right: 4px;
   color: var(--table-color);
 }
@@ -43,8 +54,79 @@
   color: var(--exchange-loss-color);
 }
 
+.table.purchase-position > .header {
+  border-left: 4px solid var(--purchase-position-border);
+}
+
+.table.sell-position > .header {
+  border-right: 4px solid var(--sell-position-border);
+}
+
+.table.purchase-position .purchase-position-header,
+.table.sell-position .sell-position-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table.purchase-position .purchase-position-header > .average > span,
+.table.sell-position .sell-position-header > .average > span {
+  padding-right: 6px;
+  color: var(--purchase-position-average-color);
+}
+
+.table.purchase-position .purchase-position-header > .average,
+.table.sell-position .sell-position-header > .average {
+  color: var(--purchase-position-average-value-color);
+  opacity: .5;
+}
+
+.table.purchase-position > .container > table > thead > tr > th > div > span,
+.table.sell-position > .container > table > thead > tr > th > div > span {
+  padding-right: 4px;
+  color: var(--table-color);
+}
+
+.table.purchase-position > .container > table > tbody > tr:hover {
+  background: var(--purchase-position-hover-background);
+}
+
+.table.sell-position > .container > table > tbody > tr:hover {
+  background: var(--sell-position-hover-background);
+}
+
+.table.purchase-position > .container > table > tbody > tr > td > .percent {
+  height: 1rem;
+  background: var(--exchange-type-color);
+}
+
+.table.sell-position > .container > table > tbody > tr > td > .percent {
+  height: 1rem;
+  background: var(--exchange-loss-color);
+}
+
+.table.purchase-position > .container > table > tbody > tr > td.mxn-value,
+.table.sell-position > .container > table > tbody > tr > td.mxn-value {
+  color: var(--table-color);
+}
+
+.table.purchase-position > .container > table > tbody > tr:hover > td.mxn-value,
+.table.sell-position > .container > table > tbody > tr:hover > td.mxn-value {
+  color: var(--light-text);
+}
+
+.table.purchase-position > .container > table > tbody > tr > td.mxn-price {
+  color: var(--exchange-type-color);
+}
+
+.table.sell-position > .container > table > tbody > tr > td.mxn-price {
+  color: var(--exchange-loss-color);
+}
+
+
 @media screen and (max-width: 768px) {
-  .table.last-trades > .container > table > tbody > tr:nth-child(n+6) {
+  .table.last-trades > .container > table > tbody > tr:nth-child(n+6),
+  .table.purchase-position > .container > table > tbody > tr:nth-child(n+6),
+  .table.sell-position > .container > table > tbody > tr:nth-child(n+6) {
     display: none;
   }
 }

@@ -30,6 +30,12 @@
   --table-color: #4E5863;
   --table-row-hover-background: rgba(116, 127, 137, .4);
   --exchange-loss-color: #BA3040;
+  --purchase-position-average-color: #747F89;
+  --purchase-position-average-value-color:#D5DCE0;
+  --purchase-position-border: #86AF6B;
+  --sell-position-border: ##D23447;
+  --purchase-position-hover-background: rgba(134, 175, 107, .4);
+  --sell-position-hover-background: rgba(186, 48, 64, .4);
 }
 
 html,
@@ -58,6 +64,7 @@ body {
   background: var(--background-navy);
   flex: 1;
   color: var(--light-text);
+  overflow-y: scroll;
 }
 
 .loading {

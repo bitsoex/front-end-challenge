@@ -6,7 +6,7 @@ const bodyStyle = {
     overflow: 'hidden'
 };
 
-class TableTrades extends Component {
+class TableOrders extends Component {
   constructor(props) {
       super(props);
       this.state={
@@ -23,14 +23,22 @@ class TableTrades extends Component {
         height: '440px',
       }
     }
-  componentDidUpdate(){
-    var tableData =JSON.stringify(this.props.tableData);
-  }
-  static defaultProps = {
-    tradesArray:{},
-  }
+    componentDidUpdate(){
+      var tableData =JSON.stringify(this.props.tableData);
+
+    }
+    static defaultProps = {
+      tradesArray:{},
+    }
   render() {
+    if (this.props.tableData==null){
+      return (
+        <div>Loading</div>
+      )
+    }
+    console.log('JSOOON: '+JSON.stringify(this.state.tableData));
     return (
+
       <div >
         <Table className="trades-table" bodyStyle={bodyStyle}
           height={this.state.height}
@@ -45,11 +53,10 @@ class TableTrades extends Component {
             showRowHover={this.state.showRowHover}
             stripedRows={this.state.stripedRows}
           >
-            {this.props.tableData.map( (row, index) => (
-              <TableRow key={index} className={row.maker_side==='buy'?' tradeBuy':'tradeSell'}>
-                <TableRowColumn >{row.created_at.substring(11,19)}</TableRowColumn>
-                <TableRowColumn>{row.price}</TableRowColumn>
+            {this.props.tableData.payload.asks.map( (row, index) => (
+              <TableRow key={index} >
                 <TableRowColumn>{row.amount}</TableRowColumn>
+                <TableRowColumn className={'tradeSell'}>{row.price}</TableRowColumn>
               </TableRow>
             ))}
           </TableBody>
@@ -57,9 +64,8 @@ class TableTrades extends Component {
             adjustForCheckbox={this.state.showCheckboxes}
           >
             <TableRow>
-              <TableRowColumn>Hora</TableRowColumn>
-              <TableRowColumn>Precio</TableRowColumn>
-              <TableRowColumn>Monto</TableRowColumn>
+              <TableRowColumn>BTC MONTO</TableRowColumn>
+              <TableRowColumn>MXN PRECIO</TableRowColumn>
             </TableRow>
 
           </TableFooter>
@@ -70,4 +76,4 @@ class TableTrades extends Component {
     );
   }
 }
-export default  TableTrades;
+export default  TableOrders;

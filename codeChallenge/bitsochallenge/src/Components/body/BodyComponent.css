@@ -16,15 +16,28 @@
   position:relative !important;
   display: inline;
 }
+.customAlign{
+  position: relative !important;
+  height:15px !important;
+}
+.DropDownMenu{
+  font-family: DINPro-Light !important;
+  display:inline !important;
+  text-decoration: none !important;
+  color: #b0bac1 !important;
+}
+
 .chartContent{
     background-color: #23292d !important;
     text-align: right !important;
     position:relative !important;
     display: inline-flex !important;
+    max-width: 948px !important;
   }
 .canvasForm{
   background-color: #23292d !important;
-  
+  max-width: 948px !important;
+
 }
 .backgroundBody{
   background-color: #23292d !important;

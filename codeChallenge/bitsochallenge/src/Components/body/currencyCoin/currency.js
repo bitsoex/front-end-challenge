@@ -4,7 +4,11 @@ import {Toolbar, ToolbarGroup} from 'material-ui/Toolbar';
 import DrawerMarkets from './DrawerMarkets/DrawerMarkets.js';
 import './currency.css';
 
-
+const styles={
+  toolbar:{
+    height:30,
+  }
+}
 class Currency extends Component {
   constructor(props) {
       super(props);
@@ -18,11 +22,10 @@ class Currency extends Component {
   render() {
     return (
       <div className="background-color black">
-      <Toolbar className="Toolbar background-color black">
+      <Toolbar className="Toolbar background-color black" style={styles.toolbar}>
         <ToolbarGroup className="ToolbarGroup black">
           <InfoCurrency/>
           <DrawerMarkets/>
-
         </ToolbarGroup>
       </Toolbar>
       </div>

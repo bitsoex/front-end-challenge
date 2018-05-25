@@ -4,7 +4,9 @@ export const URL_SERVICES={
     Trades : 'https://api.bitso.com/v3/trades/',
     //Ticker : 'https://api-dev.bitso.com/v3/ticker/',
     Ticker : 'https://api.bitso.com/v3/ticker/',
-    TickerProd : 'https://api.bitso.com/v3/ticker/'
+    TickerProd : 'https://api.bitso.com/v3/ticker/',
+    historyBook: 'https://bitso.com/trade/chartJSON/btc_mxn/',
+    orderBook:'https://api.bitso.com/v3/order_book/?book='
 }
 export const SERVICE_REQUEST={
     book_btc_mx:'btc_mxn',

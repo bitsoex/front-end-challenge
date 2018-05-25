@@ -1,0 +1,11 @@
+.selector{
+  position:"absolute" !important;
+  top:-400px !important;
+  left:-50 !important;
+
+}
+.headline{
+  max-width: 948px !important;
+  width:948px !important;
+
+}

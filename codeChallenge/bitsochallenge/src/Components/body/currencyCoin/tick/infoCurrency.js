@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {URL_SERVICES} from './../../../config/Config.js';
-import {SERVICE_REQUEST} from './../../../config/Config.js';
-import {callGetService} from './../../../Utils/CallServices.js';
+import {URL_SERVICES} from './../../../../config/Config.js';
+import {SERVICE_REQUEST} from './../../../../config/Config.js';
+import {callGetService} from './../../../../Utils/CallServices.js';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import { ToolbarGroup,  ToolbarTitle} from 'material-ui/Toolbar';
 import MenuItem from 'material-ui/MenuItem';

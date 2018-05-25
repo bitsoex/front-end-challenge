@@ -19,17 +19,6 @@ class Trades extends Component {
       }
       componentWillMount(){
         this.getTrades();
-
-
-
-      }
-      componentDidMount(){
-
-        //
-      }
-
-      componentDidUpdate(){
-
       }
 
       delaySetter(){

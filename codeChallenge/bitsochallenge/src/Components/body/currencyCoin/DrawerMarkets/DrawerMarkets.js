@@ -3,6 +3,11 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const styles={
+  RaisedButton:{
+    height:20,
+  }
+}
 class DrawerMarkets extends Component {
 
   constructor(props) {
@@ -17,7 +22,7 @@ class DrawerMarkets extends Component {
   render() {
     return (
       <div>
-        <RaisedButton
+        <RaisedButton style={styles.RaisedButton}
           label="Markets"
           onClick={this.handleToggle}
         />

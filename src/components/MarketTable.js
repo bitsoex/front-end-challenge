@@ -13,7 +13,7 @@ function MarketItem(props) {
 		
 		return (<tr key={ticker.book}> 
 				<td>{change}</td>
-				<td className={classActive} >{formatCurrency(price, true)} {unit}</td>
+				<td className={classActive} >{formatCurrency(price, unit, true)}</td>
 			</tr>);
 		
 	});

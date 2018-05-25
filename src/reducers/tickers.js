@@ -1,4 +1,5 @@
 import { Observable, Subject, ReplaySubject, from, of, range, zip, combineLatest } from 'rxjs'
+import config from '../config'
 import {
     CHANGE_BOOK,
     LOAD_ALL_TICKERS,
@@ -7,9 +8,8 @@ import {
 } from './types';
 
 const ajaxTickers = (book) =>{
-	//console.log("makin observable ajax ticker="+book);
 	return Observable.ajax({
-		url: 'https://api.bitso.com/v3/ticker/',
+		url: config.endpoints.ticker,
 		method: 'GET',
 		crossDomain: true,
 		responseType: 'json'
@@ -19,7 +19,6 @@ const ajaxTickers = (book) =>{
 export const tickersEpic = action$ =>
   action$.ofType(LOAD_ALL_TICKERS)
 	.map(action=>{
-		//console.log("Epic Trades, load Async trades", action); 
 		return action.book;
 	})
 	.flatMap(bookSelected => 
@@ -46,6 +45,12 @@ export const tickersEpic = action$ =>
 		}
 	});
 
+/**
+ * Reducer for listen the tickers request.
+ *
+ * *Listen the actions:
+ *  *LOADED_ALL_TICKERS Set in the state the tickes
+ */
 export const tickersReducer = (state = {  tickers:[] }, action) => {
 	  switch (action.type) {
 		case LOADED_ALL_TICKERS:

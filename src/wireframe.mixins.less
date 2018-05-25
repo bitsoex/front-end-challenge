@@ -1,0 +1,59 @@
+
+.rotate(@deg: 90) {
+    /* Safari */
+    -webkit-transform: rotate(@deg * 1deg);
+    /* Firefox */
+    -moz-transform: rotate(@deg * 1deg);
+    /* IE10+ */
+    transform: rotate(@deg * 1deg);
+    /* Opera */
+    -o-transform: rotate(@deg * 1deg);
+    /* Internet Explorer */
+    @IEdeg: round(@deg / 90, 0);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@IEdeg);
+}
+
+.keyframes(@name; @arguments) {
+	@-moz-keyframes @name { @arguments(); }
+	@-webkit-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
+}
+
+.animate-background(@name, @time-animation, @backcolor_start, @backcolor_end) {
+	-webkit-animation: @name @time-animation;
+	animation: @name @time-animation;
+	.keyframes(@name;{
+		0% {
+			background-color: @backcolor_start;
+		}
+		100% { 
+			background-color: @backcolor_end;
+		}
+	});
+}
+
+.animate-color(@name, @time-animation, @backcolor_start, @backcolor_end) {
+	-webkit-animation: @name @time-animation;
+	animation: @name @time-animation;
+	.keyframes(@name;{
+		0% {
+			color: @backcolor_start;
+		}
+		100% { 
+			color: @backcolor_end;
+		}
+	});
+}
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+.transition(@param, @param2) {
+	-moz-transition: @param, @param2;
+	-webkit-transition: @param, @param2;
+	-o-transition: @param, @param2;
+	transition: @param, @param2;
+}

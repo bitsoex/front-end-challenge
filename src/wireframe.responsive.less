@@ -1,31 +1,104 @@
 @mainWidth: 1200px;
+@adjustHeader1: 1000px;
+@adjustHeader2: 900px;
 @tabletWidth: 768px;
 @wideMobileWidth2: 640px;
 @wideMobileWidth: 480px;
 @mobileLayout: 320px;
 
-/* Tablet Layout */
-@maxTabletWidth: @mainWidth;
-@media only screen and (min-width: @tabletWidth) and (max-width: @maxTabletWidth) {
-
+.wireframe{
+	.header2{
+		li{
+			&.exchangevalue{
+				display: none;
+			}
+		}
+	}
 }
 
-/* Wide Mobile Layout */
-@maxWideMobileWidth: @tabletWidth;
-@media only screen and (min-width: @wideMobileWidth) and (max-width: @maxWideMobileWidth) {
-
+@media only screen and (max-width: @wideMobileWidth) {
+	.wireframe{
+		.header1{
+			ul{
+				li{
+					&.togglelight{
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
 }
 
-/* Mobile Layout */
-@maxMobileWidth: @wideMobileWidth;
-@media only screen and (max-width: @maxMobileWidth) {
-
+@media only screen and (max-width: @tabletWidth) {
+	.wireframe{
+		.header1{
+			ul{
+				li{
+					&.userimage,
+					&.usermenu{
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }
 
-@maxTabletWidth: @mainWidth;
-@media only screen and (max-width: @maxTabletWidth) {
+@media only screen and (max-width: @adjustHeader2) {
+	.wireframe{
+		.header1{
+			ul{
+				li{
+					&.title{
+						font-size: 10pt;
+					}
+				}
+			}
+		}
+		.header2{
+			ul.header2-menu{
+				li{
+					&.max,
+					&.min{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: @adjustHeader1) {
+	.wireframe{
+		.header1{
+			ul{
+				li{
+					&.separator,
+					&.wallet,
+					&.exchange{
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media only screen and (max-width: @mainWidth) {
 
     .wireframe{
+			.header1{
+					ul.header2-menu{
+						li{
+							&.max,
+							&.min{
+								display: none;
+							}
+						}
+					}
+				}
                 
             .row.content{
                 
@@ -57,10 +130,42 @@
 }
 
 
-@maxTabletWidth: @mainWidth;
 @media only screen and (max-width: @wideMobileWidth2) {
 
     .wireframe{
+		.header1,
+		.header2{
+			.container{
+				& + ul{
+					li:first-child,
+					li:last-child{
+						padding: 0;
+					}
+				}
+			}
+		}
+		
+		.header1{
+			.container{
+				li{
+					&.exchangevalue{
+						display: none;
+					}
+				}
+			}
+		}
+	
+		.header2{
+			li{
+				&.volumen,
+				&.variation{
+					display: none;
+				}
+				&.exchangevalue{
+					display: flex;
+				}
+			}
+		}
                 
 		.row.content{
 			height: auto;
@@ -79,12 +184,6 @@
 					}
 				}
 			}
-			/*.col.floating{
-				width: 100%;
-				padding: 8px;
-				padding-bottom: 0px;
-			}*/
-			
 			.col.floating{
 				width: 100%;
 				padding: 8px;

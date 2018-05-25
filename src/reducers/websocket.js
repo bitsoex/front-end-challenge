@@ -1,5 +1,5 @@
-import { Observable, Subject, ReplaySubject, from, of, range, webSocket } from 'rxjs'
-import { WebSocketSubject } from 'rxjs/observable/dom/WebSocketSubject'
+import { Observable, webSocket } from 'rxjs'
+import config from '../config'
 import {
     LOAD_BOOKS,
     CHANGE_BOOK,
@@ -8,39 +8,40 @@ import {
     LOADED_TRADES
 } from './types';
 
-//const socket = WebSocketSubject.create('wss://ws.bitso.com');
-const socket = Observable.webSocket('wss://ws.bitso.com')
-//socket.next(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }));
-//socket.next(JSON.stringify({"type":"subscribe-channels","data":{"channels":["stats","btc_mxn"]}}));
 
+const socketWS = Observable.webSocket(config.endpoints.websocket)
 const bufferDataBids = {};
 const bufferDataAsks = {};
 
+/**
+ * Epic for connect to websocket of Bitso.
+ *
+ * Flow of the Epic:
+ *
+ * After fire action(CHANGE_BOOK) the observer disconnect the previous subscription in the websocket
+ * then subscribe to the new book, listen the trades and orders.
+ * Then filter the response contains the payload with the book previosly selected.
+ * Finally response a new action depend of the response.
+ */
 export const websocketEpic = action$ =>
   action$.ofType(CHANGE_BOOK)
-	.map(action=>{
-		//console.log("Epic websocket, connecting websocket", action$, action); 
-		return action;
-	})
-	.map(action => {
-		const {book, lastBook} = action;
-		socket.next(JSON.stringify({ action: 'subscribe', book: book, type: 'trades' }));
-		socket.next(JSON.stringify({ action: 'subscribe', book: book, type: 'orders' }));
+	.map(({book, lastBook}) => {
+		socketWS.next(JSON.stringify({ action: 'subscribe', book: book, type: 'trades' }));
+		socketWS.next(JSON.stringify({ action: 'subscribe', book: book, type: 'orders' }));
 		if(lastBook){
-			//console.log("desubscribe book", lastBook);
-			socket.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'trades' }));
-			socket.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'orders' }));
+			socketWS.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'trades' }));
+			socketWS.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'orders' }));
 		}
 		return book;
 	})
-	.flatMap(bookSelected => socket)
-	.filter(wsResponse=>wsResponse.payload)
-	.map(wsResponseData=>{
-		 if (wsResponseData.type == 'orders') {
-			//console.log("bids:", wsResponseData.payload);
+	.flatMap( bookSelected => socketWS
+		.filter(response => response.payload && response.book == bookSelected)
+	)
+	.map(({payload, book, type}) => {
+		 if (type == 'orders') {
 			var sumBids = 0, sumAsks = 0;
-			const bidsData = wsResponseData.payload.bids.slice(0);
-			const asksData = wsResponseData.payload.asks.slice(0);
+			const bidsData = payload.bids.slice(0);
+			const asksData = payload.asks.slice(0);
 			
 			bidsData.map(data=>{
 				sumBids += data.a;
@@ -60,37 +61,41 @@ export const websocketEpic = action$ =>
 				type: WS_DATA_ORDERS,
 				bids: bidsData,
 				asks: asksData,
-				book: 'btc_mxn'
+				book: book
 			}
 		}
 		return {
 			type: WS_DATA,
-			data: wsResponseData.payload[0].r,
-			monto: wsResponseData.payload[0].a,
-			book: 'btc_mxn'
+			data: payload[0].r,
+			amount: payload[0].a,
+			book: book
 		}
 		
 	})
-	//.map(wsResponse=>[wsResponse.payload[0].r, wsResponse.payload[0].a, 'btc_mxn'])
 	.map(wsResponse=>{
-		//console.log("response websocketEpic", wsResponse);
 		return wsResponse;
 	});
 
-export const websocketReducer = (state = { message:"", monto: "", bids:[], asks:[] }, action) => {
-	//console.log("booksReducer", state, action);
+/**
+ * Reducer for connect to websocket of Bitso.
+ *
+ * *Listen the actions:
+ *  *LOADED_TRADES Set in the state the price and the amount of the current book selected
+ *  *WS_DATA Set in the state the last trades emmited.
+ */
+export const websocketReducer = (state = { exchange:"0", amount: "", bids:[], asks:[] }, action) => {
 	switch (action.type) {
 		case LOADED_TRADES:
 			return { 
 				...state,
-				message: action.books[0] ? action.books[0].price : state.message,
-				monto: action.monto
+				exchange: action.books[0] ? action.books[0].price : state.exchange,
+				amount: action.amount
 			};
 		case WS_DATA:
 			return {
 				...state,
-				message: action.data ? action.data: state.message,
-				monto: action.monto ? action.monto: state.monto
+				exchange: action.data ? action.data: state.exchange,
+				amount: action.amount ? action.amount: state.amount
 			};
 		case WS_DATA_ORDERS:{
 			return {
@@ -100,7 +105,6 @@ export const websocketReducer = (state = { message:"", monto: "", bids:[], asks:
 			}
 		}
 		default:
-			////console.log("bookReducer default state", state);
 			return state;
 	}
 };

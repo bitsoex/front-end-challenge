@@ -1,0 +1,34 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	background-color: lighten(@base-color, 5%);
+	color: @color-green;
+}
+li a.selected:hover:not(.active) {
+	background-color: transparent;
+	cursor: not-allowed;
+}

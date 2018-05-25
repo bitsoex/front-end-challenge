@@ -1,28 +1,22 @@
 import React, { Component } from 'react'
-import { scaleLinear } from 'd3-scale'
-import { max } from 'd3-array'
-import { select } from 'd3-selection'
-import {formatCurrency} from '../util/formatNumbers'
+import {formatCurrency, formatNumber} from '../util/formatNumbers'
 
-const NDECIMALS = 8;
 
 function TradesList(props) {
 	const trades = props.trades;
+	const unit = props.bookSelected.split("_")[1];
 	//console.log("render numbers", props);
 	const listItems = trades.map((rowData, index) =>{
 		const time = new Date(rowData.created_at).toLocaleTimeString();
 		const price = rowData.price;
-		const number =  parseFloat(rowData.amount);
-		const numberString = number.toString();
-		const key = numberString + "_" + index;
-		const numberWithZeros = number.toFixed(NDECIMALS);
-		const zeros = numberWithZeros.slice(numberString.length);
+		const {numbers, zeros } = formatNumber(rowData.amount);
+		const key = numbers + "_" + index;
 		const price_color = rowData.maker_side == "buy" ? "red": "green";
 		const classActive = index ? "" : "active";
 		return (<tr key={key} className={classActive}> 
 				<td className="timeTrades">{time}</td>
-				<td className={"price " + price_color}>{formatCurrency(price, true)}</td>
-				<td className="amount">{number}<span className="zeros">{zeros}</span></td>
+				<td className={"price " + price_color}>{formatCurrency(price, unit, true )}</td>
+				<td className="amount">{numbers}<span className="zeros">{zeros}</span></td>
 			</tr>);
 		
 	});
@@ -32,10 +26,10 @@ function TradesList(props) {
 	);
 }
 
-class TradesTable extends Component {
+class LastTradesTable extends Component {
 
 	render() {
-		//console.log("Render TradesTable", this.props);
+		//console.log("Render LastTradesTable", this.props);
 		return (
 			<table className="trades">
 				<thead>
@@ -54,9 +48,9 @@ class TradesTable extends Component {
 							<span>MONTO</span></td>
 					  </tr>
 				</thead>
-				<TradesList trades={this.props.trades} />
+				<TradesList trades={this.props.trades} bookSelected={this.props.bookSelected}/>
 			</table>
 		);
    }
 }
-export default TradesTable
+export default LastTradesTable

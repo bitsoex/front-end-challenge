@@ -1,0 +1,49 @@
+@background-color: #191e23;
+@base-color:        #252c36;
+@color-base: #B0BAC1;
+@size-header1_title: 16px;
+@size-header1_base: 14px;
+@base-color-header1: @base-color;
+@base-color-header2: #161a1e;
+@color-green: #80c156;
+
+
+/*reset*/
+
+body{
+	margin: 0;
+	padding: 0;
+	background-color: @background-color;
+}
+
+@import './wireframe.fonts.less';
+
+/**
+ * import wireframe layout 
+ */
+@import './wireframe.base.less';
+
+/* import wireframe distribution */
+
+@import './wireframe.layout.less';
+
+@import './wireframe.components.colors.less';
+.wireframe{
+	@import './wireframe.components.less';
+}
+
+@import './wireframe.mixins.less';
+
+@import './responsive.less';
+
+
+.wireframe{
+	@import './widgets/toggle.widget.less';
+	@import './widgets/dropdown.widget.less';
+}
+
+/*import themes*/
+
+.wireframe.test {
+	@import './wireframe.theme.light.less';
+}

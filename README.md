@@ -1,4 +1,6 @@
-#Hi World in Github
+#Update (Beta) 
+* Theme
+* Responsive
 
 # BITSO FRONT END CHALLENGE
 

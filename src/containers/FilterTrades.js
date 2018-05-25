@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import TradesTable from '../components/TradesTable'
+import LastTradesTable from '../components/LastTradesTable'
 import PosturaCompraTable from '../components/PosturaCompraTable'
 import PosturaVentaTable from '../components/PosturaVentaTable'
 import ChartBidsAsks from '../components/ChartBidsAsks'
@@ -8,7 +8,7 @@ const LOAD_TRADES = 'LOAD_TRADES';
 const LOAD_HISTORY_TRADES = 'LOAD_HISTORY_TRADES';
 
 const mapDispatchToProps = dispatch => {
-	//console.log("connect.method.ping FilterBooks", dispatch);
+	console.log("connect.method.ping FilterBooks", dispatch);
 	return {
 		changePeriodInterval : (book, period, interval) => dispatch({
 			type : LOAD_HISTORY_TRADES,
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToPropsBidsAsksHistoryTrades = state => {
-	console.log("Filtering", state);
+	//console.log("Filtering", state);
 	const {bookSelected} = state.booksReducer;
 	const {historytrades} = state.historyTradeReducer;
 	const {bids, asks} = state.websocketReducer;
@@ -31,43 +31,35 @@ const mapStateToPropsBidsAsksHistoryTrades = state => {
 	return {bids: bidsR, asks: asksClone, bookSelected, historytrades};
 }
 
-const ping = () => {
+const loadTrades = () => {
 	//console.log("connect.method.ping FilterTrades");
 	return ({ type: LOAD_TRADES, trades: [] })
 };
 
 const mapStateToProps = state => {
 	//console.log("state.FilterTrades", state);
-	return state.tradesReducer;
+	const {bookSelected} = state.booksReducer;
+	return {...state.tradesReducer, bookSelected};
 }
 const mapStateToProps2 = state => {
 	//console.log("state.FilterTrades", state);
-	return state.websocketReducer;
+	const {bookSelected} = state.booksReducer;
+	return {...state.websocketReducer, bookSelected};
 }
-
-/*const mapStateToProps3 = state => {
-	const {bids, asks} = state.websocketReducer;
-	const bidsClone = bids.slice(0);
-	const asksClone = asks.slice(0);
-	const bidsR = bidsClone.reverse();
-
-	return {bids: bidsR, asks: asksClone};
-}*/
-
 
 export const FilterTrades = connect(
 	mapStateToProps,
-	{ping}
-)(TradesTable);
+	{loadTrades}
+)(LastTradesTable);
 
 export const FilterBids = connect(
 	mapStateToProps2,
-	{ping}
+	{loadTrades}
 )(PosturaCompraTable);
 
 export const FilterAsks = connect(
 	mapStateToProps2,
-	{ping}
+	{loadTrades}
 )(PosturaVentaTable);
 
 export const FilterLineChart = connect(

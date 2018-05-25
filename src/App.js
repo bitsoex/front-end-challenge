@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import { createEpicMiddleware, ReduxObservable, combineEpics } from 'redux-observable'
-
-import bitsoLogo from './assets/images/1x/bitso_logo.png'
+import ReactDOM from 'react-dom'
 
 import {tradesEpic, tradesReducer} from './reducers/trades'
 import {tickersEpic, tickersReducer} from './reducers/tickers'
@@ -14,15 +13,10 @@ import {historyTradeEpic, historyTradeReducer} from './reducers/historytrade'
 import {FilterTrades, FilterBids, FilterAsks, FilterLineChart } from './containers/FilterTrades'
 import {FilterTickers } from './containers/FilterTrades'
 import FilterBooks from './containers/FilterBooks'
-import FilterLabelBook from './containers/FilterLabelBook'
-//import FilterHistoryTrades from './containers/FilterHistoryTrades'
 
-import FloatingMenu from './components/FloatingMenu';
-
-/*const myLogger = (store) => (next) => (action) =>{
-	console.log("Logged action: ", action);
-	next(action);
-}*/
+import FloatingMenu from './components/FloatingMenu'
+import {observerResize} from './util/observer.resize'
+import Header from './components/Header'
 
 const tradesMiddleware = createEpicMiddleware(tradesEpic);
 const booksMiddleware = createEpicMiddleware(booksEpic);
@@ -39,7 +33,6 @@ const storeTrades = createStore(
 	}),
 	{},
 	applyMiddleware(
-		//myLogger,
 		tradesMiddleware,
 		booksMiddleware,
 		wsMiddleware,
@@ -48,20 +41,41 @@ const storeTrades = createStore(
 	)
 );
 
-/*storeTrades.subscribe(_=>{
-	//console.log("Store updated!", storeTrades.getState());
-});*/
-
 storeTrades.dispatch({
 	type: 'LOAD_BOOKS'
 })
 
+
 class App extends Component {
+	
+	constructor(props) {
+		super(props);
 		
-	state = {
-		isChecked: true,
-		theme: 'darken'
+		this.state ={
+			isChecked: true,
+			theme: 'darken',
+			widthChart: 700,
+			heightChart: 600
+		};
+		
+		this.setContainerRef = element => {
+			this.containerRef = element;
+		};
+		
 	}
+
+	 componentDidMount() {
+		observerResize().subscribe(()=>{
+			if(this.containerRef){
+				const {width, height} = this.containerRef.getBoundingClientRect();
+				console.log( this.containerRef.getBoundingClientRect(), width, height);
+				this.setState({
+					widthChart: width,
+					heightChart: height
+				});
+			}
+		});
+	 }
 	
 	toggleCheckboxChange = () => {
 		const { handleCheckboxChange, label } = this.props;
@@ -74,137 +88,10 @@ class App extends Component {
 		));
 	}
 	
+	
+
 	render(){
 		const { isChecked, theme } = this.state;
-		/*return (
-			<div className = {`${theme}`}>
-				<header className="header">
-					<ul>
-					  <li><a className="logo"><img src={mainLogo} /></a></li>
-					  <li><a>|</a></li>
-					  <li><a>EXCHANGE</a></li>
-					  <li className="floatRight">
-						<a href="#about">
-							  <label className="switch">
-								<input type="checkbox" onChange={this.toggleCheckboxChange} checked={isChecked} />
-								<span className="slider round"></span>
-							</label>
-						</a>
-					</li>
-					  <li className="floatRight"><a href="#about">Usuario</a></li>
-					  <li className="floatRight"><a href="#about">Exchange</a></li>
-					  <li className="floatRight"><a href="#about">Wallet</a></li>
-					  <li className="floatRight"><a href="#about">|</a></li>
-					  <li className="floatRight"><a href="#about">1 BTC = 000,000.00 MXN</a></li>
-					</ul>
-				</header>
-				<header className="header2">
-					<ul>
-					  <li><a className="greenText">BTC/MXN</a></li>
-					  <li>
-						<a >
-							<span className="withOpacity">Volumen 24 hrs</span>
-							<span>170.5405818 BTC</span>
-						</a>
-					</li>
-					  <li><a >
-						<span className="withOpacity">Max.</span>
-							<span>304,934.23 MXN</span>
-						</a></li>
-					  <li><a >
-						<span className="withOpacity"> Min.</span>
-							<span>1274,934.23 MXN</span>
-					  </a></li>
-					  <li><a >
-						<span className="withOpacity">Variación</span>
-							<span>+4,061.68 MXN (1.4%)</span>
-					  </a></li>
-					</ul>
-				</header>
-				<div className="row">
-				<div className="aside">
-					<table className="lastTrades">
-						<thead>
-							<tr>
-								<th colSpan="3">
-								ÚLTIMOS TRADES
-								</th>
-							</tr>
-							 <tr>
-								<td>HORA</td>
-								<td>
-									<span className="withOpacity">MXN</span>
-									<span>PRECIO</span>
-								</td>
-								<td><span className="withOpacity">BTC</span>
-									<span>MONTO</span></td>
-							  </tr>
-						</thead>
-						<tbody>
-							  <tr>
-								<td>16:10:25</td>
-								<td>319.149.99</td>
-								<td>0.0904<span className="withOpacity">0000</span></td>
-							  </tr>
-							  <tr>
-								<td>16:10:25</td>
-								<td>319.149.99</td>
-								<td>1.090484<span className="withOpacity">00</span></td>
-							  </tr>
-							</tbody>
-					</table>
-			</div>
-			<div className="section">
-				<nav>
-					 <a >HTML</a> |
-					 <a >zoom</a>
-				</nav>
-				<BarChart className="graphicSVG" data={[5,10,1,3]} size={[500,500]} />
-				<div className="posturas row">
-					<div className="col-2">
-					
-					</div>
-					<div className="col-2">
-						<table className="lastTrades">
-						<thead>
-							<tr>
-								<th colSpan="3">
-								ÚLTIMOS TRADES
-								</th>
-							</tr>
-							 <tr>
-								<td>HORA</td>
-								<td>
-									<span className="withOpacity">MXN</span>
-									<span>PRECIO</span>
-								</td>
-								<td><span className="withOpacity">BTC</span>
-									<span>MONTO</span></td>
-							  </tr>
-						</thead>
-						<tbody>
-							  <tr>
-								<td>16:10:25</td>
-								<td>319.149.99</td>
-								<td>0.0904<span className="withOpacity">0000</span></td>
-							  </tr>
-							  <tr>
-								<td>16:10:25</td>
-								<td>319.149.99</td>
-								<td>1.090484<span className="withOpacity">00</span></td>
-							  </tr>
-							</tbody>
-					</table>
-				</div>
-				<div>
-				</div>
-			</div>
-			</div>
-			<div className="mercados">
-			</div>
-			</div>
-			</div>
-		);*/
 		const classTheme = isChecked ? "" : "test";
 		
 		return (
@@ -212,27 +99,7 @@ class App extends Component {
 				<div className="row header1">
 					<div className="inner">
 						<div className="container">
-							<ul>
-								<li className="vcenter"><img src={bitsoLogo} /></li>
-								<li className="vcenter"><span>|</span></li>
-								<li className="vcenter title"><span>EXCHANGE</span></li>
-								<li className="vcenter floatRight">
-									<label className="switch">
-										<input type="checkbox" onChange={this.toggleCheckboxChange} checked={isChecked} />
-										<span className="slidericons round"></span>
-										<span className="slider round"></span>
-									</label>
-								</li>
-								<li className="vcenter floatRight"><span href="#about">Usuario</span></li>
-								<li className="vcenter floatRight"><span href="#about">Exchange</span></li>
-								<li className="vcenter floatRight"><span href="#about">Wallet</span></li>
-								<li className="vcenter floatRight"><span href="#about">|</span></li>
-								<li className="vcenter floatRight">
-									<Provider store={storeTrades}>
-										<FilterLabelBook  />
-									</Provider>
-								</li>
-							</ul>
+							<Header toggleCheckboxChange={this.toggleCheckboxChange.bind(this)} store={storeTrades} isChecked={this.state.isChecked}  />
 						</div>
 					</div>
 				</div>
@@ -260,9 +127,9 @@ class App extends Component {
 					<div className="col main">
 						<div className="row graphic">
 							<div className="inner">
-								<div className="container">
-									<Provider store={storeTrades}>
-										<FilterLineChart />
+								<div className="container"  ref={this.setContainerRef}>
+									<Provider store={storeTrades} >
+										<FilterLineChart widthChart={this.state.widthChart} heightChart={this.state.heightChart} />
 									</Provider>
 								</div>
 							</div>

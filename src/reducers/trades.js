@@ -1,4 +1,5 @@
 import { Observable, Subject, ReplaySubject, from, of, range, zip, combineLatest } from 'rxjs'
+import config from '../config'
 import {
     CHANGE_BOOK,
     WS_DATA,
@@ -6,10 +7,8 @@ import {
 } from './types';
 
 const ajaxBook = (book) =>{
-	//console.log("makin observable ajax trades="+book);
 	return Observable.ajax({
-		url: 'https://api.bitso.com/v3/trades/?limit=30&book='+book,
-		//url: 'https://api.bitso.com/v3/trades/?limit=30&book='+book,
+		url: config.endpoints.trades + "?limit=" + config.initialLoadTrades + "&book=" + book,
 		method: 'GET',
 		crossDomain: true,
 		responseType: 'json'
@@ -17,10 +16,8 @@ const ajaxBook = (book) =>{
 }
 
 const ajaxTicker = (book) =>{
-	//console.log("makin observable ajax ticker="+book);
 	return Observable.ajax({
-		url: 'https://api.bitso.com/v3/ticker/?book='+book,
-		//url: 'https://api-dev.bitso.com/v3/ticker/?book='+book,
+		url: config.endpoints.ticker + '?book=' + book,
 		method: 'GET',
 		crossDomain: true,
 		responseType: 'json'
@@ -29,15 +26,10 @@ const ajaxTicker = (book) =>{
 
 export const tradesEpic = action$ =>
   action$.ofType(CHANGE_BOOK)
-	.map(action=>{
-		//console.log("Epic Trades, load Async trades", action); 
-		return action.book;
-	})
-	//.flatMap(bookSelected => ajaxTicker(bookSelected).catch(_=>{success:false}))
-	.flatMap(bookSelected => 
+	.flatMap(({book}) => 
 		Observable.combineLatest(
-			ajaxTicker(bookSelected),
-			ajaxBook(bookSelected),
+			ajaxTicker(book),
+			ajaxBook(book),
 			(responseTicker, responseBooks) => {
 				const results = {
 					books: [],
@@ -56,13 +48,6 @@ export const tradesEpic = action$ =>
 		parseToNumber.map(key => results.ticker[key] = parseFloat(results.ticker[key]))
 		return results;
 	})
-	//.zip(ajaxBook, ajaxTicker)
-	/*.map(ajaxResponse=>{
-		//console.log("response tradesEpic", ajaxResponse, action$);
-		if(ajaxResponse.response.success)
-			return ajaxResponse.response.payload;
-		return [];
-	})*/
 	.map(results=>{return {type: LOADED_TRADES, books: results.books, ticker: results.ticker}});
 
 export const tradesReducer = (state = { loadingTrades: true, trades:[], ticker:{} }, action) => {
@@ -80,7 +65,7 @@ export const tradesReducer = (state = { loadingTrades: true, trades:[], ticker:{
 					price: action.data,
 					created_at: new Date(),
 					book: action.book,
-					amount: action.monto
+					amount: action.amount
 				});
 			return{
 				...state,

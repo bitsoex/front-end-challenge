@@ -5,25 +5,27 @@ class PosturaCompraTable extends Component {
 	render() {
 		const tableConfigFields = [
 		{
-			title: 'space',
+			title: '',
 			type: "bar",
+			classHeader: "graph",
 			dataIndex: "percent"
 		},{
 			title: 'SUM',
 			type: "number",
+			classHeader: "sum",
 			dataIndex: 'sum'
 		},{
-			pretitle: 'MXN',
+			pretitle: 'FROM',
 			title: 'MONTO',
 			type: "zeros",
 			dataIndex: 'a'
 		},{
-			pretitle: 'MXN',
+			pretitle: 'TO',
 			title: 'VALOR',
 			type: "number",
 			dataIndex: 'v'
 		},{
-			pretitle: 'MXN',
+			pretitle: 'TO',
 			title: 'PRECIO',
 			type: "number",
 			classColumn: "green",
@@ -31,7 +33,7 @@ class PosturaCompraTable extends Component {
 		}];
 		//console.log("Render PosturaCompraTable", this.props);
 		return (
-			<TableComponent title="POSTURAS DE COMPRA" fields={tableConfigFields} data={this.props.bids} keyDataIndex="o" idTable="bids"/>			
+			<TableComponent title="POSTURAS DE COMPRA" fields={tableConfigFields} data={this.props.bids} keyDataIndex="o" idTable="bids" bookSelected={this.props.bookSelected}/>			
 		);
    }
 }

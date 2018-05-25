@@ -37,7 +37,7 @@ class ChartTrade extends React.Component{
 	
 	render() {
 		const {bookSelected, historytrades, changePeriodInterval} = this.props;
-
+		console.log("RENDER-ChartTrade...", this.props);
 		return(
 			<ResizeDirective >
 			   <StockChartGraph bookSelected={bookSelected} historytrades={historytrades} changePeriodInterval={changePeriodInterval} svgWidth={this.state.widthParent}  svgHeight={this.state.heightParent}/>
@@ -45,6 +45,8 @@ class ChartTrade extends React.Component{
 		);
 	}
 	setPointerLocation( width, height ) {
+		if(width == 0 || height == 0)
+			return;
 		this.setState({
 			widthParent: width,
 			heightParent: height

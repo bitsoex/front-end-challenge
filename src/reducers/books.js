@@ -1,33 +1,40 @@
 import { Observable, Subject, ReplaySubject, from, of, range } from 'rxjs'
+import config from '../config'
 import{
 	LOAD_BOOKS,
 	CHANGE_BOOK
 } from './types'
 
 export const booksEpic = action$ =>
-  action$.ofType(LOAD_BOOKS)
-	.map(_=>{
-		//console.log("Epic book, load Async books", _); 
-		return _;
-	})
+	action$.ofType(LOAD_BOOKS)
 	.flatMap(
-		()=>Observable.ajax({
-			url: 'https://api.bitso.com/v3/available_books/',
-			//url: 'https://api.bitso.com/v3/available_books/',
+		_ => Observable.ajax({
+			url: config.endpoints.books,
 			method: 'GET',
 			crossDomain: true,
 			responseType: 'json'
 		})
 		.catch(_=>{success:false})
 	)
-	.map(ajaxResponse=>{
-		//console.log("response booksEpic", ajaxResponse, action$);
-		if(ajaxResponse.response.success)
-			return ajaxResponse.response.payload;
+	.map(({response})=>{
+		if(response.success)
+			return response.payload;
 		return [];
 	})
-	.map(data=>{return {type: CHANGE_BOOK, data: data, book: data[0].book}});
+	.map(data=>{
+		return {
+			type: CHANGE_BOOK,
+			data: data,
+			book: data[0].book
+		}
+	});
 
+/**
+ * Reducer for listen the request of the available Books.
+ *
+ * *Listen the actions:
+ *  *CHANGE_BOOK Set in the state the books available
+ */
 export const booksReducer = (state = { loadingBooks: true, books: [], bookSelected: 'Loading' }, action) => {
 	switch (action.type) {
 		case CHANGE_BOOK:

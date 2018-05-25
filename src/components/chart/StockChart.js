@@ -34,7 +34,7 @@ class StockChart extends React.Component {
 				</div>
 				<div className="graps">
 					<svg viewBox={`0 0 ${svgWidth} ${svgHeightWitoutHeader}`}>
-						<StockChartGraph id="history" data={historytrades} posx={0} posy={0} width={svgWidth} height={svgHeightWitoutHeader} />
+						<StockChartGraph id="history" data={historytrades} posx={0} posy={0} svgWidth={svgWidth} svgHeight={svgHeightWitoutHeader} />
 					</svg>
 				</div>
 			</div>

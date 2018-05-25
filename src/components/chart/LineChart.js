@@ -9,7 +9,7 @@ class LineChart extends React.Component {
 		const {svgHeight, svgWidth, bids, asks, changeGraph} = this.props;
 		const distance_between = 70;
 		let svgHeightWitoutHeader = svgHeight - 30;
-		//console.log("render.LineChart", this.props);
+		console.log("Render.LineChart", svgHeight, svgHeight-30, svgWidth);
 		return (
 			<div>
 				<div className="header">

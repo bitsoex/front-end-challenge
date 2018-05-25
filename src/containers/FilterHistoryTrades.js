@@ -5,7 +5,7 @@ const LOAD_HISTORY_TRADES = 'LOAD_HISTORY_TRADES';
 
 
 const mapDispatchToProps = dispatch => {
-	//console.log("connect.method.ping FilterBooks", dispatch);
+	
 	return {
 		changePeriodInterval : (book, period, interval) => dispatch({
 			type : LOAD_HISTORY_TRADES,

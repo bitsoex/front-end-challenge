@@ -50,22 +50,43 @@ class StockChartGraph extends React.Component {
 	}
 	
 	makeAxisX(posX, mostLow, mostHigh, widthMax, heightMax, id) {
-		const {data, nXAxis, marginAxis} = this.props;
+		const {data, marginAxis} = this.props;
 		if(data.length == 0)
 			return(
 				<path className="linechart_path_empty" /> 
 			)
+		const minSpace = 100;
+		const stepPosX = widthMax/(data.length+2);
+		const nXAxis = Math.round((widthMax - 2*stepPosX)/minSpace);
 		const step = widthMax/nXAxis;
 		const stepToIndex = data.length/nXAxis;
-		
 		var rows = [];
 		let value = 0 ;
-		let axisX = 0;
-		for (var i = 0; i < nXAxis; i++) {
+		let axisX = stepPosX;
+		let stepIndex = Math.round(stepToIndex);
+		for (var i = 0; i < nXAxis + 1; i++) {
 			const keyText = id+'_labelT_'+i;
 			const keyLine = id+'_labelL_'+i;
-			const index = parseInt(value);
+			let index =  i * stepIndex;
+			
+			if(index >= data.length){
+				index = data.length -1;
+				const valueDate = formatDate(data[index].date);
+				axisX =  stepPosX + (index  * stepPosX);
+				rows.push(
+					<text key={keyText} y={20} transform={`translate(${axisX})`}>
+						<tspan x="0" textAnchor="middle" className="text_axis">{valueDate}</tspan>
+					</text>
+					);
+				rows.push(
+					<line key={keyLine} x1={axisX} y1="20" x2={axisX} y2={heightMax+20} className="axisx" />
+				);
+				break;
+			}
+			/*if(!data[index])
+				console.log("FAIL", data, data.length, i, nXAxis, widthMax, stepPosX, stepIndex, index);*/
 			const valueDate = formatDate(data[index].date);
+			axisX =  stepPosX + (index  * stepPosX);
 			rows.push(
 				<text key={keyText} y={20} transform={`translate(${axisX})`}>
 					<tspan x="0" textAnchor="middle" className="text_axis">{valueDate}</tspan>
@@ -75,7 +96,6 @@ class StockChartGraph extends React.Component {
 				<line key={keyLine} x1={axisX} y1="20" x2={axisX} y2={heightMax+20} className="axisx" />
 			);
 			value = value + stepToIndex;
-			axisX = axisX + step;
 		}
 
 		return (rows);
@@ -90,7 +110,7 @@ class StockChartGraph extends React.Component {
 
 		const stepValue = (mostHigh-mostLow)/nAxis;
 		const step = heightMax/nAxis;
-		console.log("StepY", step, heightMax, nAxis);
+		//console.log("StepY", step, heightMax, nAxis);
 		var rows = [];
 		let value = mostLow ;
 		let axisY = 0;
@@ -111,9 +131,9 @@ class StockChartGraph extends React.Component {
 	}
 	
 	render(){
-		const {id, data, asks, posx, posy, width, height} = this.props;
+		const {id, data, asks, posx, posy, svgWidth, svgHeight} = this.props;
 		const transform = {translate:`'(${posx})'`}
-		
+		console.log("Render.StockChartGraph", svgWidth, svgHeight);
 		if(data.length == 0)
 			return (<text key={posx} y={posy}>
 					Hola
@@ -124,10 +144,10 @@ class StockChartGraph extends React.Component {
 
 		return(
 			<g id={id} transform={`translate(${posx}, ${posy})`}>
-				{this.makeAxisX(0 , mostLow, mostHigh, width, height-30, id)}
+				{this.makeAxisX(0 , mostLow, mostHigh, svgWidth, svgHeight-30, id)}
 				<g transform={`translate(0, ${posy+30})`}>
-					{this.makeAxisY(0 ,mostLow, mostHigh, width, height-30, id)}
-					{this.makeStock(0 , 0, mostLow, mostHigh, width, height-30)}
+					{this.makeAxisY(0 ,mostLow, mostHigh, svgWidth, svgHeight-30, id)}
+					{this.makeStock(0 , 0, mostLow, mostHigh, svgWidth, svgHeight-30)}
 					
 				</g>
 			</g>

@@ -4,7 +4,7 @@
 
 > Apoyando el ecosistema de las crypto concurrencias. 
 
-## Instalacion
+## Instalacion y ejecución
 
 ### Prerequisitos
 

@@ -169,8 +169,8 @@ export default class DeepMarketChart extends React.Component {
             
             let index = Math.trunc(x);
             if (this.data[index] !== undefined ) {
-                let y = this.data[x].sumTotal;
-                if (this.data[x].side==='bids') { 
+                let y = this.data[index].sumTotal;
+                if (this.data[index].side==='bids') { 
                     y = y / this.sumBids;
                     this.refs.lineAxis.fill('#85ad6b');
                     this.refs.lineAxis.stroke('#85ad6b');
@@ -183,10 +183,10 @@ export default class DeepMarketChart extends React.Component {
                 }
                 y = this.props.h - (y * (this.props.h-30));
 
-                let price = (this.data[x].min + this.data[x].max)/2;
+                let price = (this.data[index].min + this.data[index].max)/2;
                 price = this.parseCurrency(price);
                 this.refs.textPrice.text(price);
-                this.refs.textSum.text( this.data[x].sumTotal );
+                this.refs.textSum.text( this.data[index].sumTotal );
 
                 this.refs.textPrice.position({x: x + 10, y: y - 30 });
                 this.refs.textSum.position({x: x + 10, y: y - 14 });

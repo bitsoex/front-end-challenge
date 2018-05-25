@@ -82,7 +82,7 @@ class GraphicMarket extends React.Component {
         const bookHeader = this.props.book.toUpperCase().replace(/_/g,'/');
         const currency = bookHeader.substr(bookHeader.length-3);
         if (this.state.data.length > 0) {
-            const colorBook = (this.state.data[ this.state.data.length - 1].value - this.state.data[ this.state.data.length - 2].value) >= 0 ? this.props.theme.greenLight:this.props.theme.redLight
+            const colorBook = (this.state.data[ this.state.data.length - 1].close - this.state.data[ this.state.data.length - 2].close) >= 0 ? this.props.theme.greenLight:this.props.theme.redLight
             //Forzar a obtener numero para poder generar el formato de moneda, tipo de objeto this.state.data[ this.state.data.length - 1].value ==> string        
             const value = parseFloat(this.state.data[ this.state.data.length - 1].value);
             return (

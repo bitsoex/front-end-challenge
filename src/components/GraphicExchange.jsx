@@ -42,17 +42,23 @@ class GraphicExchange extends React.Component {
 
         this.state = {
             //grafica candles default
-            graphic: 'deepmarket',
+            graphic: 'candles',
+
             //grafica candles default
-            value: this.graphics[1],
+            value: this.graphics[0],
+
             //tema default para los botones de zoom de graficas de candlestick
             colorButton: this.props.theme.bodyExchangeColor,
+
             //tema default para el texto de los botones de zoom de graficas de candlestick
             textColor: this.props.theme.foreground,
+
             //periodo default para grafica de candlestick
             period: '1month',
+
             //zoom default para grafica de candlestick
             zoom: 100,
+            
             //zoom default para grafica deep market
             spead: 5,
         };

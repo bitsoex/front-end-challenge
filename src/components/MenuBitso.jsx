@@ -2,26 +2,40 @@ import React from 'react'
 
 /**
  * 
- * Componente que genera el menu del header de bitso
- * 
+ * Componente que genera el menu del header de Bitso
+ * Implementacion responsiva del menu
  * 
  */
 export default class MenuBitso extends React.Component {
 
-    /**
-     * Genera el menu para mobiles
-     */
-    menuMobile () {
-        return <div>Mobile</div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuClassName : 'navbar',
+        }
+    }
+
+    handleClick() {
+        if (this.state.menuClassName === 'navbar') {
+            this.setState({menuClassName: 'navbar responsive'});
+        } else {
+            this.setState({menuClassName: 'navbar'});
+        }
     }
 
     /**
-     * Genera el menu para no mobiles
+     * 
+     * Genera la vista del menu
+     * 
      */
-    menuNavigator () {
-        return (
+    render () {
+       return (
             <React.Fragment>
-                <div className='navbar' >
+                <div className={this.state.menuClassName} >
+
+                    <img src={require('../imgs/menu.png')} alt='Bitso' className='icon'
+                        style={{width: '2em', cursor: 'pointer' }} onClick={()=>this.handleClick()} />
+                        
                     <div className="dropdown" >
                         <button className="dropbtn">
                             Usuario
@@ -48,18 +62,5 @@ export default class MenuBitso extends React.Component {
                 </div>
             </React.Fragment>
         );
-    }
-
-    /**
-     * 
-     * Genera la vista del menu
-     * 
-     */
-    render () {
-        if (this.props.mobile) {
-            return this.menuMobile();   
-        } else {
-            return this.menuNavigator();
-        }
     }
 }

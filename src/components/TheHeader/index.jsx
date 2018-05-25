@@ -36,14 +36,14 @@ const TheHeader = (props) => (
           menu
         </i>
         <ul className={classnames('menu', { show: props.headerSidebar, hidden: !props.headerSidebar })}>
-          <li><Dropdown options={[{ label: 'option 1' }]} text='Wallet' /></li>
-          <li><Dropdown options={[{ label: 'option 2' }]} text='Exchange' /></li>
-          <li><Dropdown options={[{ label: 'option 3' }]} text='Ayuda' /></li>
+          <li><Dropdown options={[{ label: 'First Wallet Page' }]} text='Wallet' /></li>
+          <li><Dropdown options={[{ label: 'Second Exchange Page' }]} text='Exchange' /></li>
+          <li><Dropdown options={[{ label: 'Help Page' }]} text='Ayuda' /></li>
           <li className='user'>
             <div className='avatar'>
               <img />
             </div>
-            <Dropdown options={[{ label: 'option 4' }]} text='Usuario' />
+            <Dropdown options={[{ label: 'Settings' }]} text='Usuario' />
           </li>
         </ul>
       </nav>

@@ -22,12 +22,21 @@ class App extends Component {
       array_post:null,
       orderBooks:null
     }
+
+    this.interval = setInterval(() => {
+      this.getAllServices();
+  }, 4000)
+
+    this.changeBook=this.changeBook.bind(this);
+    this.changeRangeGraphic=this.changeRangeGraphic.bind(this)
+  }
+
+
+  getAllServices(){
     this.getBtcCost();
     this.getTrades();
     this.getGraphic();
     this.getOrderBook();
-    this.changeBook=this.changeBook.bind(this);
-    this.changeRangeGraphic=this.changeRangeGraphic.bind(this)
   }
 
   changeBook(book){

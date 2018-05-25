@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LastTrades from './LastTradesSection/LastTrades'
 import Posturas from './Posturas/Posturas'
+import Markets from './Markets/Markets'
 import './BodySection.css';
 
 class BodySection extends Component {
@@ -38,7 +39,7 @@ class BodySection extends Component {
       <section className="body-section">
         <LastTrades array_trades={this.state.array_trades} activeCoin={this.state.activeCoin}/>
         <Posturas activeCoin={this.state.activeCoin} ticketInfo={this.state.ticketInfo} orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade}  array_post={this.state.array_post}/>
-
+        <Markets/>
       </section>
     );
   }

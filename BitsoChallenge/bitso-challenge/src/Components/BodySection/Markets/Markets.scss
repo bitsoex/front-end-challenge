@@ -1,0 +1,90 @@
+.markets-section{
+width: auto;
+height: 100vh;
+position: absolute;
+right: 0px;
+clear:both;
+z-index: 9;
+display: inline-flex;
+.bar-section{
+width: 25px;
+cursor: pointer;
+background-color: #2e353d;
+height: 100vh;
+text-orientation: sideways;
+padding-top: 30px;
+p{
+    font-size: 13px;
+    margin-left: 3px;
+    margin-right: 5px;
+    color: #b0bac1;
+    writing-mode: tb-rl;
+}
+
+img{
+    margin-right: 10px;
+    transform: rotate(90deg);
+    width: 10px;
+    height: 10px;
+}
+}
+
+
+.info-markets-section{   
+ z-index: 9;
+height: 100%;
+width: 210px;
+-webkit-transition: 0.3s ease-out; /* Safari */
+transition: 0.3s ease-out;
+background-color: #23292d;
+&.hidden{
+    display: none;
+}
+
+.markets-list-row{
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #2e353d;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    width: 200px;
+    justify-content: space-between;
+    display: inline-flex;
+    .columnBook{
+        color:#384555;
+    }
+
+    .columnPriceUp{
+        display: inline-flex;
+        color:#86af6b;
+        img{
+            margin-top: 13px;
+            margin-right: 3px;
+            width: 10px;
+            height: 10px;
+            fill: #86af6b;
+            transform: rotate(-90deg)
+        }
+    }
+
+    .columnPriceDown{
+        display: inline-flex;
+        color:#ba3040;
+        img{
+            margin-top: 13px;
+            margin-right: 3px;
+            width: 10px;
+            height: 10px;
+            transform: rotate(90deg);
+            svg{
+                fill: #ba3040;
+            }
+           
+        }
+    }
+}
+
+}
+
+}

@@ -34,7 +34,7 @@ npm run build
 
 - Eclipse IDE Oxygen + CodeMix
 - CodeMix Extensions: Node Pack + React Pack + Web Dev Pack
-- Import Project ... Git - Projects from Git ... Clone URI ... URI: https://github.com/TonatiuhMorales/front-end-challenge
+- Import Project - Git - Projects from Git - Clone URI - URI: https://github.com/TonatiuhMorales/front-end-challenge
 
 
 ## Detalles

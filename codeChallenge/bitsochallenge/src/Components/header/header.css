@@ -1,0 +1,80 @@
+@font-face {
+  font-family: DINPro-Light;
+  src: url('../../Assets/Fonts/DINPro-Light.otf');
+}
+
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../../Assets/Fonts/DINPro-Medium.otf');
+}
+
+@font-face {
+  font-family: DINPro-Regular;
+  src: url('../../Assets/Fonts/DINPro-Regular.otf');
+}
+
+//***************Header Styles********/
+.avatarSettings{
+  display:inline-flex !important;
+}
+.DropDownMenu{
+  font-family: DINPro-Light !important;
+  display:inline !important;
+  text-decoration: none !important;
+  color: #b0bac1 !important;
+}
+.header {
+width: 25%;
+display: inline-flex;
+}
+.ToolbarGroup {
+  background-color: #252c36;
+  color:#191e23;
+  width: 90% !important;
+  font-family: DINPro-Light;
+  font-color: #b0bac1;
+  display: inline;
+  font-size:1.5em;
+}
+.ToolbarTitle {
+  font-family: DINPro-Light;
+  color: #b0bac1 !important;
+  display: inline;
+  font-size:1.5em;
+}
+
+.MenuItem{
+  font-family: DINPro-Light !important;
+  color: #b0bac1 !important;
+  display: inline;
+  font-size:1.5em;
+}
+
+.background-color{
+  background-color: #252c36 !important;
+  color:#191e23;
+}
+.bitsoLogo{
+width: 90px;
+margin-left: 25px;
+margin-right: 5px;
+}
+
+.Toolbar {
+  background-color: #252c36;
+  
+}
+.flatButton{
+  font-family: DINPro-Light !important;
+  display: inline !important;
+  font-size:1em ;
+}
+.TickCollection{
+  background-color:#b0bac1 !important;
+}
+.Toagleblock{
+  maxWidth: 250;
+}
+.Toggle-toggle{
+  marginBottom: 16;
+}

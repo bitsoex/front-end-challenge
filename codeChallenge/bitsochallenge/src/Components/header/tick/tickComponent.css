@@ -1,0 +1,31 @@
+@font-face {
+  font-family: DINPro-Light;
+  src: url('../../../Assets/Fonts/DINPro-Light.otf');
+}
+
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../../../Assets/Fonts/DINPro-Medium.otf');
+}
+
+@font-face {
+  font-family: DINPro-Regular;
+  src: url('../../../Assets/Fonts/DINPro-Regular.otf');
+}
+.MenuItem::selection{
+  font-family: DINPro-Light;
+  color: #b0bac1;
+  font-size:5.5em;
+}
+.view-exchange {
+  font-family: 'DINPro-Light';
+  color: #b0bac1;
+  font-size: 1em;
+  margin-bottom: 40px;
+}
+
+.ToolbarTitle {
+  font-family: DINPro-Light;
+  color: #b0bac1;
+  font-size:1.5em;
+}

@@ -1,3 +1,11 @@
 .layout {
   background-color: var(--color-primary-dark);
 }
+
+.container {
+  position: relative;
+}
+
+.main-view {
+  margin-right: 50px;
+}

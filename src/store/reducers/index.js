@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
-import auth from './auth'
 import ui from './ui'
+import ticker from './ticker'
 
 export default combineReducers({
-  auth,
-  ui
+  ui,
+  ticker
 })

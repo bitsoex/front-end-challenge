@@ -206,10 +206,7 @@ export default {
     /* select */
     document.addEventListener('click', function (e) {
       var classes = e.target.className.split(' ')
-      console.log(e.target)
-      if (classes.indexOf('selected') !== -1) {
-        console.log('a')
-      } else {
+      if (classes.indexOf('selected') === -1) {
         classes = e.target.parentElement.className.split(' ')
         if (classes.indexOf('selected') !== -1) {
           console.log('ab')
@@ -522,6 +519,9 @@ export default {
     padding: 10px 0 0 0;
     border-radius: 0 0 10px 10px;
     border: 1px solid #404e5f;
+    background: #313a46;
+    position: relative;
+    z-index: 9;
   }
 
   #chart .chartTypeChange ul li {
@@ -587,6 +587,7 @@ export default {
 
   #chart .chartPeriodicityChange ul, #chart .chartIntervalChange ul {
     display: none;
+    background: #313a46;
   }
 
   #chart .chartPeriodicityChange.open ul, #chart .chartIntervalChange.open ul {

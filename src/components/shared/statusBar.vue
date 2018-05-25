@@ -67,7 +67,7 @@ export default {
       /* fix unwanted feature that deselected the option if you clicked the same that is currently selected */
       if (val !== null) {
         var newBook = {url: val.url, label: val.label, unit: val.unit, comparision: val.comparision}
-        this.$store.commit('booksSelected', newBook)
+        this.$store.dispatch('bookChange', newBook)
       } else {
         this.books.initial = this.books.selected
       }

@@ -62,22 +62,13 @@ export default {
       }, function (err) {
         console.log(err)
       })
-    },
-    loadTrades () {
-      var self = this
-      Vue.http.get('https://api.bitso.com/v3/trades?book=' + this.books.selected.url + '&limit=50').then(function (data) {
-        var allTrades = data.body.payload
-        self.$store.commit('tradesAll', allTrades)
-      }, function (err) {
-        console.log(err)
-      })
     }
   },
   mounted () {
     this.loadAvailableBooks()
 
     /* load trades */
-    this.loadTrades()
+    this.$store.commit('tradesAll')
     /* end load trades */
   }
 }

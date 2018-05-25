@@ -10,6 +10,14 @@ const state = {
     initial: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'},
     selected: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'}
   },
+  charts: {
+    candles: {
+      data: [],
+      width: '10px',
+      high: 0,
+      low: 0
+    }
+  },
   dayMode: false,
   diffOrders: [],
   orders: [],
@@ -28,12 +36,34 @@ const state = {
 }
 
 const mutations = {
+  booksSelected (state, payload) {
+    state.books.selected = payload
+  },
+  candlesChart (state, payload) {
+    Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + state.books.selected.url + '&' + '3months').then(function (data) {
+      var w = document.getElementById('candles-chart').offsetWidth
+
+      var candleWidth = (w - 8) / data.body.length
+
+      var low = 1000000
+      var high = 0
+
+      for (var i = 0; i < data.body.length; i++) {
+        if (data.body[i].high > high) {
+          high = data.body[i].high
+        }
+        if (data.body[i].low < low) {
+          low = data.body[i].low
+        }
+      }
+
+      var payload = {width: candleWidth, data: data.body, high: high, low: low}
+      state.charts.candles = payload
+    })
+  },
   dayMode (state, payload) {
     state.dayMode = payload
     localStorage.setItem('dayMode', payload)
-  },
-  booksSelected (state, payload) {
-    state.books.selected = payload
   },
   ticker (state, payload) {
     state.ticker.ask = commafy(payload.ask)
@@ -47,7 +77,12 @@ const mutations = {
     state.ticker.vwap = commafy(payload.vwap)
   },
   tradesAll (state, payload) {
-    state.trades = payload
+    Vue.http.get('https://api.bitso.com/v3/trades?book=' + state.books.selected.url + '&limit=50').then(function (data) {
+      var allTrades = data.body.payload
+      state.trades = allTrades
+    }, function (err) {
+      console.log(err)
+    })
   },
   tradesPush (state, payload) {
     var buyOrSell
@@ -72,8 +107,16 @@ const mutations = {
 }
 
 const actions = {
+  bookChange (context, payload) {
+    context.commit('booksSelected', payload)
+    context.commit('tradesAll')
+    context.commit('candlesChart')
+  },
   dayMode (context, payload) {
     context.commit('dayMode', payload)
+  },
+  candlesChart (context, payload) {
+    context.commit('candlesChart', payload)
   },
   ticker (context, payload) {
     context.commit('ticker', payload)
@@ -105,3 +148,5 @@ function commafy (num) { /* function to style strings into money format */
   }
   return str.join('.')
 }
+
+console.log('store')

@@ -1,6 +1,32 @@
-# codemix-vanilla-react
-Template for project creation of React inside CodeMix
+# BITSO FRONT END CHALLENGE - Tonatiuh Morales
 
-## Contents
+> Propuesta generada para la compentencia de Bitso.
 
-The template project is just an example Hello World that guide you through the use of React with the Expressjs framework to build a very simple web application that display the Hello World!!! Greeting
+> Apoyando el ecosistema de las crypto concurrencias. 
+
+## Instalacion
+
+### Prerequisitos
+
+- NodeJS ^8.9
+- npm ^5.6
+
+
+``` bash
+
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:3000
+npm run start
+
+# build for production with minification
+npm run build
+
+```
+
+## Instalacion Desarrollo
+
+
+
+

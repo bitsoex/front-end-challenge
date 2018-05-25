@@ -39,7 +39,7 @@ npm run build
 
 ## Detalles
 
-+ Cambio de tema night y day funcionales.
++ Cambio de tema funcional: night - day.
 + Graficas de Candle, DeepMarket y Markets utilizan React-Konva permitiendo respetar el estilo solicitado. 
 
 

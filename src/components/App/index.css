@@ -33,7 +33,7 @@
   --purchase-position-average-color: #747F89;
   --purchase-position-average-value-color:#D5DCE0;
   --purchase-position-border: #86AF6B;
-  --sell-position-border: ##D23447;
+  --sell-position-border: #D23447;
   --purchase-position-hover-background: rgba(134, 175, 107, .4);
   --sell-position-hover-background: rgba(186, 48, 64, .4);
 }

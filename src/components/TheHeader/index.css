@@ -43,6 +43,14 @@
   padding: 0;
 }
 
+#app > .page > .header-container > header > nav > ul > li > .avatar {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--table-color);
+  background: var(--table-color);
+}
+
 #app > .page > .header-container > .stats {
   display: flex;
   align-items: center;
@@ -91,6 +99,14 @@
   color: white;
 }
 
+#app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
+  color: var(--sidebar-light-text);
+}
+
+#app > .page > .header-container > .stats > .list > .stat {
+  padding: 11px 16px 11px 0;
+}
+
 @media screen and (max-width: 768px) {
   #app > .page > .header-container > header > .logo > img {
     padding: 16px 11px 16px 16px;
@@ -112,6 +128,10 @@
     right: 0;
     background: var(--sidebar);
     overflow-y: scroll;
+  }
+
+  #app > .page > .header-container > header > nav > ul > li > .avatar {
+    margin: 0 auto;
   }
 
   #app > .page > .header-container > header > nav > ul.hidden {
@@ -141,21 +161,55 @@
 
   #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
     background: var(--medium-navy);
-    color: var(--sidebar-light-text);
-  }
-
-  #app > .page > .header-container > .stats > .list > .stat {
-    padding: 11px 16px 11px 0;
-  }
-  
-  li.user {
-    padding: 10px 20px;
   }
 }
 
 @media screen and (min-width: 769px) {
   #app > .page > .header-container > header > .logo > img {
-    padding: 18px 15px 18px 30px;
+    padding: 18px 30px;
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu {
+    justify-content: center;
+    align-items: center;
+  }
+
+  #app > .page > .header-container > header > nav > ul > li:first-child {
+    margin-left: 40px;
+  }
+
+  #app > .page > .header-container > header > nav > ul > li {
+    margin: 0 20px;
+  }
+
+  #app > .page > .header-container > header > nav > ul > li .dropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0;
+  }
+
+  #app > .page > .header-container > header > nav > ul > li.user {
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+  #app > .page > .header-container > header > nav > ul > li.user > .avatar {
+    margin-right: 20px;
+  }
+
+  #app > .page > .header-container > header > .title-page.money-exchange > div {
+    padding: 10px 20px;
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul,
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul > li {
+    background: var(--header-background);
+  }
+
+  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul > li:hover {
+    background: var(--medium-navy);
   }
 }
 

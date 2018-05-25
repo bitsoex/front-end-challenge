@@ -40,8 +40,10 @@ const TheHeader = (props) => (
           <li><Dropdown options={[{ label: 'option 2' }]} text='Exchange' /></li>
           <li><Dropdown options={[{ label: 'option 3' }]} text='Ayuda' /></li>
           <li className='user'>
-            <img alt='user-avatar' />
-            { props.user }
+            <div className='avatar'>
+              <img />
+            </div>
+            <Dropdown options={[{ label: 'option 4' }]} text='Usuario' />
           </li>
         </ul>
       </nav>

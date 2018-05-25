@@ -32,6 +32,7 @@ export default class Home extends Component {
   positionsColumns = [
     {
       header: '',
+      className: 'percent',
       accessor: (row) => (
         <div className='percent' style={{ width: `${row.percent * 100}%` }} />
       )
@@ -84,28 +85,26 @@ export default class Home extends Component {
     return (
       <div className='page'>
         <TheHeader page={this.props.page} exchange={100000.12} />
-        <main>
+        <main className='exchange'>
           <Table
             className='last-trades'
             header='últimos trades'
             columns={this.lastTradesColumns}
             data={lastTradesData}
           />
-          <div>
-            <div className='positions'>
-              <Table
-                className='purchase-position'
-                header={this.purshasePositionHeader}
-                columns={this.purchasePositionColumns}
-                data={purchasePositionData}
-              />
-              <Table
-                className='sell-position'
-                header={this.sellPositionHeader}
-                columns={this.sellPositionColumns}
-                data={purchasePositionData}
-              />
-            </div>
+          <div className='positions'>
+            <Table
+              className='purchase-position'
+              header={this.purshasePositionHeader}
+              columns={this.purchasePositionColumns}
+              data={purchasePositionData}
+            />
+            <Table
+              className='sell-position'
+              header={this.sellPositionHeader}
+              columns={this.sellPositionColumns}
+              data={purchasePositionData}
+            />
           </div>
         </main>
       </div>

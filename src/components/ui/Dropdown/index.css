@@ -1,3 +1,7 @@
+.dropdown {
+  position: relative;
+}
+
 .dropdown > .text {
   position: relative;
   display: flex;

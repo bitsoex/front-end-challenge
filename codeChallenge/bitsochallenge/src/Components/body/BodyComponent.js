@@ -8,6 +8,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import TabsChart from './graphicOptions/tabs.js'
 import MenuItem from 'material-ui/MenuItem';
 import Orders from './ordersActions/ActiveOrders.js';
+import OrdersAsk from './ordersActions/ActiveOrdersAsk.js';
 import './BodyComponent.css';
 
 const styles={
@@ -66,10 +67,12 @@ class BodyContent extends Component {
             </article>
           </div>
           {this.renderGraphics(this.state.period)}
+          <section>
+          <Orders className="ordersList" book={this.state.book}/>
+          <OrdersAsk className="ordersList left" book={this.state.book}/>
+          </section>
         </section>
-        <article>
-          <Orders book={this.state.book}/>
-        </article>
+
       </div>
     );
   }

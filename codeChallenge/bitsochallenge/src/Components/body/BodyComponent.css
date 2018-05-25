@@ -26,18 +26,23 @@
   text-decoration: none !important;
   color: #b0bac1 !important;
 }
-
+.left{
+  position: absolute !important;
+      right: 1px !important;
+      left: 883px;
+      bottom: 0px;}
 .chartContent{
     background-color: #23292d !important;
     text-align: right !important;
     position:relative !important;
     display: inline-flex !important;
-    max-width: 948px !important;
+    max-width: 930px !important;
+    overflow-x: hidden !important;
   }
 .canvasForm{
   background-color: #23292d !important;
-  max-width: 948px !important;
-
+  max-width: 930px !important;
+  overflow-x: hidden !important;
 }
 .backgroundBody{
   background-color: #23292d !important;

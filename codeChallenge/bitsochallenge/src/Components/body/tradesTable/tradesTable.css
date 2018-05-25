@@ -2,9 +2,10 @@
   background-color: #23292d !important;
   overflow-y: hidden !important;
   overflow-x:hidden !important;
+
 }
 .bodyTable {
-    height: 440px;
+    height: 527px !important;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -12,11 +13,13 @@
   background-color: black !important;
   overflow-y: hidden !important;
   overflow-x:hidden !important;
+  height: 527px !important;
 }
 
 .trades-table{
     background-color: #23292d !important;
     width: 100%;
+    height: 527px !important;
     padding-top: 0px;
     position:absolute;
     overflow-y:hidden !important;

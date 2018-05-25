@@ -1,14 +1,11 @@
 .trades-section{
     background-color: #23292d !important;
     width: 418px;
-    padding-top: 0px;
     position:absolute;
-    height:  400px;
-
-
+    height:  645px;
 }
 .trades-list-result{
-height: 300px !important;
+height: 400px !important;
 }
 .trades-header-tittle{
     color: #b0bac1;
@@ -25,21 +22,18 @@ height: 300px !important;
 .trades-header-column{
     display: inline-flex;
     color:#747f89;
-    width: 400px;
-    height: 0px;
-
+    width: 380px;
 }
 
 .trades-list-row{
     display: inline-flex;
     color:#747f89;
-    width: 400px;
+    width: 200px !important;
     height: 0px;
 
 }
 .column{
     width: 33%;
-
 }
 .tradeBuy{
     width: 33%;
@@ -53,5 +47,5 @@ height: 300px !important;
     color: #2e353d;
 }
 .trades-list-result{
-  height: 800px;
+  height: 700px;
 }

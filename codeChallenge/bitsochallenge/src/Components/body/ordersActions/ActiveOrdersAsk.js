@@ -3,7 +3,7 @@ import TableOrders from './OrdersTable.js'
 import TableOrdersAsks from './OrdersTableAsk.js'
 import {getOrders} from './../../../Utils/orderBook.js';
 import './orders.css'
-class Orders extends Component {
+class OrdersAsk extends Component {
     constructor(props) {
         super(props);
 
@@ -12,23 +12,30 @@ class Orders extends Component {
           coinSelected:"BTC"
         }
 
+
       }
       componentWillMount(){
-        getOrders(this.props.book).then(data => {
-          this.setState({ data })
-    		})
+        this.delaySetter();
+
       }
+
       componentDidMount() {
-        getOrders(this.props.book).then(data => {
-          this.setState({ data })
-    		})
+        this.getUpdateOrders();
     	}
     	componentWillReceiveProps(nextProps){
-    		getOrders(nextProps.book).then(data => {
+        getOrders(nextProps.book).then(data => {
     			this.setState({ data })
     		})
     	}
-
+      delaySetter(){
+        setTimeout(function() { this.getUpdateOrders()}.bind(this),5000);
+      }
+      getUpdateOrders(){
+    		getOrders(this.props.book).then(data => {
+    			this.setState({ data })
+    		})
+        this.delaySetter();
+    	}
 
 
   render() {
@@ -36,12 +43,12 @@ class Orders extends Component {
 			return <div>Loading...</div>
 		}
     return (
-      <section className="orders-section">
+      <section className="orders-section left">
         <section className='trades-header'>
-            <span className='trades-header-tittle'>POSTURAS DE COMPRA</span>
+            <span className='trades-header-tittle'>POSTURAS DE VENTA</span>
         </section>
         <section className='trades-list-result'>
-          <TableOrders tableData={this.state.data} />
+          <TableOrdersAsks tableData={this.state.data} />
         </section>
 
       </section>
@@ -50,4 +57,4 @@ class Orders extends Component {
   }
 }
 
-export default Orders;
+export default OrdersAsk;

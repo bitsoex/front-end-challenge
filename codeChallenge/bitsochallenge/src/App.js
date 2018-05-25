@@ -28,11 +28,20 @@ const muiThemeDark = getMuiTheme({
   drawer: {
       color: "#23292d"
     },
+    tableHeaderColumn: {
+           spacing: 0
+
+       },
   tableRow: {
         selectedColor: "#ffeb3b",
         hoverColor: "#ffea00",
         tripeColor: "#ffea00",
+        height: 20
     },
+
+    tableRowColumn: {
+        spacing: 10
+      },
   tabs: {
           backgroundColor: "#23292d",
           textColor: "#b0bac1",
@@ -69,12 +78,18 @@ const lightThemeAlter = getMuiTheme({
           selectedColor: "#ffeb3b",
           hoverColor: "#ffea00",
           tripeColor: "#ffea00",
+          height: 10
       },
       tabs: {
-              backgroundColor: Colors.white,
+              backgroundColor: "#23292d",
               textColor: "#b0bac1",
-              selectedTextColor: "#23292d",
-          }
+              selectedTextColor: "Colors.white",
+          },
+     tableHeader: {
+            backgroundColor: Colors.white,
+            spacing: 1
+
+        }
 
 });
 

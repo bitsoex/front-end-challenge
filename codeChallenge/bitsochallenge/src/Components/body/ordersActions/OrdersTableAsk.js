@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import {Table,TableBody,TableHeader, TableFooter,TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
 import './../Trades/Trades.css';
+import './orders.css';
 
 const bodyStyle = {
     overflow: 'hidden',
-    height: 518,
-};
 
-class TableTrades extends Component {
+};
+const headerStyle={
+  overflow: 'hidden',
+}
+
+class TableOrdersAsks extends Component {
   constructor(props) {
       super(props);
       this.state={
@@ -17,6 +21,7 @@ class TableTrades extends Component {
         stripedRows: false,
         showRowHover: true,
         selectable: true,
+        adjustForCheckbox: false,
         multiSelectable: false,
         enableSelectAll: false,
         deselectOnClickaway: true,
@@ -24,17 +29,23 @@ class TableTrades extends Component {
         displaySelectAll:false,
         overflow: 'hidden',
         height: '440px',
-        mxn:'MXN',
-        coinSelected:'BTC',
+        mxn:"MXN",
+        coinSelected:"BTC"
       }
     }
-  componentDidUpdate(){
-    var tableData =JSON.stringify(this.props.tableData);
-  }
-  static defaultProps = {
-    tradesArray:{},
-  }
+    componentDidUpdate(){
+      var tableData =JSON.stringify(this.props.tableData);
+
+    }
+    static defaultProps = {
+      tradesArray:{},
+    }
   render() {
+    if (this.props.tableData==null){
+      return (
+        <div>Loading</div>
+      )
+    }
     return (
       <div >
         <Table className="trades-table" bodyStyle={bodyStyle}
@@ -43,14 +54,15 @@ class TableTrades extends Component {
           fixedFooter={this.state.fixedFooter}
           selectable={this.state.selectable}
           multiSelectable={this.state.multiSelectable}
+
         >
         <TableHeader
           displaySelectAll={this.state.displaySelectAll}
           overflow={this.state.overflow}>
           <TableRow>
-            <TableHeaderColumn>Hora</TableHeaderColumn>
-            <TableHeaderColumn><span className='coin'>{this.state.mxn}</span> Precio</TableHeaderColumn>
-            <TableHeaderColumn><span className='coin'>{this.state.coinSelected}</span> Monto</TableHeaderColumn>
+            <TableHeaderColumn><span className='coin'>{this.state.mxn}</span>Monto</TableHeaderColumn>
+            <TableHeaderColumn><span className='coin'>{this.state.coinSelected}</span>Precio</TableHeaderColumn>
+            <TableHeaderColumn><span className='coin'>{this.state.coinSelected}</span>Valor</TableHeaderColumn>
           </TableRow>
         </TableHeader>
           <TableBody id="tablaData" className="trades-table" style="overflow-y:hidden"
@@ -59,11 +71,11 @@ class TableTrades extends Component {
             showRowHover={this.state.showRowHover}
             stripedRows={this.state.stripedRows}
           >
-            {this.props.tableData.map( (row, index) => (
-              <TableRow key={index} className={row.maker_side==='buy'?' tradeBuy':'tradeSell'}>
-                <TableRowColumn >{row.created_at.substring(11,19)}</TableRowColumn>
-                <TableRowColumn>{row.price}</TableRowColumn>
+            {this.props.tableData.payload.asks.map( (row, index) => (
+              <TableRow key={index} >
                 <TableRowColumn>{row.amount}</TableRowColumn>
+                <TableRowColumn className={'tradeSell'}>{row.price}</TableRowColumn>
+                <TableRowColumn >{row.price*row.amount}</TableRowColumn>
               </TableRow>
             ))}
           </TableBody>
@@ -71,9 +83,10 @@ class TableTrades extends Component {
             adjustForCheckbox={this.state.showCheckboxes}
           >
             <TableRow>
-              <TableRowColumn>Hora</TableRowColumn>
-              <TableRowColumn>Precio</TableRowColumn>
-              <TableRowColumn>Monto</TableRowColumn>
+              <TableRowColumn>BTC MONTO</TableRowColumn>
+              <TableRowColumn>MXN PRECIO</TableRowColumn>
+              <TableRowColumn>MXN VALOR</TableRowColumn>
+
             </TableRow>
 
           </TableFooter>
@@ -84,4 +97,5 @@ class TableTrades extends Component {
     );
   }
 }
-export default  TableTrades;
+
+export default TableOrdersAsks;

@@ -43,11 +43,6 @@ class Trades extends Component {
       <section className="trades-section">
         <section className='trades-header'>
             <p className='trades-header-tittle'>Ultimos Trades</p>
-            <section className='trades-header-column'>
-            <p className='column'>Hora</p>
-            <p className='column'><span className='coin'>{this.state.mxn}</span> precio</p>
-            <p className='column'><span className='coin'>{this.state.coinSelected}</span> Monto</p>
-            </section>
         </section>
         <section className='trades-list-result'>
         <TableTrades tableData={this.state.array_trades}/>

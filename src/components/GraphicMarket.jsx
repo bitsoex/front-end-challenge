@@ -92,7 +92,8 @@ class GraphicMarket extends React.Component {
 
                     <div style={{ backgroundColor: this.props.activeGraphic?this.props.theme.activeMarket:this.props.theme.bodyMarkets , 
                             height: '2em' , paddingTop: '0.5em' }}>
-                        <div style={{ display: 'inline-block', position: 'absolute', paddingLeft: '1em' }}>
+
+                        <div style={{ display: 'inline-block', position: 'absolute', paddingLeft: '1em' , color: this.props.theme.foreground}}>
                             {bookHeader}
                         </div>
 
@@ -101,6 +102,7 @@ class GraphicMarket extends React.Component {
                                 displayType={'text'} thousandSeparator={true} prefix={'$'}  decimalScale={currency==='MXN'?2:8} suffix={' ' + currency} />
                         </div>
                     </div>
+
                     <div style={{ display:  this.props.activeGraphic?'block':'none' }}>
                         <Stage width={270} height={80}  >
                             <Layer>

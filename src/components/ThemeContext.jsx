@@ -7,26 +7,34 @@ import React from 'react'
 export const themes = {
     day: {
         foreground: '#000000',
-        background: '#eeeeee',
+        background: '#f2f2f2',
         themeImage: 'light.png',
+        
         greenDark: '#98d372',
-        greenLight: '#60af2c',
-        grayDark: '#cccccc',
-        grayLight: '#636a70',
+        greenLight: 'green',//#60af2c
+
+        grayDark: 'gray',
+        grayLight: 'black',
         gray: '#4e5863',
-        blueLight: '#d8e4ed',
-        bodyExchangeColor: '#191e23',
-        bodyMarkets: '#23292d',
+
+        blueLight: '#1c2b37',
+
+        bodyExchangeColor: '#f2f2f2',
+        bodyMarkets: '#a8b4bc',
+        activeMarket: '#596064',
+        
         headerMarkets: '#cccccc',
         headerMarketsHover: '#2e353d',
         headerMarketTitle: '#434b50',
         redLight: '#f00e2f',
         redDark: '#cc4447',
-        activeMarket: '#161a1e',
-        headerTrader: '#27313c',
+        
+        headerTrader: '#a8b4bc',
         greenHover: '#6e8f66',
-        headerBid: '#27313c',
-        headerAsk: '#1f252d',
+
+        headerBid: '#a8b4bc',
+        headerAsk: '#a8b4bc',
+
         greenLine: '#44583f',
         redLine: '#59252e',
         greenFill: '#618e47',
@@ -48,6 +56,7 @@ export const themes = {
         blueLight: '#d8e4ed',
         bodyExchangeColor: '#191e23',
         bodyMarkets: '#23292d',
+
         headerMarkets: '#2e353d',
         headerMarketsHover: '#cccccc',
         headerMarketTitle: '#434b50',

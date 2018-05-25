@@ -41,10 +41,10 @@ class RowTrader extends React.Component {
      */
     getPriceColor () {
         if (this.props.makerSide==='buy') {
-            if (this.state.hover) return '#adff49';
+            if (this.state.hover) return this.props.theme.greenLight;
             else return this.props.theme.greenDark;
         } else {
-            if (this.state.hover) return '#ff8179';
+            if (this.state.hover) return this.props.theme.greenLight;
                 else return this.props.theme.redDark;
         }
     }

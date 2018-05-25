@@ -236,8 +236,8 @@ export default class DeepMarketChart extends React.Component {
                     <Line ref='lineAxis' visible={false} dash={[3, 3]} />
                     <Circle ref='pointAxis' visible={false} radius={5} x={100} y={100} fill='#191e23' stroke='white' />
 
-                    <Text ref='textPrice' textFill={'white'} fill={'white'} alpha={0.75} visible={false} text='Open' />
-                    <Text ref='textSum' textFill={'white'} fill={'white'} alpha={0.75} visible={false} text='Close' />
+                    <Text ref='textPrice' textFill={'white'} fill={this.props.theme.foreground} alpha={0.75} visible={false} text='Open' />
+                    <Text ref='textSum' textFill={'white'} fill={this.props.theme.foreground} alpha={0.75} visible={false} text='Close' />
                 </Layer>
             </Stage>
         );

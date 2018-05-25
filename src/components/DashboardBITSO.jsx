@@ -86,7 +86,7 @@ class DashboardBITSO extends React.Component {
      * 
      */
     render () {
-        //console.info ('width:' + this.state.width + isMobile);
+        document.body.style.backgroundColor = this.state.theme.background;
         const widthScreen = this.state.width;
         const viewMobile = isMobile || this.state.width < 825;
 

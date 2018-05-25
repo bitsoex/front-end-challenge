@@ -4,14 +4,14 @@
 
 > Apoyando el ecosistema de las crypto concurrencias. 
 
-## Instalacion y ejecución
+## Instalación y ejecución
 
 ### Prerequisitos
 
 - NodeJS ^8.9
 - npm ^5.6
 - Para Chrome es necesaria la extensión 'allow-control-allow-origin *' (https://chrome.google.com/webstore/detail/allow-control-allow-origi/)
-- Para Firefox es necesaria la extension Cross Domain - CORS (https://addons.mozilla.org/es/firefox/addon/cross-domain-cors/)
+- Para Firefox es necesaria la extensión Cross Domain - CORS (https://addons.mozilla.org/es/firefox/addon/cross-domain-cors/)
 
 
 
@@ -28,7 +28,7 @@ npm run build
 
 ```
 
-## Instalacion Desarrollo
+## Instalación Desarrollo
 
 ### Prerequisitos
 
@@ -40,7 +40,7 @@ npm run build
 ## Detalles
 
 + Cambio de tema funcional: night - day.
-+ Graficas de Candle, DeepMarket y Markets utilizan React-Konva permitiendo respetar el estilo solicitado. 
++ Gráficas de Candle, DeepMarket y Markets utilizan React-Konva permitiendo respetar el estilo solicitado. 
 
 
 

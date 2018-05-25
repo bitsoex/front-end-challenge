@@ -1,7 +1,7 @@
 {
-  "name": "react-hello-world",
+  "name": "bitso-challenge",
   "version": "1.0.0",
-  "description": "React Hello World",
+  "description": "Bitso Challenge Tonatiuh Morales",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -9,7 +9,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "author": "CodeMix",
+  "author": "Tonatiuh Morales",
   "license": "ISC",
   "dependencies": {
     "konva": "^2.1.3",

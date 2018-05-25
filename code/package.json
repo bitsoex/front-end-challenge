@@ -1,0 +1,31 @@
+{
+  "name": "code",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*",
+    "lint:watch": "node_modules/eslint-watch/bin/esw -w src/**/*",
+    "css:build": "less-watch-compiler --run-once src/ ./assets",
+    "css:watch": "npm run css:build && less-watch-compiler src/ ./assets",
+    "dev:start": "npm-run-all --parallel css:watch lint:watch start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-watch": "^3.1.5",
+    "less-watch-compiler": "^1.11.3",
+    "npm-run-all": "^4.1.3"
+  }
+}

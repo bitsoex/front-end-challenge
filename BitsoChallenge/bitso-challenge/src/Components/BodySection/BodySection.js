@@ -15,7 +15,8 @@ class BodySection extends Component {
           array_post:this.props.array_post,
           activeTimeTrade:this.props.activeTimeTrade,
           orderBooks:this.props.orderBooks,
-          ticketInfo:this.props.ticketInfo
+          ticketInfo:this.props.ticketInfo,
+          arrayBooks:this.props.arrayBooks
 
         }
         this.changeRangeGraphic=this.changeRangeGraphic.bind(this)
@@ -25,12 +26,11 @@ class BodySection extends Component {
           
         this.setState({activeCoin:nextProps.activeCoin, array_trades:nextProps.array_trades,
           array_post:nextProps.array_post ,activeTimeTrade:nextProps.activeTimeTrade,orderBooks:nextProps.orderBooks,
-          ticketInfo:nextProps.ticketInfo})
+          ticketInfo:nextProps.ticketInfo, arrayBooks:nextProps.arrayBooks})
       }
 
 
       changeRangeGraphic(range){
-        console.log('Rango en body ' + JSON.stringify(range))
         this.props.changeRangeGraphic(range)
       }
 
@@ -39,7 +39,7 @@ class BodySection extends Component {
       <section className="body-section">
         <LastTrades array_trades={this.state.array_trades} activeCoin={this.state.activeCoin}/>
         <Posturas activeCoin={this.state.activeCoin} ticketInfo={this.state.ticketInfo} orderBooks={this.state.orderBooks} changeRangeGraphic={this.changeRangeGraphic} activeTimeTrade={this.state.activeTimeTrade}  array_post={this.state.array_post}/>
-        <Markets/>
+        <Markets arrayBooks={this.state.arrayBooks} />
       </section>
     );
   }

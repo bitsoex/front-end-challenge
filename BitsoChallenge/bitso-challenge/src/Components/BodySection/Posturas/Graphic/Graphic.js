@@ -8,10 +8,10 @@ import { ChartCanvas, Chart } from "react-stockcharts";
 import {
 	BarSeries,
 	CandlestickSeries,
-	LineSeries
 } from "react-stockcharts/lib/series";
+
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
-import { EdgeIndicator,MouseCoordinateY,MouseCoordinateX,CrossHairCursor } from "react-stockcharts/lib/coordinates";
+import { MouseCoordinateY,MouseCoordinateX,CrossHairCursor } from "react-stockcharts/lib/coordinates";
 
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { HoverTooltip } from "react-stockcharts/lib/tooltip";

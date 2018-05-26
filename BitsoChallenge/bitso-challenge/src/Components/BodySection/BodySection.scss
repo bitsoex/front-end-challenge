@@ -1,4 +1,20 @@
+@font-face {
+  font-family: DINPro-Light;
+  src: url('../../Assets/Fonts/DINPro-Light.otf');
+}
+
+@font-face {
+  font-family: DINPro-Medium;
+  src: url('../../Assets/Fonts/DINPro-Medium.otf');
+}
+
+@font-face {
+  font-family: DINPro-Regular;
+  src: url('../../Assets/Fonts/DINPro-Regular.otf');
+}
+
 .body-section{
+  font-family: 'DINPro-Medium';
     height: calc(100vh - 140px);
     margin-top: 0px; 
     width: 100%;

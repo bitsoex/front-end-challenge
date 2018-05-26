@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { timeParse } from "d3-time-format";
-import { TypeChooser } from "react-stockcharts/lib/helper";
 import{ARRAY_TRADE_DATES} from './../../../Config'
 import Lists from './Lists/Lists';
 import Graphic from './Graphic/Graphic';
@@ -19,6 +16,7 @@ class Posturas extends Component {
           ticketInfo:this.props.ticketInfo,
           activeCoin:this.props.activeCoin
         }
+        this.ticks=[{x: 0, y_sell: 0.5, y_buy: undefined}, {x: 1, y_sell: undefined, y_buy: 0.5}];
     
       }
 
@@ -45,10 +43,10 @@ class Posturas extends Component {
     return (
       <section className="body-section-posturas">
         <section className="change-items">
-        <section className='select-graphic'></section>
+        <section className='select-graphic'><p className='text'>Periodo</p> </section>
 
         <section onMouseOver={this.showOptions.bind(this)} onMouseLeave={this.hideOptions.bind(this)} className="select-range">
-          <p>{this.state.currentRange.name}</p>
+          <section className='perdiod-selector'> <p className='selector'>{this.state.currentRange.name}</p></section>
           <section id='option-range-date' className='options-select hidden'>
           {ARRAY_TRADE_DATES.map(tradeDate => {
               return<p onClick={this.changeTradeDate.bind(this,tradeDate)}>{tradeDate.name}</p>;
@@ -59,6 +57,7 @@ class Posturas extends Component {
 
         </section>
 				 <Graphic type={'hybrid'} data={this.state.array_post} />
+         {/* <DeephGraphic type={'hybrid'} ticks={this.ticks} width={300} /> */}
         <Lists activeCoin={this.state.activeCoin} ticketInfo={this.state.ticketInfo}  orderBooks={this.state.orderBooks} array_post={this.state.array_post}/>
 
       </section>

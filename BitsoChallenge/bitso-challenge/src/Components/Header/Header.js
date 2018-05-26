@@ -37,8 +37,6 @@ class Header extends Component {
         </section>
        
         <CoinSection ticketInfo={this.state.ticketInfo} activeCoin={this.state.activeCoin}/>
-        
-
       </section>
       <SelectCoin changeBook={this.props.changeBook} ticketInfo={this.state.ticketInfo}  activeCoin={this.state.activeCoin}/> 
       </section>

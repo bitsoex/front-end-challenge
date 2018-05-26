@@ -8,16 +8,38 @@
 
     .change-items{
         display: inline-flex;
+        .select-graphic{
+            width: 60px;
+            height: 20px;
+            color:#4e5863;
+            margin-right: 10px;
+        }
 
         .select-range{
+            cursor: pointer;
             margin-left: 40px;
             width: 100px;
             // font-family: 'DINPro-Regular';
-            color:#98d372;
-            margin-right: 40px;
+            color:#b0bac1;
+            margin-right: 36px;
+
+
+            .perdiod-selector{
+  
+                .selector{
+                    width: 60px;
+                    height: 20px;
+                    border-style: solid;
+                    border-color: #384555;
+                    border-width: 1px;
+                    border-radius: 35%;
+                }
+            }
+
+
             .options-select{
-                width: 100px;
-                
+                width: 60px;
+                float: right;
                 p:hover{
                     background-color: #252c36;
                 }

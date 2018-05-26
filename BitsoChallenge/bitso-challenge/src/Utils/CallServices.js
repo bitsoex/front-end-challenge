@@ -13,12 +13,9 @@ export function getData(book, range,url) {
 			return(data);
 		}
 		)    .catch(function(error) {
-
             responseService='error'
             return(responseService);
-    
-        })
-	)
+        }));
 }
 
 export const callGetServices = (url,params) => {
@@ -26,7 +23,7 @@ export const callGetServices = (url,params) => {
     var url_params=url;
     var responseService={}
 
-    params.map((param) => {
+    params.forEach((param) => {
         url_params=url+'?'+param.param+'='+param.value;
     });
     

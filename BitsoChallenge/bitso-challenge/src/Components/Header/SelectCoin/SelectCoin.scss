@@ -25,9 +25,9 @@
         font-family: 'DINPro-Regular';
         color:#98d372;
         margin-right: 40px;
+        cursor: pointer;
         .options-select{
             width: 100px;
-            
             p:hover{
                 background-color: #252c36;
             }
@@ -36,6 +36,7 @@
                 margin-top: 0px;
             margin-bottom: 20px;
             }
+            z-index: 10;
             position: absolute;
             background-color: #161a1e;
             display: block;

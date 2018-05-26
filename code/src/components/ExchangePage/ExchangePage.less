@@ -1,0 +1,35 @@
+.page-container {
+  width: 100%;
+  /* Flex Options */
+  display: flex;
+  flex-direction: column;
+}
+
+.boxes-container {
+  height: 100%;
+  /* Flex Layout Options */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.charts-container {
+  height: 100%;
+  display: flex;
+  flex: 2 2 auto;
+  justify-content: space-between;
+}
+
+.charts-children-container {
+  // Self
+  height: 100%;
+  display: flex;
+  flex: 2 2 auto;
+  // for Childs
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}

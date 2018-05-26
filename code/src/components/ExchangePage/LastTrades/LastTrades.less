@@ -1,0 +1,42 @@
+@import '../../../styles/colors.less';
+
+.trades-container {
+  padding: 10px;
+  padding-top: 5px;
+  width: 25%;
+}
+
+.trades-header {
+  padding: 5px;
+  padding-left: 10px;
+  background-color: @navy-headers;
+}
+
+.trades-table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.trades-table-head {
+  padding: 15px;
+}
+
+.trades-table-body {
+  text-align: center;
+}
+
+.trades-active {
+  background-color: @color-primary;
+}
+
+.trades-buy > .trades-price {
+  color: @dark-green;
+}
+
+.trades-active > .trades-price {
+  color: @regular-green;
+}
+
+.trades-sell > .trades-price {
+  color: @dark-red;
+}

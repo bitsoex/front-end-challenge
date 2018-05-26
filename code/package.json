@@ -10,8 +10,8 @@
   "scripts": {
     "lint": "eslint src/**/*",
     "lint:watch": "node_modules/eslint-watch/bin/esw -w src/**/*",
-    "css:build": "less-watch-compiler --run-once src/ ./assets",
-    "css:watch": "npm run css:build && less-watch-compiler src/ ./assets",
+    "css:build": "less-watch-compiler --run-once ./src/ ./",
+    "css:watch": "npm run css:build && less-watch-compiler ./src/ ./",
     "dev:start": "npm-run-all --parallel css:watch lint:watch start",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -25,6 +25,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
     "eslint-watch": "^3.1.5",
+    "less": "^3.0.4",
     "less-watch-compiler": "^1.11.3",
     "npm-run-all": "^4.1.3"
   }

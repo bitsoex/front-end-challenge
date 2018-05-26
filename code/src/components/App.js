@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.less';
-import ExchangePage from "./ExchangePage/ExchangePage";
-import NavBar from "./common/Navbar/NavBar";
+import './App.css';
+import ExchangePage from './ExchangePage/ExchangePage';
+import NavBar from './common/Navbar/NavBar';
 
 class App extends Component {
   render() {

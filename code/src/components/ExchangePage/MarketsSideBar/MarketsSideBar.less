@@ -1,0 +1,71 @@
+@import '../../../styles/colors.less';
+
+.sidenav-wrapper {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  background-color: @regular-navy;
+  overflow-x: hidden;
+  transition: 0.5s;
+  /* Flex Layout Options */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: center;
+  align-content: center;
+}
+
+.sidenav-toggle {
+  width: 20px;
+  position: static;
+  z-index: 1;
+  background-color: @regular-navy;
+  //overflow-x: hidden;
+  transition: 0.5s;
+  // Side Text
+  text-orientation: sideways;
+  white-space: initial;
+  // Cursor
+  cursor: pointer;
+  // Flex Full Height
+  flex: 2;
+}
+
+.sidenav-toggle .vertical-text {
+  transform: rotate(90deg);
+  transform-origin: right 0;
+  float: right;
+}
+
+.sidenav-content {
+  height: 100%;
+  width: 0;
+  position: relative;
+  z-index: 1;
+  background-color: @regular-navy;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidenav-content a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav-content a:hover {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav-content {
+    padding-top: 15px;
+  }
+  .sidenav-content a {
+    font-size: 18px;
+  }
+}

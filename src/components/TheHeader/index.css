@@ -76,6 +76,8 @@
 #app > .page > .header-container > .stats > .exchange-type > ul > li {
   background: var(--nav-background);
   color: var(--exchange-type-color);
+  align-items: center;
+  justify-content: center;
 }
 
 #app > .page > .header-container > .stats > .list {

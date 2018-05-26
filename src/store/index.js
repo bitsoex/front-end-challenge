@@ -65,13 +65,35 @@ const mutations = {
 
     var intervalDataToWork = []
     var i
+    var intervalOpen
+    var intervalClose
+    var intervalHigh = 0
+    var intervalLow = 1000000
+    var intervalVolume = 0
+
     switch (state.charts.interval) {
       case '1d':
         break
       case '3d':
         for (i = 0; i < dataToWork.length; i++) {
           if (i % 3 === 0) { // index is even
-            intervalDataToWork.push(dataToWork[i])
+            intervalVolume = 0
+            intervalOpen = parseFloat(dataToWork[i].open)
+          }
+
+          if (parseFloat(dataToWork[i].high) > intervalHigh) {
+            intervalHigh = parseFloat(dataToWork[i].high)
+          }
+          if (parseFloat(dataToWork[i].low) < intervalLow) {
+            intervalLow = parseFloat(dataToWork[i].low)
+          }
+
+          intervalVolume = intervalVolume + parseFloat(dataToWork[i].volume)
+          if (i % 3 === 2) {
+            intervalClose = parseFloat(dataToWork[i].close)
+            intervalDataToWork.push({open: String(intervalOpen), close: String(intervalClose), high: String(intervalHigh), low: String(intervalLow), volume: String(intervalVolume)})
+            intervalHigh = 0
+            intervalLow = 1000000
           }
         }
         divider = divider / 3
@@ -80,7 +102,23 @@ const mutations = {
       case '1w':
         for (i = 0; i < dataToWork.length; i++) {
           if (i % 7 === 0) { // index is even
-            intervalDataToWork.push(dataToWork[i])
+            intervalVolume = 0
+            intervalOpen = parseFloat(dataToWork[i].open)
+          }
+
+          if (parseFloat(dataToWork[i].high) > intervalHigh) {
+            intervalHigh = parseFloat(dataToWork[i].high)
+          }
+          if (parseFloat(dataToWork[i].low) < intervalLow) {
+            intervalLow = parseFloat(dataToWork[i].low)
+          }
+
+          intervalVolume = intervalVolume + parseFloat(dataToWork[i].volume)
+          if (i % 7 === 6) {
+            intervalClose = parseFloat(dataToWork[i].close)
+            intervalDataToWork.push({open: String(intervalOpen), close: String(intervalClose), high: String(intervalHigh), low: String(intervalLow), volume: String(intervalVolume)})
+            intervalHigh = 0
+            intervalLow = 1000000
           }
         }
         divider = divider / 7
@@ -89,7 +127,23 @@ const mutations = {
       case '1m':
         for (i = 0; i < dataToWork.length; i++) {
           if (i % 30 === 0) { // index is even
-            intervalDataToWork.push(dataToWork[i])
+            intervalVolume = 0
+            intervalOpen = parseFloat(dataToWork[i].open)
+          }
+
+          if (parseFloat(dataToWork[i].high) > intervalHigh) {
+            intervalHigh = parseFloat(dataToWork[i].high)
+          }
+          if (parseFloat(dataToWork[i].low) < intervalLow) {
+            intervalLow = parseFloat(dataToWork[i].low)
+          }
+
+          intervalVolume = intervalVolume + parseFloat(dataToWork[i].volume)
+          if (i % 30 === 29) {
+            intervalClose = parseFloat(dataToWork[i].close)
+            intervalDataToWork.push({open: String(intervalOpen), close: String(intervalClose), high: String(intervalHigh), low: String(intervalLow), volume: String(intervalVolume)})
+            intervalHigh = 0
+            intervalLow = 1000000
           }
         }
         divider = divider / 30

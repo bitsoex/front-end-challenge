@@ -19,8 +19,7 @@ class LineChartGraph extends React.Component {
 		const {data, axisXIndex, axisYIndex} = this.props;
 		return data.reduce((max, p) => p[axisYIndex] > max ? p[axisYIndex] : max, data[0][axisYIndex]);
 	}
-	
-	// GET SVG COORDINATES
+
 	getSvgX(x, posX, widthMax) {
 		const {axisXIndex, axisYIndex} = this.props;
 		return  posX + (((x -this.getMinX()) * widthMax) / (this.getMaxX() - this.getMinX()));
@@ -30,13 +29,10 @@ class LineChartGraph extends React.Component {
 		return posY + (heightMax - (y / this.getMaxY() * heightMax));
 	}
 	
-	// BUILD SVG PATH
 	makeFill(posX, posY, widthMax, heightMax) {
 		const { axisXIndex, axisYIndex, data} = this.props;
 		if(data.length == 0)
-			return(
-					<polygon className="linechart_fill_empty" /> 
-				)
+			return(null)
 		let pathD = posX+ " " + heightMax + " " +  this.getSvgX(data[0][axisXIndex], posX, widthMax) + " " + this.getSvgY(data[0][axisYIndex], posY, heightMax) + " ";
 		let lastY = this.getSvgY(data[0][axisYIndex], posY, heightMax);
 		data.map((point, i) => {
@@ -52,21 +48,27 @@ class LineChartGraph extends React.Component {
 		);
 	} 
 
-	makePath(posX, posY, widthMax, heightMax) {
+	makePath(posX, posY, widthMax, heightMax, id) {
 		const {data, axisXIndex, axisYIndex} = this.props;
 		if(data.length == 0)
 			return(
 				<path className="linechart_path_empty" /> 
 			)
-		let pathD = "M " + this.getSvgX(data[0][axisXIndex], posX, widthMax) + " " + this.getSvgY(data[0][axisYIndex], posY, heightMax) + " ";
 		let lastY = this.getSvgY(data[0][axisYIndex], posY, heightMax);
+		let pathD = "";
+		if(id === "asks")
+			pathD += "M 0 " + heightMax;
+		else
+			pathD += "M 0 " + lastY;
+			
+		//pathD+=  " L 0 " + lastY + " ";
 		pathD += data.map((point, i) => {
 			let actualY = lastY;
 			lastY = this.getSvgY(point[axisYIndex], posY, heightMax);
-			return ("L " + this.getSvgX(point[axisXIndex], posX, widthMax) + " " +actualY + " ") + "L " + this.getSvgX(point[axisXIndex], posX, widthMax) + " " + this.getSvgY(point[axisYIndex], posY, heightMax) + " ";
+			return ("L " + this.getSvgX(point[axisXIndex], posX, widthMax) + " " + actualY + " ") + "L " + this.getSvgX(point[axisXIndex], posX, widthMax) + " " + lastY  + " ";
 		});
-
-		pathD+= "L " + this.getSvgX(this.getMaxX(), posX, widthMax) + " " + heightMax;
+		if(id === "bids")
+			pathD += "L " + this.getSvgX(this.getMaxX(), posX, widthMax) + " " + heightMax;
 		return (
 		  <path className="linechart_path" d={pathD} /> 
 		);
@@ -75,14 +77,11 @@ class LineChartGraph extends React.Component {
 	makeAxis(posX, widthMax, heightMax, id) {
 		const {data, nAxis, marginAxis} = this.props;
 		if(data.length == 0)
-			return(
-				<path className="linechart_path_empty" /> 
-			)
+			return(null)
 		const minX = this.getMinX(), maxX = this.getMaxX();
 		const minY = this.getMinY(), maxY = this.getMaxY();
 		const step = (widthMax - 2*marginAxis)/(nAxis-1);
 		const stepValue = (maxX - minX)/nAxis;
-		
 		
 		var rows = [];
 		let value = minX ;
@@ -106,15 +105,19 @@ class LineChartGraph extends React.Component {
 		return (rows);
 	}
 	
+	/*
+	*/
+	
 	render(){
 		const {id, data, asks, posx, posy, width, height} = this.props;
-		const transform = {translate:`'(${posx})'`}
+		const transform = {translate:`'(${posx})'`};
+		//console.log("start linchart", id);
 		return(
 			<g id={id} transform={`translate(${posx}, ${posy})`}>
 				{this.makeAxis(0 , width, height-30, id)}
 				<g transform={`translate(0, ${posy+30})`}>
-					{this.makeFill(0 , 0, width, height-30)}
-					{this.makePath(0 , 0, width, height-30)}
+					{this.makePath(0 , 0, width, height-30, id)}
+					{this.makeFill(0 , 0, width, height-30)}					
 				</g>
 			</g>
 			

@@ -1,6 +1,7 @@
 import { Observable, Subject, ReplaySubject, from, of, range, zip, combineLatest } from 'rxjs'
 import config from '../config'
 import {
+	CHANGE_BOOK,
 	LOAD_HISTORY_TRADES,
 	LOADED_HISTORY_TRADES
 } from './types';
@@ -16,9 +17,10 @@ const ajaxBook = (book, period = DEFAULT_PERIOD) =>{
 	})
 }
 export const historyTradeEpic = action$ =>
-  action$.ofType(LOAD_HISTORY_TRADES)
-	.flatMap(({book, period}) => ajaxBook(book, period))
-	.map(response=>{
+  //action$.ofType(LOAD_HISTORY_TRADES)
+  action$.filter(action => action.type === LOAD_HISTORY_TRADES || action.type === CHANGE_BOOK)
+	.switchMap(({book, period}) => ajaxBook(book, period ? period : DEFAULT_PERIOD))
+	.map(response => {
 		const results = response.response;
 		const parseToFloat = ["low", "high", "close", "open"];
 		results.map(item =>{
@@ -29,6 +31,7 @@ export const historyTradeEpic = action$ =>
 			});
 			return item;
 		});
+		console.log("loaded history trades", results);
 		return results;
 	})
 	.map(results=>{return {type: LOADED_HISTORY_TRADES, trades: results}});

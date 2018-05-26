@@ -29,7 +29,8 @@ function TradesList(props) {
 class LastTradesTable extends Component {
 
 	render() {
-		//console.log("Render LastTradesTable", this.props);
+		const {bookSelected} = this.props;
+		const exchange = bookSelected.toUpperCase().split("_");
 		return (
 			<table className="trades">
 				<thead>
@@ -41,10 +42,10 @@ class LastTradesTable extends Component {
 					 <tr>
 						<td className="timeTrades">HORA</td>
 						<td>
-							<span className="label">MXN</span>
+							<span className="label">{exchange[1]}</span>
 							<span>PRECIO</span>
 						</td>
-						<td className="amount"><span className="label">BTC</span>
+						<td className="amount"><span className="label">{exchange[0]}</span>
 							<span>MONTO</span></td>
 					  </tr>
 				</thead>

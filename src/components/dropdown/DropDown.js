@@ -17,9 +17,9 @@ class DropDown extends React.Component {
 	}
 	
 	menuItems(items){
-		const listItems = items.map(({action, value, label}, index)=>{
+		const listItems = items.map(({action, value, label, previousValue}, index)=>{
 			return(
-				<li key={index} onClick={e=>action(value)}>{label}</li>
+				<li key={index} onClick={e=>action(value, previousValue)}>{label}</li>
 			);
 		})
 		return(
@@ -31,26 +31,6 @@ class DropDown extends React.Component {
 	
 	render(){
 		const {down, children, items} = this.props;
-		
-		/*const boundChildren = React.Children.map(children, child => {
-			if (child.type === DropdownTrigger) {
-				const originalOnClick = child.props.onClick;
-				child = cloneElement(child, {
-					ref: 'trigger',
-					onClick: (event) => {
-						if (!disabled) {
-							this._onToggleClick(event);
-							if (originalOnClick) {
-								originalOnClick.apply(child, arguments);
-							}
-						}
-					}
-				});
-			} else if (child.type === DropdownContent && removeElement && !active) {
-				child = null;
-			}
-			return child;
-		});*/
 		
 		return(
 			<div  onClick={this.toggleButton.bind(this)} className={"dropdown " + (this.state.down ? 'openmenu' : '')}>

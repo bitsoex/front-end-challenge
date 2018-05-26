@@ -12,6 +12,7 @@ import {
 const socketWS = Observable.webSocket(config.endpoints.websocket)
 const bufferDataBids = {};
 const bufferDataAsks = {};
+let subscribedToWebsocket = false;
 
 /**
  * Epic for connect to websocket of Bitso.
@@ -23,21 +24,40 @@ const bufferDataAsks = {};
  * Then filter the response contains the payload with the book previosly selected.
  * Finally response a new action depend of the response.
  */
+
+
+
 export const websocketEpic = action$ =>
   action$.ofType(CHANGE_BOOK)
 	.map(({book, lastBook}) => {
-		socketWS.next(JSON.stringify({ action: 'subscribe', book: book, type: 'trades' }));
-		socketWS.next(JSON.stringify({ action: 'subscribe', book: book, type: 'orders' }));
+		console.log("NEW CHANGE_BOOK", book, lastBook, arguments);
 		if(lastBook){
 			socketWS.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'trades' }));
 			socketWS.next(JSON.stringify({ action: 'unsubscribe', book: lastBook, type: 'orders' }));
 		}
+		socketWS.next(JSON.stringify({ action: 'subscribe', book: book, type: 'trades' }));
+		socketWS.next(JSON.stringify({ action: 'subscribe', book: book, type: 'orders' }));
 		return book;
 	})
-	.flatMap( bookSelected => socketWS
-		.filter(response => response.payload && response.book == bookSelected)
+	.filter(_=>!subscribedToWebsocket)
+	.map(_=>{
+		subscribedToWebsocket = true;
+		return _;
+	})
+	/**
+	 * For best performance we can ignore some messages was emmited within time (300ms for example)
+	 * because visually can be see by the user.
+	*/
+	.switchMap( bookSelected => 
+		Observable.interval(config.timeIgnoreWebSocketsMessages)
+		.withLatestFrom(socketWS.filter(response => response.payload && response.book == bookSelected))
+		.map(([timer, websocketResponse]) => {
+			return websocketResponse;
+		})
 	)
-	.map(({payload, book, type}) => {
+	.map(a => {
+		const {payload, book, type} = a;
+		//console.log("response transform0>", payload, book, type, a);
 		 if (type == 'orders') {
 			var sumBids = 0, sumAsks = 0;
 			const bidsData = payload.bids.slice(0);

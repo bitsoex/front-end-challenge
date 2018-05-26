@@ -7,7 +7,7 @@ import{
 
 export const booksEpic = action$ =>
 	action$.ofType(LOAD_BOOKS)
-	.flatMap(
+	.switchMap(
 		_ => Observable.ajax({
 			url: config.endpoints.books,
 			method: 'GET',

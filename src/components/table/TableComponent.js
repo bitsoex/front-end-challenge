@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {formatCurrency} from '../../util/formatNumbers'
-
-const NDECIMALS = 8;
+import {formatCurrency, formatNumber} from '../../util/formatNumbers'
 
 function BodyTable(props) {
 		const data = props.data ? props.data: [];
@@ -24,11 +22,12 @@ function BodyTable(props) {
 					return (<td key={keyField} className={classColumn}>{formatCurrency(value, units, true)}</td>);
 				else
 					if(fieldInfo.type == 'zeros'){
-						const number =  parseFloat(value);
+						/*const number =  parseFloat(value);
 						const numberWithZeros = number.toFixed(NDECIMALS);
 						const numberString = number.toString();
-						const zeros = numberWithZeros.slice(numberString.length)
-						return (<td key={keyField} className="amount">{number}<span className="zeros">{zeros}</span></td>);
+						const zeros = numberWithZeros.slice(numberString.length)*/
+						const {numbers, zeros } = formatNumber(value);
+						return (<td key={keyField} className="amount">{numbers}<span className="zeros">{zeros}</span></td>);
 					}else
 						if(fieldInfo.type == 'bar'){
 							let divStyle = {

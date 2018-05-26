@@ -17,11 +17,12 @@ const ajaxTickers = (book) =>{
 }
 
 export const tickersEpic = action$ =>
-  action$.ofType(LOAD_ALL_TICKERS)
+  action$.ofType(CHANGE_BOOK)
 	.map(action=>{
 		return action.book;
 	})
-	.flatMap(bookSelected => 
+	.take(1)
+	.switchMap(bookSelected => 
 			ajaxTickers(bookSelected)
 			.map(responseTickers => responseTickers.response.payload)
 	).map(results=>{

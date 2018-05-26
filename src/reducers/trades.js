@@ -26,7 +26,7 @@ const ajaxTicker = (book) =>{
 
 export const tradesEpic = action$ =>
   action$.ofType(CHANGE_BOOK)
-	.flatMap(({book}) => 
+	.switchMap(({book}) => 
 		Observable.combineLatest(
 			ajaxTicker(book),
 			ajaxBook(book),

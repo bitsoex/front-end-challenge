@@ -39,6 +39,7 @@ const Header2 = ({ bookSelected, books, ticker, selectBook, exchange }) => {
 		return {
 			label: book.book.toUpperCase().split('_').join('/'),
 			value: book.book,
+			previousValue: bookSelected,
 			action: selectBook
 		}
 	});

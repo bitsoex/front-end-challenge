@@ -5,8 +5,6 @@ import { Provider } from 'react-redux'
 import FilterMarketTickers from '../containers/FilterMarketTickers'
 var ReactDOM = require('react-dom')
 
-
-
 export default class FloatingMenu extends React.Component {
 	constructor(props) {
 		super(props);
@@ -40,16 +38,12 @@ export default class FloatingMenu extends React.Component {
 	*/
 	
 	toggleClassMenu() {
-		const {store} = this.props;
 		this.add("menu--animatable");   
 		if(!this.contains("menu--visible")) {
 			this.add("menu--visible");
 		} else {
 			this.remove('menu--visible');       
 		}
-		store.dispatch({
-			type: 'LOAD_ALL_TICKERS'
-		});
 	}
 	
 	OnTransitionEnd() {
@@ -58,13 +52,12 @@ export default class FloatingMenu extends React.Component {
 	
 	render(){
 		const {className, store} = this.props;
-		
-		//console.log("Render.floatingMenu", this.props);
+
 		return (
 			<div className = {className + ' ' + this.state.className} onTransitionEnd={this.OnTransitionEnd.bind(this)} >
 				<div className="app-menu">
 					<ul className="expand">
-						<li className="header" onClick={_=>{this.toggleClassMenu()}}>
+						<li className="header" onClick={this.toggleClassMenu.bind(this)}>
 							<img src={collapseImg} /><div className="rotateText">MERCADOS</div>
 						</li>
 						<li className="body">
@@ -78,8 +71,3 @@ export default class FloatingMenu extends React.Component {
 		);
 	}
 }
-/*
-FloatingMenu.defaultProps = {
-	store: null,
-	laodTicker: ()=>{}
-}*/

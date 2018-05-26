@@ -16,7 +16,9 @@ const CURRENCY_DEFAULT = 'MXN';
  */
 export const formatNumber = (value) => {
 	const number =  parseFloat(value);
-	const numberString = number.toString();
+	let numberString = number.toString();
+	if(numberString.length > config.dicimalNumberSizeString )
+		numberString = numberString.substring(0, config.dicimalNumberSizeString);
 	const numberWithZeros = number.toFixed(config.dicimalNumberSizeString);
 	const zeros = numberWithZeros.slice(numberString.length);
 	return {

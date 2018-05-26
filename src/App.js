@@ -118,9 +118,9 @@ class App extends Component {
 					<div className="col trades">
 						<div className="inner">
 							<div className="container">
-							<Provider store={storeTrades}>
-								<FilterTrades />
-							</Provider>
+								<Provider store={storeTrades}>
+									<FilterTrades />
+								</Provider>
 							</div>
 						</div>
 					</div>

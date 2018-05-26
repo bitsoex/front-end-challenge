@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import moment from 'moment-timezone'
 // import classnames from 'classnames'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
 
-import { lastTradesData, purchasePositionData } from '../../../.hardcode'
+import { purchasePositionData } from '../../../.hardcode'
 
 import { getLatestTrades as getLatestTradesAction } from '../../store/actions/exchange'
 import { floatStringToLocaleString } from '../../lib/utils'
@@ -33,21 +34,34 @@ class Home extends Component {
     })
   }
 
+  componentWillUpdate (nextProps, nextState) {
+    const update = nextProps.selectedBook.book !== this.props.selectedBook.book
+    if (update) {
+      this.setState({ loading: true })
+      this.props.getLatestTrades(nextProps.selectedBook.book).then(payload => {
+        this.setState({ loading: false })
+      }).catch(error => {
+        console.error(error)
+        this.setState({ loading: false })
+      })
+    }
+  }
+
   lastTradesColumns () {
     const [ type, currency ] = this.props.selectedBook.book.split('_')
 
     return [
       {
         header: 'hora',
-        accessor: 'time',
-        className: 'time'
+        className: 'time',
+        accessor: (row) => moment(row.createdAt).tz('America/Mexico_City').format('hh:mm:ss')
       },
       {
         header: <div className='last-trades-header'><span>{currency}</span>precio</div>,
         className: 'price',
         accessor: (row) => (
-          <span className={row.price > 0 ? 'revenue' : 'loss'}>
-            {row.price.toLocaleString({ style: 'currency', currency: currency, minimumFractionDigits: 2 })}
+          <span className={row.makerSide}>
+            {floatStringToLocaleString(row.price)}
           </span>
         )
       },
@@ -137,7 +151,8 @@ class Home extends Component {
             className='last-trades'
             header='últimos trades'
             columns={lastTradesColumns}
-            data={lastTradesData}
+            data={this.props.latestTrades}
+            loading={this.state.loading}
           />
           <div className='positions'>
             <Table
@@ -145,12 +160,14 @@ class Home extends Component {
               header={purshasePositionHeader}
               columns={purchasePositionColumns}
               data={purchasePositionData}
+              loading={this.state.loading}
             />
             <Table
               className='sell-position'
               header={sellPositionHeader}
               columns={sellPositionColumns}
               data={purchasePositionData}
+              loading={this.state.loading}
             />
           </div>
           <TheMarkets />

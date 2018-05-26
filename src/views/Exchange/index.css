@@ -64,12 +64,12 @@
   color: white;
 }
 
-.table.last-trades > .container > table > tbody > tr > td.price > .revenue {
+.table.last-trades > .container > table > tbody > tr > td.price > .sell {
   color: var(--exchange-type-color);
 }
 
-.table.last-trades > .container > table > tbody > tr > td.price > .loss {
-  color: var(--exchange-loss-color);
+.table.last-trades > .container > table > tbody > tr > td.price > .buy {
+  color: var(--exchange-buy-color);
 }
 
 .table.purchase-position > .header {
@@ -123,7 +123,7 @@
 
 .table.sell-position > .container > table > tbody > tr > td > .percent {
   height: 1rem;
-  background: var(--exchange-loss-color);
+  background: var(--exchange-buy-color);
 }
 
 .table.purchase-position > .container > table > tbody > tr > td.mxn-value,
@@ -146,7 +146,7 @@
 }
 
 .table.sell-position > .container > table > tbody > tr > td.mxn-price {
-  color: var(--exchange-loss-color);
+  color: var(--exchange-buy-color);
 }
 
 @media screen and (max-width: 768px) {

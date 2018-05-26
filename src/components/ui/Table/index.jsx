@@ -36,8 +36,8 @@ const Table = ({ className, data = [], columns = [], header = '', loading = fals
         </thead>
         <tbody>
           {
-            data.length === EMPTY_DATA ? (
-              <td colSpan={40} className={classnames({ loading })}>Sin datos</td>
+            data.length === EMPTY_DATA || loading ? (
+              <tr><td colSpan={40} className={classnames({ loading })}>Sin datos</td></tr>
             ) : data.map((row, rowIndex) => (
               <tr key={row.id || rowIndex}>
                 {

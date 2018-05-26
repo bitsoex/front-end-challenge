@@ -110,61 +110,6 @@ div.vr {
   flex-shrink: 0;
 }
 
-.selector {
-  position: relative;
-  span {
-    cursor: pointer;
-    position: relative;
-    padding-right: 30px;
-    &::before {
-      position: absolute;
-      top: 10%;
-      transform: rotate(180deg);
-      position: absolute;
-      right: 0;
-      content: '';
-      width: 20px;
-      height: 20px;
-      background: url('assets/icons/dropdown.svg') no-repeat center center;
-      background-size: 15px;
-    }
-  }
-  ul {
-    position: absolute;
-    z-index: 1000;
-    top: 100%;
-    left: 0;
-    background-color: @medium-navy;
-    padding: 10px 0;
-    li {
-      padding: 5px 30px;
-      cursor: pointer;
-      margin-right: 0;
-      &:hover {
-        background-color: @navy-headers;
-      }
-    }
-  }
-  &.--hidden {
-    ul {
-      display: none;
-    }
-    span::before {
-      transform: rotate(0deg);
-    }
-  }
-  &.book {
-    text-transform: uppercase;
-    span {
-      font-weight: 600;
-      font-size: 1.1rem;
-      user-select: none;
-      -webkit-user-select: none;
-      color: @regular-green;
-    }
-  }
-}
-
 .loading {
   height: 100%;
   width: 100%;

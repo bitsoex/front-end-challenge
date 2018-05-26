@@ -1,40 +1,12 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+
+import OrderItem from 'components/OrderItem'
 
 import './style.less'
 
-class OrderItem extends PureComponent {
-  state = {
-    className: '--new'
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.value !== prevProps.value) {
-      console.log('UP OR DOWN')
-      const className = this.props.value > prevProps.value ? '--up' : '--down'
-      this.setState({
-        className
-      })
-    }
-  }
-
-  render() {
-    const { orderId, rate, amount, value, transaction } = this.props
-    return (
-      <div key={orderId} className={`item --order ${this.state.className}`}>
-        <p />
-        <p />
-        <p>{amount}</p>
-        <p>{parseFloat(Math.round(value * 100) / 100).toFixed(2)}</p>
-        <p className="price">
-          {parseFloat(Math.round(rate * 100) / 100).toFixed(2)}
-        </p>
-      </div>
-    )
-  }
-}
-
-function Order({ orders, title, type }) {
+function Order({ orders, title, type, selectedBook }) {
   return (
     <div className="orders-container">
       <div className="header">
@@ -47,13 +19,13 @@ function Order({ orders, title, type }) {
         <p />
         <p>SUM</p>
         <p>
-          <span>BTC</span>MONTO
+          <span>{selectedBook.from}</span>MONTO
         </p>
         <p>
-          <span>MXN</span>VALOR
+          <span>{selectedBook.to}</span>VALOR
         </p>
         <p>
-          <span>MXN</span>PRECIO
+          <span>{selectedBook.to}</span>PRECIO
         </p>
       </div>
       {orders[type] &&
@@ -65,15 +37,21 @@ function Order({ orders, title, type }) {
             amount={a}
             value={v}
             transaction={t}
-            // timestamp={d}
           />
         ))}
     </div>
   )
 }
 
-function mapStateToProps({ orders }) {
-  return { orders: orders }
+Order.propTypes = {
+  orders: PropTypes.object,
+  title: PropTypes.string,
+  type: PropTypes.string,
+  selectedBook: PropTypes.object
+}
+
+function mapStateToProps({ orders, selectedBook }) {
+  return { orders, selectedBook }
 }
 
 export default connect(mapStateToProps)(Order)

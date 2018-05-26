@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './style.less'
+
 class ListSelector extends Component {
+  static propTypes = {
+    onItemClick: PropTypes.func,
+    items: PropTypes.array,
+    type: PropTypes.string,
+    value: PropTypes.string
+  }
+
   state = {
     isHidden: true
   }
@@ -23,7 +32,7 @@ class ListSelector extends Component {
       props: { items, type, value }
     } = this
     return (
-      <li className={`selector ${type}${isHidden ? ' --hidden' : ''}`}>
+      <div className={`selector ${type}${isHidden ? ' --hidden' : ''}`}>
         <span onClick={this.toggleHidden}>{value}</span>
         <ul>
           {items.map(item => (
@@ -32,16 +41,9 @@ class ListSelector extends Component {
             </li>
           ))}
         </ul>
-      </li>
+      </div>
     )
   }
-}
-
-ListSelector.propTypes = {
-  // onItemClick: PropTypes.function, // TODO
-  items: PropTypes.array,
-  type: PropTypes.string,
-  value: PropTypes.string
 }
 
 export default ListSelector

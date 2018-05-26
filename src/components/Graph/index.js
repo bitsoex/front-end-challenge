@@ -1,116 +1,129 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import CanvasJS from 'lib/canvasjs.min.js'
+import { connect } from 'react-redux'
+import Highcharts from 'highcharts/highstock'
+import HighchartsReact from 'highcharts-react-official'
 
+import MiniListSelector from 'components/MiniListSelector'
+import { PERIODS, INTERVALS, extractDataPoints } from 'lib/constants'
+import { CHART_OPTIONS } from './constants'
+
+import candlesIcon from 'assets/icons/candles.svg'
+import './style.less'
+
+/**
+ * Component that handles the render of all chart types
+ * @extends Component
+ */
 class Graph extends Component {
-  componentDidUpdate() {
-    console.log('UPDATE...')
-    const chartData = this.props.chartData
-
-    console.log({ chartData })
-    const dataPoints = chartData.map(({ date, open, high, low, close }) => ({
-      x: new Date(date),
-      y: [
-        parseFloat(open),
-        parseFloat(high),
-        parseFloat(low),
-        parseFloat(close)
-      ]
-    }))
-
-    const chart = new CanvasJS.Chart('chartContainer', {
-      // animationEnabled: true,
-      backgroundColor: 'rgba(0,0,0,0.0)',
-      axisX2: {
-        labelFontColor: '#384555',
-        lineColor: '#252c36',
-        gridThickness: 1,
-        gridColor: '#252c36',
-        tickColor: '#252c36'
-      },
-      axisY2: {
-        // minimum: 150000,
-        labelFontColor: '#384555',
-        valueFormatString: '#,##0,.',
-        suffix: 'K',
-        lineColor: '#191e23',
-        gridColor: '#252c36',
-        gridDashType: 'dash',
-        lineThickness: 1,
-        tickColor: '#252c36'
-      },
-      axisY: {
-        lineThickness: 1,
-        lineColor: '#252c36'
-      },
-      toolTip: {
-        shared: true,
-        borderColor: '#b0bac1',
-        fontColor: '#b0bac1',
-        borderThickness: 1,
-        cornerRadius: 10,
-        backgroundColor: 'rgba(56, 69, 85, 0.8)'
-      },
-      data: [
-        {
-          axisYType: 'secondary',
-          axisXType: 'secondary',
-          type: 'candlestick',
-          color: '#80c156',
-          risingColor: '#80c156',
-          fallingColor: '#cc4458',
-          border: 0,
-          whiskerThickness: 0.5,
-          fillOpacity: 0.8,
-          // name: 'Stock Price',
-          // yValueFormatString: '$#,##0.00',
-          // xValueFormatString: 'MMMM',
-          dataPoints
-        }
-        // {
-        //   type: 'column',
-        //   // showInLegend: true,
-        //   // name: 'Net Income',
-        //   axisYType: 'secondary',
-        //   yValueFormatString: '$#,##0.00bn',
-        //   xValueFormatString: 'MMMM',
-        //   dataPoints: [
-        //     { x: new Date(2016, 2), y: 1.51 },
-        //     { x: new Date(2016, 5), y: 2.055 },
-        //     { x: new Date(2016, 8), y: 2.379 },
-        //     { x: new Date(2016, 11), y: 3.568 }
-        //   ]
-        // }
-      ]
-    })
-
-    chart.render()
+  static propTypes = {
+    chartData: PropTypes.array,
+    onPeriodSelect: PropTypes.func.isRequired
   }
 
-  componentDidMount() {}
+  state = {
+    period: PERIODS[0],
+    interval: INTERVALS[0],
+    options: CHART_OPTIONS
+  }
+
+  static getDerivedStateFromProps(nexProps, prevState) {
+    const chartData = nexProps.chartData
+
+    const maximum = chartData.reduce(
+      (max, { high }) => (parseFloat(high) > max ? parseFloat(high) : max),
+      0
+    )
+
+    const volumeDataPoints = chartData.map(({ volume, date }) => {
+      return [new Date(date).getTime(), parseFloat(volume)]
+    })
+
+    return {
+      options: {
+        ...prevState.options,
+
+        yAxis: [
+          prevState.options.yAxis[0],
+          {
+            ...prevState.options.yAxis[1],
+            max: maximum / 150
+          }
+        ],
+        series: [
+          {
+            type: 'candlestick',
+            data: extractDataPoints(chartData)
+          },
+          {
+            type: 'column',
+            name: 'Volume',
+            color: '#252c36',
+            yAxis: 1,
+            data: volumeDataPoints
+          }
+        ]
+      }
+    }
+  }
+
+  onPeriodSelect = item => {
+    this.setState({
+      period: item
+    })
+    this.props.onPeriodSelect(item.value)
+  }
+
+  onIntervalSelect = item => {
+    this.setState({ interval: item })
+  }
 
   render() {
+    const {
+      state: { period, interval, options }
+    } = this
+
     return (
       <div className="graph-container">
         <div className="actions-container">
           <div className="type-duration-container">
-            <div>
-              <ul />
+            <div className="mini-list-selector --solid">
+              <span>
+                <img
+                  src={candlesIcon}
+                  alt="candle"
+                  style={{ width: 22, height: 22 }}
+                />
+              </span>
             </div>
             <div>
               <span>Periodo</span>
-              <ul />
+              <MiniListSelector
+                value={period}
+                items={PERIODS}
+                onItemSelect={this.onPeriodSelect}
+              />
             </div>
             <div>
               <span>Intervalo</span>
+              <MiniListSelector
+                value={interval}
+                items={INTERVALS}
+                onItemSelect={this.onIntervalSelect}
+              />
             </div>
           </div>
           <div className="zoom">
             <div />
           </div>
         </div>
-        <div className="graph" id="chartContainer" />
+        <div className="graph">
+          <HighchartsReact
+            constructorType={'stockChart'}
+            highcharts={Highcharts}
+            options={options}
+          />
+        </div>
       </div>
     )
   }

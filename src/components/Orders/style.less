@@ -66,26 +66,6 @@
       text-transform: uppercase;
     }
   }
-  .item {
-    font-size: 0.9rem;
-    padding: 3px 0;
-    p {
-      text-align: right;
-      flex-grow: 1;
-      margin-right: 10px;
-      &.price {
-        text-align: center;
-      }
-      &:first-child {
-        flex-basis: 80px;
-      }
-    }
-    &.--order {
-      p:nth-child(5) {
-        color: @regular-green;
-      }
-    }
-  }
   &:last-child {
     margin-right: 0;
     .header {
@@ -113,7 +93,8 @@
         }
       }
       &.--order {
-        p:nth-child(5) {
+        p:nth-child(5),
+        p:nth-child(5) span {
           color: @medium-red;
         }
       }

@@ -9,16 +9,17 @@
     flex: 1;
     height: 100%;
     display: flex;
-    margin-right: 40px;
     .item {
       display: flex;
       font-weight: 300;
+      padding: 3px 0;
       p {
         flex-basis: 250px;
       }
       &.--header {
         margin: 10px 0;
         color: @light-text;
+        text-align: center;
         span {
           display: inline-block;
           margin-right: 5px;
@@ -32,45 +33,21 @@
       display: flex;
       flex-direction: column;
       color: @dark-text;
-      padding-left: 20px;
-      padding-right: 5px;
-      .graph-container {
-        flex: 1;
-        display: flex;
-        margin-bottom: 10px;
-        margin-top: 10px;
-        flex-direction: column;
-        flex-shrink: 0;
-        min-height: 465px;
-        max-height: 465px;
-        .actions-container {
-          margin-bottom: 10px;
-          color: white;
-          font-size: 0.9rem;
-          font-weight: 300;
-          display: flex;
-          align-items: center;
-          flex-shrink: 0;
-          .type-duration-container {
-            > div {
-              margin-right: 40px;
-            }
-          }
-          > div {
-            display: flex;
-          }
-        }
-        .graph {
-          flex-grow: 1;
-          margin-top: 20px;
-          flex-shrink: 0;
-        }
-      }
+      padding: 0 5px;
       .orders-wrapper {
         display: flex;
         padding-bottom: 10px;
         flex-shrink: 0;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboard__main-container {
+    flex-wrap: wrap;
+    .transactions-container {
+      width: 100%;
     }
   }
 }

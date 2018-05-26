@@ -9,26 +9,20 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import {
-  tradeSuscribe,
-  // DIFF_ordersSuscribe,
-  ordersSuscribe
-} from 'lib/constants'
+import { tradeSuscribe, ordersSuscribe } from 'lib/constants'
 
 import NetworkOperation from 'lib/NetworkOperation'
-import Sidebar from 'components/Sidebar'
+import Sidebar from 'components/Sidebar/Loadable'
 import Transactions from 'components/Transactions'
 import Orders from 'components/Orders'
-import Graph from 'components/Graph'
+import Graph from 'components/Graph/Loadable'
 import * as ALL_ACTIONS from 'actions'
 
 import './style.less'
 
 class Home extends PureComponent {
   static propTypes = {
-    bitso: PropTypes.shape({
-      selectedBook: PropTypes.object
-    }),
+    selectedBook: PropTypes.object,
     actions: PropTypes.object
   }
 
@@ -44,35 +38,30 @@ class Home extends PureComponent {
     }
   }
 
+  onPeriodSelect = period => {
+    const book = this.props.selectedBook.book
+
+    NetworkOperation.getChartData({ book, period }).then(({ data }) =>
+      this.props.actions.setChartData(data)
+    )
+  }
+
   setupBook = book => {
     if (this.websocket) {
       this.websocket.close()
     }
 
-    NetworkOperation.getChartData({ book, period: '1month' }).then(
-      ({ data }) => {
-        console.log('')
-        this.props.actions.setChartData(data)
-      }
-    )
+    this.onPeriodSelect('1month')
 
-    NetworkOperation.getTrades({ book, limit: 39 })
+    NetworkOperation.getTrades({ book, limit: 38 })
       .then(({ data: { payload } }) => {
         this.props.actions.setTransactions(payload)
-        // this.setState(({ data }) => {
-        //   return {
-        //     data: data.set('transactions', payload)
-        //   }
-        // })
       })
-      .catch(error => {
-        console.log(error)
-      })
+      .catch(console.error)
 
     this.websocket = new WebSocket('wss://ws.bitso.com')
     this.websocket.onopen = () => {
       this.websocket.send(tradeSuscribe(book))
-      // this.websocket.send(DIFF_ordersSuscribe)
       this.websocket.send(ordersSuscribe(book))
     }
 
@@ -81,7 +70,7 @@ class Home extends PureComponent {
 
   onMessage = ({ data: stringData }) => {
     const { type, payload } = JSON.parse(stringData)
-    console.log(type, payload)
+
     switch (type) {
       case 'transactions':
         payload && this.props.actions.setTransactions(payload)
@@ -99,7 +88,7 @@ class Home extends PureComponent {
         <div className="dashboard__main-container">
           <Transactions />
           <div className="realtime-container">
-            <Graph />
+            <Graph onPeriodSelect={this.onPeriodSelect} />
             <div className="orders-wrapper">
               <Orders type="bids" title="Posturas de compra" />
               <Orders type="asks" title="Posturas de venta" />

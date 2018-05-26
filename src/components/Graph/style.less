@@ -1,0 +1,49 @@
+@import '../../colors.less';
+
+.graph-container {
+  flex: 1;
+  display: flex;
+  margin-bottom: 0px;
+  margin-top: 12px;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 465px;
+  max-height: 465px;
+  .actions-container {
+    margin-bottom: 0px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    .type-duration-container {
+      > div {
+        display: flex;
+        align-items: center;
+        span {
+          margin-right: 20px;
+        }
+      }
+    }
+    > div {
+      display: flex;
+    }
+  }
+  .graph {
+    flex-grow: 1;
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+}
+
+.highcharts-point.highcharts-color-0 {
+  &.highcharts-point-up {
+    stroke: @regular-green;
+    fill: rgba(128, 193, 86, 0.5);
+  }
+  &.highcharts-point-down {
+    stroke: @regular-red;
+    fill: rgba(186, 48, 64, 0.5);
+  }
+}

@@ -2,13 +2,21 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import { toFixed } from 'lib/constants'
+
 import './style.less'
 
 class Transactions extends PureComponent {
+  static propTypes = {
+    transactions: PropTypes.array
+  }
+
+  static defaultProps = {
+    transactions: []
+  }
+
   render() {
     const { transactions } = this.props
-    // console.log(transactions)
-    // transactions.map(console.log)
 
     return (
       <div className="transactions-container">
@@ -27,13 +35,12 @@ class Transactions extends PureComponent {
         {transactions.length === 0 && <p>Esperando transacciones...</p>}
         {transactions.map(
           ({
-            i, // a,
+            i,
             amount,
             r: rate,
             t: makerSide,
             maker_side,
-            v: value, // mo: makerOrderId,
-            // to: takeOrderId,
+            v: value,
             d,
             created_at,
             price,
@@ -45,22 +52,14 @@ class Transactions extends PureComponent {
                   Date.parse((d || created_at).split('+')[0])
                 ).toLocaleTimeString('es')}
               </p>
-              <p className="price">{price || value}</p>
-              <p>{amount || rate}</p>
+              <p className="price">{toFixed(price || value, 2)}</p>
+              <p>{toFixed(amount || rate)}</p>
             </div>
           )
         )}
       </div>
     )
   }
-}
-
-Transactions.propTypes = {
-  // transactions: PropTypes.object
-}
-
-Transactions.defaultProps = {
-  transactions: []
 }
 
 function mapStateToProps({ transactions }) {

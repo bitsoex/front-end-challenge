@@ -1,0 +1,45 @@
+@import '../../colors.less';
+
+.mini-list-selector {
+  position: relative;
+  &.--solid span {
+    background-color: @regular-navy;
+  }
+  span {
+    display: inline-block;
+    border: 1px solid @regular-navy;
+    padding: 3px 15px;
+    padding-right: 40px;
+    border-radius: 14px;
+    height: 28px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    &::before {
+      position: absolute;
+      right: 10px;
+      top: 3px;
+      display: block;
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url('assets/icons/dropdown.svg') no-repeat center center;
+      background-size: 15px;
+    }
+  }
+  ul {
+    position: absolute;
+    top: 30px;
+    background-color: @regular-navy;
+    z-index: 1000;
+    padding: 5px 0;
+    li {
+      padding: 5px 20px;
+      cursor: pointer;
+    }
+    li:hover {
+      background-color: @medium-navy;
+    }
+  }
+}

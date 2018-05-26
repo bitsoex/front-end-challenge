@@ -11,8 +11,6 @@ function Nav({ books, onBookSelect, selectedBook }) {
   const variation = (parseFloat(high) - parseFloat(low)).toFixed(2)
   const variationPercentage = (variation / low * 100).toFixed(1)
 
-  console.log({ selectedBook })
-
   const VALUES = [
     {
       title: 'Volumen 24 hrs.',

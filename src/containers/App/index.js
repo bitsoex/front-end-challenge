@@ -8,7 +8,7 @@ import { setBooks, setSelectedBook } from 'actions'
 
 import NetworkOperation from 'lib/NetworkOperation'
 import Nav from 'components/Nav'
-import Dashboard from 'containers/Dashboard'
+import Dashboard from 'containers/Dashboard/Loadable'
 
 class App extends PureComponent {
   static propTypes = {
@@ -16,11 +16,9 @@ class App extends PureComponent {
       setBooks: PropTypes.function,
       setSelectedBook: PropTypes.function
     }),
-    bitso: PropTypes.shape({
-      books: PropTypes.array,
-      setSelectedBook: PropTypes.object,
-      selectedBook: PropTypes.object
-    })
+    books: PropTypes.array,
+    setSelectedBook: PropTypes.object,
+    selectedBook: PropTypes.object
   }
 
   componentDidMount() {
@@ -31,35 +29,7 @@ class App extends PureComponent {
         this.props.actions.setBooks(payload)
         this.props.actions.setSelectedBook(selectedBook)
       })
-      .catch(error => {
-        console.log({ error })
-      })
-
-    // NetworkOperation.getAvailableBooks()
-    //   .then(({ data }) => {
-    //     const { payload } = data
-    //     this.props.actions.setBooks(payload)
-    //     const selectedBook = payload[0]
-    //
-    //     this.props.actions.setSelectedBook(selectedBook)
-    //   })
-    //   .catch(error => {
-    //     console.log({ error })
-    //   })
-  }
-
-  componentDidUpdate() {
-    // const book = this.props.bitso.selectedBook.book
-    // this.setState({
-    //   isLoading: true
-    // })
-    // NetworkOperation.getTicker()
-    //   .then(({ data }) => {
-    //     console.log('Ticker', data)
-    //   })
-    //   .catch(error => {
-    //     console.log({ error })
-    //   })
+      .catch(console.error)
   }
 
   render() {

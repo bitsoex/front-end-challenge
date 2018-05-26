@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
+import Book from 'components/Book'
 
 import './style.less'
 
 class SideBar extends Component {
+  static propTypes = {
+    books: PropTypes.array
+  }
+
   state = {
     hiddenBar: true
   }
 
   render() {
     const {
-      state: { hiddenBar }
+      state: { hiddenBar },
+      props: { books }
     } = this
+
     return (
       <div className="dashboard__sidebar-container">
         <div className={`content-container${hiddenBar ? ' --hidden' : ''}`}>
@@ -23,17 +32,12 @@ class SideBar extends Component {
             <p>Mercados</p>
           </div>
           <div className="content">
-            <div className="header">
+            <div className="book-item --header">
               <p>Mercados 24 hrs</p>
             </div>
-            <div>
-              <p>Mercados 24 hrs</p>
-              <div className="graph" />
-            </div>
-            <div>
-              <p>Mercados 24 hrs</p>
-              <div className="graph" />
-            </div>
+            {books.map(item => {
+              return <Book key={item.book} {...item} />
+            })}
           </div>
         </div>
       </div>
@@ -41,4 +45,10 @@ class SideBar extends Component {
   }
 }
 
-export default SideBar
+function mapStateToProps({ books }) {
+  return {
+    books
+  }
+}
+
+export default connect(mapStateToProps)(SideBar)

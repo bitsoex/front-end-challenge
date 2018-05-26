@@ -1,0 +1,26 @@
+@import '../../colors';
+
+.item {
+  font-size: 0.9rem;
+  padding: 3px 0;
+  p {
+    text-align: right;
+    flex-grow: 1;
+    margin-right: 10px;
+    span {
+      color: @light-text;
+    }
+    &.price {
+      text-align: center;
+    }
+    &:first-child {
+      flex-basis: 80px;
+    }
+  }
+  &.--order {
+    p:nth-child(5),
+    p:nth-child(5) span {
+      color: @regular-green;
+    }
+  }
+}

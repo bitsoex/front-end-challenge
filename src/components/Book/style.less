@@ -1,0 +1,63 @@
+@import '../../colors.less';
+
+.book-item {
+  width: 100%;
+  height: 30px;
+  transition: height 1s;
+  position: relative;
+  overflow-y: hidden;
+  color: @sidebar-header;
+  p {
+    width: 90%;
+    height: 30px;
+    padding: 5px 0;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin: 0 auto;
+    border-bottom: 1px solid @sidebar;
+    font-weight: 300;
+  }
+  &.--expanded {
+    height: 150px;
+    background-color: @dark-navy;
+    border-bottom: 1px solid @sidebar;
+    p {
+      border-bottom: 0;
+    }
+  }
+  &.--header {
+    color: @light-text;
+    background-color: @sidebar-header;
+
+    p {
+      font-weight: 400;
+      border-bottom: none;
+    }
+  }
+  &__title {
+    padding: 0 25px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    .value {
+      text-align: right;
+      color: @regular-green;
+    }
+  }
+  &__body {
+    position: absolute;
+    height: 120px;
+    top: 30px;
+    left: 0;
+    width: calc(100% - 25px);
+    .time {
+      display: block;
+      font-size: 0.85rem;
+      transform: translateY(-5px);
+      text-align: right;
+    }
+    .chart {
+      width: 100%;
+      height: 90px;
+    }
+  }
+}

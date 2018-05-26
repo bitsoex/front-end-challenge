@@ -37,6 +37,17 @@ El bundle será almacenado en `dist`; se crearán diferentes _chunks_ los cuales
 yarn build:prod
 ```
 
-## Licencias
+## Tecnologías
 
-La mayor parte de las librerías y framworks usan una liencia tipo MIT; **[CanvasJS](https://canvasjs.com)** es una librería para la visualización de gráficas que requiere una liencia para uso comercial.
+React, LESS, Redux, CSS3
+
+#### Otras
+
+Babel
+Webpack
+CanvasJS
+Immutable
+
+## Características
+
+Entry bundle con un tamaño de 211Kb

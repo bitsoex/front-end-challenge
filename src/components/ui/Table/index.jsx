@@ -13,8 +13,8 @@ function composeTdKey (row, rowIndex, field, fieldIndex) {
   return `${rowIndex}.${fieldIndex}`
 }
 
-function printField (field, row) {
-  if (typeof field.accessor === 'function') return field.accessor(row)
+function printField (field, row, rowIndex, rows) {
+  if (typeof field.accessor === 'function') return field.accessor(row, rowIndex, rows)
   if (typeof field.accessor === 'string') return get(row, field.accessor, '')
   if (field.id) return get(row, field.id, '')
   return ''
@@ -43,7 +43,7 @@ const Table = ({ className, data = [], columns = [], header = '', loading = fals
                 {
                   columns.map((field, fieldIndex) => (
                     <td key={composeTdKey(row, rowIndex, field, fieldIndex)} className={field.className}>
-                      {printField(field, row)}
+                      {printField(field, row, rowIndex, data)}
                     </td>
                   ))
                 }

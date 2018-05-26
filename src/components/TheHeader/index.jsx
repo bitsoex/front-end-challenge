@@ -116,7 +116,9 @@ class TheHeader extends Component {
             </div>
             <div className='stat'>
               <span className='label'>Valoración</span>
-              <span className='value'>+ {floatStringToLocaleString(selectedBook.vwap)} {currency} (1.4%)</span>
+              <span className='value'>
+                + {floatStringToLocaleString(selectedBook.vwap)} {currency} (1.4%) {/* hardcoded because i don't understand how to calculate */}
+              </span>
             </div>
           </div>
         </div>

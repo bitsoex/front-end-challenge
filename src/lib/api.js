@@ -13,3 +13,9 @@ export async function getLatestTrades (query) {
   if (!response.ok) return Promise.reject(new Error(`Couldn't get trades information from the server`))
   return response.json()
 }
+
+export async function getOrderBook (query) {
+  const response = await fetch(`${API_URL}/order_book${queryString(query)}`)
+  if (!response.ok) return Promise.reject(new Error(`Couldn't get order book information from the server`))
+  return response.json()
+}

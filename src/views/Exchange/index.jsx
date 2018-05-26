@@ -2,18 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import moment from 'moment-timezone'
-// import classnames from 'classnames'
+import range from 'lodash/range'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
 
-import { purchasePositionData } from '../../../.hardcode'
-
-import { getLatestTrades as getLatestTradesAction } from '../../store/actions/exchange'
+import { getLatestTrades as getLatestTradesAction, getOrderBook as getOrderBookAction } from '../../store/actions/exchange'
 import { floatStringToLocaleString } from '../../lib/utils'
 
 import './index.css'
+
+const INITIAL_RANGE = 0
+const NORMALIZE_INDEX = 1
 
 class Home extends Component {
   constructor (props) {
@@ -26,7 +27,10 @@ class Home extends Component {
 
   componentWillMount () {
     this.setState({ loading: true })
-    this.props.getLatestTrades().then(payload => {
+    Promise.all([
+      this.props.getLatestTrades(),
+      this.props.getOrderBook()
+    ]).then(payload => {
       this.setState({ loading: false })
     }).catch(error => {
       console.error(error)
@@ -38,7 +42,10 @@ class Home extends Component {
     const update = nextProps.selectedBook.book !== this.props.selectedBook.book
     if (update) {
       this.setState({ loading: true })
-      this.props.getLatestTrades(nextProps.selectedBook.book).then(payload => {
+      Promise.all([
+        this.props.getLatestTrades(),
+        this.props.getOrderBook()
+      ]).then(payload => {
         this.setState({ loading: false })
       }).catch(error => {
         console.error(error)
@@ -61,7 +68,7 @@ class Home extends Component {
         className: 'price',
         accessor: (row) => (
           <span className={row.makerSide}>
-            {floatStringToLocaleString(row.price)}
+            {floatStringToLocaleString(row.price, { minimumFractionDigits: 2 })}
           </span>
         )
       },
@@ -73,45 +80,84 @@ class Home extends Component {
     ]
   }
 
-  positionsColumns () {
+  bidsColumns () {
     const [ type, currency ] = this.props.selectedBook.book.split('_')
 
     return [
       {
         header: '',
         className: 'percent',
-        accessor: (row) => (
-          <div className='percent' style={{ width: `${row.percent * 100}%` }} />
-        )
+        accessor: (row) => <div className='percent' style={{ width: `${(row.amount * 100) / this.props.orderBook.asksSum}%` }} />
       },
       {
         header: 'sum',
-        accessor: 'sum'
+        accessor: (row, index, rows) => {
+          const items = range(INITIAL_RANGE, index + NORMALIZE_INDEX)
+          const sum = items.reduce((reducer, item) => parseFloat(rows[item].amount) + reducer, 0)
+          return floatStringToLocaleString(sum, { minimumFractionDigits: 5 })
+        }
       },
       {
         header: <div className='btc-amount'><span>{type}</span>monto</div>,
         className: 'amount',
-        accessor: 'btcAmount'
+        accessor: (row) => floatStringToLocaleString(row.amount, { minimumFractionDigits: 5 })
       },
       {
         header: <div className='mxn-value'><span>{currency}</span>valor</div>,
         className: 'mxn-value',
-        accessor: (row) => row.mxnValue.toLocaleString({ style: 'currency', currency: currency, minimumFractionDigits: 2 })
+        accessor: (row) => floatStringToLocaleString(row.amount * row.price)
       },
       {
         header: <div className='mxn-price'><span>{currency}</span>precio</div>,
         className: 'mxn-price',
-        accessor: (row) => row.mxnPrice.toLocaleString({ style: 'currency', currency: currency, minimumFractionDigits: 2 })
+        accessor: (row) => floatStringToLocaleString(row.price, { minimumFractionDigits: 2 })
       }
     ]
   }
 
-  purshasePositionHeader () {
+  asksColumns () {
+    const [ type, currency ] = this.props.selectedBook.book.split('_')
+
+    return [
+      {
+        header: <div className='mxn-price'><span>{currency}</span>precio</div>,
+        className: 'mxn-price',
+        accessor: (row) => floatStringToLocaleString(row.price, { minimumFractionDigits: 2 })
+      },
+      {
+        header: <div className='mxn-value'><span>{currency}</span>valor</div>,
+        className: 'mxn-value',
+        accessor: (row) => floatStringToLocaleString(row.amount * row.price)
+      },
+      {
+        header: <div className='btc-amount'><span>{type}</span>monto</div>,
+        className: 'amount',
+        accessor: (row) => floatStringToLocaleString(row.amount, { minimumFractionDigits: 5 })
+      },
+      {
+        header: 'sum',
+        accessor: (row, index, rows) => {
+          const items = range(INITIAL_RANGE, index + NORMALIZE_INDEX)
+          const sum = items.reduce((reducer, item) => parseFloat(rows[item].amount) + reducer, 0)
+          return floatStringToLocaleString(sum, { minimumFractionDigits: 5 })
+        }
+      },
+      {
+        header: '',
+        className: 'percent',
+        accessor: (row) => (
+          <div className='percent' style={{ width: `${(row.amount * 100) / this.props.orderBook.asksSum}%` }} />
+        )
+      }
+    ]
+  }
+
+  bidHeader () {
     const bid = floatStringToLocaleString(this.props.selectedBook.bid)
     const currency = this.props.selectedBook.book.split('_')[1]
 
     return (
-      <div className='purchase-position-header'>
+      <div className='bid-header'>
         <div className='title'>posturas de compra</div>
         <div className='average'>
           <span>{currency}</span>
@@ -121,12 +167,12 @@ class Home extends Component {
     )
   }
 
-  sellPositionHeader () {
+  askHeader () {
     const ask = floatStringToLocaleString(this.props.selectedBook.ask)
     const currency = this.props.selectedBook.book.split('_')[1]
 
     return (
-      <div className='sell-position-header'>
+      <div className='ask-header'>
         <div className='average'>
           {ask} ask
           <span>{currency}</span>
@@ -137,11 +183,11 @@ class Home extends Component {
   }
 
   render () {
-    const purshasePositionHeader = this.purshasePositionHeader()
-    const sellPositionHeader = this.sellPositionHeader()
+    const bidHeader = this.bidHeader()
+    const askHeader = this.askHeader()
     const lastTradesColumns = this.lastTradesColumns()
-    const purchasePositionColumns = this.positionsColumns()
-    const sellPositionColumns = this.positionsColumns().reverse()
+    const bidsColumns = this.bidsColumns()
+    const asksColumns = this.asksColumns()
 
     return (
       <div className='page'>
@@ -156,17 +202,17 @@ class Home extends Component {
           />
           <div className='positions'>
             <Table
-              className='purchase-position'
-              header={purshasePositionHeader}
-              columns={purchasePositionColumns}
-              data={purchasePositionData}
+              className='bid'
+              header={bidHeader}
+              columns={bidsColumns}
+              data={this.props.orderBook.bids}
               loading={this.state.loading}
             />
             <Table
-              className='sell-position'
-              header={sellPositionHeader}
-              columns={sellPositionColumns}
-              data={purchasePositionData}
+              className='ask'
+              header={askHeader}
+              columns={asksColumns}
+              data={this.props.orderBook.asks}
               loading={this.state.loading}
             />
           </div>
@@ -177,13 +223,15 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ ticker, trades }) => ({
+const mapStateToProps = ({ ticker, trades, orderBook }) => ({
   latestTrades: trades.latest,
-  selectedBook: ticker.current
+  selectedBook: ticker.current,
+  orderBook
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getLatestTrades: bindActionCreators(getLatestTradesAction, dispatch)
+  getLatestTrades: bindActionCreators(getLatestTradesAction, dispatch),
+  getOrderBook: bindActionCreators(getOrderBookAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

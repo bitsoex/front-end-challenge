@@ -23,3 +23,26 @@ export const getLatestTrades = (bookToFilter = defaultBook) => async dispatch =>
   dispatch({ type: 'SET_LATEST_TRADES', payload: data })
   return payload
 }
+
+export const getOrderBook = (bookToFilter = defaultBook) => async dispatch => {
+  const { payload } = await api.getOrderBook({ book: bookToFilter })
+  const data = camelCaseObject(payload)
+
+  const bidsSum = data.bids.reduce((reducer, bid) => (
+    parseFloat(bid.amount) + reducer
+  ), 0)
+
+  const asksSum = data.asks.reduce((reducer, ask) => (
+    parseFloat(ask.amount) + reducer
+  ), 0)
+
+  dispatch({
+    type: 'SET_ORDER_BOOK_DATA',
+    payload: {
+      ...data,
+      bidsSum,
+      asksSum
+    }
+  })
+  return payload
+}

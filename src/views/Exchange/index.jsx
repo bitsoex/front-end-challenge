@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+// import classnames from 'classnames'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
@@ -6,9 +9,29 @@ import Table from '../../components/ui/Table'
 
 import { lastTradesData, purchasePositionData } from '../../../.hardcode'
 
+import { getLatestTrades as getLatestTradesAction } from '../../store/actions/exchange'
+
 import './index.css'
 
-export default class Home extends Component {
+class Home extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      loading: false,
+      error: false
+    }
+  }
+
+  componentWillMount () {
+    this.setState({ loading: true })
+    this.props.getLatestTrades().then(payload => {
+      this.setState({ loading: false })
+    }).catch(error => {
+      console.error(error)
+      this.setState({ loading: false })
+    })
+  }
+
   lastTradesColumns = [
     {
       header: 'hora',
@@ -114,3 +137,14 @@ export default class Home extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ ticker, trades }) => ({
+  latestTrades: trades.latest,
+  selectedBook: ticker.current
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getLatestTrades: bindActionCreators(getLatestTradesAction, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

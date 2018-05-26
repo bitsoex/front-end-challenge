@@ -1,10 +1,10 @@
 import * as api from '../../lib/api'
 import { camelCaseObject } from '../../lib/utils'
 
-const defaultBook = 'btc_mxn'
+import { DEFAULT_BOOK as defaultBook } from '../../constans'
 
 export const getTickerData = (bookToFilter = '') => async dispatch => {
-  const { payload } = await api.getTickerData(bookToFilter)
+  const { payload } = await api.getTickerData({ book: bookToFilter })
   let book = {}
   if (bookToFilter) {
     book = payload
@@ -14,5 +14,12 @@ export const getTickerData = (bookToFilter = '') => async dispatch => {
     dispatch({ type: 'SET_TICKER_DATA', payload: data })
   }
   dispatch({ type: 'SET_CURRENT_BOOK', payload: book })
+  return payload
+}
+
+export const getLatestTrades = (bookToFilter = defaultBook) => async dispatch => {
+  const { payload } = await api.getLatestTrades({ book: bookToFilter })
+  const data = payload.map(ticker => camelCaseObject(ticker))
+  dispatch({ type: 'SET_LATEST_TRADES', payload: data })
   return payload
 }

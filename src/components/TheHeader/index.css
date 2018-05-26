@@ -180,6 +180,10 @@
     margin-left: 40px;
   }
 
+  #app > .page > .header-container > .stats > .exchange-type > .text {
+    margin-left: 24px;
+  }
+
   #app > .page > .header-container > header > nav > ul > li {
     margin: 0 20px;
   }

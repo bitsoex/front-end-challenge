@@ -2,10 +2,10 @@ import { combineReducers } from 'redux'
 
 import ui from './ui'
 import ticker from './ticker'
-import exchange from './exchange'
+import trades from './trades'
 
 export default combineReducers({
   ui,
   ticker,
-  exchange
+  trades
 })

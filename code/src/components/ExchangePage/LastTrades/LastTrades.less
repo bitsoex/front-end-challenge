@@ -25,6 +25,18 @@
 
 .trades-table-body {
   text-align: center;
+  tr:hover {
+    background-color: @regular-navy;
+    .trades-hour, .trades-amount {
+      color: white;
+    }
+    .trades-buy-price {
+      color: @regular-green;
+    }
+    .trades-sell-price {
+      color: @regular-red;
+    }
+  }
 }
 
 .trades-hour {

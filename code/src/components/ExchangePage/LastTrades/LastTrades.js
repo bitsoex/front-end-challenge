@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './LastTrades.css';
 
 class LastTrades extends Component {
@@ -15,26 +17,25 @@ class LastTrades extends Component {
             </tr>
           </thead>
           <tbody className="trades-table-body">
-            <tr className="trades-active">
-              <td className="trades-hour">16:10:25</td>
-              <td className="trades-buy-price">319,149.90</td>
-              <td className="trades-amount">1.090484</td>
-            </tr>
-            <tr>
-              <td className="trades-hour">16:10:25</td>
-              <td className="trades-buy-price">319,149.90</td>
-              <td className="trades-amount">1.090484</td>
-            </tr>
-            <tr>
-              <td className="trades-hour">16:10:25</td>
-              <td className="trades-sell-price">319,149.90</td>
-              <td className="trades-amount">42.0903</td>
-            </tr>
+            {
+              this.props.trades.map((trade) => {
+                const { id, hour, type, price, amount } = trade;
+                return (
+                  <tr key={id} className={id === 1 ? 'trades-active' : ''}>
+                    <td className="trades-hour">{hour}</td>
+                    <td className={type === 'buy' ? 'trades-buy-price' : 'trades-sell-price'}>{price}</td>
+                    <td className="trades-amount">{amount}</td>
+                  </tr>
+                );
+              })
+            }
           </tbody>
         </table>
       </section>
     );
   }
 }
+
+LastTrades.propTypes = { trades: PropTypes.array.isRequired };
 
 export default LastTrades;

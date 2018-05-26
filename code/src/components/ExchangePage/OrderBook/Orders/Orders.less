@@ -16,12 +16,16 @@
   background-color: @navy-headers;
 
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
 
 .orders-table {
+  padding: 5px;
   border-collapse: collapse;
+  tr {
+    display: flex;
+    justify-content: space-around;
+  }
 }
 
 .orders-table-head {
@@ -31,14 +35,16 @@
 .orders-table-body {
   color: @light-text;
   text-align: center;
+  tr:hover {
+    color: white;
+    .orders-value {
+      color: white;
+    }
+  }
 }
 
 .orders-value {
   color: @dark-text;
-}
-
-.orders-price {
-  color: @regular-green;
 }
 
 .orders-active {
@@ -49,5 +55,61 @@
   }
   .orders-price {
     color: @light-green;
+  }
+}
+
+.orders-bids {
+  .orders-header {
+    flex-direction: row;
+  }
+  .orders-table {
+    tr {
+      flex-direction: row;
+    }
+  }
+  .orders-table-body {
+    tr:hover {
+      background-color: @dark-green;
+      .orders-price {
+        color: @light-green;
+      }
+    }
+  }
+  .orders-price {
+    color: @regular-green;
+  }
+  .orders-active {
+    background-color: @dark-green;
+    .orders-price {
+      color: @light-green;
+    }
+  }
+}
+
+.orders-asks {
+  .orders-header {
+    flex-direction: row-reverse;
+  }
+  .orders-table {
+    tr {
+      flex-direction: row-reverse;
+    }
+  }
+  .orders-table-body {
+    tr:hover {
+      background-color: @dark-red;
+      .orders-price {
+        color: @regular-red;
+      }
+    }
+  }
+  .orders-price {
+    color: @medium-red;
+  }
+  .orders-active {
+    background-color: @dark-red;
+    .orders-price {
+      color: @regular-red;
+    }
   }
 }

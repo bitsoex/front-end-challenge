@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './Orders.css';
 
 class Orders extends Component {
   render() {
     return (
-      <section className="orders-container">
+      <section className={this.props.type === 'bid' ? 'orders-bids orders-container' : 'orders-asks orders-container'}>
         <header className="orders-header">
-          <div>POSTURAS DE COMPRA</div>
-          <div>Bid 319,140.00</div>
+          <div>{this.props.title}</div>
+          <div>{this.props.type} 319,140.00</div>
         </header>
         <table className="orders-table">
           <thead className="orders-table-head">
             <tr>
-              <th></th>
+              <th />
               <th>SUM</th>
               <th>MONTO</th>
               <th>VALOR</th>
@@ -20,32 +22,31 @@ class Orders extends Component {
             </tr>
           </thead>
           <tbody className="orders-table-body">
-            <tr>
-              <td></td>
-              <td>1.09</td>
-              <td>1.093423</td>
-              <td className="orders-value">2,307,984.29</td>
-              <td className="orders-price">319,149.90</td>
-            </tr>
-            <tr className="orders-active">
-              <td></td>
-              <td>1.10</td>
-              <td>0.093423</td>
-              <td className="orders-value">2,307,984.29</td>
-              <td className="orders-price">319,149.90</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>3.32</td>
-              <td>42.0903</td>
-              <td className="orders-value">2,307,984.29</td>
-              <td className="orders-price">319,149.90</td>
-            </tr>
+            {
+              this.props.orders.map((order) => {
+                const { id, sum, amount, value, price } = order;
+                return (
+                  <tr key={id} className={id === 2 ? 'orders-active' : ''}>
+                    <td />
+                    <td>{sum}</td>
+                    <td>{amount}</td>
+                    <td className="orders-value">{value}</td>
+                    <td className="orders-price">{price}</td>
+                  </tr>
+                );
+              })
+            }
           </tbody>
         </table>
       </section>
     );
   }
 }
+
+Orders.propTypes = {
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  orders: PropTypes.array.isRequired,
+};
 
 export default Orders;

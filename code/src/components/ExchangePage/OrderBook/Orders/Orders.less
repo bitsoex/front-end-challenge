@@ -12,6 +12,7 @@
 
 .orders-header {
   padding: 5px;
+  color: @light-text;
   background-color: @navy-headers;
 
   display: flex;
@@ -19,10 +20,34 @@
   justify-content: space-between;
 }
 
+.orders-table {
+  border-collapse: collapse;
+}
+
+.orders-table-head {
+  color: @sidebar-header;
+}
+
 .orders-table-body {
+  color: @light-text;
   text-align: center;
+}
+
+.orders-value {
+  color: @dark-text;
 }
 
 .orders-price {
   color: @regular-green;
+}
+
+.orders-active {
+  color: white;
+  background-color: @dark-green;
+  .orders-value {
+    color: white;
+  }
+  .orders-price {
+    color: @light-green;
+  }
 }

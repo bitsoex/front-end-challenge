@@ -9,34 +9,50 @@
 .trades-header {
   padding: 5px;
   padding-left: 10px;
+  color: @light-text;
   background-color: @navy-headers;
 }
 
 .trades-table {
   width: 100%;
-  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 .trades-table-head {
-  padding: 15px;
+  padding: 10px;
+  color: @sidebar-header;
 }
 
 .trades-table-body {
   text-align: center;
 }
 
-.trades-active {
-  background-color: @color-primary;
+.trades-hour {
+  color: @dark-text;
 }
 
-.trades-buy > .trades-price {
+.trades-buy-price {
   color: @dark-green;
 }
 
-.trades-active > .trades-price {
-  color: @regular-green;
+.trades-sell-price {
+  color: @dark-red;
 }
 
-.trades-sell > .trades-price {
-  color: @dark-red;
+.trades-amount {
+  color: @light-text;
+}
+
+.trades-active {
+  background-color: @regular-navy;
+
+  .trades-hour, .trades-amount {
+    color: white;
+  }
+  .trades-buy-price {
+    color: @regular-green;
+  }
+  .trades-sell-price {
+    color: @regular-red;
+  }
 }

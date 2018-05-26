@@ -15,20 +15,20 @@ class LastTrades extends Component {
             </tr>
           </thead>
           <tbody className="trades-table-body">
-            <tr className="trades-buy trades-active">
-              <td>16:10:25</td>
-              <td className="trades-price">319,149.90</td>
-              <td>1.090484</td>
+            <tr className="trades-active">
+              <td className="trades-hour">16:10:25</td>
+              <td className="trades-buy-price">319,149.90</td>
+              <td className="trades-amount">1.090484</td>
             </tr>
-            <tr className="trades-buy">
-              <td>16:10:25</td>
-              <td className="trades-price">319,149.90</td>
-              <td>1.090484</td>
+            <tr>
+              <td className="trades-hour">16:10:25</td>
+              <td className="trades-buy-price">319,149.90</td>
+              <td className="trades-amount">1.090484</td>
             </tr>
-            <tr className="trades-sell">
-              <td >16:10:25</td>
-              <td className="trades-price">319,149.90</td>
-              <td>42.0903</td>
+            <tr>
+              <td className="trades-hour">16:10:25</td>
+              <td className="trades-sell-price">319,149.90</td>
+              <td className="trades-amount">42.0903</td>
             </tr>
           </tbody>
         </table>

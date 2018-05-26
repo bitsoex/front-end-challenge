@@ -86,7 +86,7 @@ class Home extends Component {
     return [
       {
         header: '',
-        className: 'percent',
+        className: 'percent is-hidden-mobile',
         accessor: (row) => <div className='percent' style={{ width: `${(row.amount * 100) / this.props.orderBook.asksSum}%` }} />
       },
       {
@@ -144,7 +144,7 @@ class Home extends Component {
       },
       {
         header: '',
-        className: 'percent',
+        className: 'percent is-hidden-mobile',
         accessor: (row) => (
           <div className='percent' style={{ width: `${(row.amount * 100) / this.props.orderBook.asksSum}%` }} />
         )

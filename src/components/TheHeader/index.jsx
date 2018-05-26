@@ -97,7 +97,7 @@ class TheHeader extends Component {
         <div className={classnames('stats', { loading: this.state.loading })}>
           <Dropdown
             className='exchange-type'
-            options={books}
+            options={books.filter(book => book.value !== selectedBook.book)}
             onChange={this.selectBook.bind(this)}
             text={selectedBook.book.replace('_', '/').toUpperCase()}
           />

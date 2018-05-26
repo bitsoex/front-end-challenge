@@ -230,7 +230,7 @@ const mutations = {
       tid: payload.i
     }
 
-    state.ticker.last = trade.price
+    state.ticker.last = commafy(trade.price)
     state.trades.unshift(trade)
   }
 }

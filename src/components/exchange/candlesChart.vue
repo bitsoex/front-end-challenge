@@ -27,7 +27,7 @@
     </div>
     <div class="column"
          v-bind:key="column.date"
-         v-for="column in candlesChart.dataToWork"
+         v-for="(column, index) in candlesChart.dataToWork"
          v-bind:style="{width: candlesChart.width + 'px'}"
          v-bind:class="{up: column.open < column.close}">
 
@@ -42,13 +42,18 @@
          <div class="bottom"
               v-bind:style="{height: String(column.volume * 27 / candlesChart.averageVol) + 'px'}"></div>
 
-         <div class="tooltip">
+         <div class="tooltip"
+              v-bind:class="{left: index > (candlesChart.dataToWork.length / 2)}"
+              v-bind:style="{marginTop: String(Math.max(8, (candlesChart.high - Math.max(column.open, column.close))/pixelValue - 50)) + 'px'}">
            <div class="open"> <span>Open</span> ${{parseFloat(Math.round(column.open * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
            <div class="close"> <span>Close</span> ${{parseFloat(Math.round(column.close * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
            <div class="high"> <span>High</span> ${{parseFloat(Math.round(column.high * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
            <div class="low"> <span>Low</span> ${{parseFloat(Math.round(column.low * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
            <div class="vol"> <span>Vol.</span> {{parseFloat(Math.round(column.volume * 100) / 100).toFixed(2)}} {{booksSelected.unit}}</div>
+           <div class="indicator"></div>
          </div>
+
+         <div class="hover-fixer"></div>
     </div>
   </div>
 </template>
@@ -170,7 +175,7 @@ export default {
   position: absolute;
   opacity: 0;
   top: 0;
-  left: 0;
+  left: calc(100% + 8px);
   height: 80px;
   width: 128px;
   border: 1px solid #4F5A62;
@@ -186,6 +191,11 @@ export default {
   text-transform: uppercase;
 }
 
+#candles-chart .column .tooltip.left {
+  left: unset;
+  right: calc(100% + 8px);
+}
+
 #candles-chart .column .tooltip span {
   color: #FFFFFF;
   text-transform: capitalize;
@@ -198,6 +208,34 @@ export default {
 
 #candles-chart .column:hover .tooltip div {
   height: 16px;
+}
+
+#candles-chart .column .tooltip div.indicator {
+  position: absolute;
+  top: 43px;
+  left: -8px;
+  height: 12px;
+  width: 12px;
+  background: rgba(37, 44, 54, .90);
+  border-left: 1px solid #4F5A62;
+  border-bottom: 1px solid #4F5A62;
+  transform: rotate(45deg);
+  transition: all 0s;
+}
+
+#candles-chart .column .tooltip.left div.indicator {
+  left: 158px;
+  transform: rotate(-135deg);
+}
+
+#candles-chart .column .hover-fixer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 282px;
+  z-index: 20;
 }
 
 .background {

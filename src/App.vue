@@ -124,6 +124,10 @@ export default {
     display: none;
   }
 
+  .blur {
+    filter: blur(3px);
+  }
+
   ::-webkit-scrollbar { width: 0 !important }
 
   * {
@@ -190,6 +194,8 @@ export default {
     text-align: center;
     color: #97BB7E !important;
     background: #1D2228;
+    position: absolute;
+    z-index: 20;
   }
 
   #status-bar .dropdown-menu li a {
@@ -213,6 +219,7 @@ export default {
     background: #21282f;
     border-top: solid 1px #2d3540;
     min-height: calc(100vh - 111px);
+    z-index: 11;
   }
 
   /* DAY MODE */
@@ -225,11 +232,11 @@ export default {
     }
 
     #app.day #status-bar {
-      background: #F0F0F0;
+      background: #F5F5F6;
     }
 
     #app.day #content {
-      border-top: solid 1px #ccc;
+      border-top: 1px solid #E1E2E1;
       background: #FFF;
     }
 

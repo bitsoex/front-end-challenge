@@ -16,10 +16,12 @@
               <div class="price">MXN Precio</div>
               <div class="amount">BTC Monto</div>
             </li>
-            <li class="trade" v-for="trade in trades" v-bind:key="trade.tid" v-bind:class="{sell: trade.maker_side === 'sell'}">
+            <li class="trade" v-for="trade in trades"
+                v-bind:key="trade.tid"
+                v-bind:class="{sell: trade.maker_side === 'sell'}">
               <div class="hour">{{trade.created_at.split('T')[1].split('+')[0]}}</div>
               <div class="price">{{parseFloat(Math.round(trade.price * 100) / 100).toFixed(2)}}</div>
-              <div class="amount">{{trade.amount}}</div>
+              <div class="amount">{{parseFloat(trade.amount)}}</div>
             </li>
           </ul>
         </div>
@@ -170,6 +172,7 @@ export default {
       console.log(option)
       this.chart.periodicity.selected = option
       this.chart.periodicity.selectVisible = false
+      this.$store.dispatch('chartPeriodicity', option)
     },
     chartIntervalOptions () {
       this.chart.interval.selectVisible = !this.chart.interval.selectVisible
@@ -180,6 +183,7 @@ export default {
       console.log(option)
       this.chart.interval.selected = option
       this.chart.interval.selectVisible = false
+      this.$store.dispatch('chartInterval', option)
     },
     tab (t) {
       switch (t) {
@@ -208,9 +212,7 @@ export default {
       var classes = e.target.className.split(' ')
       if (classes.indexOf('selected') === -1) {
         classes = e.target.parentElement.className.split(' ')
-        if (classes.indexOf('selected') !== -1) {
-          console.log('ab')
-        } else {
+        if (classes.indexOf('selected') === -1) {
           self.chart.type.selectVisible = false
           self.chart.periodicity.selectVisible = false
           self.chart.interval.selectVisible = false
@@ -511,6 +513,7 @@ export default {
     height: 20px;
     border-radius: 10px;
     background: #313a46;
+    z-index: 20;
   }
 
   #chart .chartTypeChange ul {
@@ -521,7 +524,8 @@ export default {
     border: 1px solid #404e5f;
     background: #313a46;
     position: relative;
-    z-index: 9;
+    z-index: 19;
+    transition: all 0.3s;
   }
 
   #chart .chartTypeChange ul li {
@@ -609,7 +613,7 @@ export default {
     border-radius: 10px;
     text-align: center;
     position: relative;
-    z-index: 20;
+    z-index: 32;
     background: #313a46;
   }
 
@@ -633,7 +637,7 @@ export default {
     right: 0;
     width: 48px;
     text-align: center;
-    z-index: 10;
+    z-index: 30;
     border-radius: 0 0 10px 10px;
   }
 
@@ -743,5 +747,61 @@ export default {
 }
 
 /* DAY MODE */
+#app.day #last-trades {
+  background: #FFFFFF;
+}
+
+#app.day #last-trades .content .header {
+  background: #F0F0F0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#app.day #last-trades .content ul .head {
+  background: #FFFFFF;
+}
+
+#app.day #last-trades .content ul li.trade:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+#app.day #last-trades .content ul li.trade .hour {
+  color: #abc;
+}
+
+#app.day #last-trades .content ul li.trade:hover .hour {
+  color: #abc;
+}
+
+#app.day #last-trades .content ul li.trade .price {
+  color: #86AF6B;
+}
+
+#app.day #last-trades .content ul li.trade:hover .price {
+  color: #80C156;
+}
+
+#app.day #last-trades .content ul li.trade.sell .price {
+  color: #CC4458;
+}
+
+#app.day #last-trades .content ul li.trade.sell:hover .price {
+  color: #BA3040;
+}
+
+#app.day #last-trades .content ul li.trade .amount {
+  color: #abc;
+}
+
+#app.day #last-trades .content ul li.trade:hover .amount {
+  color: #abc;
+}
+
+#app.day #markets .slider {
+  background: #5C4B51;
+}
+
+#app.day #markets .slider .title {
+  color: #747F89;
+}
 /* END DAY MODE */
 </style>

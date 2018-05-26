@@ -13,10 +13,13 @@ const state = {
   charts: {
     candles: {
       data: [],
+      dataToWork: [],
       width: '10px',
       high: 0,
       low: 0
-    }
+    },
+    periodicity: '3months',
+    interval: '1d'
   },
   dayMode: false,
   diffOrders: [],
@@ -38,28 +41,100 @@ const state = {
 const mutations = {
   booksSelected (state, payload) {
     state.books.selected = payload
+    state.charts.candles.data = payload.data
   },
-  candlesChart (state, payload) {
-    Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + state.books.selected.url + '&' + '3months').then(function (data) {
-      var w = document.getElementById('candles-chart').offsetWidth
+  candlesChart (state) {
+    var w = document.getElementById('candles-chart').offsetWidth
 
-      var candleWidth = (w - 8) / data.body.length
+    var dataToWork = state.charts.candles.data
+    var divider
+    switch (state.charts.periodicity) {
+      case '1month':
+        divider = 30
+        dataToWork = dataToWork.slice(-30)
+        break
+      case '3months':
+        divider = 90
+        dataToWork = dataToWork.slice(-90)
+        break
+      case '1year':
+        divider = 365
+        break
+    }
+    state.charts.candles.dataToWork = dataToWork
 
-      var low = 1000000
-      var high = 0
-
-      for (var i = 0; i < data.body.length; i++) {
-        if (data.body[i].high > high) {
-          high = data.body[i].high
+    var intervalDataToWork = []
+    var i
+    switch (state.charts.interval) {
+      case '1d':
+        break
+      case '3d':
+        for (i = 0; i < dataToWork.length; i++) {
+          if (i % 3 === 0) { // index is even
+            intervalDataToWork.push(dataToWork[i])
+          }
         }
-        if (data.body[i].low < low) {
-          low = data.body[i].low
+        divider = divider / 3
+        dataToWork = intervalDataToWork
+        break
+      case '1w':
+        for (i = 0; i < dataToWork.length; i++) {
+          if (i % 7 === 0) { // index is even
+            intervalDataToWork.push(dataToWork[i])
+          }
         }
+        divider = divider / 7
+        dataToWork = intervalDataToWork
+        break
+      case '1m':
+        for (i = 0; i < dataToWork.length; i++) {
+          if (i % 30 === 0) { // index is even
+            intervalDataToWork.push(dataToWork[i])
+          }
+        }
+        divider = divider / 30
+        dataToWork = intervalDataToWork
+        break
+    }
+
+    var candleWidth = (w - 8) / divider
+
+    var low = 1000000
+    var high = 0
+    var averageVol = 0
+
+    for (i = 0; i < dataToWork.length; i++) {
+      if (parseFloat(dataToWork[i].high) > parseFloat(high)) {
+        high = dataToWork[i].high
       }
+      if (parseFloat(dataToWork[i].low) < parseFloat(low)) {
+        low = dataToWork[i].low
+      }
+      averageVol = averageVol + parseFloat(dataToWork[i].volume)
+    }
+    averageVol = averageVol / dataToWork.length
 
-      var payload = {width: candleWidth, data: data.body, high: high, low: low}
-      state.charts.candles = payload
-    })
+    state.charts.candles.width = candleWidth
+    state.charts.candles.high = high
+    state.charts.candles.low = low
+    state.charts.candles.averageVol = averageVol
+    state.charts.candles.dataToWork = dataToWork
+  },
+  chartPeriodicity (state, payload) {
+    switch (payload) {
+      case '1m':
+        state.charts.periodicity = '1month'
+        break
+      case '3m':
+        state.charts.periodicity = '3months'
+        break
+      case '1y':
+        state.charts.periodicity = '1year'
+        break
+    }
+  },
+  chartInterval (state, payload) {
+    state.charts.interval = payload
   },
   dayMode (state, payload) {
     state.dayMode = payload
@@ -110,25 +185,15 @@ const actions = {
   bookChange (context, payload) {
     context.commit('booksSelected', payload)
     context.commit('tradesAll')
+    context.commit('candlesChart', payload.data)
+  },
+  chartInterval (context, payload) {
+    context.commit('chartInterval', payload)
     context.commit('candlesChart')
   },
-  dayMode (context, payload) {
-    context.commit('dayMode', payload)
-  },
-  candlesChart (context, payload) {
-    context.commit('candlesChart', payload)
-  },
-  ticker (context, payload) {
-    context.commit('ticker', payload)
-  },
-  tickerLastPrice (context, payload) {
-    context.commit('tickerLastPrice', payload)
-  },
-  tradesAll (context, payload) {
-    context.commit('tradesAll', payload)
-  },
-  tradesPush (context, payload) {
-    context.commit('tradesPush', payload)
+  chartPeriodicity (context, payload) {
+    context.commit('chartPeriodicity', payload)
+    context.commit('candlesChart')
   }
 }
 
@@ -148,5 +213,3 @@ function commafy (num) { /* function to style strings into money format */
   }
   return str.join('.')
 }
-
-console.log('store')

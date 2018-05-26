@@ -27,7 +27,7 @@
     </div>
     <div class="column"
          v-bind:key="column.date"
-         v-for="column in candlesChart.data"
+         v-for="column in candlesChart.dataToWork"
          v-bind:style="{width: candlesChart.width + 'px'}"
          v-bind:class="{up: column.open < column.close}">
 
@@ -39,7 +39,16 @@
                              height: String(Math.abs((column.open - column.close)/pixelValue )) + 'px'}">
          </div>
 
-         <div class="bottom"></div>
+         <div class="bottom"
+              v-bind:style="{height: String(column.volume * 27 / candlesChart.averageVol) + 'px'}"></div>
+
+         <div class="tooltip">
+           <div class="open"> <span>Open</span> ${{parseFloat(Math.round(column.open * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
+           <div class="close"> <span>Close</span> ${{parseFloat(Math.round(column.close * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
+           <div class="high"> <span>High</span> ${{parseFloat(Math.round(column.high * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
+           <div class="low"> <span>Low</span> ${{parseFloat(Math.round(column.low * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
+           <div class="vol"> <span>Vol.</span> {{parseFloat(Math.round(column.volume * 100) / 100).toFixed(2)}} {{booksSelected.unit}}</div>
+         </div>
     </div>
   </div>
 </template>
@@ -86,6 +95,7 @@ export default {
   font-size: 0;
   position: absolute;
   overflow: hidden;
+  transition: all 3s;
 }
 
 #candles-chart .column {
@@ -105,6 +115,8 @@ export default {
   width: 2px;
   height: 40px;
   background: #BA3040;
+  position: relative;
+  z-index: 4;
 }
 
 #candles-chart .column.up .line {
@@ -121,6 +133,7 @@ export default {
   background: #59252F;
   border: 1px solid #BA3040;
   transition: background-color 0s;
+  z-index: 5;
 }
 
 #candles-chart .column:hover .body {
@@ -138,17 +151,53 @@ export default {
 
 #candles-chart .column .bottom {
   position: absolute;
-  left: 2px;
+  left: 1px;
   bottom: 0;
-  width: calc(100% - 4px);
+  width: calc(100% - 2px);
   background: #384555;
   opacity: 0.4;
   height: 40px;
   transition: opacity 0s;
+  transition: height 0.3s;
+  z-index: 3;
 }
 
 #candles-chart .column:hover .bottom {
   opacity: 1;
+}
+
+#candles-chart .column .tooltip {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 128px;
+  border: 1px solid #4F5A62;
+  transition: opacity 0s;
+  background: rgba(37, 44, 54, .90);
+  border-radius: 5px;
+  z-index: 10;
+  color: #B0BAC1;
+  font-size: 12px;
+  text-align: right;
+  padding: 12px 18px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+#candles-chart .column .tooltip span {
+  color: #FFFFFF;
+  text-transform: capitalize;
+  margin-right: 4px;
+}
+
+#candles-chart .column:hover .tooltip {
+  opacity: 1;
+}
+
+#candles-chart .column:hover .tooltip div {
+  height: 16px;
 }
 
 .background {
@@ -188,4 +237,43 @@ export default {
     width: calc(100vw - 112px);
   }
 }
+
+#app.day #candles-chart .column:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#app.day #candles-chart .column .body {
+  background: #CC4458;
+  border: 1px solid #BA3040;
+}
+
+#app.day #candles-chart .column:hover .body {
+  background-color: #BA3040;
+}
+
+#app.day #candles-chart .column.up .body {
+  background: #98D372;
+  border: 1px solid #80C156;
+}
+
+#app.day #candles-chart .column.up:hover .body {
+  background-color: #80C156;
+}
+
+#app.day #candles-chart .column .bottom {
+  background: rgba(56, 69,85, 0.4);
+}
+
+#app.day #candles-chart .column:hover .bottom {
+  background: rgba(56, 69,85, 0.6);
+}
+
+#app.day .background .vertical {
+  background: #CCCCCC;
+}
+
+#app.day .background hr {
+  border-top: 1px dashed #CCCCCC;
+}
+
 </style>

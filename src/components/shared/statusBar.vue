@@ -65,26 +65,25 @@ export default {
   methods: {
     bookChange (val) { /* function after changing the books select */
       /* fix unwanted feature that deselected the option if you clicked the same that is currently selected */
+      var self = this
       if (val !== null) {
-        var newBook = {url: val.url, label: val.label, unit: val.unit, comparision: val.comparision}
-        this.$store.dispatch('bookChange', newBook)
+        // load data for that book
+        Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + val.url + '&' + '1year').then(function (data) {
+          var newBook = {url: val.url, label: val.label, unit: val.unit, comparision: val.comparision, data: data.body}
+          self.$store.dispatch('bookChange', newBook)
+        })
+        // load statusbar
+        self.loadTicker()
+
+        // change ws connection
+        if (this.websocket.open) {
+          websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
+          websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
+        }
       } else {
         this.books.initial = this.books.selected
       }
       /* end feature */
-      var self = this
-      Vue.http.get('https://bitso-challenge.firebaseapp.com/ticker?book=' + this.books.selected.url).then(function (data) {
-        self.$store.commit('ticker', data.body.payload)
-      }, function (err) {
-        console.log(err)
-      })
-
-      if (this.websocket.open) {
-        websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
-        websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
-      }
-
-      this.loadTicker()
     },
     loadTicker (book) {
       var self = this
@@ -128,7 +127,6 @@ export default {
 </script>
 
 <style scoped>
-/* STATUS BAR */
   #status-bar {
     position: fixed;
     top: 66px;
@@ -136,7 +134,7 @@ export default {
     width: 100vw;
     height: 44px;
     background: #1d2228;
-    z-index: 10;
+    z-index: 20;
   }
 
   #status-bar #ticker {
@@ -158,6 +156,4 @@ export default {
     color: #9D9FA0;
     text-transform: uppercase;
   }
-
-/* END STATUS BAR */
 </style>

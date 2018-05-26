@@ -102,6 +102,7 @@ export default {
     z-index: 1000;
     font-family: 'DIN_Light';
     color: #bdc6cc;
+    border-bottom: solid 1px #2d3540;
   }
 
   #navbar .logo {
@@ -182,6 +183,10 @@ export default {
     height: 66px;
     line-height: 66px;
     cursor: pointer;
+  }
+
+  #navbar .wallet:hover, #navbar .exchange:hover, #navbar .ayuda:hover {
+    color: #EBC256;
   }
 
   #navbar .user {
@@ -424,8 +429,9 @@ export default {
 /* DAY MODE */
 #app.day #navbar {
   background: #FFF;
-  color: #4E5863;
-  box-shadow: 0 1px 3px #888;
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: none;
+  border-bottom: 1px solid #E1E2E1;
 }
 
 #app.day #navbar .logo {
@@ -437,17 +443,17 @@ export default {
 }
 
 #app.day #navbar .user .outer {
-  background: #BDC6CC;
+  background: #E1E2E1;
 }
 
 #app.day #navbar .user .inner {
-  background: #BDC6CC;
+  background: #F0F0F0;
   border: 2px solid #FFF;
 }
 
 #app.day #navbar .dayMode_switch {
-  background: #FFF;
-  box-shadow: inset 0 1px 2px #888;
+  background: #F0F0F0;
+  border: 1px solid #E1E2E1;
 }
 
 #app.day #navbar .dayMode_switch .button {
@@ -464,6 +470,10 @@ export default {
 
 #app.day #navbar .dayMode_switch .button .inner {
   border: 1px solid #FFF;
+}
+
+#app.day #navbar .wallet:hover, #app.day #navbar .exchange:hover, #app.day #navbar .ayuda:hover {
+  color: #338a3e;
 }
 /* END DAY MODE */
 </style>

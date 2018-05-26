@@ -24,11 +24,17 @@
 .markets > .content {
   background: var(--markets-content-background);
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
 }
 
 .markets > .content > .header {
   background: var(--markets-header-background);
   padding: 8px 15px;
+}
+
+.markets > .content > .markets-container {
+  flex: 1;
 }
 
 @media screen and (max-width: 768px) {

@@ -2,6 +2,12 @@ import { queryString } from './utils'
 
 const API_URL = 'https://api.bitso.com/v3'
 
+export async function getAvailableBooks () {
+  const response = await fetch(`${API_URL}/available_books`)
+  if (!response.ok) return Promise.reject(new Error(`Couldn't get available books from the server`))
+  return response.json()
+}
+
 export async function getTickerData (query) {
   const response = await fetch(`${API_URL}/ticker${queryString(query)}`)
   if (!response.ok) return Promise.reject(new Error(`Couldn't get ticker information from the server`))

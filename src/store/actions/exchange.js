@@ -46,3 +46,21 @@ export const getOrderBook = (bookToFilter = defaultBook) => async dispatch => {
   })
   return payload
 }
+
+export const getMarketsData = (limit = 100) => async dispatch => {
+  const { payload: availableBooks } = await api.getAvailableBooks()
+  const tradesPromises = availableBooks.map(currentBook => api.getLatestTrades({ book: currentBook.book, limit }))
+
+  const responses = await Promise.all(tradesPromises)
+
+  const data = availableBooks.map((book, index) => ({
+    book: camelCaseObject(book),
+    data: responses[index].payload.map(item => camelCaseObject(item))
+  }))
+
+  dispatch({
+    type: 'SET_MARKETS_LIST',
+    payload: data
+  })
+  return data
+}

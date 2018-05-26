@@ -1,0 +1,130 @@
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 45px;
+	height: 20px;
+}
+
+.switch input {
+	display:none;
+}
+
+.slider,
+.slidericons {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: @base-color-header2;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider{
+	background: transparent;
+}
+
+.slidericons:before{
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 8px;
+    bottom: 5px;
+    background-color: #ffd92d;
+	.border-radius(50px);
+    -webkit-transition: .4s;
+    transition: .4s;
+	transform: translateX(17px);
+	border: 1px solid white;
+}
+
+.slidericons:after {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    left: 11px;
+    bottom: 8px;
+	.border-radius(50px);
+}
+
+input:checked  + .slidericons:after{
+	background-color: @base-color-header2;
+}
+
+input:checked  + .slidericons:before{
+	transform: translateX(0);
+	background-color: @base-color3;
+	border: none;
+}
+
+
+.slider:before {
+	position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: @base-color3;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:after {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: @base-color;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 1px solid @base-color;
+}
+
+input:checked   + .slidericons + .slider:after {
+  background-color: spin(@base-color, 180);
+}
+
+input:focus  + .slidericons  + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input  + .slidericons  + .slider:after{
+	background-color: @base-color3;
+	background-color: #4e5863;
+}
+
+input:checked  + .slidericons + .slider:after{
+	background-color: @base-color3;
+	//background-color: #4e5863;
+    //border: 2px dotted white;
+}
+
+input:checked  + .slidericons  + .slider:before {
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
+}
+input:checked  + .slidericons  + .slider:after {
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
+}
+
+.round {
+	.border-radius(50px);
+}
+
+.round:before {
+	.border-radius(50%);
+}
+
+.round:after {
+	.border-radius(50%);
+}

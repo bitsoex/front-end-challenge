@@ -86,7 +86,7 @@ export default class Home extends Component {
   render () {
     return (
       <div className='page'>
-        <TheHeader page={this.props.page} exchange={100000.12} />
+        <TheHeader page={this.props.page} />
         <main className='exchange'>
           <Table
             className='last-trades'

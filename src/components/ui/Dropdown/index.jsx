@@ -3,7 +3,12 @@ import classnames from 'classnames'
 
 import './index.css'
 
-const Dropdown = ({ options = [], text = '', className, ...props }) => (
+const onChangeOption = (callback, option) => {
+  if (!callback) return ''
+  callback(option)
+}
+
+const Dropdown = ({ options = [], text = '', className, onChange, ...props }) => (
   <div className={classnames('dropdown', className)}>
     <div className='text'>
       { text }
@@ -13,7 +18,7 @@ const Dropdown = ({ options = [], text = '', className, ...props }) => (
     <ul>
       {
         options.map((option, index) => (
-          <li key={option.id || index}>
+          <li onClick={onChangeOption.bind(null, onChange, option)} key={option.id || index}>
             { option.icon }
             { option.label }
           </li>

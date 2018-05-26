@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
 
+import { floatStringToLocaleString } from '../../lib/utils'
+
 import { toggleSidebar as toggleSidebarAction } from '../../store/actions/ui'
 import { getTickerData as getTickerDataAction } from '../../store/actions/exchange'
 
@@ -35,13 +37,29 @@ class TheHeader extends Component {
     })
   }
 
+  selectBook (option) {
+    this.setState({ loading: true })
+    this.props.getTickerData(option.value).then(payload => {
+      this.setState({ loading: false })
+    }).catch(error => {
+      console.error(error)
+      this.setState({ loading: false })
+    })
+  }
+
   render () {
     const {
       page,
-      exchange,
       toggleSidebarAction,
-      headerSidebar
+      headerSidebar,
+      books,
+      selectedBook
     } = this.props
+
+    let [ type, currency ] = selectedBook.book.split('_')
+
+    if (type) type = type.toUpperCase()
+    if (currency) currency = currency.toUpperCase()
 
     return (
       <div className='header-container'>
@@ -53,7 +71,7 @@ class TheHeader extends Component {
           <div className='title-page money-exchange'>
             <div>{ page }</div>
             <div>
-              1BTC = { exchange.toLocaleString({ style: 'currency', currency: 'MXN' }) } MXN
+              1 {type} = { floatStringToLocaleString(selectedBook.last) } {currency}
             </div>
           </div>
           <nav>
@@ -76,28 +94,29 @@ class TheHeader extends Component {
             </ul>
           </nav>
         </header>
-        <div className='stats'>
+        <div className={classnames('stats', { loading: this.state.loading })}>
           <Dropdown
             className='exchange-type'
-            options={[{ label: 'BTC/USD' }]}
-            text='BTC/MXN'
+            options={books}
+            onChange={this.selectBook.bind(this)}
+            text={selectedBook.book.replace('_', '/').toUpperCase()}
           />
           <div className='list'>
             <div className='stat'>
               <span className='label'>Volumen 24hrs</span>
-              <span className='value'>170.5405818 BTC</span>
+              <span className='value'>{selectedBook.volume} {type}</span>
             </div>
             <div className='stat'>
               <span className='label'>Max</span>
-              <span className='value'>304,934.23 MXN</span>
+              <span className='value'>{floatStringToLocaleString(selectedBook.high)} {currency}</span>
             </div>
             <div className='stat'>
               <span className='label'>Min</span>
-              <span className='value'>274,934.23 MXN</span>
+              <span className='value'>{floatStringToLocaleString(selectedBook.low)} {currency}</span>
             </div>
             <div className='stat'>
               <span className='label'>Valoración</span>
-              <span className='value'>+4,061.68 MXN (1.4%)</span>
+              <span className='value'>+ {floatStringToLocaleString(selectedBook.vwap)} {currency} (1.4%)</span>
             </div>
           </div>
         </div>
@@ -106,7 +125,11 @@ class TheHeader extends Component {
   }
 }
 
-const mapStateToProps = ({ ui }) => ({ headerSidebar: ui.headerSidebar })
+const mapStateToProps = ({ ui, ticker }) => ({
+  headerSidebar: ui.headerSidebar,
+  books: ticker.data.map(tick => ({ value: tick.book, label: tick.book.replace('_', '/').toUpperCase() })),
+  selectedBook: ticker.current
+})
 
 const mapDispatchToProps = (dispatch) => ({
   toggleSidebarAction: bindActionCreators(toggleSidebarAction, dispatch),

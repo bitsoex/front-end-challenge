@@ -91,6 +91,10 @@ body {
   width: 1em;
 }
 
+.loading * {
+  opacity: 0;
+}
+
 td.loading {
   display: table-cell;
 }

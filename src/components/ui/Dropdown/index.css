@@ -43,12 +43,12 @@
 
 .dropdown:hover > ul {
   display: flex;
+  flex-direction: column;
 }
 
 .dropdown > ul > li {
   padding: 10px;
   background: #fff;
-  width: 100%;
   padding-right: 3rem;
   white-space: nowrap;
   color: #4a4a4a;

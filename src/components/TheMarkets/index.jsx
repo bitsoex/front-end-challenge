@@ -45,7 +45,7 @@ class TheMarkets extends Component {
         <div className='content'>
           <div className='header'>mercados 24hrs</div>
           <div className={classnames('markets-container', { loading: this.state.loading && marketsSidebar })}>
-            { !this.state.loading && markets.slice(0, 1).map(market => <MarketChart key={market.book.book} {...market} />) }
+            { !this.state.loading && markets.map(market => <MarketChart key={market.book.book} {...market} />) }
           </div>
         </div>
       </div>

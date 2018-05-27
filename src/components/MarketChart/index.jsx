@@ -12,6 +12,7 @@ const EMPTY_DATA = 0
 const TO_ARRAY_INDEX = 1
 const FIRST_POINT = 0
 const FIRST_TRADE = 0
+const ONE_ARRAY_POSITION = 1
 
 class MarketChart extends Component {
   constructor (props) {
@@ -43,14 +44,12 @@ class MarketChart extends Component {
     context.strokeStyle = lastTrade.makerSide === 'sell' ? '#80C156' : '#CC4458'
     context.beginPath()
     context.moveTo(points[FIRST_POINT].x, points[FIRST_POINT].y)
-    points.slice(1).forEach(point => {
+
+    points.slice(ONE_ARRAY_POSITION).forEach(point => {
       context.lineTo(point.x, point.y)
     })
 
-    context.lineWidth = 0.1
     context.stroke()
-
-    console.warn(points)
   }
 
   toggle () {
@@ -64,7 +63,6 @@ class MarketChart extends Component {
     const currency = book.book.split('_')[CURRENCY_POSITION]
     const price = currency === 'mxn' ? floatStringToLocaleString(lastTrade.price, { minimumFractionDigits: 2 }) : lastTrade.price
 
-    const chartWidth = data.filter(trade => trade.makerSide === lastTrade.makerSide).length * 2
     return (
       <div className={classnames('market-chart', className, { expanded })} onClick={this.toggle.bind(this)}>
         <div className='header'>
@@ -76,7 +74,7 @@ class MarketChart extends Component {
           <div className='time'>{moment(lastTrade.createdAt).tz('America/Mexico_City').format('h:mm a')}</div>
         </div>
         <div className='chart'>
-          <canvas ref='chart' height={1} width={chartWidth} />
+          <canvas ref='chart' width='210px' height='50px' />
         </div>
       </div>
     )

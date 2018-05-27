@@ -64,8 +64,3 @@
 .market-chart.expanded > .chart {
   animation: showMarketChart .2s ease forwards;
 }
-
-.market-chart > .chart > canvas {
-  width: 100%;
-  height: 100%;
-}

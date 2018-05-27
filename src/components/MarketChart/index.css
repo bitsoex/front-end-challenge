@@ -57,6 +57,7 @@
 
 .market-chart > .chart {
   display: flex;
+  justify-content: center;
   flex: 1;
   animation: hideMarketChart .2s ease forwards;
 }

@@ -28,7 +28,8 @@
   color: var(--bid-average-color);
 }
 
-.market-chart > .header > div:last-child {
+.market-chart > .header > .sell,
+.market-chart > .header > .buy {
   display: flex;
   align-items: center;
 }
@@ -39,6 +40,19 @@
 
 .market-chart > .header > .buy {
   color: var(--buy-color);
+}
+
+.market-chart > .header > .time {
+  position: absolute;
+  display: none;
+  color: var(--table-color);
+  bottom: -1rem;
+  font-size: .8rem;
+  right: 0;
+}
+
+.market-chart.expanded > .header > .time {
+  display: block;
 }
 
 .market-chart > .chart {

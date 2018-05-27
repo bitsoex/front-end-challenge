@@ -1,3 +1,6 @@
+:global(body) {
+  margin: 0px;
+}
 .header {
   grid-area: header;
 }

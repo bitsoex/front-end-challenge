@@ -30,7 +30,7 @@ lessc less/wireframe.main.less styles.css
 ```
 
 ## General information
-I developmented the challenge using two tecnologies [ReactiveX for Javascript][rxjs] and [Redux-Observable][rdx] because both library can be integrated to generate a reactive application. The asynchronous programming allow us understand and write how the data streams and the propagation of change, integrated with redux for flow the data to the components who need to know the change.
+I developed the challenge using two tecnologies [ReactiveX for Javascript][rxjs] and [Redux-Observable][rdx] because both library can be integrated to generate a reactive application. The asynchronous programming allow us understand and write how the data streams and the propagation of change, integrated with redux for flow the data to the components who need to know the change.
 With Rxjs we can write amazing codes for async events, we have many of methods to do more fun to handle concurrency, async methods, user actions, etc.
 
 

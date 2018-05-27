@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RouterModule, Routes } from "@angular/router";
-import { MatDividerModule, MatFormFieldModule, MatInputModule, MatSidenavModule } from "@angular/material";
+import { MatDividerModule, MatSidenavModule, MatListModule } from "@angular/material";
 import { ChartModule } from "primeng/chart";
 import { SidenavComponent } from "./sidenav.component";
 import { SidenavService } from "../../assets/utils/services/sidenav.service";
@@ -23,8 +23,7 @@ const routes: Routes = [
         CommonModule,
         FlexLayoutModule,
         MatDividerModule,
-        MatInputModule,
-        MatFormFieldModule,
+        MatListModule,
         MatSidenavModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes)

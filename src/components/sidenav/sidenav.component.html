@@ -1,28 +1,27 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav id="sidenav" mode="push" opened="false">
-    <div fxLayout="column">
-      <div fxFlex>
-        <div fxLayout>
-          <img src="./../../assets/images/profile-icon.png" width="120px" height="250px" fxFlex>
-          <div id="info-container" fxLayout="column">
-            <mat-form-field class="user-info" fxFlex>
-              <input matInput placeholder="User Name" value="Name" disabled>
-            </mat-form-field>
-            <mat-form-field class="user-info" fxFlex>
-              <input matInput placeholder="User Email" value="Email" disabled>
-            </mat-form-field>
+<div class="sidenav-container">
+  <mat-sidenav-container class="side-container">
+    <mat-sidenav #sidenav mode="push" opened="false">
+      <div fxLayout="column">
+        <div fxFlex>
+          <div fxLayout>
+            <img src="./../../assets/images/profile-icon.png" height="200px" fxFlex="55">
+            <mat-nav-list fxFlex="45">
+              <a mat-list-item>Name: John Doe</a>
+              <a mat-list-item>Email: john.doe@gmail.com</a>
+              <a mat-list-item>Phone: 1234567890</a>
+            </mat-nav-list>
           </div>
         </div>
+        <div fxFlex>
+          <h1>Wallet</h1>
+          <mat-divider></mat-divider>
+          <p-chart type="doughnut" [data]="data"></p-chart>
+        </div>
       </div>
-      <div fxFlex>
-        <h1>Wallet</h1>
-        <mat-divider></mat-divider>
-        <p-chart type="doughnut" [data]="data"></p-chart>
-      </div>
-    </div>
-  </mat-sidenav>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

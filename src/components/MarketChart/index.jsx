@@ -23,59 +23,34 @@ class MarketChart extends Component {
 
   componentDidMount () {
     if (this.props.data.length === EMPTY_DATA) return false
+    let { data } = this.props
     const context = this.refs.chart.getContext('2d')
-    const { data } = this.props
+    const firstTrade = data[FIRST_TRADE]
+    const lastTrade = data[data.length - TO_ARRAY_INDEX]
 
-    const sellTrades = data.filter(trade => trade.makerSide === 'sell')
+    data = data.filter(trade => trade.makerSide === lastTrade.makerSide)
 
-    const sellFirstTrade = sellTrades[FIRST_TRADE]
-    const sellLastTrade = sellTrades[sellTrades.length - TO_ARRAY_INDEX]
-    const sellHighestPrice = sellTrades.reduce((reducer, trade) => trade.price > reducer ? trade.price : reducer, 0)
-    const sellDuration = moment(sellLastTrade.createdAt).unix() - moment(sellFirstTrade.createdAt).unix()
+    const highestPrice = data.reduce((reducer, trade) => trade.price > reducer ? trade.price : reducer, 0)
+    const duration = moment(lastTrade.createdAt).unix() - moment(firstTrade.createdAt).unix()
 
-    const sellPoints = sellTrades.map(trade => {
-      const time = moment(trade.createdAt).unix() - moment(sellFirstTrade.createdAt).unix()
-      const x = (this.refs.chart.width * time) / sellDuration
-      const y = (this.refs.chart.height * trade.price) / sellHighestPrice
+    const points = data.map(trade => {
+      const time = moment(trade.createdAt).unix() - moment(firstTrade.createdAt).unix()
+      const x = (this.refs.chart.width * time) / duration
+      const y = (this.refs.chart.height * trade.price) / highestPrice
       return { x, y }
     })
 
-    context.strokeStyle = '#80C156'
+    context.strokeStyle = lastTrade.makerSide === 'sell' ? '#80C156' : '#CC4458'
     context.beginPath()
-    context.moveTo(sellPoints[FIRST_POINT].x, sellPoints[FIRST_POINT].y)
-    sellPoints.slice(1).forEach(point => {
+    context.moveTo(points[FIRST_POINT].x, points[FIRST_POINT].y)
+    points.slice(1).forEach(point => {
       context.lineTo(point.x, point.y)
     })
 
-    context.lineWidth = 4
+    context.lineWidth = 0.1
     context.stroke()
 
-    const buyTrades = data.filter(trade => trade.makerSide === 'buy')
-
-    const buyFirstTrade = buyTrades[FIRST_TRADE]
-    const buyLastTrade = buyTrades[buyTrades.length - TO_ARRAY_INDEX]
-    const buyHighestPrice = buyTrades.reduce((reducer, trade) => trade.price > reducer ? trade.price : reducer, 0)
-    const buyDuration = moment(buyLastTrade.createdAt).unix() - moment(buyFirstTrade.createdAt).unix()
-
-    const buyPoints = buyTrades.reverse().map(trade => {
-      const time = moment(trade.createdAt).unix() - moment(buyFirstTrade.createdAt).unix()
-      const x = (this.refs.chart.width * time) / buyDuration
-      const y = (this.refs.chart.height * trade.price) / buyHighestPrice
-      return { x, y }
-    })
-
-    context.strokeStyle = '#CC4458'
-    context.beginPath()
-    context.moveTo(sellPoints[FIRST_POINT].x, sellPoints[FIRST_POINT].y)
-    buyPoints.slice(1).forEach(point => {
-      context.lineTo(point.x, point.y)
-    })
-
-    context.lineWidth = 4
-    context.stroke()
-
-    console.warn(sellPoints)
-    console.warn(buyTrades)
+    console.warn(points)
   }
 
   toggle () {
@@ -101,7 +76,7 @@ class MarketChart extends Component {
           <div className='time'>{moment(lastTrade.createdAt).tz('America/Mexico_City').format('h:mm a')}</div>
         </div>
         <div className='chart'>
-          <canvas ref='chart' height={10} width={chartWidth} />
+          <canvas ref='chart' height={1} width={chartWidth} />
         </div>
       </div>
     )

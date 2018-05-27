@@ -37,6 +37,7 @@
 .markets > .content > .markets-container {
   flex: 1;
   white-space: nowrap;
+  overflow-y: scroll;
 }
 
 @media screen and (max-width: 768px) {
@@ -49,7 +50,7 @@
 @media screen and (min-width: 768px) {
   .markets {
     height: 100%;
-    position: fixed;
+    position: absolute;
   }
 
   .markets > .content {

@@ -37,6 +37,13 @@ class MarketChart extends Component {
       context.lineTo(x, y)
     })
     context.stroke()
+    // context.beginPath()
+    // context.moveTo(0, this.refs.chart.height)
+    // context.lineTo(100, 20)
+    // context.lineTo(110, 30)
+    // context.lineTo(140, 40)
+    // context.lineTo(150, 10)
+    // context.stroke()
   }
 
   toggle () {

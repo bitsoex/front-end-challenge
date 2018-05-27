@@ -92,7 +92,7 @@ class App extends Component {
 
 	render(){
 		const { isChecked, theme } = this.state;
-		const classTheme = isChecked ? "" : "test";
+		const classTheme = isChecked ? "" : "light";
 		
 		return (
 			<div className={"wireframe " + classTheme}>

@@ -3,9 +3,10 @@ import LastTradesTable from '../components/LastTradesTable'
 import PosturaCompraTable from '../components/PosturaCompraTable'
 import PosturaVentaTable from '../components/PosturaVentaTable'
 import ChartBidsAsks from '../components/ChartBidsAsks'
-
-const LOAD_TRADES = 'LOAD_TRADES';
-const LOAD_HISTORY_TRADES = 'LOAD_HISTORY_TRADES';
+import {
+    LOAD_TRADES,
+    LOAD_HISTORY_TRADES
+} from '../reducers/types';
 
 const mapDispatchToProps = dispatch => {
 	console.log("connect.method.ping FilterBooks", dispatch);
@@ -22,13 +23,13 @@ const mapDispatchToProps = dispatch => {
 const mapStateToPropsBidsAsksHistoryTrades = state => {
 	//console.log("Filtering", state);
 	const {bookSelected} = state.booksReducer;
-	const {historytrades} = state.historyTradeReducer;
+	const {historytrades, selectedPeriod} = state.historyTradeReducer;
 	const {bids, asks} = state.websocketReducer;
 	const bidsClone = bids.slice(0);
 	const asksClone = asks.slice(0);
 	const bidsR = bidsClone.reverse();
-	
-	return {bids: bidsR, asks: asksClone, bookSelected, historytrades};
+	const difference = bids[0] && asks[0] ? Math.abs(bids[0].r -  asks[0].r) : -1;
+	return {bids: bidsR, asks: asksClone, bookSelected, historytrades, difference, selectedPeriod};
 }
 
 const loadTrades = () => {

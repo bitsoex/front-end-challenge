@@ -1,21 +1,21 @@
 import { connect } from 'react-redux'
 import MarketTable from '../components/MarketTable'
+import { LOAD_HISTORY_TRADES} from '../reducers/types';
 
-const LOAD_ALL_TICKERS = 'LOAD_ALL_TICKERS';
-
-const loadTickers = () => {
+const loadHistoryTrades = (book) => {
 	//console.log("connect.method.ping FilterTrades");
-	return ({ type: LOAD_ALL_TICKERS })
+	const ignoreLoadView = true;
+	return ({ type: LOAD_HISTORY_TRADES, book, ignoreLoadView })
 };
 
 const mapStateToProps = state => {
-	//console.log("state.tickersReducer", state);
-	return state.tickersReducer;
+	const {backuptrades} = state.historyTradeReducer
+	return {...state.tickersReducer, backuptrades} ;
 }
 
 const FilterMarketTickers = connect(
 	mapStateToProps,
-	{loadTickers}
+	{loadHistoryTrades}
 )(MarketTable);
 
 export default FilterMarketTickers;

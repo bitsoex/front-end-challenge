@@ -7,12 +7,9 @@
 @mobileLayout: 320px;
 
 .wireframe{
-	.header2{
-		li{
-			&.exchangevalue{
-				display: none;
-			}
-		}
+    .header1 li.burguer,
+	.header2 li.exchangevalue{
+        display: none;
 	}
 }
 
@@ -79,6 +76,9 @@
 					&.exchange{
 						display: none;
 					}
+                    &.burguer{
+                        display: flex;
+                    }
 				}
 			}
 		}
@@ -135,16 +135,16 @@
     .wireframe{
 		.header1,
 		.header2{
-			.container{
-				& + ul{
-					li:first-child,
-					li:last-child{
-						padding: 0;
-					}
+			.container > ul{
+				& > li:first-child,
+				li:last-child{
+					padding: 0;
 				}
 			}
 		}
-		
+		.row.header1 .inner{
+			padding: 0;
+		}
 		.header1{
 			.container{
 				li{
@@ -154,8 +154,14 @@
 				}
 			}
 		}
-	
+		
+		.row.header2 .inner{
+				padding: 0;
+		}
 		.header2{
+			.container ul li{
+				padding: 0;
+			}
 			li{
 				&.volumen,
 				&.variation{
@@ -173,6 +179,10 @@
 				width: 100%;
 				padding: 8px;
 				padding-bottom: 0px;
+                max-height: 100vh;
+				.inner{
+					padding: 0;
+				}
 			}
 			.col.main{
 				width: 100%;
@@ -196,8 +206,13 @@
 						position: static;
 						width: 100%;
 						height: 100%;
-						li.header{
-							display: none;
+						li{
+							&.header{
+								display: none;
+							}
+							&.body{
+								padding: 0;
+							}
 						}
 						.menu--visible .app-menu,
 						.app-menu{

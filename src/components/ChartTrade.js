@@ -36,7 +36,7 @@ class ChartTrade extends React.Component{
 	}
 	
 	render() {
-		const {bookSelected, historytrades, changePeriodInterval} = this.props;
+		const {bookSelected, historytrades, changePeriodInterval, selectedPeriod} = this.props;
 		console.log("RENDER-ChartTrade...", this.props);
 		return(
 			<ResizeDirective >

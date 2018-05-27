@@ -5,7 +5,7 @@ import {formatCurrency, formatNumber} from '../util/formatNumbers'
 function TradesList(props) {
 	const trades = props.trades;
 	const unit = props.bookSelected.split("_")[1];
-	//console.log("render numbers", props);
+	console.log("render TradesList", props);
 	const listItems = trades.map((rowData, index) =>{
 		const time = new Date(rowData.created_at).toLocaleTimeString();
 		const price = rowData.price;

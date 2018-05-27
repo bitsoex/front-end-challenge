@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {formatCurrency} from '../util/formatNumbers'
 import collapseImg from '../assets/images/1x/icon_dropdown.png'
 import DropDown from './dropdown/DropDown'
@@ -40,7 +40,8 @@ const Header2 = ({ bookSelected, books, ticker, selectBook, exchange }) => {
 			label: book.book.toUpperCase().split('_').join('/'),
 			value: book.book,
 			previousValue: bookSelected,
-			action: selectBook
+			action: selectBook,
+			className: book.book == bookSelected ? "selected select active": ""
 		}
 	});
 	

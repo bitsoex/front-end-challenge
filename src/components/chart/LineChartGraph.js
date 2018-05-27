@@ -46,7 +46,23 @@ class LineChartGraph extends React.Component {
 		 <polygon className="linechart_fill" points={pathD}/>
 		 
 		);
-	} 
+	}
+	
+	/*makeRectangles(posX, posY, widthMax, heightMax, id) {
+		const {data, axisXIndex, axisYIndex} = this.props;
+		if(data.length == 0)
+			return(
+				<path className="linechart_path_empty" /> 
+			)
+		let lastX = 0;
+			
+		return  data.map((point, i) => {
+			let lastX2 = lastX;
+			let posXAxis = this.getSvgX(point[axisXIndex], posX, widthMax);
+			lastX = posXAxis;
+			return(<rect className="lineData" key={i} x={lastX2} y="0" width={posXAxis-lastX2} height={heightMax} />)
+		});
+	}*/
 
 	makePath(posX, posY, widthMax, heightMax, id) {
 		const {data, axisXIndex, axisYIndex} = this.props;
@@ -61,11 +77,11 @@ class LineChartGraph extends React.Component {
 		else
 			pathD += "M 0 " + lastY;
 			
-		//pathD+=  " L 0 " + lastY + " ";
 		pathD += data.map((point, i) => {
 			let actualY = lastY;
 			lastY = this.getSvgY(point[axisYIndex], posY, heightMax);
-			return ("L " + this.getSvgX(point[axisXIndex], posX, widthMax) + " " + actualY + " ") + "L " + this.getSvgX(point[axisXIndex], posX, widthMax) + " " + lastY  + " ";
+			let posXAxis = this.getSvgX(point[axisXIndex], posX, widthMax);
+			return ("L " + posXAxis + " " + actualY + " ") + "L " + posXAxis + " " + lastY  + " ";
 		});
 		if(id === "bids")
 			pathD += "L " + this.getSvgX(this.getMaxX(), posX, widthMax) + " " + heightMax;
@@ -112,10 +128,11 @@ class LineChartGraph extends React.Component {
 		const {id, data, asks, posx, posy, width, height} = this.props;
 		const transform = {translate:`'(${posx})'`};
 		//console.log("start linchart", id);
+					//{this.makeRectangles(0 , 0, width, height-30)}					
 		return(
 			<g id={id} transform={`translate(${posx}, ${posy})`}>
 				{this.makeAxis(0 , width, height-30, id)}
-				<g transform={`translate(0, ${posy+30})`}>
+				<g transform={`translate(0, ${posy+30})`} id={id+"_inner"}>
 					{this.makePath(0 , 0, width, height-30, id)}
 					{this.makeFill(0 , 0, width, height-30)}					
 				</g>

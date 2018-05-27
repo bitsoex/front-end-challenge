@@ -8,42 +8,48 @@
 @color-green: #80c156;
 
 
-/*reset*/
-
-body{
-	margin: 0;
-	padding: 0;
-	background-color: @background-color;
-}
-
-@import './wireframe.fonts.less';
 
 /**
- * import wireframe layout 
+ * import wireframe base, global mixins, fonts, etc
  */
-@import './wireframe.base.less';
+@import './wireframe/reset.less';
+@import './wireframe/mixins.less';
+@import './wireframe/fonts.less';
+@import './wireframe/base.less';
 
-/* import wireframe distribution */
 
-@import './wireframe.layout.less';
-
-@import './wireframe.components.colors.less';
-.wireframe{
-	@import './wireframe.components.less';
-}
-
-@import './wireframe.mixins.less';
-
-@import './responsive.less';
-
+/**
+* Build the structure of the wireframe
+*/
 
 .wireframe{
+    /* Base color of the components */ 
+    @table-header-background: #313d4c;
+    @base-color3: #4e5863;
+    @color-red: #BA3040;
+    @color-red-graph: #BA3040;
+    @color-green-graph: #86AF6B;
+    @table-active-background: #747F89;
+    @floating-background: #2E353D;
+    @graph_axis: @base-color;
+    @table-market-header: #727C84;
+    @background-color-floating-body: #23292D;
+    @animate-background-time: 1s;
+    @background-chart-stock-bar: #384555;
+    /*@import './wireframe/components.colors.less';*/
+
+    /* import wireframe layout */
+    @import './wireframe/layout.less';
+	@import './wireframe/components.less';
 	@import './widgets/toggle.widget.less';
 	@import './widgets/dropdown.widget.less';
+    
+    /*
+    * import themes
+    * inner the application, just toggle class 'light'
+    */
+    &.light {
+	   @import './wireframe/theme.light.less';
+    }
 }
-
-/*import themes*/
-
-.wireframe.test {
-	@import './wireframe.theme.light.less';
-}
+@import './wireframe/responsive.less';

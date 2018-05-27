@@ -1,35 +1,6 @@
-/*reset*/
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #191e23;
-}
-@font-face {
-  font-family: 'DINNextLTPro-Light';
-  /*src: url('assets/fonts/DINNextLTPro-Light.otf');*/
-  src: url('assets/fonts/DINPro-Light.otf');
-  font-style: normal;
-  font-weight: 100;
-}
-@font-face {
-  font-family: 'DINNextLTPro-Regular';
-  /*src: url('assets/fonts/DINNextLTPro-Regular.otf');*/
-  src: url('assets/fonts/DINPro-Regular.otf');
-  font-style: normal;
-  font-weight: 100;
-}
-@font-face {
-  font-family: 'DINNextLTPro-Medium';
-  /*src: url('assets/fonts/DINNextLTPro-Medium.otf');*/
-  src: url('assets/fonts/DINPro-Medium.otf');
-  font-style: normal;
-  font-weight: 100;
-}
 /**
- * import wireframe layout 
+ * import wireframe base, global mixins, fonts, etc
  */
-/*wireframe default*/
-/*wireframe coloring/styles*/
 html {
   height: 100%;
 }
@@ -37,6 +8,11 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #191e23;
 }
 ul {
   list-style-type: none;
@@ -60,6 +36,31 @@ li a.selected:hover:not(.active) {
   background-color: transparent;
   cursor: not-allowed;
 }
+@font-face {
+  font-family: 'DINNextLTPro-Light';
+  /*src: url('assets/fonts/DINNextLTPro-Light.otf');*/
+  src: url('assets/fonts/DINPro-Light.otf');
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'DINNextLTPro-Regular';
+  /*src: url('assets/fonts/DINNextLTPro-Regular.otf');*/
+  src: url('assets/fonts/DINPro-Regular.otf');
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'DINNextLTPro-Medium';
+  /*src: url('assets/fonts/DINNextLTPro-Medium.otf');*/
+  src: url('assets/fonts/DINPro-Medium.otf');
+  font-style: normal;
+  font-weight: 100;
+}
+/**
+* wireframe default
+* define component spaces and how they are distributed
+*/
 .wireframe {
   cursor: default;
   /*&.test .container{
@@ -137,7 +138,40 @@ li a.selected:hover:not(.active) {
 .wireframe .floatRight {
   float: right;
 }
-/* import wireframe distribution */
+/**
+* Build the structure of the wireframe
+*/
+.wireframe {
+  /* Base color of the components */
+  /*@import './wireframe/components.colors.less';*/
+  /* import wireframe layout */
+  /**
+* This file define the basic elements of the wireframe for Bitso
+|=======================|
+| -header               |
+|=======================|
+| -Header 2             |
+===========separator====|
+|t      |               |
+| r     |               |
+|  a    |               |
+|   a   |     main      |
+|    e  |               |
+|     s |               |
+|       |               |
+|=======================|
+*/
+  /*
+* Define the styles for the components
+* By default they only adjust to the wireframe so here define size, colors, fonts, etc.
+*/
+  font-family: DINNextLTPro-Light, Arial, sans-serif;
+  color: #B0BAC1;
+  /*
+    * import themes
+    * inner the application, just toggle class 'light'
+    */
+}
 .wireframe .row.header1 {
   height: 65px;
 }
@@ -204,10 +238,6 @@ li a.selected:hover:not(.active) {
 }
 .wireframe .row.content .col.floating .inner {
   padding: 0px;
-}
-.wireframe {
-  font-family: DINNextLTPro-Light, Arial, sans-serif;
-  color: #B0BAC1;
 }
 .wireframe .header1 {
   background-color: #252c36;
@@ -291,7 +321,7 @@ li a.selected:hover:not(.active) {
 .wireframe .header1 .container ul li .dropdown ul li,
 .wireframe .header2 .container ul li .dropdown ul li,
 .wireframe .content .container ul li .dropdown ul li {
-  padding: 10px;
+  padding: 10px 27px;
 }
 .wireframe .header1 .container ul li .dropdown.openmenu img,
 .wireframe .header2 .container ul li .dropdown.openmenu img,
@@ -316,6 +346,12 @@ li a.selected:hover:not(.active) {
 .wireframe .header2 .container ul li .dropdown .dropdown-body li:hover,
 .wireframe .content .container ul li .dropdown .dropdown-body li:hover {
   background-color: rgba(128, 193, 86, 0.4);
+}
+.wireframe .header1 .container ul li .dropdown .dropdown-body li.selected,
+.wireframe .header2 .container ul li .dropdown .dropdown-body li.selected,
+.wireframe .content .container ul li .dropdown .dropdown-body li.selected {
+  background-color: #252c36;
+  cursor: not-allowed;
 }
 .wireframe .container .labelItem {
   color: #CCCCCC;
@@ -408,6 +444,14 @@ li a.selected:hover:not(.active) {
 .wireframe .container table.bids thead td.sum,
 .wireframe .container table.asks thead td.sum {
   width: 10%;
+}
+.wireframe .container table.bids tbody tr td:first-child,
+.wireframe .container table.asks tbody tr td:first-child {
+  padding-left: 0px;
+}
+.wireframe .container table.bids tbody tr td:last-child,
+.wireframe .container table.asks tbody tr td:last-child {
+  padding-right: 0px;
 }
 .wireframe .container table.bids tbody tr td.bar div {
   margin-right: auto;
@@ -592,6 +636,12 @@ li a.selected:hover:not(.active) {
     color: rgba(128, 193, 86, 0.5);
   }
 }
+.wireframe .container svg .nofill {
+  fill: none;
+}
+.wireframe .container svg .nofill:hover {
+  fill: yellow;
+}
 .wireframe .container svg #bids .linechart_path {
   fill: none;
   stroke: #86AF6B;
@@ -611,9 +661,39 @@ li a.selected:hover:not(.active) {
   fill: rgba(186, 48, 64, 0.4);
   stroke: #BA3040;
 }
+.wireframe .container svg #history .red .text_label {
+  stroke: transparent;
+  fill: transparent;
+}
+.wireframe .container svg #history .red:hover {
+  fill: #BA3040;
+}
+.wireframe .container svg #history .red:hover .text_label {
+  font-size: 12px;
+  stroke: white;
+}
 .wireframe .container svg #history .green {
   fill: rgba(134, 175, 107, 0.4);
   stroke: #86AF6B;
+}
+.wireframe .container svg #history .green .text_label {
+  stroke: transparent;
+  fill: transparent;
+}
+.wireframe .container svg #history .green:hover {
+  fill: #86AF6B;
+  stroke: #86AF6B;
+}
+.wireframe .container svg #history .green:hover .text_label {
+  font-size: 12px;
+  stroke: white;
+}
+.wireframe .container svg #history .bar {
+  fill: #384555;
+  stroke: #384555;
+}
+.wireframe .container svg #history .bar:hover {
+  fill: #B0BAC1;
 }
 .wireframe .container svg #history text {
   fill: #4e5863;
@@ -676,14 +756,38 @@ li a.selected:hover:not(.active) {
 .wireframe .row.content .col.main .row.graphic .header ul li:first-child .menu_graph:nth-child(2) {
   border-radius: 0 40px 40px 0;
 }
-.wireframe .row.content .col.main .row.graphic .header .menu_graph {
-  background-color: #4e5863;
-}
-.wireframe .row.content .col.main .row.graphic .header .menu_graph.selected {
-  background-color: #252c36;
+.wireframe .row.content .col.main .row.graphic .header ul li:first-child .menu_graph:nth-child(2) img {
+  margin: 0 4px 2px 0;
 }
 .wireframe .row.content .col.floating .container {
   background-color: #2E353D;
+}
+.wireframe .row.content .col.floating .container table.trades tr.charttr {
+  display: none;
+}
+.wireframe .row.content .col.floating .container table.trades tr.charttr.selected {
+  display: table-row;
+}
+.wireframe .row.content .col.floating .container table.trades tr.charttr.selected.green svg.chart {
+  stroke: #80c156;
+}
+.wireframe .row.content .col.floating .container table.trades tr.label.selected,
+.wireframe .row.content .col.floating .container table.trades tr.charttr.selected {
+  background-color: #161A1E;
+}
+.wireframe .row.content .col.floating .container table.trades tr.label.selected td,
+.wireframe .row.content .col.floating .container table.trades tr.charttr.selected td {
+  border: 0;
+}
+.wireframe .row.content .col.floating .container table.trades tr:hover {
+  background-color: #2E353D;
+  cursor: pointer;
+}
+.wireframe .row.content .col.floating .container table.trades td svg.chart {
+  width: 100%;
+  height: 100px;
+  stroke: #BA3040;
+  fill: none;
 }
 .wireframe .menu {
   position: fixed;
@@ -801,138 +905,25 @@ li a.selected:hover:not(.active) {
   width: 300px;
   box-shadow: none;
 }
-.wireframe .header1 li.burguer,
-.wireframe .header2 li.exchangevalue {
-  display: none;
+.wireframe .row.content .col.main .row.graphic .header .dropdown.openmenu .menu_graph,
+.wireframe .col.main .row.graphic .header .menu_graph.selected {
+  background-color: #4e5863;
 }
-@media only screen and (max-width: 480px) {
-  .wireframe .header1 ul li.togglelight {
-    padding: 0;
-  }
+.wireframe .col.main .row.graphic .header .menu_graph:not(.selected):hover {
+  background-color: rgba(78, 88, 99, 0.5);
+  cursor: pointer;
 }
-@media only screen and (max-width: 768px) {
-  .wireframe .header1 ul li.userimage,
-  .wireframe .header1 ul li.usermenu {
-    display: none;
-  }
+.wireframe .col.main .row.graphic .header .dropdown .menu_graph,
+.wireframe .col.main .row.graphic .header .menu_graph.button2 {
+  border: 1px solid #313d4c;
+  background: transparent;
 }
-@media only screen and (max-width: 900px) {
-  .wireframe .header1 ul li.title {
-    font-size: 10pt;
-  }
-  .wireframe .header2 ul.header2-menu li.max,
-  .wireframe .header2 ul.header2-menu li.min {
-    display: none;
-  }
+.wireframe .col.main .row.graphic .header .menu_graph.button2.disabled {
+  border: 1px solid rgba(49, 61, 76, 0.85);
+  color: #313d4c;
 }
-@media only screen and (max-width: 1000px) {
-  .wireframe .header1 ul li.separator,
-  .wireframe .header1 ul li.wallet,
-  .wireframe .header1 ul li.exchange {
-    display: none;
-  }
-  .wireframe .header1 ul li.burguer {
-    display: flex;
-  }
-}
-@media only screen and (max-width: 1200px) {
-  .wireframe .header1 ul.header2-menu li.max,
-  .wireframe .header1 ul.header2-menu li.min {
-    display: none;
-  }
-  .wireframe .row.content .col.main .row .col.buying {
-    width: 100%;
-    height: 50%;
-  }
-  .wireframe .row.content .col.main .row .col.separator {
-    width: 0;
-  }
-  .wireframe .row.content .col.main .row .col.selling {
-    width: 100%;
-    height: 50%;
-  }
-  .wireframe .row.content .col.main .row.graphic {
-    height: calc(40% - 2px);
-  }
-  .wireframe .row.content .col.main .row.postures {
-    height: calc(60% - 2px);
-  }
-}
-@media only screen and (max-width: 640px) {
-  .wireframe .header1 .container > ul > li:first-child,
-  .wireframe .header2 .container > ul > li:first-child,
-  .wireframe .header1 .container > ul li:last-child,
-  .wireframe .header2 .container > ul li:last-child {
-    padding: 0;
-  }
-  .wireframe .row.header1 .inner {
-    padding: 0;
-  }
-  .wireframe .header1 .container li.exchangevalue {
-    display: none;
-  }
-  .wireframe .row.header2 .inner {
-    padding: 0;
-  }
-  .wireframe .header2 .container ul li {
-    padding: 0;
-  }
-  .wireframe .header2 li.volumen,
-  .wireframe .header2 li.variation {
-    display: none;
-  }
-  .wireframe .header2 li.exchangevalue {
-    display: flex;
-  }
-  .wireframe .row.content {
-    height: auto;
-  }
-  .wireframe .row.content .col.trades {
-    width: 100%;
-    padding: 8px;
-    padding-bottom: 0px;
-  }
-  .wireframe .row.content .col.trades .inner {
-    padding: 0;
-  }
-  .wireframe .row.content .col.main {
-    width: 100%;
-    padding: 8px;
-    padding-bottom: 0px;
-  }
-  .wireframe .row.content .col.main .row.graphic .header {
-    background-color: rgba(49, 61, 76, 0.6);
-  }
-  .wireframe .row.content .col.floating {
-    width: 100%;
-    padding: 8px;
-    padding-bottom: 0px;
-  }
-  .wireframe .row.content .col.floating .inner {
-    height: auto;
-  }
-  .wireframe .row.content .col.floating .container .menu {
-    position: static;
-    width: 100%;
-    height: 100%;
-  }
-  .wireframe .row.content .col.floating .container .menu li.header {
-    display: none;
-  }
-  .wireframe .row.content .col.floating .container .menu li.body {
-    padding: 0;
-  }
-  .wireframe .row.content .col.floating .container .menu .menu--visible .app-menu,
-  .wireframe .row.content .col.floating .container .menu .app-menu {
-    -webkit-transform: none;
-    transform: none;
-    width: 100%;
-    height: 100%;
-  }
-  .wireframe .row.content .col.floating .container .menu .menu--visible .app-menu .body,
-  .wireframe .row.content .col.floating .container .menu .app-menu .body {
-    width: 100%;
-  }
+.wireframe .col.main .row.graphic .header .menu_graph.button2.disabled img {
+  opacity: 0.2;
 }
 .wireframe .switch {
   position: relative;
@@ -1090,58 +1081,58 @@ li a.selected:hover:not(.active) {
   width: 100%;
   cursor: pointer;
 }
-/*import themes*/
-.wireframe.test {
+.wireframe.light {
   /*#BFBDC1*/
   font-family: DINNextLTPro-Light, Arial, sans-serif;
   color: #929292;
 }
-.wireframe.test .header1 {
+.wireframe.light .header1 {
   background-color: #ecf0f1;
   font-size: 14px;
 }
-.wireframe.test .header1 .title {
+.wireframe.light .header1 .title {
   font-size: 16px;
 }
-.wireframe.test .header2 {
+.wireframe.light .header2 {
   color: #37323E;
-  background-color: #DE9E36;
+  background-color: #d1e3c6;
   font-size: 14px;
 }
-.wireframe.test .header2 .greenText {
-  color: green !important;
+.wireframe.light .header2 .greenText {
+  color: #3b7147 !important;
 }
-.wireframe.test .header2 .price {
-  color: white;
+.wireframe.light .header2 .price {
+  color: black;
 }
-.wireframe.test > .separator {
+.wireframe.light > .separator {
   background-color: #ecf0f1;
 }
-.wireframe.test .content {
+.wireframe.light .content {
   background-color: #ecf0f1;
 }
-.wireframe.test .header1 .container ul li .user {
+.wireframe.light .header1 .container ul li .user {
   background: #ecf0f1;
 }
-.wireframe.test .header1 .container ul li .user .inner {
+.wireframe.light .header1 .container ul li .user .inner {
   border: 1.5px solid #37323E;
 }
-.wireframe.test .header1 .container ul li .dropdown .dropdown-body,
-.wireframe.test .header2 .container ul li .dropdown .dropdown-body {
+.wireframe.light .container ul li .dropdown .dropdown-body {
   color: #929292;
   background-color: #ecf0f1;
 }
-.wireframe.test .header1 .container ul li .dropdown .dropdown-body li:hover,
-.wireframe.test .header2 .container ul li .dropdown .dropdown-body li:hover {
+.wireframe.light .container ul li .dropdown .dropdown-body li:hover {
   background-color: rgba(146, 146, 146, 0.4);
 }
-.wireframe.test .container table tr td.amount {
+.wireframe.light .container ul li .dropdown .dropdown-body li.selected {
+  background-color: #ecf0f1;
+}
+.wireframe.light .container table tr td.amount {
   color: #4e5863;
 }
-.wireframe.test .container table tr td.amount .zeros {
+.wireframe.light .container table tr td.amount .zeros {
   color: #B0BAC1;
 }
-.wireframe.test .container table {
+.wireframe.light .container table {
   color: #B0BAC1;
   font-size: 12px;
   text-shadow: 1px 1px 0px #fff;
@@ -1152,13 +1143,13 @@ li a.selected:hover:not(.active) {
   -webkit-box-shadow: 0 1px 2px #d1d1d1;
   box-shadow: 0 1px 2px #d1d1d1;
 }
-.wireframe.test .container table thead tr td span.label {
+.wireframe.light .container table thead tr td span.label {
   color: rgba(176, 186, 193, 0.7);
 }
-.wireframe.test .container table thead tr td span:not(.label) {
+.wireframe.light .container table thead tr td span:not(.label) {
   color: #B0BAC1;
 }
-.wireframe.test .container table > thead th {
+.wireframe.light .container table > thead th {
   border-top: 1px solid #fafafa;
   border-bottom: 1px solid #e0e0e0;
   background: #ededed;
@@ -1178,116 +1169,254 @@ li a.selected:hover:not(.active) {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ebebeb', GradientType=0);
   /* IE6-9 */
 }
-.wireframe.test .container table > thead th:first-child {
+.wireframe.light .container table > thead th:first-child {
   text-align: left;
 }
-.wireframe.test .container table > thead > tr:first-child > th:first-child {
+.wireframe.light .container table > thead > tr:first-child > th:first-child {
   -webkit-border-top-left-radius: 3px;
   border-top-left-radius: 3px;
 }
-.wireframe.test .container table > thead > tr:first-child > th:last-child {
+.wireframe.light .container table > thead > tr:first-child > th:last-child {
   -webkit-border-top-right-radius: 3px;
   border-top-right-radius: 3px;
 }
-.wireframe.test .container table > tbody > tr > td {
+.wireframe.light .container table > tbody > tr > td {
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
-  background: #fbfbfb;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #fbfbfb 0%, #fafafa 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbfbfb), color-stop(100%, #fafafa));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #fbfbfb 0%, #fafafa 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #fbfbfb 0%, #fafafa 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #fbfbfb 0%, #fafafa 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #fbfbfb 0%, #fafafa 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fbfbfb', endColorstr='#fafafa', GradientType=0);
-  /* IE6-9 */
+  /*background: #fbfbfb; /* Old browsers */
 }
-.wireframe.test .container table > tbody > tr:nth-child(even) > td {
-  background: #f8f8f8;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #f8f8f8 0%, #f6f6f6 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #f6f6f6));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f8f8f8 0%, #f6f6f6 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f8f8f8 0%, #f6f6f6 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f8f8f8 0%, #f6f6f6 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #f8f8f8 0%, #f6f6f6 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8f8f8', endColorstr='#f6f6f6', GradientType=0);
-  /* IE6-9 */
+.wireframe.light .container table > tbody > tr:nth-child(even) > td {
+  /*background: #f8f8f8; /* Old browsers */
 }
-.wireframe.test .container table > tbody > tr:last-child > td {
+.wireframe.light .container table > tbody > tr:last-child > td {
   border-bottom: 0;
 }
-.wireframe.test .container table > tbody > tr:last-child > td:first-child {
+.wireframe.light .container table > tbody > tr:last-child > td:first-child {
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.wireframe.test .container table > tbody > tr:last-child > td:last-child {
+.wireframe.light .container table > tbody > tr:last-child > td:last-child {
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-.wireframe.test .container table > tbody > tr:hover > td {
-  background: #f2f2f2;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #f2f2f2 0%, #f0f0f0 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(100%, #f0f0f0));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f2f2f2 0%, #f0f0f0 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f2f2f2 0%, #f0f0f0 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f2f2f2 0%, #f0f0f0 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #f2f2f2 0%, #f0f0f0 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#f0f0f0', GradientType=0);
-  /* IE6-9 */
+.wireframe.light .container table > tbody > tr:hover > td {
+  /*background: #f2f2f2; /* Old browsers */
 }
-.wireframe.test .container svg .axis {
+.wireframe.light .container svg #history .red {
+  fill: rgba(186, 48, 64, 0.4);
+  stroke: #BA3040;
+}
+.wireframe.light .container svg #history .green {
+  fill: rgba(134, 175, 107, 0.4);
+  stroke: #86AF6B;
+}
+.wireframe.light .container svg #history .bar {
+  fill: lightgray;
+  stroke: lightgray;
+}
+.wireframe.light .container svg #history .bar:hover {
+  fill: #5B5B5B;
+}
+.wireframe.light .container svg .text {
+  fill: #2e7cb3;
+}
+.wireframe.light .container svg .axis {
   stroke: #b0bac1;
 }
-.wireframe.test .container svg .text2 {
+.wireframe.light .container svg .text2 {
   fill: #edc990;
 }
-.wireframe.test .row.content .col.main .row.graphic .header .menu_graph {
-  background-color: white;
-}
-.wireframe.test .row.content .col.main .row.graphic .header .menu_graph.selected {
+.wireframe.light .row.content .col.floating .container table.trades tr.label.selected,
+.wireframe.light .row.content .col.floating .container table.trades tr.charttr.selected {
   background-color: lightgray;
 }
-.wireframe.test .row.content .col.floating .container {
-  background-color: #2E353D;
+.wireframe.light .row.content .col.main .row.graphic .header .menu_graph {
+  background-color: white;
 }
-.wireframe.test .menu .app-menu .body {
+.wireframe.light .row.content .col.main .row.graphic .header .menu_graph.selected {
+  background-color: lightgray;
+}
+.wireframe.light .row.content .col.main .row.graphic .header .menu_graph :not(.openmenu) {
+  color: red;
+}
+.wireframe.light .row.content .col.floating .container {
+  background-color: #5c4b51;
+}
+.wireframe.light .row.content .col.main .row.graphic .header .dropdown.openmenu .menu_graph {
+  background-color: lightgray;
+}
+.wireframe.light .menu .app-menu .body {
   background-color: #5B5B5B;
 }
-.wireframe.test .menu .app-menu .body table th {
+.wireframe.light .menu .app-menu .body table th {
   background-color: rgba(0, 128, 0, 0.4);
 }
-.wireframe.test .menu .app-menu .body table tbody tr td {
+.wireframe.light .menu .app-menu .body table tbody tr td {
   border-color: rgba(236, 240, 241, 0.2);
 }
-.wireframe.test .menu .app-menu .body table tbody tr td:first-child {
+.wireframe.light .menu .app-menu .body table tbody tr td:first-child {
   color: #747F89;
 }
-.wireframe.test .app-menu {
-  background-color: #2E353D;
+.wireframe.light .app-menu {
+  background-color: #5c4b51;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
-.wireframe.test .app-menu {
+.wireframe.light .app-menu {
   box-shadow: none;
+}
+.wireframe.light .row.content .col.main .row.graphic .header .dropdown.openmenu .menu_graph,
+.wireframe.light .col.main .row.graphic .header .menu_graph.selected {
+  background-color: lightgray;
+}
+.wireframe.light .col.main .row.graphic .header .menu_graph:not(.selected) {
+  cursor: pointer;
+}
+.wireframe.light .col.main .row.graphic .header .dropdown .menu_graph {
+  border: 0;
+}
+.wireframe.light .col.main .row.graphic .header .menu_graph.button2.disabled {
+  border: 1px solid lightgray;
+}
+.wireframe.light .container svg #history .red:hover .text_label,
+.wireframe.light .container svg #history .green:hover .text_label {
+  font-size: 12px;
+  stroke: black;
+}
+.wireframe.light .row.content .col.floating .container table.trades tr:hover {
+  background-color: lightcyan;
+}
+.wireframe .header1 li.burguer,
+.wireframe .header2 li.exchangevalue {
+  display: none;
+}
+@media only screen and (max-width: 480px) {
+  .wireframe .header1 ul li.togglelight {
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .wireframe .header1 ul li.userimage,
+  .wireframe .header1 ul li.usermenu {
+    display: none;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .wireframe .header1 ul li.title {
+    font-size: 10pt;
+  }
+  .wireframe .header2 ul.header2-menu li.max,
+  .wireframe .header2 ul.header2-menu li.min {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .wireframe .header1 ul li.separator,
+  .wireframe .header1 ul li.wallet,
+  .wireframe .header1 ul li.exchange {
+    display: none;
+  }
+  .wireframe .header1 ul li.burguer {
+    display: flex;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .wireframe .header1 ul.header2-menu li.max,
+  .wireframe .header1 ul.header2-menu li.min {
+    display: none;
+  }
+  .wireframe .row.content .col.main .row .col.buying {
+    width: 100%;
+    height: 50%;
+  }
+  .wireframe .row.content .col.main .row .col.separator {
+    width: 0;
+  }
+  .wireframe .row.content .col.main .row .col.selling {
+    width: 100%;
+    height: 50%;
+  }
+  .wireframe .row.content .col.main .row.graphic {
+    height: calc(40% - 2px);
+  }
+  .wireframe .row.content .col.main .row.postures {
+    height: calc(60% - 2px);
+  }
+}
+@media only screen and (max-width: 640px) {
+  .wireframe .header1 .container > ul > li:first-child,
+  .wireframe .header2 .container > ul > li:first-child,
+  .wireframe .header1 .container > ul li:last-child,
+  .wireframe .header2 .container > ul li:last-child {
+    padding: 0;
+  }
+  .wireframe .row.header1 .inner {
+    padding: 0;
+  }
+  .wireframe .header1 .container li.exchangevalue {
+    display: none;
+  }
+  .wireframe .row.header2 .inner {
+    padding: 0;
+  }
+  .wireframe .header2 .container ul li {
+    padding: 0;
+  }
+  .wireframe .header2 li.volumen,
+  .wireframe .header2 li.variation {
+    display: none;
+  }
+  .wireframe .header2 li.exchangevalue {
+    display: flex;
+  }
+  .wireframe .row.content {
+    height: auto;
+  }
+  .wireframe .row.content .col.trades {
+    width: 100%;
+    padding: 8px;
+    padding-bottom: 0px;
+    max-height: 100vh;
+  }
+  .wireframe .row.content .col.trades .inner {
+    padding: 0;
+  }
+  .wireframe .row.content .col.main {
+    width: 100%;
+    padding: 8px;
+    padding-bottom: 0px;
+  }
+  .wireframe .row.content .col.main .row.graphic .header {
+    background-color: rgba(49, 61, 76, 0.6);
+  }
+  .wireframe .row.content .col.floating {
+    width: 100%;
+    padding: 8px;
+    padding-bottom: 0px;
+  }
+  .wireframe .row.content .col.floating .inner {
+    height: auto;
+  }
+  .wireframe .row.content .col.floating .container .menu {
+    position: static;
+    width: 100%;
+    height: 100%;
+  }
+  .wireframe .row.content .col.floating .container .menu li.header {
+    display: none;
+  }
+  .wireframe .row.content .col.floating .container .menu li.body {
+    padding: 0;
+  }
+  .wireframe .row.content .col.floating .container .menu .menu--visible .app-menu,
+  .wireframe .row.content .col.floating .container .menu .app-menu {
+    -webkit-transform: none;
+    transform: none;
+    width: 100%;
+    height: 100%;
+  }
+  .wireframe .row.content .col.floating .container .menu .menu--visible .app-menu .body,
+  .wireframe .row.content .col.floating .container .menu .app-menu .body {
+    width: 100%;
+  }
 }

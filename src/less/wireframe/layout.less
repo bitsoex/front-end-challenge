@@ -1,0 +1,100 @@
+/**
+* This file define the basic elements of the wireframe for Bitso
+|=======================|
+| -header               |
+|=======================|
+| -Header 2             |
+===========separator====|
+|t      |               |
+| r     |               |
+|  a    |               |
+|   a   |     main      |
+|    e  |               |
+|     s |               |
+|       |               |
+|=======================|
+*/
+
+
+
+.row.header1{
+	height:	65px;
+	.inner{
+		padding: 0 8px;
+	}
+}
+.row.header2{
+	height:	45px;
+	padding: 0 8px;
+	.inner{
+		padding: 8px;
+	}
+}
+
+.row.separator{
+	height: 1px;
+	padding: 0;
+}
+
+.row.content{
+	margin-top: 1px;
+	height:	calc(100vh - 115px);
+	padding: 0px;
+	
+	.col.trades{
+		padding: 8px;
+		width: 274px;
+		padding-bottom: 0px;
+		height: 100%;
+		& .inner{
+			padding:3px 8px 0 8px;
+		}
+	}
+	
+	.col.main{
+		width: calc(100vw - 307px);
+		padding: 8px 0 0 0;
+		height: 100%;
+		& .row{
+			padding: 3px 0 2px 0;
+			
+			&.separator{
+				height: 2px;
+				padding: 0;
+			}
+			
+			&.graphic,
+			&.postures{
+				height:calc(50% - 2px);
+			}
+			&.graphic{
+				.header,
+				& *{
+					overflow: visible;
+				}
+			}
+			
+			& .col{
+				&.separator{
+					width:5px;
+					padding: 0px;
+				}
+				
+				&.buying,
+				&.selling{
+					padding: 3px 0 2px 0;
+					width: calc((100% - 5px)/2);
+				}
+			}
+		}
+	}
+	
+	.col.floating{
+		width: 33px;
+		padding: 0 0 0 3px;
+		& .inner{
+			padding: 0px;
+		}
+	}
+	
+}

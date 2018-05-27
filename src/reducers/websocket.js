@@ -44,16 +44,12 @@ export const websocketEpic = action$ =>
 		subscribedToWebsocket = true;
 		return _;
 	})
-	/**
-	 * For best performance we can ignore some messages was emmited within time (300ms for example)
-	 * because visually can be see by the user.
-	*/
-	.switchMap( bookSelected => 
-		Observable.interval(config.timeIgnoreWebSocketsMessages)
+	.switchMap( bookSelected => socketWS.filter(response => response.payload && response.book == bookSelected)
+		/*Observable.interval(config.timeIgnoreWebSocketsMessages)
 		.withLatestFrom(socketWS.filter(response => response.payload && response.book == bookSelected))
 		.map(([timer, websocketResponse]) => {
 			return websocketResponse;
-		})
+		})*/
 	)
 	.map(a => {
 		const {payload, book, type} = a;

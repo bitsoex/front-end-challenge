@@ -67,6 +67,9 @@ export const tradesReducer = (state = { loadingTrades: true, trades:[], ticker:{
 					book: action.book,
 					amount: action.amount
 				});
+			if(trades.length >= 45)
+				trades.pop()
+				
 			return{
 				...state,
 				trades: trades

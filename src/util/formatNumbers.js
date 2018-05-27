@@ -17,15 +17,26 @@ const CURRENCY_DEFAULT = 'MXN';
 export const formatNumber = (value) => {
 	const number =  parseFloat(value);
 	let numberString = number.toString();
-	if(numberString.length > config.dicimalNumberSizeString )
-		numberString = numberString.substring(0, config.dicimalNumberSizeString);
-	const numberWithZeros = number.toFixed(config.dicimalNumberSizeString);
-	const zeros = numberWithZeros.slice(numberString.length);
+	
+	let numberFixed = number.toFixed(config.decimalNumberSizeString);
+	let numberParts = numberFixed.split(".");
+	
+	if(numberFixed.length <= numberString.length)
+		return {
+			numbers: numberFixed ,
+			zeros: ""
+		}
+	
+	let numberStringParts = numberString.split(".")
+	let sizeDecilamNumber = numberStringParts[1] ? numberStringParts[1].length : 0;
+	const zeros = numberParts[1].slice(sizeDecilamNumber , config.decimalNumberSizeString);
 	return {
-		numbers: number,
+		numbers: numberParts[0] + "." + numberParts[1].slice(0 , sizeDecilamNumber) ,
 		zeros: zeros
 	}
 }
+
+
 
 /**
  * Given a number value, return a new currency text format
@@ -45,14 +56,15 @@ export const formatCurrency = ( value, currency = CURRENCY_DEFAULT, disableCurre
 			value = 0;
 	
 	if(currencyRequest != "MXN"){
-		return formatNumber(value).numbers + (disableCurrencyStyle ? "" : " " + currencyRequest);
+		const formatedValue = formatNumber(value);
+		return formatedValue.numbers + formatedValue.zeros + (disableCurrencyStyle ? "" : " " + currencyRequest);
 	}
 	
 	return new Intl.NumberFormat(FORMAT, { 
 		style: disableCurrencyStyle ? 'decimal' : 'currency', 
 		currency: currencyRequest,
 		minimumFractionDigits: config.fractionDigits
-	}).format(value)
+	}).format(value) + (disableCurrencyStyle ? "" : " " + currencyRequest);
 	//return value.toLocaleString(FORMAT, { N_FRACTIONS: N_FRACTIONS });
 };
 

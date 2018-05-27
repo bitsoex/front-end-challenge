@@ -17,9 +17,9 @@ class DropDown extends React.Component {
 	}
 	
 	menuItems(items){
-		const listItems = items.map(({action, value, label, previousValue}, index)=>{
+		const listItems = items.map(({action, value, label, previousValue, className}, index)=>{
 			return(
-				<li key={index} onClick={e=>action(value, previousValue)}>{label}</li>
+				<li key={index} onClick={e=>action(value, previousValue)} className={className ? className : ""}>{label}</li>
 			);
 		})
 		return(
@@ -30,7 +30,7 @@ class DropDown extends React.Component {
 	}
 	
 	render(){
-		const {down, children, items} = this.props;
+		const {	children, items} = this.props;
 		
 		return(
 			<div  onClick={this.toggleButton.bind(this)} className={"dropdown " + (this.state.down ? 'openmenu' : '')}>

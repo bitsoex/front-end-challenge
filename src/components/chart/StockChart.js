@@ -45,7 +45,7 @@ class StockChart extends React.Component {
 	}
 
 	render() {
-		const {svgHeight, svgWidth, bookSelected, data, changeGraph, changePeriodInterval} = this.props;
+		const {svgHeight, svgWidth, bookSelected, data, changeGraph, changePeriodInterval, selectedPeriod} = this.props;
 		//console.log("Render StockChart", data, this.props);
 		let svgHeightWitoutHeader = svgHeight - 30;
 		if(svgHeightWitoutHeader <= 0)
@@ -59,31 +59,54 @@ class StockChart extends React.Component {
 				action: changePeriodInterval
 			}
 		});
+		const itemsMenuIntervalo = [{
+			label: '1 hr',
+			action: ()=>{}
+			},{
+			label: '12 hr',
+			action: ()=>{}
+			},{
+			label: '1 día',
+			action: ()=>{}
+			},{
+			label: '5 días',
+			action: ()=>{}
+			}]
+		let periodoLabel = selectedPeriod;
+		PERIODS.map(period=>{
+			if(period.value ==selectedPeriod)
+				periodoLabel = period.label;
+		});
 		/*onClick={e=>changeGraph()}*/
 		return (
 			<div>
 				<div className="header">
 					<ul className="expand">
 						<li className="vcenter ">
-							<div className="menu_graph selected" onClick={e=>changeGraph()}>
-								<img src={selectedIcon} style={{opacity:0}}/>
+							<div className="menu_graph button" onClick={e=>changeGraph()}>
 								<img src={logoA} />
 							</div>
-							<div className="menu_graph">
-								<img src={selectedIcon} />
+							<div className="menu_graph button selected">
 								<img src={logoB} />
 							</div>
 						</li>
 						<li className="vcenter ">
-						</li>
-						<li className="vcenter ">
-							<span className="labelItem">Periodo</span>
+							<span className="labelItem">Periodo&nbsp;&nbsp;&nbsp;</span>
 							<DropDown items={itemsMenu}>
 								<div className="menu_graph">
-									1 Mes
+									{periodoLabel}
 									<img src={logoDown} />
 								</div>
 							</DropDown>
+						</li>
+						<li className="vcenter ">
+							<span className="labelItem">Intervalo&nbsp;&nbsp;</span>
+							
+								<div className="menu_graph button2 disabled">
+									1 hr
+									<img src={logoDown} />
+								</div>
+							
 						</li>
 					</ul>
 				</div>

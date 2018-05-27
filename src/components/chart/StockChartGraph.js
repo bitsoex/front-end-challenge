@@ -26,7 +26,7 @@ class StockChartGraph extends React.Component {
 	getPosXStock(posX, posY, mostLow, mostHigh, widthMax, heightMax, mouseX) {
 		let result = {posXLine: 0, itemN: -1} ; //error default format
 		const { axisXIndex, data} = this.props;
-		console.log("Procesando.getPsx", axisXIndex, data, posX, posY, mostLow, mostHigh, widthMax, heightMax, mouseX	);
+		//console.log("Procesando.getPsx", axisXIndex, data, posX, posY, mostLow, mostHigh, widthMax, heightMax, mouseX	);
 		const distance = mostHigh - mostLow;
 		if(data.length == 0 || mouseX < 0)
 			return result;
@@ -37,17 +37,33 @@ class StockChartGraph extends React.Component {
 			result.posXLine= nstep*step;
 			result.itemN = nstep;
 		}
-		console.log("Regresando resultado", result);
 		return result;
 	}
+	
+	getMinMaxVolume(){
+		const {data} = this.props;
+		let maxVolume, minVolume;
+		maxVolume = minVolume = data[0].volume;
+		data.map(item=>{
+			if(item.volume > maxVolume )
+				maxVolume = item.volume;
+			if(item.volume < minVolume)
+				minVolume = item.volume;
+		});
+		return {maxVolume, minVolume}
+	}
+	
+
 
 	makeStock(posX, posY, mostLow, mostHigh, widthMax, heightMax) {
 		const { axisXIndex, data} = this.props;
 		const distance = mostHigh - mostLow;
 		const step = widthMax/(data.length+2);
-		const operation = heightMax / distance;
+		const heightMaxBar = 50;
+		const operation = (heightMax - heightMaxBar) / distance;
 		const widthStock = step * 0.8;
 		let stepX = 0;
+		const {maxVolume, minVolume } = this.getMinMaxVolume();
 		return data.map((item, i)=>{
 			const y1 = (item.high - mostLow)*operation;
 			const y2 = (item.low - mostLow)*operation;
@@ -56,12 +72,22 @@ class StockChartGraph extends React.Component {
 			const height = item.open < item.close ? yClose - yOpen : yOpen - yClose;
 			const y3 = item.open < item.close ? yOpen : yClose;
 			const className = item.open < item.close ?  "green" : "red";
+			
 			stepX = stepX + step;
+			const volumeHeight = Math.round(((item.volume)/maxVolume)*50);
+			const textAnchor= (stepX < (widthMax/2)) ? "start": "end";
 			return (
 				<g key={i} className={className}>
 					<line x1={stepX} y1={y2} x2={stepX} y2={y3}/>
 					<line x1={stepX} y1={y3+height} x2={stepX} y2={y1}/>
 					<rect x={stepX-widthStock/2} y={y3} width={widthStock} height={height} />
+					<rect x={stepX-widthStock/2} y={heightMax - volumeHeight} width={widthStock} height={volumeHeight} className="bar"/>
+					<text y={20} transform={`translate(${stepX}, 5)`}>
+						<tspan x="0" y="0" textAnchor={textAnchor} className="text_label">open:{item.open}</tspan>
+						<tspan x="0" y="15" textAnchor={textAnchor} className="text_label">low:{item.low}</tspan>
+						<tspan x="0" y="30" textAnchor={textAnchor} className="text_label">high:{item.high}</tspan>
+						<tspan x="0" y="45" textAnchor={textAnchor} className="text_label">close:{item.close}</tspan>
+					</text>
 				</g>
 				)
 		});
@@ -149,7 +175,7 @@ class StockChartGraph extends React.Component {
 	}
 	showLabelOnMouseover(posXLine, itemN, posy, svgHeight){
 		const {data} = this.props;
-		console.log("Render.showLabelOnMouseover", posXLine, itemN, posy, svgHeight);
+		//console.log("Render.showLabelOnMouseover", posXLine, itemN, posy, svgHeight);
 		if(itemN == -1)
 			return(null);
 		return(
@@ -175,18 +201,17 @@ class StockChartGraph extends React.Component {
 		const mostHigh = this.getMostHigh();
 		const mostLow = this.getMostLow();
 		
-		const result = this.getPosXStock(0 , 0, mostLow, mostHigh, svgWidth, svgHeight-30, mouseX);
-		console.log("call.getPosXStock", result);
-		const {posXLine, itemN} = result;
+		//const result = this.getPosXStock(0 , 0, mostLow, mostHigh, svgWidth, svgHeight-30, mouseX);
+		//console.log("call.getPosXStock", result);
+		//const {posXLine, itemN} = result;
+		//{this.showLabelOnMouseover(posXLine, itemN, posy, svgHeight-30)}
 		return(
 			<g id={id} transform={`translate(${posx}, ${posy})`}>
 				{this.makeAxisX(0 , mostLow, mostHigh, svgWidth, svgHeight-30, id)}
 				<g transform={`translate(0, ${posy+30})`}>
 					{this.makeAxisY(0 ,mostLow, mostHigh, svgWidth, svgHeight-30, id)}
 					{this.makeStock(0 , 0, mostLow, mostHigh, svgWidth, svgHeight-30)}
-					
 				</g>
-				{this.showLabelOnMouseover(posXLine, itemN, posy, svgHeight-30)}
 			</g>
 			
 		);
@@ -206,7 +231,8 @@ StockChartGraph.defaultProps = {
 	axisLowIndex: 'low',
 	axisHighIndex: 'high',
 	axisOpenIndex: 'open',
-	axisCloseIndex: 'close'
+	axisCloseIndex: 'close',
+	axisVolumeIndex: 'volume'
 }
 
 export default StockChartGraph;

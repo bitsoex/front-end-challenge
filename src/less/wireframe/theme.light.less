@@ -1,0 +1,294 @@
+@base-color: #37323E;
+@base-color-header1: #ecf0f1;
+@base-color-header2: #d1e3c6;
+@color-base: #5B5B5B;
+@base-color3: fade(@color-base, 50%);
+/*#BFBDC1*/
+@table-header-background: rgba(255,136,0,1);
+
+@color-green:#3b7147 ;
+@background-color-floating-body: @color-base;
+@table-market-header: green;
+@base-color3: @base-color-header1;
+@color-text: #929292;
+@floating-background: #5c4b51;
+@color-button-down: lightgray;
+@background-chart-stock-bar: lightgray;
+.fontlight();
+color: @color-text;
+
+.header1{
+	background-color: @base-color-header1;
+	font-size: @size-header1_base;
+	.title{
+		font-size: @size-header1_title;
+	}
+	
+}
+.header2{
+    color: @base-color;
+	background-color: @base-color-header2;
+	font-size: @size-header1_base;
+	.greenText{
+		color: @color-green !important;
+	}
+	.price{
+		color: black;
+	}
+}
+
+& > .separator{
+	background-color: @base-color-header1;
+}
+
+.content{
+	background-color: @base-color-header1;
+}
+
+.header1{
+	.container{
+		ul li{
+			.user{
+				background: @base-color3;
+				.inner{
+					border: 1.5px solid @base-color;
+				}
+			}
+		}
+	}
+}
+
+	.container{
+		ul li{
+			.dropdown{
+				.dropdown-body{
+                    color: @color-text;
+					background-color: @base-color-header1;
+                    li{
+                        &:hover{
+                            background-color: fade(@color-text, 40%)
+                        }
+                        &.selected{
+                            background-color: @base-color-header1;
+                        }
+                        
+                    }
+				}
+			} 
+		}
+	}
+
+
+.container{
+    table tr td.amount{
+        color: #4e5863;
+        .zeros{
+            color: #B0BAC1
+        }
+    }
+    table{
+        color: #B0BAC1;
+         font-size: 12px;
+         text-shadow: 1px 1px 0px #fff;
+         background: #eaebec;
+         border: #ccc 1px solid;
+
+         -webkit-border-radius: 3px;
+         border-radius: 3px;
+
+         -webkit-box-shadow: 0 1px 2px #d1d1d1;
+         box-shadow: 0 1px 2px #d1d1d1;
+    }
+    table thead tr td span.label{
+        color:rgba(176, 186, 193, 0.7);
+    }
+    table thead tr td span:not(.label){
+     color:#B0BAC1;
+    }
+    table > thead th {
+
+     border-top: 1px solid #fafafa;
+     border-bottom: 1px solid #e0e0e0;
+
+     background: #ededed; /* Old browsers */
+     background: -moz-linear-gradient(top,  #ededed 0%, #ebebeb 100%); /* FF3.6+ */
+     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#ebebeb)); /* Chrome,Safari4+ */
+     background: -webkit-linear-gradient(top,  #ededed 0%,#ebebeb 100%); /* Chrome10+,Safari5.1+ */
+     background: -o-linear-gradient(top,  #ededed 0%,#ebebeb 100%); /* Opera 11.10+ */
+     background: -ms-linear-gradient(top,  #ededed 0%,#ebebeb 100%); /* IE10+ */
+     background: linear-gradient(to bottom,  #ededed 0%,#ebebeb 100%); /* W3C */
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#ebebeb',GradientType=0 ); /* IE6-9 */
+    }
+    table > thead th:first-child{
+     text-align: left;
+
+    }
+    table > thead > tr:first-child > th:first-child {
+     -webkit-border-top-left-radius: 3px;
+     border-top-left-radius: 3px;
+    }
+    table > thead > tr:first-child > th:last-child {
+     -webkit-border-top-right-radius: 3px;
+     border-top-right-radius: 3px;
+    }
+
+    table > tbody > tr > td {
+
+     border-top: 1px solid #ffffff;
+     border-bottom: 1px solid #e0e0e0;
+     border-left: 1px solid #e0e0e0;
+
+     /*background: #fbfbfb; /* Old browsers */
+     
+    }
+    table > tbody > tr:nth-child(even) > td{
+     /*background: #f8f8f8; /* Old browsers */
+     
+    }
+    table > tbody > tr:last-child > td{
+     border-bottom: 0;
+    }
+    table > tbody > tr:last-child > td:first-child {
+     -webkit-border-bottom-left-radius: 3px;
+     border-bottom-left-radius: 3px;
+    }
+    table > tbody > tr:last-child > td:last-child {
+     -webkit-border-bottom-right-radius: 3px;
+     border-bottom-right-radius: 3px;
+    }
+    table > tbody > tr:hover > td {
+     /*background: #f2f2f2; /* Old browsers */
+    }
+    	
+    svg{
+        #history{
+			.red{
+				fill: fade(@color-red, 40%);
+				stroke: @color-red;
+			}
+			.green{
+				fill: fade(@color-green-graph, 40%);
+				stroke: @color-green-graph;
+			}
+            .bar{
+                fill: @background-chart-stock-bar;
+                stroke: @background-chart-stock-bar;
+                &:hover{
+                    fill: @color-base;
+                }
+            }
+        }
+        .text{
+				fill: #2e7cb3;
+			}
+        .axis{
+            stroke: #b0bac1;
+        }
+        .text2{
+            fill: #edc990;
+        }
+    } 
+
+}
+.row.content{
+    .col.floating{
+		.container{
+            table.trades{
+                tr{
+                    &.label.selected,
+                    &.charttr.selected{
+                        background-color: @color-button-down;
+                    }
+                }
+                
+            }
+        }
+    }
+	.col.main .row.graphic .header .menu_graph{
+		&.selected{
+			background-color: @color-button-down;
+		}
+        :not(.openmenu){
+            color: red;
+        }
+		background-color: white;
+	}
+	.col.floating{
+		.container{
+			background-color: @floating-background;
+		}
+	}
+	
+}
+
+.row.content .col.main .row.graphic .header .dropdown.openmenu .menu_graph{
+     background-color: @color-button-down;   
+}
+
+.menu{
+	.app-menu{
+		.body{
+			background-color: @background-color-floating-body;
+			table{
+				th{
+					background-color: fade(@table-market-header, 40%);
+				}
+				tbody{
+					tr{
+						td{
+							border-color: fade(@base-color3, 20%);
+						}
+						td:first-child{
+							color: @table-active-background;
+						}
+
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.app-menu {
+	background-color: @floating-background;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+
+.app-menu {
+  box-shadow: none;
+}
+
+
+.row.content .col.main .row.graphic .header .dropdown.openmenu .menu_graph,
+.col.main .row.graphic .header .menu_graph.selected {
+     background-color: @color-button-down;   
+}
+.col.main .row.graphic .header .menu_graph:not(.selected){
+	 cursor: pointer;
+}
+
+.col.main .row.graphic .header .dropdown .menu_graph{
+    border: 0;
+}
+
+.col.main .row.graphic .header .menu_graph.button2.disabled{
+    border: 1px solid lightgray;
+}
+
+.container svg #history{
+			.red,
+            .green{
+                &:hover{
+                    .text_label{
+                       font-size: 12px;
+                        stroke: black;
+                   }
+                }
+        }
+}
+
+.row.content .col.floating .container table.trades tr:hover{
+    background-color: lightcyan;
+}

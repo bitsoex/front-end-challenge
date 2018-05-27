@@ -30,7 +30,7 @@ export const booksEpic = action$ =>
 	});
 
 /**
- * Reducer for listen the request of the available Books.
+ * Listen the request of the available Books.
  *
  * *Listen the actions:
  *  *CHANGE_BOOK Set in the state the books available

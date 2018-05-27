@@ -12,7 +12,7 @@ function makeStock(posX, posY, mostLowxxx, mostHighxx, widthMax, heightMax, data
 	const operation = heightMax / distance;
 	const widthStock = step * 0.8;
 	let stepX = 0;
-	let pathD = "M0 0 ";
+	let pathD = "";
 	data.map((item, i)=>{
 		const y1 = (item.high - mostLow)*operation;
 		const y2 = (item.low - mostLow)*operation;
@@ -22,7 +22,10 @@ function makeStock(posX, posY, mostLowxxx, mostHighxx, widthMax, heightMax, data
 		const y3 = item.open < item.close ? yOpen : yClose;
 		const className = item.open < item.close ?  "green" : "red";
 		stepX = stepX + step;
-		pathD += "L"+stepX + " " + yClose + " ";
+		if(i==0)
+			pathD = "M0 " + (heightMax - yClose) + " ";
+		else
+			pathD += "L"+stepX + " " + (heightMax - yClose) + " ";
 	});
 	return (<path className="linechart_fill" d={pathD}/>);
 }
@@ -49,10 +52,10 @@ function getMostLow(data){
 
 function getStatusData(data){
 	if(data.length ==0)
-		return "green";
-	if(data[data.length-1].close > data[data.length-2].close)
 		return "red";
-	return "green";
+	if(data[data.length-1].close > data[data.length-2].close)
+		return "green";
+	return "red";
 }
 
 function MarketItem(props) {
@@ -60,7 +63,6 @@ function MarketItem(props) {
 	const listItems = data.map((ticker, index) =>{
 		const change = ticker.book.toUpperCase().split("_").join("/");
 		const unit = ticker.book.toUpperCase().split("_")[1];
-		//const classActive = index ? "red" : "green";
 		const myBookData = historyData[ticker.book] ? historyData[ticker.book] : [];
 		const classActive = getStatusData(myBookData);
 		const price = parseFloat(ticker.high);

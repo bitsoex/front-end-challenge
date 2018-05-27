@@ -78,9 +78,9 @@ class StockChartGraph extends React.Component {
 			const textAnchor= (stepX < (widthMax/2)) ? "start": "end";
 			return (
 				<g key={i} className={className}>
-					<line x1={stepX} y1={y2} x2={stepX} y2={y3}/>
-					<line x1={stepX} y1={y3+height} x2={stepX} y2={y1}/>
-					<rect x={stepX-widthStock/2} y={y3} width={widthStock} height={height} />
+					<line x1={stepX} y1={heightMax - y2} x2={stepX} y2={heightMax - y3}/>
+					<line x1={stepX} y1={heightMax - y3 - height} x2={stepX} y2={heightMax-y1}/>
+					<rect x={stepX-widthStock/2} y={heightMax - y3 - height} width={widthStock} height={height} />
 					<rect x={stepX-widthStock/2} y={heightMax - volumeHeight} width={widthStock} height={volumeHeight} className="bar"/>
 					<text y={20} transform={`translate(${stepX}, 5)`}>
 						<tspan x="0" y="0" textAnchor={textAnchor} className="text_label">open:{item.open}</tspan>

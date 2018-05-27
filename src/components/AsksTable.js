@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TableComponent from './table/TableComponent'
 
-class PosturaVentaTable extends Component {
+class AsksTable extends Component {
 	render() {
 		const tableConfigFields = [
 		{
@@ -33,10 +33,9 @@ class PosturaVentaTable extends Component {
 			classHeader: "graph",
 			dataIndex: "percent"
 		}];
-		//console.log("Render PosturaVentaTable", this.props);
 		return (
 			<TableComponent title="POSTURAS DE VENTA" fields={tableConfigFields} data={this.props.asks} keyDataIndex="o" idTable="asks" bookSelected={this.props.bookSelected} />			
 		);
    }
 }
-export default PosturaVentaTable
+export default AsksTable

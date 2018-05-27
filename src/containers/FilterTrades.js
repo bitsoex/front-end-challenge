@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import LastTradesTable from '../components/LastTradesTable'
-import PosturaCompraTable from '../components/PosturaCompraTable'
-import PosturaVentaTable from '../components/PosturaVentaTable'
+import BidsTable from '../components/BidsTable'
+import AsksTable from '../components/AsksTable'
 import ChartBidsAsks from '../components/ChartBidsAsks'
 import {
     LOAD_TRADES,
@@ -56,12 +56,12 @@ export const FilterTrades = connect(
 export const FilterBids = connect(
 	mapStateToProps2,
 	{loadTrades}
-)(PosturaCompraTable);
+)(BidsTable);
 
 export const FilterAsks = connect(
 	mapStateToProps2,
 	{loadTrades}
-)(PosturaVentaTable);
+)(AsksTable);
 
 export const FilterLineChart = connect(
 	mapStateToPropsBidsAsksHistoryTrades,

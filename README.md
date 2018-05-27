@@ -50,6 +50,9 @@ or on OSX, open Terminal and run
 open -a Google\ Chrome --args --disable-web-security --user-data-dir
 ```
 
+## Prototype Wireframe 
+![Wireframe - Image](https://github.com/amars84/front-end-challenge/blob/master/Assets/wireframe-bitso.png)
+
 
 
 [rdx]: https://github.com/reduxjs/redux

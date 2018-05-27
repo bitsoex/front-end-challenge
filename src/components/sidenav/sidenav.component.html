@@ -1,10 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="push" opened="false" id="sidenav">
+  <mat-sidenav #sidenav id="sidenav" mode="push" opened="false">
     <div fxLayout="column">
       <div fxFlex>
         <div fxLayout>
-          <img fxFlex width="120px" height="250px" src="./../../assets/images/profile-icon.png">
-          <div fxLayout="column" id="info-container">
+          <img src="./../../assets/images/profile-icon.png" width="120px" height="250px" fxFlex>
+          <div id="info-container" fxLayout="column">
             <mat-form-field class="user-info" fxFlex>
               <input matInput placeholder="User Name" value="Name" disabled>
             </mat-form-field>

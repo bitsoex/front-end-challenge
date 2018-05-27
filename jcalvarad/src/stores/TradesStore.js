@@ -4,6 +4,22 @@ export class TradesStore {
   @observable trades = [];
 
   @action
+  setAllTrades = message => {
+    console.log("trades", message);
+    const data = message.data.payload;
+
+    this.trades = data.map(t => {
+      const d = new Date(t.created_at);
+      return {
+        time: d.getHours() + ":" + (d.getMinutes() < 10 ? "0" : "") + d.getMinutes() + ":" + (d.getSeconds() < 10 ? "0" : "") + d.getSeconds(),
+        rate: new Intl.NumberFormat().format(parseFloat(t.price)),
+        amount: parseFloat(t.amount),
+        marker: t.marker_side === "buy" ? 0 : 1
+      };
+    });
+  };
+
+  @action
   getTrades = message => {
     const data = JSON.parse(message.data);
     const now = new Date();

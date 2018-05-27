@@ -24,7 +24,7 @@ class TheMarkets extends Component {
 
   componentWillMount () {
     this.setState({ loading: true })
-    this.props.getMarketsData().then(payload => {
+    this.props.getMarketsData({ sort: 'asc' }).then(payload => {
       this.setState({ loading: false })
     }).catch(error => {
       console.error(error)
@@ -45,7 +45,7 @@ class TheMarkets extends Component {
         <div className='content'>
           <div className='header'>mercados 24hrs</div>
           <div className={classnames('markets-container', { loading: this.state.loading && marketsSidebar })}>
-            { !this.state.loading && markets.map(market => <MarketChart key={market.book.book} {...market} />) }
+            { !this.state.loading && markets.slice(0, 1).map(market => <MarketChart key={market.book.book} {...market} />) }
           </div>
         </div>
       </div>

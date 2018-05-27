@@ -47,16 +47,18 @@ export const getOrderBook = (bookToFilter = defaultBook) => async dispatch => {
   return payload
 }
 
-export const getMarketsData = (limit = 100) => async dispatch => {
+export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async dispatch => {
   const { payload: availableBooks } = await api.getAvailableBooks()
   const tradesPromises = availableBooks.map(currentBook => api.getLatestTrades({ book: currentBook.book, limit }))
 
   const responses = await Promise.all(tradesPromises)
-
-  const data = availableBooks.map((book, index) => ({
-    book: camelCaseObject(book),
-    data: responses[index].payload.map(item => camelCaseObject(item))
-  }))
+  const data = availableBooks.map((book, index) => {
+    const data = sort === 'asc' ? responses[index].payload.reverse() : responses[index].payload
+    return {
+      book: camelCaseObject(book),
+      data: data.map(item => camelCaseObject(item))
+    }
+  })
 
   dispatch({
     type: 'SET_MARKETS_LIST',

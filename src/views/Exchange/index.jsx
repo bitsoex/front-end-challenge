@@ -91,6 +91,7 @@ class Home extends Component {
       },
       {
         header: 'sum',
+        className: 'is-hidden-mobile',
         accessor: (row, index, rows) => {
           const items = range(INITIAL_RANGE, index + NORMALIZE_INDEX)
           const sum = items.reduce((reducer, item) => parseFloat(rows[item].amount) + reducer, 0)
@@ -136,6 +137,7 @@ class Home extends Component {
       },
       {
         header: 'sum',
+        className: 'is-hidden-mobile',
         accessor: (row, index, rows) => {
           const items = range(INITIAL_RANGE, index + NORMALIZE_INDEX)
           const sum = items.reduce((reducer, item) => parseFloat(rows[item].amount) + reducer, 0)

@@ -1,0 +1,57 @@
+.market-chart {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-top: 1px solid var(--markets-content-background);;
+  border-bottom: 1px solid var(--table-color);
+  margin: 0 15px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.market-chart.expanded {
+  border-top: 1px solid var(--table-color);
+  padding: 8px 15px;
+  margin: 0;
+  background: var(--nav-background);
+}
+
+.market-chart > .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .93rem;
+  position: relative;
+}
+
+.market-chart > .header > div:first-child {
+  color: var(--bid-average-color);
+}
+
+.market-chart > .header > div:last-child {
+  display: flex;
+  align-items: center;
+}
+
+.market-chart > .header > .sell {
+  color: var(--exchange-type-color);
+}
+
+.market-chart > .header > .buy {
+  color: var(--buy-color);
+}
+
+.market-chart > .chart {
+  display: flex;
+  flex: 1;
+  animation: hideMarketChart .2s ease forwards;
+}
+
+.market-chart.expanded > .chart {
+  animation: showMarketChart .2s ease forwards;
+}
+
+.market-chart > .chart > canvas {
+  width: 100%;
+  height: 100%;
+}

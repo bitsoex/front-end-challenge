@@ -12,8 +12,8 @@ const Dropdown = ({ options = [], text = '', className, onChange, ...props }) =>
   <div className={classnames('dropdown', className)}>
     <div className='text'>
       { text }
-      <i className='material-icons expand'>arrow_drop_down</i>
-      <i className='material-icons short'>arrow_drop_up</i>
+      <i className='material-icons expand'>keyboard_arrow_down</i>
+      <i className='material-icons short'>keyboard_arrow_up</i>
     </div>
     <ul>
       {

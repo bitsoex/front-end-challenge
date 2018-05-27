@@ -162,6 +162,10 @@
     display: flex;
   }
 
+  .positions {
+    padding-right: 32px;
+  }
+
   .bid,
   .ask {
     flex: .5;

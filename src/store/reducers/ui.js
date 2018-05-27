@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
   headerSidebar: false,
-  marketsSidebar: true
+  marketsSidebar: false
 }
 
 export default handleActions({

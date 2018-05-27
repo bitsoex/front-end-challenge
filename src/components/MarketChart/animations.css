@@ -1,0 +1,17 @@
+@keyframes showMarketChart {
+  from {
+    height: 0;
+  }
+  to {
+    height: 50px;
+  }
+}
+
+@keyframes hideMarketChart {
+  from {
+    height: 50px;
+  }
+  to {
+    height: 0;
+  }
+}

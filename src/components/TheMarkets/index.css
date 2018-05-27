@@ -1,5 +1,6 @@
 .markets {
   display: flex;
+  right: 0;
 }
 
 .markets > .toggle-martkets {
@@ -9,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   color: var(--header-color);
-  font-size: .83rem;
+  font-size: .9rem;
 }
 
 .markets > .toggle-martkets > i {
@@ -35,6 +36,7 @@
 
 .markets > .content > .markets-container {
   flex: 1;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 768px) {
@@ -47,6 +49,7 @@
 @media screen and (min-width: 768px) {
   .markets {
     height: 100%;
+    position: fixed;
   }
 
   .markets > .content {

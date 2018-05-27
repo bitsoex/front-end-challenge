@@ -71,7 +71,7 @@ class TheHeader extends Component {
           <div className='title-page money-exchange'>
             <div>{ page }</div>
             <div>
-              1 {type} = { floatStringToLocaleString(selectedBook.last) } {currency}
+              1 {type} = { currency === 'MXN' ? floatStringToLocaleString(selectedBook.last, { minimumFractionDigits: 2 }) : selectedBook.last } {currency}
             </div>
           </div>
           <nav>
@@ -108,16 +108,16 @@ class TheHeader extends Component {
             </div>
             <div className='stat'>
               <span className='label'>Max</span>
-              <span className='value'>{floatStringToLocaleString(selectedBook.high)} {currency}</span>
+              <span className='value'>{currency === 'MXN' ? floatStringToLocaleString(selectedBook.high, { minimumFractionDigits: 2 }) : selectedBook.high } {currency}</span>
             </div>
             <div className='stat'>
               <span className='label'>Min</span>
-              <span className='value'>{floatStringToLocaleString(selectedBook.low)} {currency}</span>
+              <span className='value'>{currency === 'MXN' ? floatStringToLocaleString(selectedBook.low, { minimumFractionDigits: 2 }) : selectedBook.low } {currency}</span>
             </div>
             <div className='stat'>
               <span className='label'>Valoración</span>
               <span className='value'>
-                + {floatStringToLocaleString(selectedBook.vwap)} {currency} (1.4%) {/* hardcoded because i don't understand how to calculate */}
+                + {currency === 'MXN' ? floatStringToLocaleString(selectedBook.vwap, { minimumFractionDigits: 2 }) : selectedBook.vwap } {currency} (1.4%) {/* hardcoded because i don't understand how to calculate it */}
               </span>
             </div>
           </div>

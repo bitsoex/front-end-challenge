@@ -81,8 +81,8 @@ class StockChartGraph extends React.Component {
 					<line x1={stepX} y1={heightMax - y2} x2={stepX} y2={heightMax - y3}/>
 					<line x1={stepX} y1={heightMax - y3 - height} x2={stepX} y2={heightMax-y1}/>
 					<rect x={stepX-widthStock/2} y={heightMax - y3 - height} width={widthStock} height={height} />
-					<rect x={stepX-widthStock/2} y={heightMax - volumeHeight} width={widthStock} height={volumeHeight} className="bar"/>
-					<text y={20} transform={`translate(${stepX}, 5)`}>
+					<rect x={stepX-widthStock/2} y={heightMax - volumeHeight + 30 } width={widthStock} height={volumeHeight} className="bar"/>
+					<text y={20} transform={`translate(${stepX-30}, 5)`}>
 						<tspan x="0" y="0" textAnchor={textAnchor} className="text_label">open:{item.open}</tspan>
 						<tspan x="0" y="15" textAnchor={textAnchor} className="text_label">low:{item.low}</tspan>
 						<tspan x="0" y="30" textAnchor={textAnchor} className="text_label">high:{item.high}</tspan>
@@ -208,7 +208,7 @@ class StockChartGraph extends React.Component {
 		return(
 			<g id={id} transform={`translate(${posx}, ${posy})`}>
 				{this.makeAxisX(0 , mostLow, mostHigh, svgWidth, svgHeight-30, id)}
-				<g transform={`translate(0, ${posy+30})`}>
+				<g transform={`translate(0, ${posy})`}>
 					{this.makeAxisY(0 ,mostLow, mostHigh, svgWidth, svgHeight-30, id)}
 					{this.makeStock(0 , 0, mostLow, mostHigh, svgWidth, svgHeight-30)}
 				</g>

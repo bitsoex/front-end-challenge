@@ -7,6 +7,7 @@ import styles from "./App.module.css";
 import Layout from "../layout/Layout";
 import Trades from "../trades/Trades";
 import Orders from "../orders/Orders";
+import Charts from "../charts/Charts";
 
 class App extends Component {
   render() {
@@ -23,7 +24,9 @@ class App extends Component {
               <div className={styles.trades}>
                 <Trades />
               </div>
-              <div className={styles.chart}>Chart</div>
+              <div className={styles.chart}>
+                <Charts />
+              </div>
               <div className={styles.orders}>
                 <Orders />
               </div>

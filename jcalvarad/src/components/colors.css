@@ -1,4 +1,4 @@
-:root {
+:export {
   --palette-red-50: rgb(255, 235, 238);
   --palette-red-100: rgb(255, 205, 210);
   --palette-red-200: rgb(239, 154, 154);

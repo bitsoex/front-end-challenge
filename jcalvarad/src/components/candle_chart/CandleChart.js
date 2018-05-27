@@ -7,7 +7,7 @@ class CandlesChart extends Component {
   render() {
     const { candles, volume } = this.props;
 
-    const candleOptions = {
+    const options = {
       scrollbar: {
         enabled: false
       },
@@ -77,7 +77,7 @@ class CandlesChart extends Component {
         }
       ]
     };
-    return <HighchartsReact highcharts={HighStock} constructorType={"stockChart"} options={candleOptions} />;
+    return <HighchartsReact highcharts={HighStock} constructorType={"stockChart"} options={options} />;
   }
 }
 

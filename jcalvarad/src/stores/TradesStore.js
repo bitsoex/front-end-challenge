@@ -14,7 +14,7 @@ export class TradesStore {
 
     if (data.type === "trades" && data.payload) {
       const wspayload = data.payload[0];
-      this.trades.push({
+      this.trades.unshift({
         time: now.getHours() + ":" + (now.getMinutes() < 10 ? "0" : "") + now.getMinutes() + ":" + (now.getSeconds() < 10 ? "0" : "") + now.getSeconds(),
         rate: new Intl.NumberFormat().format(wspayload.r),
         amount: wspayload.a,

@@ -26,18 +26,22 @@ class MarketChart extends Component {
     if (this.props.data.length === EMPTY_DATA) return false
     let { data } = this.props
     const context = this.refs.chart.getContext('2d')
-    const firstTrade = data[FIRST_TRADE]
+
     const lastTrade = data[data.length - TO_ARRAY_INDEX]
 
     data = data.filter(trade => trade.makerSide === lastTrade.makerSide)
+    const firstTrade = data[FIRST_TRADE]
 
     const highestPrice = data.reduce((reducer, trade) => trade.price > reducer ? trade.price : reducer, 0)
+    const lowestPrice = data.reduce((reducer, trade) => trade.price < reducer ? trade.price : reducer, firstTrade.price)
     const duration = moment(lastTrade.createdAt).unix() - moment(firstTrade.createdAt).unix()
+
+    const difference = highestPrice - lowestPrice
 
     const points = data.map(trade => {
       const time = moment(trade.createdAt).unix() - moment(firstTrade.createdAt).unix()
       const x = (this.refs.chart.width * time) / duration
-      const y = (this.refs.chart.height * trade.price) / highestPrice
+      const y = (this.refs.chart.height * (highestPrice - trade.price)) / difference
       return { x, y }
     })
 
@@ -49,6 +53,7 @@ class MarketChart extends Component {
       context.lineTo(point.x, point.y)
     })
 
+    context.lineWidth = 1
     context.stroke()
   }
 

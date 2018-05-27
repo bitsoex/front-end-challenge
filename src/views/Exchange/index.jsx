@@ -8,7 +8,11 @@ import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
 
-import { getLatestTrades as getLatestTradesAction, getOrderBook as getOrderBookAction } from '../../store/actions/exchange'
+import {
+  getLatestTrades as getLatestTradesAction,
+  getOrderBook as getOrderBookAction,
+  getTickerTimeline as getTickerTimelineAction
+} from '../../store/actions/exchange'
 import { floatStringToLocaleString } from '../../lib/utils'
 
 import './index.css'
@@ -44,7 +48,8 @@ class Home extends Component {
       this.setState({ loading: true })
       Promise.all([
         this.props.getLatestTrades(),
-        this.props.getOrderBook()
+        this.props.getOrderBook(),
+        this.props.getTickerTimeline()
       ]).then(payload => {
         this.setState({ loading: false })
       }).catch(error => {
@@ -233,7 +238,8 @@ const mapStateToProps = ({ ticker, trades, orderBook }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getLatestTrades: bindActionCreators(getLatestTradesAction, dispatch),
-  getOrderBook: bindActionCreators(getOrderBookAction, dispatch)
+  getOrderBook: bindActionCreators(getOrderBookAction, dispatch),
+  getTickerTimeline: bindActionCreators(getTickerTimelineAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

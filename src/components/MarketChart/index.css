@@ -63,5 +63,6 @@
 }
 
 .market-chart.expanded > .chart {
+  padding-top: 1.3rem;
   animation: showMarketChart .2s ease forwards;
 }

@@ -7,7 +7,7 @@ export class OrdersStore {
 
   @action
   getOrders = message => {
-    var data = JSON.parse(message.data);
+    const data = JSON.parse(message.data);
 
     if (data.action === "subscribe") {
       console.log("Websocket subscribed", data);

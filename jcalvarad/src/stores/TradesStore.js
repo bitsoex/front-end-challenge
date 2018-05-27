@@ -5,8 +5,8 @@ export class TradesStore {
 
   @action
   getTrades = message => {
-    var data = JSON.parse(message.data);
-    var now = new Date();
+    const data = JSON.parse(message.data);
+    const now = new Date();
 
     if (data.action === "subscribe") {
       console.log("Websocket subscribed", data);

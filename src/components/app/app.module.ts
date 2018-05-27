@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
@@ -13,6 +14,7 @@ import { SidenavModule } from "../sidenav/sidenav.module";
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    FlexLayoutModule,
     HeaderModule,
     FooterModule,
     SidenavModule

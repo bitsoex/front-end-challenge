@@ -6,5 +6,6 @@
     <button *ngIf="this.isUsrLogged" mat-button color="accent" (click)="navigateTo('home')">Home</button>
     <button *ngIf="this.isUsrLogged" mat-button (click)="sidebarToggle()">Profile and Wallet</button>
     <button *ngIf="this.isUsrLogged" mat-button color="primary" (click)="navigateTo('dashboard')">Dashboard</button>
+    <button *ngIf="this.isUsrLogged" mat-button color="warn" (click)="navigateTo('login')">Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>

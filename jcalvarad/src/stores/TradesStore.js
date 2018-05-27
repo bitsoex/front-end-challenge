@@ -1,6 +1,10 @@
 import { observable, action } from "mobx";
 
 export class TradesStore {
+  constructor(appStore) {
+    this.appStore = appStore;
+  }
+
   @observable trades = [];
 
   @action

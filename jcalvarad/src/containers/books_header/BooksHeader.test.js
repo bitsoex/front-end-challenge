@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Charts from "./Charts";
+import BooksHeader from "./BooksHeader";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-  ReactDOM.render(<Charts />, div);
+  ReactDOM.render(<BooksHeader />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

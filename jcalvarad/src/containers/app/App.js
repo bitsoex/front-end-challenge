@@ -20,7 +20,6 @@ class App extends Component {
           </Helmet>
           <Layout>
             <div className={styles["grid-container"]}>
-              <div className={styles.header}>Header</div>
               <div className={styles.trades}>
                 <Trades />
               </div>

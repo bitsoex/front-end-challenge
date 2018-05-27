@@ -34,14 +34,7 @@
     "sass-loader": "^7.0.1"
   },
   "reactToolbox": {
-    "include": [
-      "APP_BAR",
-      "LINK",
-      "NAVIGATION",
-      "SWITCH",
-      "MENU",
-      "TABLE"
-    ],
+    "include": ["APP_BAR", "LINK", "NAVIGATION", "SWITCH", "MENU", "TABLE", "DROPDOWN"],
     "customProperties": {
       "color-primary": "var(--palette-blue-grey-700)",
       "color-primary-dark": "var(--palette-blue-grey-900)",

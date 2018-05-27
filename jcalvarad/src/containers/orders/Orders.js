@@ -1,23 +1,34 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import { toJS } from "mobx";
+import { toJS, autorun } from "mobx";
 import BuyOrders from "../../components/buy_orders/BuyOrders";
 import SellOrders from "../../components/sell_orders/SellOrders";
 import theme from "./Orders.module.css";
 import styles from "./Orders.module.css";
 
 @inject("OrdersStore")
+@inject("BooksStore")
 @observer
 class OrdersContainer extends Component {
   constructor(props) {
     super(props);
-    const websocket = new WebSocket("wss://ws.bitso.com");
 
-    websocket.onopen = function() {
-      websocket.send(JSON.stringify({ action: "subscribe", book: "btc_mxn", type: "diff-orders" }));
+    const { BooksStore } = props;
+    let websocket;
+    const newSocket = () => {
+      if (websocket) {
+        websocket.close();
+      }
+      const book = BooksStore.book;
+      websocket = new WebSocket("wss://ws.bitso.com");
+      websocket.onopen = () => {
+        websocket.send(JSON.stringify({ action: "subscribe", book: book, type: "diff-orders" }));
+      };
+      props.OrdersStore.clearOrders();
+      websocket.onmessage = props.OrdersStore.getOrders;
     };
 
-    websocket.onmessage = props.OrdersStore.getOrders;
+    autorun(newSocket);
   }
 
   render() {

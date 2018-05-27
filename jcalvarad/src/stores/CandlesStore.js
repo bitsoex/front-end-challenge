@@ -1,6 +1,10 @@
 import { observable, action } from "mobx";
 
 export class CandlesStore {
+  constructor(appStore) {
+    this.appStore = appStore;
+  }
+
   @observable candles = [];
   @observable volume = [];
 

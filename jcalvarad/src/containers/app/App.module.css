@@ -1,9 +1,6 @@
 :global(body) {
   margin: 0px;
 }
-.header {
-  grid-area: header;
-}
 .trades {
   grid-area: trades;
 }
@@ -17,7 +14,6 @@
 .grid-container {
   display: grid;
   grid-template-areas:
-    "header header header header header header header"
     "trades chart chart chart chart chart chart"
     "trades orders orders orders orders orders orders";
   grid-gap: 10px;

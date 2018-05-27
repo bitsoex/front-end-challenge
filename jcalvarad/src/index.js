@@ -1,18 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "mobx-react";
-import { TradesStore } from "./stores/TradesStore";
-import { OrdersStore } from "./stores/OrdersStore";
-import { CandlesStore } from "./stores/CandlesStore";
+import { AppStore } from "./stores/AppStore";
 import App from "./containers/app/App";
 import registerServiceWorker from "./registerServiceWorker";
 
-const tradesStore = new TradesStore();
-const ordersStore = new OrdersStore();
-const candlesStore = new CandlesStore();
+const appStore = new AppStore();
+const { booksStore, tradesStore, ordersStore, candlesStore } = appStore;
 
 ReactDOM.render(
-  <Provider TradesStore={tradesStore} OrdersStore={ordersStore} CandlesStore={candlesStore}>
+  <Provider BooksStore={booksStore} TradesStore={tradesStore} OrdersStore={ordersStore} CandlesStore={candlesStore}>
     <App />
   </Provider>,
   document.getElementById("root")

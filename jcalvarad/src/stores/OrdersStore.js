@@ -1,6 +1,10 @@
 import { observable, action } from "mobx";
 
 export class OrdersStore {
+  constructor(appStore) {
+    this.appStore = appStore;
+  }
+
   @observable buy = [];
 
   @observable sell = [];
@@ -18,13 +22,19 @@ export class OrdersStore {
       const arr = wspayload.t ? this.sell : this.buy;
       arr.unshift({
         rate: new Intl.NumberFormat().format(wspayload.r),
-        amount: wspayload.a ? wspayload.a : "",
-        value: wspayload.v ? wspayload.v : ""
+        amount: wspayload.a ? wspayload.a : "-",
+        value: wspayload.v ? wspayload.v : "-"
       });
       if (arr.length >= 15) {
         arr.pop();
       }
       console.info(data);
     }
+  };
+
+  @action
+  clearOrders = () => {
+    this.buy = [];
+    this.sell = [];
   };
 }

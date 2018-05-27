@@ -1,0 +1,15 @@
+@import "../colors.css";
+@import "../variables.css";
+
+.header {
+  background-color: var(--color-primary-header);
+}
+
+.inputinputElement {
+  color: var(--palette-green-600);
+}
+
+.dropdown {
+  max-width: 100px;
+  margin-left: 15px;
+}

@@ -2,93 +2,104 @@
 
 ![Front End Challenge Image](https://github.com/bitsoex/front-end-challenge/blob/master/bann_bfec.jpg)
 
-## SOBRE BITSO
-Bitso es el exchange de crypto más importante y grande de México. Este posicionamiento lo hemos logrado gracias
-a la tecnología que nuestro equipo de ingeniería ha construido. El reto y la misión que tenemos como empresa
-crece cada día y siempre estamos buscando al mejor talento de nuestro país.
+# Justificación y Estructura del Proyecto
 
-Para seguir creciendo necesitamos encontrar a los mejores programadores de Front End de México que nos ayuden
-a construir mejores gráficas, más herramientas de trading, y proveer una mejor experiencia de usuario a los
-cientos de miles de clientes de Bitso.
+## Tecnologías ocupadas:
 
-Ser parte de Bitso significa tener un impacto inmediato en el creciente ecosistema de crypto en México y Latinoamérica,  
-construir  productos  dirigidos  a  millones  de  usuarios,  trabajar  directamente  con  los  fundadores  de  Bitso,  
-colaborar con un equipo de diseño UX de primer nivel y contribuir con tu código a uno de los mejores equipos de
-ingeniería en México.
+1. parcel-bundler
+2. react
+3. react-router
+4. react-redux
+5. react-stockcharts
 
-Los mejores participantes en este Coding Challenge tendrán oportunidad de entrevistarse para formar parte del
-equipo  de  Bitso  y  aparte  tenemos  premios  bastante  jugosos.  Así  que  es  que  es  momento  que  demuestres  que  
-eres el mejor.   
+### [Parcel Bundler](https://parceljs.org/)
 
-## LOS PREMIOS
-*  1er. lugar $50,000 pesos MN.
-*  2do. lugar $30,000 pesos MN.
-*  3er. lugar $10,000 pesos MN.
+Es un empaquetador web de fácil uso y configuración en comparación a webpack, soporta configuración de babel mediante el archivo .babelrc, de postcss y más. Lo use en el proyecto para poder enfocarme más en desarrollar la aplicación sin preocuparme demasiado en el la configuración del ambiente de desarrollo y de producción.
 
-## EL CHALLENGE
-1. Haz un fork del siguiente repositorio: https://github.com/bitsoex/front-end-challenge. En él encontrarás
-   todos los recursos necesarios.
-2.   Tendrás que programar un proyecto traduciendo los diseños en un código robusto, funcional, legible y fácil de mantener.  
-3. Tendrás que usar el [API de Bitso](https://bitso.com/api_info).
-4. Deberás de usar las siguientes tecnologías obligatoriamente: HTML5, CSS3/Less, JavaScript y React.
-Otras tecnologías están totalmente permitidas, siempre y cuando las justifiques (como pre-procesadores, linters, manejadores de paquetes, etc).
-5. Tendrás hacer contribuciónes regulares a tu código a partir del momento de que haces tu fork.
-6. Cuando tu código esté listo, haz un pull request al repositorio original.
-7. Incluye instrucciones claras de como correr tu proyecto en el README.
+### [React router](https://reacttraining.com/react-router/)
 
-## PROCESO Y CRITERIOS DE EVALUACIÓN
-En Bitso creemos en la igualdad de oportunidades, por lo que para eliminar posibles sesgos durante el proceso de
-selección y asegurar un proceso justo para todos los participantes, al momento de evaluar las propuestas eliminamos todos
-los identificadores personales y nos enfocamos 100% en evaluar el código y la solución con base en los
-siguientes criterios:
+Es un conjunto de componentes de react que proveen un entorno de navegación entre componentes mediante el [HISTORY API](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador), mejoran así la estructura del código y pudiendo reutilizar componentes entre rutas, usar URI PARAMS y QUERY PARAMS que hacen más potente nuestra aplicación.
+Lo use en el proyecto porque la interfaz muestra dropdowns que pretender navegar entre otros dashboard, con react router la estrucutra del proyecto se mejora a un código más entendible.
 
-1. Calidad del código: 30 puntos
-    *  Tu código es legible y funcional (Preferimos código en inglés y con la documentación apropiada para que cualquier miembro del equipo pueda entender fácilmente tu código).
-    *  Tu código sigue una buena guía de estilo. (Por favor no hagas entregas con código minimizado o comprimido).
-    *  Tu código debe ser fácil de mantener, extender, de cambiar, y de seguir siendo modificado.
-    *  Tu código está bien documentado.
+### [React redux](https://redux.js.org/basics/usage-with-react)
 
-2. Eficiencia y escalabilidad: 25 puntos
-    * Mediremos el uso de CPU y RAM de tu solución en el diferentes navegadores y sistemas operativos.
+Utilería que conecta react con redux. Redux es un gestor de estado global, debido a la naturaleza de react (hasta antes de context API) pasar datos de un componente padré a hijos y viceversa era demásiado complicado. Redux se hizo pensado para ser más génerico pero con react-redux podemos conectar nuestros componentes de react a un estado global reactivo, permitiendo así hacer componentes funcionales y manipular el estado de forma global; haciendo que la reactividad afecte a los componentes suscritos al `store`. Lo use en este proyecto debido a que se necesita conectar con un API, y gracias a redux thunk (middleware de redux) permite trabajar redux con funciones asíncronas. De esta forma se puede compartir un mismo store entre varios componentes que requieran los mismo datos.
 
-3. Fidelidad al diseño: 20 puntos
+### [React stockcharts](http://rrag.github.io/react-stockcharts/documentation.html)
 
-    * Nuestro equipo de diseño evaluará qué tan cerca está la solución de los diseños proporcionados.
+Libreria de react para gráficos hecha con D3, svgs y canvas, comportandose de manera más eficiente que otras herramientas de gráficos que usan diferentes elementos HTML para generar las formas. La use en el proyecto debido a la complejidad de las gráficas de velas y area que se solicitan en el diseño.
 
-4. Tiempo: 15 puntos
 
-    *  Recibirás 15 puntos si lo entregas antes del 25 de mayo. Empezando el 26 de mayo, perderás un punto
-      por cada día que pase. Por ejemplo, soluciones entregadas el 26 de mayo recibirán 14 puntos, soluciones
-      entregadas el 27 de mayo recibirán 13 puntos y así sucesivamente hasta el 9 de junio (después de esta
-      fecha no se reciben más proyectos).
+## Estructura del proyecto:
+La raíz del código se encuentra en la carpeta `src/` dentro del repositorio con las siguientes carpetas:
 
-5. Creatividad: 10 puntos
+1. `components`
+2. `constants`
+3. `lib`
+4. `router`
+5. `store`
+6. `views`
+7. `index.js`
 
-    *  Evaluaremos la experiencia y talento para encontrar diferentes formas de mejorar el diseño (PS:  es muy
-      importante que las justifiques).
+### components
 
-6. Extra-puntos: 5 puntos c/u
+Son componentes con funcionalidades básicas, el conjunto de componentes crean vistas (views) más complejas. Este directorio y sus archivos hacen el código más legible y reutilizable, el componente puede ser un archivo simple o una carpeta con un elemento index.js y un contenido más ámplio. Si tienes un componente que se puede reutilizar en varias vistas por favor metelo en esta carpeta.
+(PLUS) Adicional se encuentra dentro una carpeta de UI con componentes especificos para esta función como ejemplo:['dropdowns', 'tablas', 'gráficas'].
 
-    * La propuesta deberá ser responsiva y se ajusta a diferentes tamaños de pantalla, especialmente celulares.
-    * El código deberá incluir pruebas.
+### constants
 
-Recuerda seguir todas las instrucciones ya que evaluaremos minuciosamente todos los puntos.
+Este directorio tiene datos duros que no cambiaran durante la ejecución y que se reutilizan durante todo el proyecto, puedes ingresar los datos dentro del elemento `index.js` o crear un nuevo archivo/carpeta, lo dejo a tu criterio.
 
-Es momento que seas parte de Bitso y nos ayudes a transformar el mundo.
+### lib
 
-Disfruta el challenge.
+Contiene archivos/directorios con código que cumplen una función en especifico, como ejemplo la lib para la API de bitso, convertir cadenas a números con formato de moneta, etc. Puedes agregar archivos/directorios que consideres tienen una función en específico.
 
-[Consultar las bases generales](https://bitso.com/assets/pdfs/front_end_coding_challenge_2018/bases_generales.pdf).
+### router
 
-[Para participar Registrate en esta forma](https://bitsoex.typeform.com/to/F6Zrso).
+Aquí se encuentra la configuración de react-router, puedes agregar una configuración personalizada al archivo index.jsx, o si solo deseas agregar una nueva ruta puedes hacerlo desde el archivo routes.js. Para hacerlo solo importas el componente que deseas agregar al router y defines un nuevo elemento del arreglo basando en la estructura de muestra... ¡Y listo! ya puedes acceder a tu componente con la URL definida.
 
-### Notas sobre el API
+### store
 
-Para obtener la información de `open`, `close`, `high` y `low` por día en un periodo de tiempo, deberás consultar el siguiente URL:
-```https://bitso.com/trade/chartJSON/<book>/<timeframe>```
-dónde `book` es el libro a consultar y `timeframe` puede tomar estos valores:
-   * `1month`
-   * `3months`
-   * `1year`
+En este directorio se encuentra la configuración de redux, redux se divide en tres partes:
+1. El estado inicial
+2. Los reductores que cambian el estado incial mediante acciones
+3. Las acciones que detonan los reductores y le pasan parametros al reductor
 
-Por ejemplo: https://bitso.com/trade/chartJSON/btc_mxn/1month , regresa la información de el último mes del mercado BTC/MXN.
+Para agregar una nueva llave al objeto global solo tienes que agregar un nuevo archivo en la carpeta reducers, importarlo dentro del archivo index.js y agregarlo al objeto dentro de la `función combine reducers` en el mismo archivo. El `reducer` nuevo que creaste de tener tanto el estado inical como los reductores, solo debes seguir el patrón de los otros archivos.
+
+Si deseas agregar una nueva acción puedes crear un archivo dentro de la carpeta actions y ahí solo escribes funciones javascript que hagan el dispatch de la acción. [ref](https://redux.js.org/basics/actions)
+
+### views
+
+Este directorio contiene los componentes que son apuntados por las rutas del react router, y son conformados por componentes base.
+
+### index.js
+
+Este archivo monta la aplicación dentro del DOM en el div con id 'root'
+
+
+# Configuración del proyecto
+Requisitos mínimos:
+1. NPM 5.6
+2. GIT
+3. Deshabilitar la pólitica del CORS en el navegaro o instalar una extensión contra ello
+
+## Obtener el repositorio:
+
+$ git clone https://github.com/visomiDev/front-end-challenge && cd front-end-challenge
+
+## Instalar las dependencias
+
+$ npm install
+
+## Correr el projecto en modo desarrollo
+
+$ npm start
+
+Ahora puedes ir a tu navegaro y consultar la url: [proyecto](http://127.0.0.1:1234)
+
+## Empaquetar el código para producción
+
+$ npm run build
+
+Copiar el código dentro de la carpeta `dist` en donde desees publicarlo.

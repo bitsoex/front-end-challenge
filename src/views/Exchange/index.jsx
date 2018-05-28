@@ -10,6 +10,7 @@ import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
 import Dropdown from '../../components/ui/Dropdown'
 import CandlestickChart from '../../components/ui/CandlestickChart'
+import DeepChart from '../../components/ui/DeepChart'
 
 import candlestickIcon from '../../../Assets/Images/1x/icon_candles.png'
 import deepIcon from '../../../Assets/Images/1x/icon_deep.png'
@@ -37,34 +38,26 @@ class Home extends Component {
   }
 
   componentWillMount () {
-    this.setState({ loading: true })
-    Promise.all([
-      this.props.getLatestTrades(),
-      this.props.getOrderBook(),
-      this.props.getTickerTimeline()
-    ]).then(payload => {
-      this.setState({ loading: false })
-    }).catch(error => {
-      console.error(error)
-      this.setState({ loading: false, error: true })
-    })
+    this.getData(this.props.selectedBook.book)
   }
 
   componentWillUpdate (nextProps, nextState) {
     const update = nextProps.selectedBook.book !== this.props.selectedBook.book
-    if (update) {
-      this.setState({ loading: true })
-      Promise.all([
-        this.props.getLatestTrades(),
-        this.props.getOrderBook(),
-        this.props.getTickerTimeline(nextProps.selectedBook.book)
-      ]).then(payload => {
-        this.setState({ loading: false })
-      }).catch(error => {
-        console.error(error)
-        this.setState({ loading: false })
-      })
-    }
+    if (update) this.getData(nextProps.selectedBook.book)
+  }
+
+  getData (book) {
+    this.setState({ loading: true })
+    Promise.all([
+      this.props.getLatestTrades(book),
+      this.props.getOrderBook(book),
+      this.props.getTickerTimeline(book)
+    ]).then(payload => {
+      this.setState({ loading: false })
+    }).catch(error => {
+      console.error(error)
+      this.setState({ loading: false })
+    })
   }
 
   componentDidMount () {
@@ -314,9 +307,15 @@ class Home extends Component {
               </div>
               <div className='chart'>
                 {
-                  (this.state.chart === 'candlestick') && (
+                  (this.state.chart === 'candlestick') ? (
                     <CandlestickChart
                       data={this.props.tickerTimeline}
+                      currency={currency}
+                      coin={type}
+                    />
+                  ) : (
+                    <DeepChart
+                      data={this.props.orderBook}
                       currency={currency}
                       coin={type}
                     />

@@ -61,7 +61,9 @@ const tooltipContent = (type, currency) => ({ currentItem, xAccessor }) => ({
 
 class CandleStickChart extends Component {
   static defaultProps = {
-    type: 'hybrid'
+    type: 'hybrid',
+    width: DEFAULT_WIDTH,
+    height: DEFAULT_HEIGHT
   }
 
   static propTypes = {
@@ -75,8 +77,8 @@ class CandleStickChart extends Component {
     let {
       type,
       data: initialData,
-      width = DEFAULT_WIDTH,
-      height = DEFAULT_HEIGHT,
+      width,
+      height,
       ratio,
       coin,
       currency
@@ -84,8 +86,6 @@ class CandleStickChart extends Component {
 
     initialData = initialData.map(parseData(parseDate))
 
-    // remove some of the data to be able to see
-    // the tooltip resize
     const margin = { left: 0, right: 40, top: 20, bottom: 0 }
 
     const gridHeight = 250 - margin.top - margin.bottom
@@ -111,7 +111,7 @@ class CandleStickChart extends Component {
         margin={margin}
         ratio={ratio}
         type={type}
-        seriesName='MSFT'
+        seriesName='timeline'
         data={data}
         xScale={xScale}
         xAccessor={xAccessor}

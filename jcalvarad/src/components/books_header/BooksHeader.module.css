@@ -5,15 +5,29 @@
   background-color: var(--color-primary-header);
 }
 
-.inputinputElement {
-  color: var(--palette-green-600);
-}
-
-.inputInput {
-  padding: 0px;
+.books {
+  display: inline-block;
+  margin-right: 20px;
 }
 
 .dropdown {
   max-width: 100px;
   margin-left: 15px;
+}
+
+.sub {
+  margin: 0px 7px;
+  color: var(--color-text-dark);
+}
+
+.number {
+  margin-right: 15px;
+  color: var(--color-text);
+}
+.inputinputElement {
+  color: var(--palette-green-600);
+}
+
+.inputInput {
+  padding: 5px;
 }

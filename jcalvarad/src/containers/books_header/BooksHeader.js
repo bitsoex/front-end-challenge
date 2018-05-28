@@ -24,7 +24,7 @@ class BooksHeaderContainer extends Component {
     const { BooksStore } = this.props;
     const { setBook, booksList, bookInfo } = BooksStore;
 
-    return <BooksHeader {...toJS(BooksStore)} setBook={setBook} booksList={booksList} bookInfo={bookInfo} />;
+    return <BooksHeader {...toJS(BooksStore)} setBook={toJS(setBook)} booksList={toJS(booksList)} bookInfo={toJS(bookInfo)} />;
   }
 }
 

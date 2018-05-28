@@ -8,11 +8,13 @@ class BooksHeader extends Component {
     console.log("books", this.props.bookInfo);
     return (
       <div className={theme.header}>
-        <Dropdown auto className={theme.inputLabel} theme={theme} onChange={setBook} source={booksList} value={book} />
-        <div className={theme.sub}>Max</div>
-        <div className={theme.number}>{this.props.bookInfo.maximum_amount}</div>
-        <div className={theme.sub}>Min</div>
-        <div className={theme.number}>{this.props.bookInfo.minimum_amount}</div>
+        <span className={theme.books}>
+          <Dropdown auto className={theme.inputLabel} theme={theme} onChange={setBook} source={booksList} value={book} />
+        </span>
+        <span className={theme.sub}>Max.</span>
+        <span className={theme.number}>{this.props.bookInfo.maximum_price}</span>
+        <span className={theme.sub}>Min.</span>
+        <span className={theme.number}>{this.props.bookInfo.minimum_price}</span>
       </div>
     );
   }

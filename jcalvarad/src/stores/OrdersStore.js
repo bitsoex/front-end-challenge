@@ -5,6 +5,8 @@ export class OrdersStore {
     this.appStore = appStore;
   }
 
+  maxLength = 6;
+
   @observable buy = [];
 
   @observable sell = [];
@@ -25,8 +27,8 @@ export class OrdersStore {
         amount: wspayload.a ? wspayload.a : "-",
         value: wspayload.v ? wspayload.v : "-"
       });
-      if (arr.length >= 15) {
-        arr.pop();
+      if (arr.length >= this.maxLength) {
+        arr.splice(this.maxLength);
       }
       console.info(data);
     }

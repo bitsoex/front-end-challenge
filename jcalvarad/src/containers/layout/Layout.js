@@ -9,10 +9,14 @@ class Layout extends Component {
     return (
       <div className={styles.layout}>
         <AppHeader />
-        <div className={styles.container}>
+        <div>
           <BooksHeader />
-          <div className={styles["main-view"]}>{this.props.children}</div>
-          <MarketsDrawer />
+        </div>
+        <div className={styles.container}>
+          <div>
+            <div className={styles["main-view"]}>{this.props.children}</div>
+            <MarketsDrawer />
+          </div>
         </div>
       </div>
     );

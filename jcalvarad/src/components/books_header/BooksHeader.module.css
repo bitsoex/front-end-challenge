@@ -9,6 +9,10 @@
   color: var(--palette-green-600);
 }
 
+.inputInput {
+  padding: 0px;
+}
+
 .dropdown {
   max-width: 100px;
   margin-left: 15px;

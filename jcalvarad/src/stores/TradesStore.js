@@ -4,7 +4,7 @@ export class TradesStore {
   constructor(appStore) {
     this.appStore = appStore;
   }
-
+  maxLength = 15;
   @observable trades = [];
 
   @action
@@ -21,6 +21,10 @@ export class TradesStore {
         marker: t.marker_side === "buy" ? 0 : 1
       };
     });
+
+    if (this.trades.length >= this.maxLength) {
+      this.trades.splice(this.maxLength);
+    }
   };
 
   @action
@@ -40,8 +44,8 @@ export class TradesStore {
         amount: wspayload.a,
         marker: wspayload.t
       });
-      if (this.trades.length >= 30) {
-        this.trades.pop();
+      if (this.trades.length >= this.maxLength) {
+        this.trades.splice(this.maxLength);
       }
       console.info(data);
     }

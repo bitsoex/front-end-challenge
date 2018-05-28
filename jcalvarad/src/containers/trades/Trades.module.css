@@ -15,3 +15,9 @@
 .table {
   background-color: var(--color-primary-dark);
 }
+
+@media only screen and (min-width: 600px) {
+  .trades {
+    width: 100%;
+  }
+}

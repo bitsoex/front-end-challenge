@@ -45,7 +45,7 @@ class TradesContainer extends Component {
     const { TradesStore } = this.props;
 
     return (
-      <div>
+      <div className={theme.trades}>
         <Trades trades={toJS(TradesStore.trades)} theme={theme} />
       </div>
     );

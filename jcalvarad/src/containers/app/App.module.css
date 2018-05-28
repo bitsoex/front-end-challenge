@@ -3,23 +3,36 @@
 }
 .trades {
   grid-area: trades;
+  display: flex;
 }
 .chart {
   grid-area: chart;
+  display: flex;
 }
 .orders {
   grid-area: orders;
+  display: flex;
 }
 
 .grid-container {
   display: grid;
   grid-template-areas:
-    "trades chart chart chart chart chart chart"
-    "trades orders orders orders orders orders orders";
-  grid-gap: 10px;
-  padding: 10px;
+    "trades"
+    "chart"
+    "orders";
 }
 
 .layout-container {
   position: relative;
+}
+
+@media only screen and (min-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      "trades chart chart chart chart chart chart"
+      "trades orders orders orders orders orders orders";
+    grid-gap: 10px;
+    padding: 10px;
+  }
 }

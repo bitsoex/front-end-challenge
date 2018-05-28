@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import { toJS, autorun } from "mobx";
 import axios from "axios";
 import CandleChart from "../../components/candle_chart/CandleChart";
+import theme from "./Charts.module.css";
 
 @inject("CandlesStore")
 @inject("BooksStore")
@@ -26,7 +27,11 @@ class ChartsContainer extends Component {
   render() {
     const { CandlesStore } = this.props;
 
-    return <CandleChart candles={toJS(CandlesStore.candles)} volume={toJS(CandlesStore.volume)} />;
+    return (
+      <div className={theme.charts}>
+        <CandleChart candles={toJS(CandlesStore.candles)} volume={toJS(CandlesStore.volume)} />
+      </div>
+    );
   }
 }
 

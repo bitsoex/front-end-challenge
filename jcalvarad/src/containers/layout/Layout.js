@@ -9,13 +9,15 @@ class Layout extends Component {
     return (
       <div className={styles.layout}>
         <AppHeader />
-        <div>
+        <div className={styles["books-header"]}>
           <BooksHeader />
         </div>
         <div className={styles.container}>
           <div>
             <div className={styles["main-view"]}>{this.props.children}</div>
-            <MarketsDrawer />
+            <div className={styles.drawer}>
+              <MarketsDrawer />
+            </div>
           </div>
         </div>
       </div>

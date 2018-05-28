@@ -25,7 +25,17 @@
 
 .grid-container {
   display: grid;
-  grid-template-areas: "buy sell";
-  grid-gap: 5px;
-  padding: 5px;
+  grid-template-areas:
+    "buy"
+    "sell";
+}
+
+@media only screen and (min-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-areas: "buy sell";
+    grid-gap: 5px;
+    padding: 5px;
+    width: 100%;
+  }
 }

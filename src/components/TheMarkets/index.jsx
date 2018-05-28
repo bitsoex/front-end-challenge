@@ -34,6 +34,12 @@ class TheMarkets extends Component {
 
   render () {
     const { marketsSidebar, className, toggleMarketsAction, markets } = this.props
+    const splittedMarkets = markets.reduce((reducer, { book, data }) => {
+      const buyMarket = data.filter(trade => trade.makerSide === 'buy')
+      const sellMarket = data.filter(trade => trade.makerSide === 'sell')
+      return [ ...reducer, { book, data: sellMarket }, { book, data: buyMarket } ]
+    }, [])
+
     return (
       <div className={classnames('markets', className, { active: marketsSidebar })}>
         <div className='toggle-martkets is-hidden-mobile' onClick={toggleMarkets.bind(null, toggleMarketsAction)}>
@@ -45,7 +51,7 @@ class TheMarkets extends Component {
         <div className='content'>
           <div className='header'>mercados 24hrs</div>
           <div className={classnames('markets-container', { loading: this.state.loading && marketsSidebar })}>
-            { !this.state.loading && markets.map(market => <MarketChart key={market.book.book} {...market} />) }
+            { !this.state.loading && splittedMarkets.map((market, index) => <MarketChart key={market.book.book + index} {...market} />) }
           </div>
         </div>
       </div>

@@ -314,7 +314,11 @@ class Home extends Component {
               <div className='chart'>
                 {
                   (this.state.chart === 'candlestick') && (
-                    <CandlestickChart data={this.props.tickerTimeline} currency={currency} coin={type} />
+                    <CandlestickChart
+                      data={this.props.tickerTimeline}
+                      currency={currency}
+                      coin={type}
+                    />
                   )
                 }
               </div>

@@ -16,6 +16,8 @@ import { HoverTooltip } from 'react-stockcharts/lib/tooltip'
 import { fitWidth } from 'react-stockcharts/lib/helper'
 import { last } from 'react-stockcharts/lib/utils'
 
+import { floatStringToLocaleString } from '../../lib/utils'
+
 const dateFormat = timeFormat('%Y-%m-%d')
 const parseDate = timeParse('%Y-%m-%d')
 const numberFormat = format('.2f')
@@ -31,24 +33,28 @@ const parseData = (parse) => (d) => ({
   volume: +d.volume
 })
 
-const tooltipContent = () => ({ currentItem, xAccessor }) => ({
+const tooltipContent = (type, currency) => ({ currentItem, xAccessor }) => ({
   x: dateFormat(xAccessor(currentItem)),
   y: [
     {
       label: 'open',
-      value: currentItem.open && numberFormat(currentItem.open)
+      value: currentItem.open && `${floatStringToLocaleString(currentItem.open, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
     },
     {
       label: 'high',
-      value: currentItem.high && numberFormat(currentItem.high)
+      value: currentItem.high && `${floatStringToLocaleString(currentItem.high, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
     },
     {
       label: 'low',
-      value: currentItem.low && numberFormat(currentItem.low)
+      value: currentItem.low && `${floatStringToLocaleString(currentItem.low, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
     },
     {
       label: 'close',
-      value: currentItem.close && numberFormat(currentItem.close)
+      value: currentItem.close && `${floatStringToLocaleString(currentItem.close, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
+    },
+    {
+      label: 'vol',
+      value: currentItem.close && `${floatStringToLocaleString(currentItem.close, { minimunFractionDigits: 2 })} ${type.toUpperCase()}`
     }
   ]
 })
@@ -71,7 +77,9 @@ class CandleStickChart extends Component {
       data: initialData,
       width = DEFAULT_WIDTH,
       height = DEFAULT_HEIGHT,
-      ratio
+      ratio,
+      coin,
+      currency
     } = this.props
 
     initialData = initialData.map(parseData(parseDate))
@@ -80,7 +88,7 @@ class CandleStickChart extends Component {
     // the tooltip resize
     const margin = { left: 0, right: 40, top: 20, bottom: 0 }
 
-    const gridHeight = 230 - margin.top - margin.bottom
+    const gridHeight = 250 - margin.top - margin.bottom
     const gridWidth = width - margin.left - margin.right
 
     const showGrid = true
@@ -109,6 +117,7 @@ class CandleStickChart extends Component {
         xAccessor={xAccessor}
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
+        clamp
       >
         <Chart
           id={1}
@@ -127,8 +136,7 @@ class CandleStickChart extends Component {
           <YAxis
             axisAt='right'
             orient='right'
-            ticks={4}
-            tickFormat={format('.2s')}
+            tickFormat={numberFormat}
             {...yGrid}
             stroke='#191e23'
             tickStroke='rgba(56, 69, 85, .6)'
@@ -141,8 +149,12 @@ class CandleStickChart extends Component {
           />
 
           <HoverTooltip
-            tooltipContent={tooltipContent()}
+            tooltipContent={tooltipContent(coin, currency)}
             fontSize={15}
+            fill='rgba(56, 69, 85, .7)'
+            stroke='#4E5863'
+            fontFill='#B0BAC1'
+            bgFill='rgba(0, 0, 0, .2)'
           />
         </Chart>
         <Chart
@@ -153,7 +165,7 @@ class CandleStickChart extends Component {
         >
           <BarSeries
             yAccessor={d => d.volume}
-            fill='rgba(56, 69, 85, 40%)'
+            fill='rgba(56, 69, 85, .4)'
           />
         </Chart>
       </ChartCanvas>

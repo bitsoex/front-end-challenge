@@ -55,10 +55,15 @@
   .markets {
     height: 100%;
     position: absolute;
+    z-index: 100;
   }
 
   .markets > .content {
     animation: hideMarketsSidebar .5s ease forwards;
+  }
+
+  .markets:not(.active) > .content * {
+    display: none;
   }
 
   .markets.active > .content {

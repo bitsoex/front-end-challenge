@@ -14,10 +14,10 @@
 
 .charts > .options {
   display: flex;
+  padding-bottom: 10px;
 }
 
 .charts > .options > .right-options {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -68,14 +68,7 @@
   background: var(--medium-navy);
 }
 
-.charts > .options > .option {
-  margin-left: 36px;
-  display: flex;
-  align-items: center;
-}
-
 .charts > .options > .option > .dropdown {
-  margin-left: 8px;
   font-size: .93rem;
 }
 
@@ -241,6 +234,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .charts > .options {
+    justify-content: space-between;
+  }
+
   .table.last-trades > .container > table > tbody > tr:nth-child(n+6),
   .table.bid > .container > table > tbody > tr:nth-child(n+6),
   .table.ask > .container > table > tbody > tr:nth-child(n+6) {
@@ -256,6 +253,20 @@
 
   .middle-section {
     padding-right: 32px;
+  }
+
+  .charts > .options > .right-options {
+    flex: 1;
+  }
+
+  .charts > .options > .option {
+    margin-left: 36px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .charts > .options > .option > .dropdown {
+    margin-left: 8px;
   }
 
   .bid,

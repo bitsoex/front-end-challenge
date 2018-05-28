@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import moment from 'moment-timezone'
 import range from 'lodash/range'
+import classnames from 'classnames'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
 import Dropdown from '../../components/ui/Dropdown'
+import CandlestickChart from '../../components/ui/CandlestickChart'
 
 import candlestickIcon from '../../../Assets/Images/1x/icon_candles.png'
 import deepIcon from '../../../Assets/Images/1x/icon_deep.png'
@@ -43,7 +45,7 @@ class Home extends Component {
       this.setState({ loading: false })
     }).catch(error => {
       console.error(error)
-      this.setState({ loading: false })
+      this.setState({ loading: false, error: true })
     })
   }
 
@@ -243,6 +245,18 @@ class Home extends Component {
   ]
 
   render () {
+    if (this.state.loading || this.state.error) {
+      return (
+        <div className='page'>
+          <TheHeader page={this.props.page} />
+          <main className={classnames('exchange', { loading: this.state.loading })}>
+            <h2>Ocurrio un error al tratar de obtener la información del servidor, vuelve a intentarlo en unos momentos</h2>
+            <TheMarkets />
+          </main>
+        </div>
+      )
+    }
+
     const bidHeader = this.bidHeader()
     const askHeader = this.askHeader()
     const lastTradesColumns = this.lastTradesColumns()
@@ -251,6 +265,7 @@ class Home extends Component {
 
     const chartSelectorOptions = this.chartOptions.filter(option => option.value !== this.state.chart)
     const chartSelectorText = this.chartOptions.find(option => option.value === this.state.chart).label
+    const [ type, currency ] = this.props.selectedBook.book.split('_')
 
     return (
       <div className='page'>
@@ -264,7 +279,7 @@ class Home extends Component {
             loading={this.state.loading}
           />
           <div className='middle-section'>
-            <div className='charts'>
+            <div className='charts is-hidden-mobile'>
               <div className='options'>
                 <Dropdown
                   options={chartSelectorOptions}
@@ -272,31 +287,37 @@ class Home extends Component {
                   onChange={this.changeChart.bind(this)}
                   className='charts-options'
                 />
-                <div className='option'>
-                  {/* @TODO useless by the moment */}
-                  Periodo
-                  <Dropdown
-                    options={this.periodOptions}
-                    text='3d'
-                  />
-                </div>
-                <div className='option'>
-                  {/* @TODO useless by the moment */}
-                  Intervalo
-                  <Dropdown
-                    options={this.intervalOptions}
-                    text='1h'
-                  />
-                </div>
-                <div className='right-options'>
-                  {/* @TODO useless by the moment */}
-                  <div className='zoom'>
-                    <i className='material-icons'>remove</i>
-                    <i className='material-icons'>add</i>
+                {/* @TODO commented because is useless by the moment */}
+                {/*
+                  <div className='option'>
+                    Periodo
+                    <Dropdown
+                      options={this.periodOptions}
+                      text='3d'
+                    />
                   </div>
-                </div>
+                  <div className='option'>
+                    Intervalo
+                    <Dropdown
+                      options={this.intervalOptions}
+                      text='1h'
+                    />
+                  </div>
+                  <div className='right-options'>
+                    <div className='zoom'>
+                      <i className='material-icons'>remove</i>
+                      <i className='material-icons'>add</i>
+                    </div>
+                  </div>
+                */}
               </div>
-              <div className='chart' />
+              <div className='chart'>
+                {
+                  (this.state.chart === 'candlestick') && (
+                    <CandlestickChart data={this.props.tickerTimeline} currency={currency} coin={type} />
+                  )
+                }
+              </div>
             </div>
             <div className='positions'>
               <Table
@@ -325,6 +346,7 @@ class Home extends Component {
 const mapStateToProps = ({ ticker, trades, orderBook }) => ({
   latestTrades: trades.latest,
   selectedBook: ticker.current,
+  tickerTimeline: ticker.timeline,
   orderBook
 })
 

@@ -28,7 +28,7 @@ class TheMarkets extends Component {
       this.setState({ loading: false })
     }).catch(error => {
       console.error(error)
-      this.setState({ loading: false })
+      this.setState({ loading: false, error: true })
     })
   }
 
@@ -51,7 +51,7 @@ class TheMarkets extends Component {
         <div className='content'>
           <div className='header'>mercados 24hrs</div>
           <div className={classnames('markets-container', { loading: this.state.loading && marketsSidebar })}>
-            { !this.state.loading && splittedMarkets.map((market, index) => <MarketChart key={market.book.book + index} {...market} />) }
+            { (!this.state.loading && !this.state.error) && splittedMarkets.map((market, index) => <MarketChart key={market.book.book + index} {...market} />) }
           </div>
         </div>
       </div>

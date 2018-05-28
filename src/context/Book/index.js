@@ -1,37 +1,47 @@
 import React, { Component, createContext } from "react";
 // thanks to https://twitter.com/aweary/status/995496327931822080
 import memoize from "memoize-one";
-import { availableBooks } from "../../api";
+import { fetchAvailableBooks, fetchBookDetails } from "../../api";
 
 export const BookContext = createContext();
 
 export const BookConsumer = BookContext.Consumer;
 
 export class BookProvider extends Component {
-  state = { book: null };
+  state = {
+    book: null,
+    bookDetails: null
+  };
 
   availableBooks = [];
 
   async componentDidMount() {
-    const books = await availableBooks();
-    this.availableBooks = books;
-    this.setState({ book: books[0] });
+    const books = await fetchAvailableBooks();
+    const book = books[0];
+    const bookDetails = await fetchBookDetails(book.book);
+
+    this.availableBooks = books; // this should not change often so no need to put it in the state
+    this.setState({ book: books[0], bookDetails });
   }
 
-  changeBook = book => this.setState({ book });
+  changeBook = async book => {
+    const bookDetails = await fetchBookDetails(book.book);
+    this.setState({ book, bookDetails });
+  };
 
-  getContext = memoize(book => ({
+  getContext = memoize((book, bookDetails) => ({
     book,
+    bookDetails,
     changeBook: this.changeBook,
     availableBooks: this.availableBooks
   }));
 
   render() {
-    const { book } = this.state;
+    const { book, bookDetails } = this.state;
 
     if (!book) return null;
 
-    const context = this.getContext(book);
+    const context = this.getContext(book, bookDetails);
 
     return (
       <BookContext.Provider value={context}>

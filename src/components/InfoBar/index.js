@@ -1,5 +1,5 @@
 import React from "react";
-import { css, cx } from "emotion";
+import { css, cx, keyframes } from "emotion";
 import { ThemeConsumer } from "../../context/Theme";
 import { BookConsumer } from "../../context/Book";
 import DropDown from "../DropDown";
@@ -24,6 +24,19 @@ const styles = {
   itemPrefix: css`
     font-weight: 100;
     color: ${colors.sidebar.text};
+  `,
+  slideLeft: keyframes`
+    from {
+      transform: translateX(50%);
+      opacity: 0;
+    }
+  `
+};
+
+const animations = {
+  slideLeft: css`
+    animation: ${styles.slideLeft} 0.3s both;
+    animation-delay: calc(var(--i) * 0.1s);
   `
 };
 
@@ -31,20 +44,13 @@ export default () => (
   <ThemeConsumer>
     {({ theme }) => (
       <BookConsumer>
-        {({ availableBooks, book, changeBook }) => {
-          const {
-            minimum_price,
-            maximum_price,
-            minimum_amount,
-            maximum_amount
-          } = book;
-          const currency1 = book.book.split("_")[0].toUpperCase();
-          const currency2 = book.book.split("_")[1].toUpperCase();
+        {({ availableBooks, book, bookDetails, changeBook }) => {
+          const [from, to] = book.book.toUpperCase().split("_");
 
-          // const high = +book.high;
-          // const low = +book.low;
-          // const variation = high - low;
-          // const variationPercentage = variation / low * 100; // Formula to get variation?
+          const high = +bookDetails.high;
+          const low = +bookDetails.low;
+          const variation = high - low;
+          const variationPercentage = variation / low * 100; // Formula to get variation?
 
           return (
             <div style={theme} className={styles.container}>
@@ -68,24 +74,37 @@ export default () => (
                 }}
               />
 
-              <div className={styles.item}>
+              <div
+                style={{ "--i": 1 }}
+                className={`${styles.item} ${animations.slideLeft}`}
+              >
                 <span className={styles.itemPrefix}>Volúmen 24hrs.</span>{" "}
-                {(+maximum_amount + +minimum_amount) / 2} {currency1}
+                {bookDetails.volume} {from}
               </div>
 
-              <div className={styles.item}>
-                <span className={styles.itemPrefix}>Max.</span> {maximum_price}{" "}
-                {currency2}
+              <div
+                style={{ "--i": 2 }}
+                className={`${styles.item} ${animations.slideLeft}`}
+              >
+                <span className={styles.itemPrefix}>Max.</span>{" "}
+                {high.toLocaleString("es-MX", { minimumFractionDigits: 2 })}{" "}
+                {to}
               </div>
 
-              <div className={styles.item}>
-                <span className={styles.itemPrefix}>Min.</span> {minimum_price}{" "}
-                {currency2}
+              <div
+                style={{ "--i": 3 }}
+                className={`${styles.item} ${animations.slideLeft}`}
+              >
+                <span className={styles.itemPrefix}>Min.</span>{" "}
+                {low.toLocaleString("es-MX", { minimumFractionDigits: 2 })} {to}
               </div>
 
-              <div className={styles.item}>
-                <span className={styles.itemPrefix}>Variacion.</span>{" "}
-                {currency2} 1.4%
+              <div
+                style={{ "--i": 4 }}
+                className={`${styles.item} ${animations.slideLeft}`}
+              >
+                <span className={styles.itemPrefix}>Variacion.</span> {to}{" "}
+                {variationPercentage.toFixed(2)}%
               </div>
             </div>
           );

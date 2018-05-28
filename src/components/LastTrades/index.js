@@ -4,7 +4,6 @@ import { css, keyframes } from "emotion";
 import dayjs from "dayjs";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
-import { getLastTrades } from "../../api";
 import Amount from "../Amount";
 
 const styles = {
@@ -37,48 +36,16 @@ const animations = {
 
 export default class LastTrades extends Component {
   static propTypes = {
-    book: PropTypes.string.isRequired
+    book: PropTypes.string.isRequired,
+    lastTrades: PropTypes.array.isRequired
   };
 
-  state = { lastTrades: [] };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    const { book } = this.props;
-    const { lastTrades } = this.state;
-    console.log(
-      "shouldComponentUpdate",
-      book !== nextProps.book || lastTrades.length === 0
-    );
-    return (
-      book !== nextProps.book ||
-      lastTrades.length === 0 ||
-      lastTrades[0].book !== nextState.lastTrades[0].book
-    );
-  }
-
-  componentDidMount() {
-    const { book } = this.props;
-    this.fetchTrades(book);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { book } = this.props;
-    const { lastTrades } = this.state;
-    if (book !== prevProps.book || lastTrades.length === 0) {
-      this.fetchTrades(book);
-    }
-  }
-
-  fetchTrades = async book => {
-    const lastTrades = await getLastTrades({ book });
-    this.setState({ lastTrades });
-  };
+  static defaultProps = { lastTrades: [] };
 
   formatDate = date => dayjs(date).format("HH:mm:ss");
 
   render() {
-    const { book } = this.props;
-    const { lastTrades } = this.state;
+    const { book, lastTrades } = this.props;
     const currency1 = book.split("_")[0].toUpperCase();
     const currency2 = book.split("_")[1].toUpperCase();
     return (
@@ -138,7 +105,11 @@ export default class LastTrades extends Component {
                   `}
                 >
                   <div>{this.formatDate(trade.created_at)}</div>{" "}
-                  <div className="price">{trade.price}</div>
+                  <div className="price">
+                    {(+trade.price).toLocaleString("es-MX", {
+                      minimumFractionDigits: 2
+                    })}
+                  </div>
                   <div className="amount">
                     <Amount amount={trade.amount} />
                   </div>

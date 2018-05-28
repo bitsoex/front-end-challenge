@@ -1,4 +1,4 @@
-import { availableBooks, ticker } from "../";
+import { availableBooks, fetchBookDetails } from "../";
 
 /**
  * I made these no to test the endpoints but to ensure I was getting the right info
@@ -14,7 +14,7 @@ describe("verify correct usage of bitso api", () => {
   });
 
   test("ticker", async () => {
-    const response = await ticker("btc_mxn");
+    const response = await fetchBookDetails("btc_mxn");
     console.log(response);
 
     expect(response.success).toBe(true);

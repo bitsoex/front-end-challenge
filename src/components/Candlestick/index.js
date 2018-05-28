@@ -5,14 +5,13 @@ import {
   YAxis,
   VerticalGridLines,
   HorizontalGridLines,
-  LineSeries,
   FlexibleXYPlot
 } from "react-vis";
 import { format } from "d3-format";
 import { css } from "emotion";
 import dayjs from "dayjs";
 import { colors } from "../../themes";
-import Candlestick from "./Candlestick";
+import Chart from "./Candlestick";
 
 const styles = {
   candlestick: css`
@@ -28,7 +27,7 @@ const styles = {
     }
   `
 };
-export default class CandlestickExample extends Component {
+export default class Candlestick extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(
       PropTypes.shape({
@@ -41,8 +40,11 @@ export default class CandlestickExample extends Component {
         color: PropTypes.color,
         opacity: PropTypes.number
       })
-    ).isRequired
+    ).isRequired,
+    yDomain: PropTypes.arrayOf(PropTypes.number)
   };
+
+  static defaultProps = { yDomain: [] };
 
   tickFormatY = v => format("~s")(v);
 
@@ -55,13 +57,12 @@ export default class CandlestickExample extends Component {
       const datePlus12Hours = dayjs(date).add(12, "hours");
       return [date.valueOf(), datePlus12Hours.valueOf()];
     });
-    console.log(flatten(result));
     return flatten(result);
   };
 
   render() {
-    const { data } = this.props;
-    console.log("props data", data);
+    const { data, yDomain } = this.props;
+    console.log("yDomain", yDomain);
     return (
       <div className={styles.candlestick}>
         <div className={styles.chart}>
@@ -69,7 +70,7 @@ export default class CandlestickExample extends Component {
             className={styles.xyPlot}
             animation
             height={500}
-            yDomain={[150000, 190000]}
+            yDomain={yDomain}
             xType="time"
           >
             <VerticalGridLines
@@ -88,9 +89,7 @@ export default class CandlestickExample extends Component {
             <XAxis orientation="top" tickValues={this.tickValuesX()} hideLine />
             <YAxis orientation="right" tickFormat={this.tickFormatY} hideLine />
 
-            {/* <LineSeries color="#12939A" data={data} /> */}
-
-            <Candlestick
+            <Chart
               colorType="literal"
               opacityType="literal"
               stroke="#79C7E3"

@@ -40,7 +40,8 @@ class Home extends Component {
     this.setState({ loading: true })
     Promise.all([
       this.props.getLatestTrades(),
-      this.props.getOrderBook()
+      this.props.getOrderBook(),
+      this.props.getTickerTimeline()
     ]).then(payload => {
       this.setState({ loading: false })
     }).catch(error => {
@@ -56,7 +57,7 @@ class Home extends Component {
       Promise.all([
         this.props.getLatestTrades(),
         this.props.getOrderBook(),
-        this.props.getTickerTimeline()
+        this.props.getTickerTimeline(nextProps.selectedBook.book)
       ]).then(payload => {
         this.setState({ loading: false })
       }).catch(error => {
@@ -279,7 +280,7 @@ class Home extends Component {
             loading={this.state.loading}
           />
           <div className='middle-section'>
-            <div className='charts is-hidden-mobile'>
+            <div className='charts'>
               <div className='options'>
                 <Dropdown
                   options={chartSelectorOptions}

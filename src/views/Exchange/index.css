@@ -8,10 +8,6 @@
   flex-direction: column;
 }
 
-.middle-section > .charts {
-  padding: 15px 15px 0 15px;
-}
-
 .charts > .options {
   display: flex;
   padding-bottom: 10px;
@@ -239,6 +235,10 @@
     justify-content: space-between;
   }
 
+  .middle-section > .charts {
+    padding: 15px;
+  }
+
   .table.last-trades > .container > table > tbody > tr:nth-child(n+6),
   .table.bid > .container > table > tbody > tr:nth-child(n+6),
   .table.ask > .container > table > tbody > tr:nth-child(n+6) {
@@ -256,6 +256,10 @@
     padding-right: 32px;
   }
 
+  .middle-section > .charts {
+    padding: 15px 15px 0 15px;
+  }
+  
   .charts > .options > .right-options {
     flex: 1;
   }

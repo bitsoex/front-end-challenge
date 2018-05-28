@@ -4,8 +4,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: @navy-headers;
-  width: 100%;
+  left: 0;
+  background-color: @regular-navy;
   height: 64px;
   /* Flex Layout Options */
   display: flex;
@@ -14,4 +14,147 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+  color: @light-text;
+  font-size: 1em;
+}
+
+.navbar-logo {
+  width: 90px;
+  padding: 10px;
+  padding-left: 30px; 
+  padding-right: 30px;
+}
+
+// Left navbar items
+.navbar-left {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+
+  h4 {
+    border-left: solid 1.4px @light-text;
+    padding-left: 30px;
+  }
+}
+
+// Right navbar items
+.navbar-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  cursor: pointer;
+
+  .navbar-item {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .dropdown-icon {
+    padding-left: 5px;
+    height: 0.6rem;
+    width: 0.6rem;
+  }
+}
+
+.navbar-conversion-rate {
+  padding: 5px 20px 5px 0;
+  border-right: solid 1.4px @light-text;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-user-img {
+  width: 25px;
+  height: 25px;
+  padding: 20px;
+  background-color: @dark-text;
+  border-radius: 50%;
+  border: solid 1px @dark-text;
+  box-shadow: inset 0px 0px 0px 2px @regular-navy;
+  box-sizing: border-box;
+}
+
+.navbar-user-text {
+  padding: 15px;
+}
+
+.navbar-switch {
+  height: 17px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// slider
+.navbar-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: @dark-navy;
+  border-radius: 40px;
+}
+
+// moon-sun symbol
+.navbar-slider:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: @dark-text;
+  -webkit-mask-image: url(../../../assets/moon.svg);
+  mask-image: url(../../../assets/moon.svg);
+  mask-size: 10px;
+  mask-repeat: no-repeat;
+  mask-position: 5px center;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+// circle
+.navbar-slider:after {
+  content: "";
+  display: block;
+  height: 15px;
+  width: 15px;
+  position: relative;
+  top: 1px;
+  left: 20px;
+  background-color: @dark-text;
+  border-radius: 50%;
+  border: solid 1.4px @dark-text;
+  box-shadow: inset 0px 0px 0px 1.1px @dark-navy;
+  box-sizing: border-box;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.navbar-switch input {display: none;}
+
+.navbar-switch input:checked {
+  & + .navbar-slider:before {
+    -webkit-mask-image: url(../../../assets/sun.svg);
+    mask-image: url(../../../assets/sun.svg);
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+  & + .navbar-slider:after {
+    -webkit-transform: translateX(-19px);
+    -ms-transform: translateX(-19px);
+    transform: translateX(-19px);
+  }
 }

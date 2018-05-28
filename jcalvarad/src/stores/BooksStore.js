@@ -35,6 +35,13 @@ export class BooksStore {
     });
   }
 
+  @computed
+  get bookInfo() {
+    return this.availableBooks.find(b => {
+      return b.book === this.book;
+    });
+  }
+
   @action
   setBook = book => {
     this.book = book;

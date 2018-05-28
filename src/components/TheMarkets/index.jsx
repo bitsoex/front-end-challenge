@@ -51,7 +51,11 @@ class TheMarkets extends Component {
         <div className='content'>
           <div className='header'>mercados 24hrs</div>
           <div className={classnames('markets-container', { loading: this.state.loading && marketsSidebar })}>
-            { (!this.state.loading && !this.state.error) && splittedMarkets.map((market, index) => <MarketChart key={market.book.book + index} {...market} />) }
+            { (!this.state.loading && !this.state.error) ? splittedMarkets.map((market, index) => (
+              <MarketChart key={market.book.book + index} {...market} />)
+            ) : (
+              <h3>Ocurrio un error al tratar de obtener los datos del servidor</h3>
+            )}
           </div>
         </div>
       </div>

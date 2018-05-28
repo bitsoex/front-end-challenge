@@ -20,7 +20,7 @@ import { floatStringToLocaleString } from '../../lib/utils'
 
 const dateFormat = timeFormat('%Y-%m-%d')
 const parseDate = timeParse('%Y-%m-%d')
-const numberFormat = format('.2f')
+const numberFormat = format('.2s')
 const DEFAULT_WIDTH = 980
 const DEFAULT_HEIGHT = 300
 
@@ -38,23 +38,23 @@ const tooltipContent = (type, currency) => ({ currentItem, xAccessor }) => ({
   y: [
     {
       label: 'open',
-      value: currentItem.open && `${floatStringToLocaleString(currentItem.open, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
+      value: currentItem.open && `${currency === 'mxn' ? floatStringToLocaleString(currentItem.open, { minimunFractionDigits: 2 }) : currentItem.open} ${currency.toUpperCase()}`
     },
     {
       label: 'high',
-      value: currentItem.high && `${floatStringToLocaleString(currentItem.high, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
+      value: currentItem.high && `${currency === 'mxn' ? floatStringToLocaleString(currentItem.high, { minimunFractionDigits: 2 }) : currentItem.high} ${currency.toUpperCase()}`
     },
     {
       label: 'low',
-      value: currentItem.low && `${floatStringToLocaleString(currentItem.low, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
+      value: currentItem.low && `${currency === 'mxn' ? floatStringToLocaleString(currentItem.low, { minimunFractionDigits: 2 }) : currentItem.low} ${currency.toUpperCase()}`
     },
     {
       label: 'close',
-      value: currentItem.close && `${floatStringToLocaleString(currentItem.close, { minimunFractionDigits: 2 })} ${currency.toUpperCase()}`
+      value: currentItem.close && `${currency === 'mxn' ? floatStringToLocaleString(currentItem.close, { minimunFractionDigits: 2 }) : currentItem.close} ${currency.toUpperCase()}`
     },
     {
       label: 'vol',
-      value: currentItem.close && `${floatStringToLocaleString(currentItem.close, { minimunFractionDigits: 2 })} ${type.toUpperCase()}`
+      value: currentItem.close && `${currency === 'mxn' ? floatStringToLocaleString(currentItem.close, { minimunFractionDigits: 2 }) : currentItem.close} ${type.toUpperCase()}`
     }
   ]
 })

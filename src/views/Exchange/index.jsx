@@ -22,6 +22,7 @@ import {
 } from '../../store/actions/exchange'
 import { floatStringToLocaleString } from '../../lib/utils'
 
+import { DEFAULT_BOOK } from '../../constans'
 import './index.css'
 
 const INITIAL_RANGE = 0
@@ -38,7 +39,7 @@ class Home extends Component {
   }
 
   componentWillMount () {
-    this.getData(this.props.selectedBook.book)
+    this.getData(DEFAULT_BOOK)
   }
 
   componentWillUpdate (nextProps, nextState) {
@@ -46,7 +47,7 @@ class Home extends Component {
     if (update) this.getData(nextProps.selectedBook.book)
   }
 
-  getData (book) {
+  getData (book = DEFAULT_BOOK) {
     this.setState({ loading: true })
     Promise.all([
       this.props.getLatestTrades(book),
@@ -58,9 +59,6 @@ class Home extends Component {
       console.error(error)
       this.setState({ loading: false })
     })
-  }
-
-  componentDidMount () {
   }
 
   lastTradesColumns () {

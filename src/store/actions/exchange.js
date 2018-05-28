@@ -4,7 +4,8 @@ import { camelCaseObject } from '../../lib/utils'
 import { DEFAULT_BOOK } from '../../constans'
 
 export const getTickerData = (bookToFilter = '') => async dispatch => {
-  const { payload } = await api.getTickerData({ book: bookToFilter })
+  const { payload, success } = await api.getTickerData({ book: bookToFilter })
+  if (!success) throw new Error(payload.message)
   let book = {}
   if (bookToFilter) {
     book = payload
@@ -18,14 +19,16 @@ export const getTickerData = (bookToFilter = '') => async dispatch => {
 }
 
 export const getLatestTrades = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
-  const { payload } = await api.getLatestTrades({ book: bookToFilter })
+  const { payload, success } = await api.getLatestTrades({ book: bookToFilter })
+  if (!success) throw new Error(payload.message)
   const data = payload.map(ticker => camelCaseObject(ticker))
   dispatch({ type: 'SET_LATEST_TRADES', payload: data })
   return payload
 }
 
 export const getOrderBook = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
-  const { payload } = await api.getOrderBook({ book: bookToFilter })
+  const { payload, success } = await api.getOrderBook({ book: bookToFilter })
+  if (!success) throw new Error(payload.message)
   const data = camelCaseObject(payload)
 
   const bidsSum = data.bids.reduce((reducer, bid) => (
@@ -48,7 +51,8 @@ export const getOrderBook = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
 }
 
 export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async dispatch => {
-  const { payload: availableBooks } = await api.getAvailableBooks()
+  const { payload: availableBooks, success } = await api.getAvailableBooks()
+  if (!success) throw new Error(availableBooks.message)
   const tradesPromises = availableBooks.map(currentBook => api.getLatestTrades({ book: currentBook.book, limit }))
 
   const responses = await Promise.all(tradesPromises)

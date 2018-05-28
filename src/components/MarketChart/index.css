@@ -66,3 +66,9 @@
   padding-top: 1.3rem;
   animation: showMarketChart .2s ease forwards;
 }
+
+@media screen and (min-width: 768px) {
+  .market-chart canvas {
+    width: 210px;
+  }
+}

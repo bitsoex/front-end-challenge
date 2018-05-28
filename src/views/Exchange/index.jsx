@@ -64,6 +64,9 @@ class Home extends Component {
     }
   }
 
+  componentDidMount () {
+  }
+
   lastTradesColumns () {
     const [ type, currency ] = this.props.selectedBook.book.split('_')
 
@@ -270,7 +273,7 @@ class Home extends Component {
                   className='charts-options'
                 />
                 <div className='option'>
-                  {/* useless by the moment */}
+                  {/* @TODO useless by the moment */}
                   Periodo
                   <Dropdown
                     options={this.periodOptions}
@@ -278,7 +281,7 @@ class Home extends Component {
                   />
                 </div>
                 <div className='option'>
-                  {/* useless by the moment */}
+                  {/* @TODO useless by the moment */}
                   Intervalo
                   <Dropdown
                     options={this.intervalOptions}
@@ -286,7 +289,7 @@ class Home extends Component {
                   />
                 </div>
                 <div className='right-options'>
-                  {/* useless by the moment */}
+                  {/* @TODO useless by the moment */}
                   <div className='zoom'>
                     <i className='material-icons'>remove</i>
                     <i className='material-icons'>add</i>

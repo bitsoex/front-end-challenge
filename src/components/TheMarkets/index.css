@@ -45,6 +45,10 @@
     flex-direction: column;
     padding: 0 15px 15px 15px;
   }
+
+  .markets > .content {
+    width: auto;
+  }
 }
 
 @media screen and (min-width: 768px) {

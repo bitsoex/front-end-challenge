@@ -23,7 +23,10 @@ class MarketChart extends Component {
   }
 
   componentDidMount () {
-    if (this.props.data.length === EMPTY_DATA) return false
+    if (this.props.data.length !== EMPTY_DATA) this.renderChart()
+  }
+
+  renderChart () {
     let { data } = this.props
     const context = this.refs.chart.getContext('2d')
 
@@ -79,7 +82,7 @@ class MarketChart extends Component {
           <div className='time'>{moment(lastTrade.createdAt).tz('America/Mexico_City').format('h:mm a')}</div>
         </div>
         <div className='chart'>
-          <canvas ref='chart' width='210px' height='50px' />
+          <canvas ref='chart' width='300px' height='50px' />
         </div>
       </div>
     )

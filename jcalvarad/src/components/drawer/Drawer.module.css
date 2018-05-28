@@ -1,14 +1,19 @@
 /* The side navigation menu */
 .sidenav {
-  height: 100%; /* 100% Full-height */
-  position: absolute; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
+  height: 93%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
   right: 0px;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  background-color: var(--color-primary-light);
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+.title {
+  margin-top: 40px;
+  transform: rotate(90deg);
+  color: var(--color-text);
 }
 
 /* Position and style the close button (top right corner) */
@@ -17,7 +22,8 @@
   top: 0;
   margin-left: 10px;
   margin-top: 10px;
-  color: white;
+  color: var(--color-text);
+  cursor: pointer;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

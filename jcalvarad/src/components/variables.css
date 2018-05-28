@@ -1,5 +1,7 @@
 :root {
   --color-primary: var(--palette-blue-grey-700);
+  --color-primary-light: var(--palette-blue-grey-600);
   --color-primary-dark: var(--palette-blue-grey-900);
   --color-primary-header: var(--palette-grey-900);
+  --color-text: var(--palette-grey-400);
 }

@@ -20,6 +20,7 @@ class SideDrawer extends Component {
       <div>
         <div style={{ width: this.state.width }} className={themeAll.sidenav}>
           <FontIcon className={themeAll.closebtn} value={this.state.active ? "chevron_right" : "chevron_left"} onClick={this.handleToggle} />
+          <div className={theme.title}>Mercados</div>
         </div>
       </div>
     );

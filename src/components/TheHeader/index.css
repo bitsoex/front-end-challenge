@@ -80,6 +80,10 @@
   justify-content: center;
 }
 
+#app > .page > .header-container > .stats > .exchange-type > ul > li:hover {
+  background: var(--background-navy);
+}
+
 #app > .page > .header-container > .stats > .list {
   flex: 1;
   overflow-x: scroll;

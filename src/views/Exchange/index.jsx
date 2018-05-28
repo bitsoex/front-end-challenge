@@ -7,6 +7,10 @@ import range from 'lodash/range'
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
 import Table from '../../components/ui/Table'
+import Dropdown from '../../components/ui/Dropdown'
+
+import candlestickIcon from '../../../Assets/Images/1x/icon_candles.png'
+import deepIcon from '../../../Assets/Images/1x/icon_deep.png'
 
 import {
   getLatestTrades as getLatestTradesAction,
@@ -25,7 +29,8 @@ class Home extends Component {
     super(props)
     this.state = {
       loading: false,
-      error: false
+      error: false,
+      chart: 'candlestick'
     }
   }
 
@@ -189,12 +194,60 @@ class Home extends Component {
     )
   }
 
+  changeChart (option) {
+    this.setState({ chart: option.value })
+  }
+
+  chartOptions = [
+    {
+      value: 'candlestick',
+      label: <img src={candlestickIcon} alt='candlestick-chart' />
+    },
+    {
+      value: 'deep',
+      label: <img src={deepIcon} alt='deep-chart' />
+    }
+  ]
+
+  periodOptions = [
+    {
+      value: '1month',
+      label: '1m'
+    },
+    {
+      value: '3days',
+      label: '3d'
+    },
+    {
+      value: '1week',
+      label: '1s'
+    }
+  ]
+
+  intervalOptions = [
+    {
+      value: '1hour',
+      label: '1h'
+    },
+    {
+      value: '5hours',
+      label: '5h'
+    },
+    {
+      value: '1minute',
+      label: '1m'
+    }
+  ]
+
   render () {
     const bidHeader = this.bidHeader()
     const askHeader = this.askHeader()
     const lastTradesColumns = this.lastTradesColumns()
     const bidsColumns = this.bidsColumns()
     const asksColumns = this.asksColumns()
+
+    const chartSelectorOptions = this.chartOptions.filter(option => option.value !== this.state.chart)
+    const chartSelectorText = this.chartOptions.find(option => option.value === this.state.chart).label
 
     return (
       <div className='page'>
@@ -207,21 +260,57 @@ class Home extends Component {
             data={this.props.latestTrades}
             loading={this.state.loading}
           />
-          <div className='positions'>
-            <Table
-              className='bid'
-              header={bidHeader}
-              columns={bidsColumns}
-              data={this.props.orderBook.bids}
-              loading={this.state.loading}
-            />
-            <Table
-              className='ask'
-              header={askHeader}
-              columns={asksColumns}
-              data={this.props.orderBook.asks}
-              loading={this.state.loading}
-            />
+          <div className='middle-section'>
+            <div className='charts'>
+              <div className='options'>
+                <Dropdown
+                  options={chartSelectorOptions}
+                  text={chartSelectorText}
+                  onChange={this.changeChart.bind(this)}
+                  className='charts-options'
+                />
+                <div className='option'>
+                  {/* useless by the moment */}
+                  Periodo
+                  <Dropdown
+                    options={this.periodOptions}
+                    text='3d'
+                  />
+                </div>
+                <div className='option'>
+                  {/* useless by the moment */}
+                  Intervalo
+                  <Dropdown
+                    options={this.intervalOptions}
+                    text='1h'
+                  />
+                </div>
+                <div className='right-options'>
+                  {/* useless by the moment */}
+                  <div className='zoom'>
+                    <i className='material-icons'>remove</i>
+                    <i className='material-icons'>add</i>
+                  </div>
+                </div>
+              </div>
+              <div className='chart' />
+            </div>
+            <div className='positions'>
+              <Table
+                className='bid'
+                header={bidHeader}
+                columns={bidsColumns}
+                data={this.props.orderBook.bids}
+                loading={this.state.loading}
+              />
+              <Table
+                className='ask'
+                header={askHeader}
+                columns={asksColumns}
+                data={this.props.orderBook.asks}
+                loading={this.state.loading}
+              />
+            </div>
           </div>
           <TheMarkets />
         </main>

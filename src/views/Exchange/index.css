@@ -2,6 +2,97 @@
   padding: 15px;
 }
 
+.middle-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.middle-section > .charts {
+  padding: 15px 15px 0 15px;
+}
+
+.charts > .options {
+  display: flex;
+}
+
+.charts > .options > .right-options {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.charts > .options > .right-options > .zoom {
+  border-radius: 14px;
+  border: 1px solid var(--table-header-background);
+  display: flex;
+  user-select: none;
+}
+
+.charts > .options > .right-options > .zoom > i {
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.charts > .options > .right-options > .zoom > i:first-child {
+  padding: 0 4px 0 7px;
+  border-right: 1px solid var(--table-header-background);
+}
+
+.charts > .options > .right-options > .zoom > i:last-child {
+  padding: 0 7px 0 4px;
+}
+
+.charts > .options .dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.charts > .options .dropdown > .text {
+  border-radius: 14px;
+  padding: 0px 4px 0 14px;
+}
+
+.charts > .options .dropdown.charts-options > .text {
+  background: var(--header-background);
+}
+
+.charts > .options .dropdown.charts-options > ul,
+.charts > .options .dropdown.charts-options > ul > li {
+  background: var(--header-background);
+}
+
+.charts > .options .dropdown.charts-options > ul > li:hover {
+  background: var(--medium-navy);
+}
+
+.charts > .options > .option {
+  margin-left: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.charts > .options > .option > .dropdown {
+  margin-left: 8px;
+  font-size: .93rem;
+}
+
+.charts > .options > .option > .dropdown > .text {
+  border: 1px solid var(--table-header-background);
+}
+
+.charts > .options > .option > .dropdown > ul,
+.charts > .options > .option > .dropdown > ul li {
+  background: var(--background-navy);
+  color: var(--light-text);
+}
+
+.charts > .options > .option > .dropdown > ul li:hover {
+  background: var(--nav-background);
+}
+
 .positions {
   display: flex;
   flex-wrap: wrap;
@@ -163,7 +254,7 @@
     position: relative;
   }
 
-  .positions {
+  .middle-section {
     padding-right: 32px;
   }
 

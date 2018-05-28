@@ -1,0 +1,66 @@
+$bckground_navmain: #252c36;
+$bckground_dashboard: #161a1e;
+
+$Dark_Green: #466830;
+$Medium_Green: #86af6b;
+$Regular_Green: #80c156;
+$Light_Green: #98d372;
+
+$Dark_Red: #722837;
+$Regular_Red: #cc4458;
+$Medium_Red: #ba3040;
+
+$Dark_Navy: #161a1e;
+$Background_Navy: #191e23;
+$Regular_Navy: #252c36;
+$Medium_Navy: #384555;
+$Navy_Headers: #313d4c;
+
+$Dark_Text: #4e5863;
+$Light_Text: #b0bac1;
+
+$Sidebar_Background: #23292d;
+$Sidebar: #2e353d;
+$Sidebar_Header: #727c84;
+$Sidebar_Text: #747f89;
+$Sidebar_Light_Text: #b0bac1;
+
+$Neutral_Gray: #cccccc;
+$Bitcoin_Yellow: #ebc256;
+
+@import "_functions.scss";
+@import "_navbarmain.scss";
+@import "_maindashboard.scss";
+@import "_table.scss";
+
+@font-face {
+    font-family: "DINPro-Regular";
+    src: url(/fonts/DINPro-Regular.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "DINPro-Medium";
+    src: url(/fonts/DINPro-Medium.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "DINPro-Light";
+    src: url(/fonts/DINPro-Light.otf) format("truetype");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: $Light_Text;
+    background-color: $bckground_dashboard;
+    font-size: 14px;
+    font-family: "DINPro-Regular";
+}
+
+.dark_text {
+	color: $Dark_Text;
+}
+
+.light_text {
+	color: $Light_Text;
+}

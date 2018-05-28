@@ -1,0 +1,168 @@
+.maindashboard {
+    margin-top: 62px;
+    display: flex;
+    flex-flow: row wrap;
+
+    /*> * {
+    	flex: 1 100%;
+    }*/
+
+    .navbar-market {
+        padding: 10px;
+        flex: 1 100%;
+        margin-bottom: 12px;
+        border-bottom: 1px solid $Regular_Navy;
+    }
+
+    div.header {
+        background-color: $Regular_Navy;
+        padding: 6px 12px;
+        text-transform: uppercase;
+    }
+
+    .last-trades {
+        width: 230px;
+
+        .title-lasttrades {}
+    }
+
+    .market-page {
+        flex-grow: 1;
+        margin-left: 15px;
+        margin-right: 15px;
+
+        .orderbook {
+            display: flex;
+            flex-flow: row wrap;
+
+            .buyorders {
+                margin-right: 5px;
+                flex: 1;
+
+                .header {
+                    display: flex;
+
+                    .title {
+                        flex-grow: 2;
+                        text-align: left;
+                    }
+
+                    .bidmax {
+                        flex-grow: 1;
+                        text-align: right;
+                        text-transform: none;
+                    }
+                }
+            }
+
+            .sellorders {
+                margin-left: 5px;
+                flex: 1;
+
+                .header {
+                    display: flex;
+
+                    .title {
+                        flex-grow: 2;
+                        text-align: right;
+                    }
+
+                    .askmin {
+                        flex-grow: 1;
+                        text-align: left;
+                        text-transform: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .markets_list {
+        display: flex;
+
+        .sidebar {
+            width: 40px;
+            background-color: #252c36;
+            height: 100%;
+
+            .title {
+                display: flex;
+                align-items: center;
+                transform: translateX(0) translateY(100%) rotate(90deg);
+
+                img {
+                    margin-right: 10px;
+                    transform: translateX(0) translateY(0) rotate(180deg);
+                }
+            }
+        }
+
+        .content {
+            flex: 1;
+            margin-left: 2px;
+
+            .title_market {
+                background-color: #434a50;
+                padding: 6px 12px;
+                text-transform: uppercase;
+            }
+
+            .marketsprices {
+                background-color: $Sidebar_Background;
+                height: calc(100% - 33px);
+
+                ul {
+                    list-style: none;
+                    margin: 0;
+                    padding: 5px 10px;
+
+                    li {
+                        color: $Sidebar_Text;
+
+                        .market {
+                            padding: 6px 0px;
+                            border-bottom: 1px solid $Sidebar;
+
+                            div.title {
+                                display: flex;
+
+                                > div {
+                                    flex: 1;
+
+                                    &.book {
+                                        text-transform: uppercase;
+                                    }
+                                    &.lastprice {
+                                    	text-align: right;
+                                    	&.up {
+                                    		color: $Medium_Green;
+                                    		&:before {
+                                    			display: inline-block;
+    											width: 5px;
+  												content:url(str-replace('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><defs><style>.cls-1{fill:mycolor;}</style></defs><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>', 'mycolor', $Medium_Green)); /* with class ModalCarrot ??*/
+  													transform: translateX(-6px) translateY(0) rotate(-90deg);
+  											}
+                                    	}
+                                    	&.down {
+                                    		color: $Medium_Red;
+                                    		&:before {
+                                    			display: inline-block;
+    											width: 5px;
+  												content:url(str-replace('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><defs><style>.cls-1{fill:mycolor;}</style></defs><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>', 'mycolor', $Medium_Red)); /* with class ModalCarrot ??*/
+  												transform: translateX(-1px) translateY(0) rotate(90deg);
+  											}
+                                    	}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.open {
+            width: 300px;
+        }
+    }
+}

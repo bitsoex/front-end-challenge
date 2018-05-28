@@ -1,0 +1,102 @@
+table.table {
+    thead {
+        text-transform: uppercase;
+    }
+
+    td, th {
+        padding: .1rem;
+        vertical-align: top;
+        border: none;
+    }
+
+    //tradeslist
+    thead {
+        th {
+            font-size: 12px;
+            height: 28px;
+            vertical-align: middle;
+        }
+    }
+
+    tr {
+        td {
+            color: $Dark_Text;
+
+            &.mount {
+                color: $Light_Text;
+
+                span.zerosgray {
+                    color: $Dark_Text;
+                }
+            }
+        }
+
+        &.buy {
+            td.price {
+                color: $Dark_Green;
+            }
+        }
+
+        &.sell {
+            td.price {
+                color: $Dark_Red;
+            }
+        }
+    }
+}
+
+// buyorders
+.buyorders {
+    table {
+        text-align: right;
+
+        td.sum {
+            color: $Light_Text;
+        }
+
+        td.price {
+            color: $Medium_Green;
+        }
+
+        td.percent {
+            text-align: left;
+
+            .bar {
+                background-color: $Medium_Green;
+            }
+        }
+    }
+}
+
+.sellorders {
+    table {
+        text-align: left;
+
+        td.price {
+            color: $Medium_Red;
+        }
+
+        td.sum {
+            color: $Light_Text;
+        }
+
+        td.percent {
+            text-align: right;
+
+            .bar {
+                background-color: $Medium_Red;
+            }
+        }
+    }
+}
+
+.buyorders, .sellorders {
+    td.percent {
+        width: 40px;
+
+        .bar {
+            display: inline-block;
+            height: 12px;
+        }
+    }
+}

@@ -1,3 +1,5 @@
+// base on react stockcharts example:
+// https://codesandbox.io/s/github/rrag/react-stockcharts-examples2/tree/master/examples/LineAndScatterChartGrid
 
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -8,7 +10,7 @@ import { timeFormat, timeParse } from 'd3-time-format'
 import { ChartCanvas, Chart } from 'react-stockcharts'
 import { LineSeries, AreaSeries } from 'react-stockcharts/lib/series'
 
-import { XAxis, YAxis } from 'react-stockcharts/lib/axes'
+import { XAxis } from 'react-stockcharts/lib/axes'
 import {
   CrossHairCursor,
   MouseCoordinateX,
@@ -16,9 +18,6 @@ import {
 } from 'react-stockcharts/lib/coordinates'
 
 import { discontinuousTimeScaleProvider } from 'react-stockcharts/lib/scale'
-import {
-  OHLCTooltip
-} from 'react-stockcharts/lib/tooltip'
 import { fitWidth } from 'react-stockcharts/lib/helper'
 import { last } from 'react-stockcharts/lib/utils'
 
@@ -35,27 +34,39 @@ function parseData (parse) {
   }
 }
 
+const DEFAULT_WIDTH = 980
+const DEFAULT_HEIGHT = 300
+
 const parseDate = timeParse('%Y-%m-%d')
 
 class LineAndScatterChartGrid extends React.Component {
+  static propTypes = {
+    data: PropTypes.array.isRequired,
+    width: PropTypes.number.isRequired,
+    ratio: PropTypes.number.isRequired,
+    type: PropTypes.oneOf(['svg', 'hybrid']).isRequired
+  }
+
+  static defaultProps = {
+    type: 'hybrid',
+    width: DEFAULT_WIDTH,
+    height: DEFAULT_HEIGHT
+  }
+
   render () {
     let { data: initialData } = this.props
-    const { type, width, ratio, interpolation } = this.props
+    const { type, width, height, ratio, interpolation } = this.props
     const { gridProps, seriesType } = this.props
-    const margin = { left: 70, right: 70, top: 20, bottom: 30 }
+    const margin = { left: 0, right: 40, top: 20, bottom: 0 }
 
     initialData = initialData.map(parseData(parseDate))
 
-    const height = 400
     const gridHeight = height - margin.top - margin.bottom
-    const gridWidth = width - margin.left - margin.right
 
     const showGrid = true
-    const yGrid = showGrid ? { innerTickSize: -1 * gridWidth } : {}
     const xGrid = showGrid ? { innerTickSize: -1 * gridHeight } : {}
 
-    const xScaleProvider = discontinuousTimeScaleProvider
-      .inputDateAccessor(d => d.date)
+    const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(d => d.date)
     const {
       data,
       xScale,
@@ -67,14 +78,13 @@ class LineAndScatterChartGrid extends React.Component {
     const end = xAccessor(data[Math.max(0, data.length - 150)])
     const xExtents = [start, end]
 
-    const Series = seriesType === 'line'
-      ? LineSeries
-      : AreaSeries
+    const Series = seriesType === 'line' ? LineSeries : AreaSeries
+
     return (
       <ChartCanvas height={height}
         ratio={ratio}
         width={width}
-        margin={{ left: 80, right: 80, top: 10, bottom: 30 }}
+        margin={margin}
         type={type}
         seriesName='MSFT'
         data={data}
@@ -83,21 +93,16 @@ class LineAndScatterChartGrid extends React.Component {
         displayXAccessor={displayXAccessor}
         xExtents={xExtents}
       >
-        <Chart id={1}
+        <Chart id={100}
           yExtents={d => [d.high, d.low]}
         >
           <XAxis
-            axisAt='bottom'
-            orient='bottom'
+            axisAt='top'
+            orient='top'
+            tickStroke='rgba(56, 69, 85, .6)'
+            stroke='rgba(56, 69, 85, .4)'
             {...gridProps}
             {...xGrid}
-          />
-          <YAxis
-            axisAt='right'
-            orient='right'
-            ticks={5}
-            {...gridProps}
-            {...yGrid}
           />
           <MouseCoordinateX
             at='bottom'
@@ -114,7 +119,6 @@ class LineAndScatterChartGrid extends React.Component {
             stroke='#ff7f0e'
             fill='#ff7f0e'
           />
-          <OHLCTooltip origin={[-40, 0]} />
         </Chart>
 
         <CrossHairCursor />
@@ -122,17 +126,6 @@ class LineAndScatterChartGrid extends React.Component {
 
     )
   }
-}
-
-LineAndScatterChartGrid.propTypes = {
-  data: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired,
-  ratio: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(['svg', 'hybrid']).isRequired
-}
-
-LineAndScatterChartGrid.defaultProps = {
-  type: 'hybrid'
 }
 
 export default fitWidth(LineAndScatterChartGrid)

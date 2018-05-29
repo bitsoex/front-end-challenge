@@ -34,7 +34,8 @@ class Home extends Component {
     this.state = {
       loading: false,
       error: false,
-      chart: 'candlestick'
+      chart: 'deep',
+      period: '1year'
     }
   }
 
@@ -43,21 +44,23 @@ class Home extends Component {
   }
 
   componentWillUpdate (nextProps, nextState) {
-    const update = nextProps.selectedBook.book !== this.props.selectedBook.book
-    if (update) this.getData(nextProps.selectedBook.book)
+    const updateData = nextProps.selectedBook.book !== this.props.selectedBook.book
+    const updateTimeline = nextState.period !== this.state.period
+    if (updateData) this.getData(nextProps.selectedBook.book)
+    if (updateTimeline) this.props.getTickerTimeline(nextProps.selectedBook.book, nextState.period)
   }
 
-  getData (book = DEFAULT_BOOK) {
-    this.setState({ loading: true })
+  getData (book = DEFAULT_BOOK, period = '1year') {
+    this.setState({ loading: true, period })
     Promise.all([
       this.props.getLatestTrades(book),
       this.props.getOrderBook(book),
-      this.props.getTickerTimeline(book)
+      this.props.getTickerTimeline(book, period)
     ]).then(payload => {
       this.setState({ loading: false })
     }).catch(error => {
       console.error(error)
-      this.setState({ loading: false })
+      this.setState({ loading: false, error: true })
     })
   }
 
@@ -212,12 +215,12 @@ class Home extends Component {
       label: '1m'
     },
     {
-      value: '3days',
-      label: '3d'
+      value: '3months',
+      label: '3m'
     },
     {
-      value: '1week',
-      label: '1s'
+      value: '1year',
+      label: '1y'
     }
   ]
 
@@ -279,15 +282,18 @@ class Home extends Component {
                   onChange={this.changeChart.bind(this)}
                   className='charts-options'
                 />
-                {/* @TODO commented because is useless by the moment */}
-                {/*
+                {this.state.chart === 'candlestick' && (
                   <div className='option'>
                     Periodo
                     <Dropdown
                       options={this.periodOptions}
-                      text='3d'
+                      text={this.periodOptions.find(period => period.value === this.state.period).label}
+                      onChange={(option) => this.setState({ period: option.value })}
                     />
                   </div>
+                )}
+                {/* @TODO commented because is useless by the moment */}
+                {/*
                   <div className='option'>
                     Intervalo
                     <Dropdown
@@ -295,6 +301,8 @@ class Home extends Component {
                       text='1h'
                     />
                   </div>
+                */}
+                {/*
                   <div className='right-options'>
                     <div className='zoom'>
                       <i className='material-icons'>remove</i>
@@ -304,21 +312,19 @@ class Home extends Component {
                 */}
               </div>
               <div className='chart'>
-                {
-                  (this.state.chart === 'candlestick') ? (
-                    <CandlestickChart
-                      data={this.props.tickerTimeline}
-                      currency={currency}
-                      coin={type}
-                    />
-                  ) : (
-                    <DeepChart
-                      data={this.props.tickerTimeline}
-                      currency={currency}
-                      coin={type}
-                    />
-                  )
-                }
+                {this.state.chart === 'candlestick' ? (
+                  <CandlestickChart
+                    data={this.props.tickerTimeline}
+                    currency={currency}
+                    coin={type}
+                  />
+                ) : (
+                  <DeepChart
+                    data={this.props.tickerTimeline}
+                    currency={currency}
+                    coin={type}
+                  />
+                )}
               </div>
             </div>
             <div className='positions'>

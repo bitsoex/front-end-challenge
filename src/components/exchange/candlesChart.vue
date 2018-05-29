@@ -45,11 +45,11 @@
          <div class="tooltip"
               v-bind:class="{left: index > (candlesChart.dataToWork.length / 2)}"
               v-bind:style="{marginTop: String(Math.max(8, (candlesChart.high - Math.max(column.open, column.close))/pixelValue - 50)) + 'px'}">
-           <div class="open"> <span>Open</span> ${{parseFloat(Math.round(column.open * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
-           <div class="close"> <span>Close</span> ${{parseFloat(Math.round(column.close * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
-           <div class="high"> <span>High</span> ${{parseFloat(Math.round(column.high * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
-           <div class="low"> <span>Low</span> ${{parseFloat(Math.round(column.low * 100) / 100).toFixed(2)}} {{booksSelected.comparision}}</div>
-           <div class="vol"> <span>Vol.</span> {{parseFloat(Math.round(column.volume * 100) / 100).toFixed(2)}} {{booksSelected.unit}}</div>
+           <div class="open"> <span>Open</span> ${{column.open}} {{booksSelected.comparision}}</div>
+           <div class="close"> <span>Close</span> ${{column.close}} {{booksSelected.comparision}}</div>
+           <div class="high"> <span>High</span> ${{column.high}} {{booksSelected.comparision}}</div>
+           <div class="low"> <span>Low</span> ${{column.low}} {{booksSelected.comparision}}</div>
+           <div class="vol"> <span>Vol.</span> {{column.volume}} {{booksSelected.unit}}</div>
            <div class="indicator"></div>
          </div>
 

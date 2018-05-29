@@ -17,10 +17,12 @@
         <li class="trade" v-for="trade in trades"
             v-bind:key="trade.tid"
             v-bind:class="{sell: trade.maker_side === 'sell'}">
-          <div class="hour">{{trade.created_at.split(' ')[4].split(' ')[0]}}</div>
-          <div class="price">{{parseFloat(Math.round(trade.price * 100) / 100).toFixed(2)}}</div>
-          <div class="amount gray">{{parseFloat(trade.amount).toFixed(8)}}</div>
-          <div class="amount">{{parseFloat(trade.amount)}}</div>
+          <div class="hour">{{trade.created_at}}</div>
+          <div class="price">{{ trade.price }}</div>
+          <div class="amount">
+            <div class="gray">{{parseFloat(trade.amount).toFixed(8)}}</div>
+            <div class="normal">{{parseFloat(trade.amount)}}</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -166,7 +168,6 @@ export default {
 
   #last-trades .content ul li.head div.amount {
     margin-left: 16px;
-    width: 80px;
   }
 
   #last-trades .content ul li.trade {
@@ -198,6 +199,8 @@ export default {
   }
 
   #last-trades .content ul li.trade div.price {
+    width: calc(50% - 72px);
+    text-align: center;
     color: #5e814e;
   }
 
@@ -216,15 +219,26 @@ export default {
   #last-trades .content ul li.trade div.amount {
     color: #bdc6cc;
     position: absolute;
-    right: 20px;
+    right: 50px;
+    text-align: right;
+    width: auto;
   }
 
-  #last-trades .content ul li.trade:hover div.amount {
+  #last-trades .content ul li.trade div.amount .normal {
+    position: absolute;
+    left: 0;
+    color: #BDC6CC;
+    width: auto;
+  }
+
+  #last-trades .content ul li.trade:hover div.amount .normal {
     color: #FFFFFF;
   }
 
-  #last-trades .content ul li.trade div.amount.gray {
+  #last-trades .content ul li.trade div.amount .gray {
     color: #616B77;
+    text-align: right;
+    width: auto;
   }
 
 /* END LAST TRADES */

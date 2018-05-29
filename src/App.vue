@@ -127,7 +127,7 @@ export default {
   }
 
   .hidden {
-    display: none;
+    display: none !important;
   }
 
   .blur {

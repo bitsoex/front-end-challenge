@@ -20,10 +20,13 @@
 
       <div class="item variation">
         Variación
-        <span class="value"></span>
+        <span class="value">{{variation.sign}} {{variation.value}} {{ticker.book.split('_')[1]}} ({{variation.percentage}}%)</span>
       </div>
-
-      <button v-on:click="toggleFullscreen()" id="fullscreen-button"> fullscreen </button>
+    </div>
+    <div v-on:click="toggleFullscreen()" id="fullscreen-button">
+      <span> pantalla completa </span>
+      <img src="../../assets/images/fullscreen-yellow.svg" class="yellow">
+      <img src="../../assets/images/fullscreen.svg" class="normal">
     </div>
   </div>
 </template>
@@ -52,6 +55,11 @@ export default {
   },
   data () {
     return {
+      variation: {
+        percentage: 0,
+        sign: '',
+        value: 0
+      },
       websocket: {
         open: false
       }
@@ -73,7 +81,15 @@ export default {
         Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + val.url + '&' + '1year').then(function (data) {
           var newBook = {url: val.url, label: val.label, unit: val.unit, comparision: val.comparision, data: data.body}
           self.$store.dispatch('bookChange', newBook)
+          self.variation.value = Math.abs(data.body[364].value - data.body[363].value).toFixed(2)
+          if ((data.body[364].value - data.body[363].value) > 0) {
+            self.variation.sign = ''
+          } else {
+            self.variation.sign = '-'
+          }
+          self.variation.percentage = (data.body[364].value / data.body[363].value * 100 - 100).toFixed(1)
         })
+
         // load statusbar
         self.loadTicker()
 
@@ -94,7 +110,7 @@ export default {
       })
     },
     fullscreenOn () {
-      this.$store.commit('fullscreenOn')
+      this.$store.dispatch('fullscreenOn')
     },
     loadTicker (book) {
       var self = this
@@ -167,4 +183,38 @@ export default {
     color: #9D9FA0;
     text-transform: uppercase;
   }
+
+  #fullscreen-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 44px;
+    text-align: right;
+    padding-right: 44px;
+    cursor: pointer;
+    color: #EBC256;
+  }
+
+  #fullscreen-button span {
+    opacity: 0;
+    white-space: nowrap;
+    line-height: 40px;
+    transition: all 0s;
+  }
+
+  #fullscreen-button img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  #fullscreen-button:hover img.normal {
+    opacity: 0;
+    transition: all 0s;
+  }
+
+  #fullscreen-button:hover span {
+    opacity: 1;
+  }
+
 </style>

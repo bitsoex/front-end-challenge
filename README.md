@@ -106,3 +106,5 @@ Running `npm run deploy` automatically makes the build for production and upload
 Everything looks good in any device, from iPhone 3g to UltraWide 4k monitors, there are some special things in mobile, like the sounds on tab change :bell: be sure to check it out.
 
 ## Tests
+The project automatically runs tests on `npm run deploy`, those are e2e tests, which automatically open a browser tab an asserts everything looks ok, depending on what it was configured.
+You can check the code for those in `test/e2e/specs/test.js`

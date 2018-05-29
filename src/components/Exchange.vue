@@ -17,13 +17,13 @@
               <img src="../assets/images/candles.svg">
             </li>
 
-            <li class="triangles" v-on:click="chartTypeSelect('triangles')">
+            <li class="triangles" v-on:click="chartTypeSelect('depth-market')">
               <img src="../assets/images/triangles.svg">
             </li>
           </ul>
         </div>
 
-        <div class="select chartPeriodicityChange" v-bind:class="{open: chart.periodicity.selectVisible}">
+        <div class="select chartPeriodicityChange" v-bind:class="{open: chart.periodicity.selectVisible, hidden: chart.type.selected === 'depth-market'}">
           <span> Periodo </span>
           <div class="selected" v-on:click="chartPeriodicityOptions()">
             <span> {{chart.periodicity.selected}} </span>
@@ -37,7 +37,7 @@
           </ul>
         </div>
 
-        <div class="select chartIntervalChange" v-bind:class="{open: chart.interval.selectVisible}">
+        <div class="select chartIntervalChange" v-bind:class="{open: chart.interval.selectVisible, hidden: chart.type.selected === 'depth-market'}">
           <span> Intervalo </span>
           <div class="selected" v-on:click="chartIntervalOptions()">
             <span> {{chart.interval.selected}} </span>
@@ -51,7 +51,8 @@
           </ul>
         </div>
 
-        <candles-chart></candles-chart>
+        <candles-chart v-bind:class="{hidden: chart.type.selected === 'depth-market'}"></candles-chart>
+        <depth-market-chart v-bind:class="{hidden: chart.type.selected === 'candles'}"></depth-market-chart>
 
       </div>
 
@@ -86,9 +87,7 @@ import VueResource from 'vue-resource'
 
 import candlesChart from './exchange/candlesChart.vue'
 import lastTrades from './exchange/lastTrades.vue'
-
-var VueTouch = require('vue-touch')
-Vue.use(VueTouch, {name: 'v-touch'})
+import depthMarket from './exchange/depthMarket.vue'
 
 Vue.use(VueResource)
 
@@ -97,7 +96,8 @@ Vue.component('v-select', vSelect)
 export default {
   components: {
     'candles-chart': candlesChart,
-    'last-trades': lastTrades
+    'last-trades': lastTrades,
+    'depth-market-chart': depthMarket
   },
   computed: {
     trades: function () {

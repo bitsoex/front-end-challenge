@@ -216,7 +216,7 @@ const mutations = {
       for (var i = 0; i < allTrades.length; i++) {
         var trade = allTrades[i]
         var dateOfTrade = new Date(trade.created_at)
-        trade.created_at = new Date(dateOfTrade).toString()
+        trade.created_at = new Date(dateOfTrade).toString().split(' ')[4].split(' ')[0]
         tradesWithCorrectHour.push(trade)
       }
       state.trades = allTrades
@@ -235,12 +235,11 @@ const mutations = {
     var trade = {
       amount: payload.a,
       book: 'btc_mxn',
-      created_at: new Date(Date.CDT).toISOString().split('.')[0],
+      created_at: new Date().toString().split(' ')[4].split(' ')[0],
       maker_side: buyOrSell,
       price: payload.r,
       tid: payload.i
     }
-
     state.ticker.last = commafy(trade.price)
     state.trades.unshift(trade)
   }
@@ -250,7 +249,7 @@ const actions = {
   bookChange (context, payload) {
     context.commit('booksSelected', payload)
     context.commit('tradesAll')
-    context.commit('candlesChart', payload.data)
+    context.commit('candlesChart')
   },
   chartInterval (context, payload) {
     context.commit('chartInterval', payload)
@@ -258,6 +257,10 @@ const actions = {
   },
   chartPeriodicity (context, payload) {
     context.commit('chartPeriodicity', payload)
+    context.commit('candlesChart')
+  },
+  fullscreenOn (context, payload) {
+    context.commit('fullscreenOn')
     context.commit('candlesChart')
   }
 }

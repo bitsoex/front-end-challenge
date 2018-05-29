@@ -7,7 +7,9 @@ import { colors } from "../../themes";
 import Amount from "../Amount";
 
 const styles = {
-  container: css``,
+  container: css`
+    font-size: small;
+  `,
   title: css`
     padding 10px 20px;
   `,

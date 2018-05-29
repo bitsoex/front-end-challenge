@@ -5,6 +5,9 @@ import Header from "../../components/Header";
 import InfoBar from "../../components/InfoBar";
 import Candlestick from "../../containers/Candlestick";
 import LastTrades from "../../containers/LastTrades";
+import Asks from "../../components/Asks";
+import Bids from "../../components/Bids";
+
 import styles from "./styles";
 
 import "react-vis/dist/style.css";
@@ -17,6 +20,7 @@ export default () => (
         <InfoBar />
         <section className="main">
           <Candlestick />
+          <Asks />
         </section>
         <aside className="aside aside-left">
           <LastTrades />

@@ -39,7 +39,7 @@ export class BookProvider extends Component {
   render() {
     const { book, bookDetails } = this.state;
 
-    if (!book) return null;
+    if (!book) return <div>Loading...</div>;
 
     const context = this.getContext(book, bookDetails);
 

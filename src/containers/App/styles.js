@@ -11,7 +11,7 @@ export default {
     @media all and (min-width: 600px) {
       .aside {
         flex: 1 auto;
-        max-width: 300px;
+        max-width: 250px;
         padding: 10px;
       }
     }

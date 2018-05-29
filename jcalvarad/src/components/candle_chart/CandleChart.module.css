@@ -1,0 +1,20 @@
+.dropdown {
+  max-width: 100px;
+  margin-left: 15px;
+}
+
+.period {
+  display: inline-block;
+}
+
+.inputInput {
+  padding: 0px;
+}
+
+.title {
+  color: var(--color-text-dark);
+}
+
+.inputinputElement {
+  color: var(--color-text-dark);
+}

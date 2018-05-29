@@ -12,6 +12,7 @@
 }
 .title {
   position: absolute;
+  margin-top: 40px;
   left: -10px;
   transform: rotate(90deg);
   color: var(--color-text);

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import Dropdown from "react-toolbox/lib/dropdown/Dropdown";
 import HighStock from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import colors from "../colors.css";
+import theme from "./CandleChart.module.css";
 
 class CandlesChart extends Component {
   render() {
-    const { candles, volume } = this.props;
-
+    const { candles, volume, setPeriod, selectedPeriod } = this.props;
     const options = {
       scrollbar: {
         enabled: false
@@ -77,7 +78,18 @@ class CandlesChart extends Component {
         }
       ]
     };
-    return <HighchartsReact highcharts={HighStock} constructorType={"stockChart"} options={options} />;
+
+    const candlesPeriods = [{ value: "1month", label: "1 Month" }, { value: "3months", label: "3 Months" }, { value: "1year", label: "1 Year" }];
+
+    return (
+      <div>
+        <span className={theme.title}>Periodo</span>
+        <span className={theme.period}>
+          <Dropdown auto className={theme.inputLabel} theme={theme} onChange={setPeriod} source={candlesPeriods} value={selectedPeriod} />
+        </span>
+        <HighchartsReact highcharts={HighStock} constructorType={"stockChart"} options={options} />
+      </div>
+    );
   }
 }
 

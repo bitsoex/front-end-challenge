@@ -14,7 +14,7 @@ class ChartsContainer extends Component {
     const { CandlesStore, BooksStore } = props;
     autorun(() => {
       axios
-        .get(`https://cors-anywhere.herokuapp.com/https://bitso.com/trade/chartJSON/${BooksStore.book}/1month`)
+        .get(`https://cors-anywhere.herokuapp.com/https://bitso.com/trade/chartJSON/${BooksStore.book}/${CandlesStore.selectedPeriod}`)
         .then(function(response) {
           CandlesStore.setCandlesChart(response);
         })
@@ -25,11 +25,12 @@ class ChartsContainer extends Component {
   }
 
   render() {
-    const { CandlesStore } = this.props;
+    const { CandlesStore, BooksStore } = this.props;
+    const { setPeriod, selectedPeriod } = CandlesStore;
 
     return (
       <div className={theme.charts}>
-        <CandleChart candles={toJS(CandlesStore.candles)} volume={toJS(CandlesStore.volume)} />
+        <CandleChart candles={toJS(CandlesStore.candles)} volume={toJS(CandlesStore.volume)} setPeriod={setPeriod} selectedPeriod={toJS(selectedPeriod)} />
       </div>
     );
   }

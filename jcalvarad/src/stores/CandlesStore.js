@@ -6,6 +6,8 @@ export class CandlesStore {
   }
 
   @observable candles = [];
+  @observable candlesPeriods = [];
+  @observable selectedPeriod = "1month";
   @observable volume = [];
 
   @action
@@ -17,5 +19,10 @@ export class CandlesStore {
     this.volume = message.data.map(c => {
       return [new Date(c.date).getTime(), parseFloat(c.volume)];
     });
+  };
+
+  @action
+  setPeriod = period => {
+    this.selectedPeriod = period;
   };
 }

@@ -8,10 +8,33 @@
     }*/
 
     .navbar-market {
+        height: 48px;
         padding: 10px;
         flex: 1 100%;
+        display: flex;
         margin-bottom: 12px;
         border-bottom: 1px solid $Regular_Navy;
+        > div {
+            color: $Dark_Text;
+            line-height: 26px;
+            > span {
+                color: $Light_Text;
+            }
+            &.market_selector {
+                color: $Bitcoin_Yellow;
+                font-size: 18px;
+                flex-basis: 130px;
+            }
+            &.volume {
+                flex-basis: 240px;
+            }
+            &.high, &.low {
+                flex-basis: 175px;
+            }
+            &.variation {
+                flex-basis: 230px;
+            }
+        }
     }
 
     div.header {

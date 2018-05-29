@@ -1,3 +1,77 @@
 .navbar.header-nav {
-	background-color: $bckground_navmain;
+    background-color: $bckground_navmain;
+
+    > div {
+        flex: 1;
+    }
+
+    .logo {
+        display: flex;
+
+        .exchange {
+            align-self: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            border-left: 1px solid $Light_Text;
+            line-height: 18px;
+            padding-left: 26px;
+        }
+    }
+
+    .currentvalue {
+        text-align: right;
+        padding-right: 30px;
+    }
+
+    .infouser {
+        border-left: 1px solid #b0bac1;
+        padding-left: 30px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+
+        li {
+            width: 120px;
+
+            .icon_dropdown {
+                margin-left: 6px;
+            }
+
+            &.usuario {
+                padding-left: 19px;
+                position: relative;
+
+                .image-profile {
+                    float: left;
+                    margin-right: 10px;
+                    position: absolute;
+                    top: -10px;
+                    left: -34px;
+
+                    div {
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                        background-color: $Dark_Text;
+
+                        &:before {
+                            content: " ";
+                            position: absolute;
+                            z-index: -1;
+                            top: -3px;
+                            left: -3px;
+                            right: -3px;
+                            bottom: -3px;
+                            border: 1px solid $Dark_Text;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

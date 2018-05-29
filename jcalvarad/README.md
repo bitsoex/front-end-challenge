@@ -2,6 +2,8 @@
 
 Create a React webb app that fullfills the requirements described in https://github.com/bitsoex/front-end-challenge
 
+[Deployed version here!](https://nostalgic-montalcini-99ffb4.netlify.com/)
+
 The proposed stack for the mvp goes as follows:
 
 * [x] Create React App to bootstrap app

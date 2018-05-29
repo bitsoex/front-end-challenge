@@ -320,7 +320,8 @@ class Home extends Component {
                   />
                 ) : (
                   <DeepChart
-                    data={this.props.orderBook.bids}
+                    bids={this.props.orderBook.bids}
+                    asks={this.props.orderBook.asks}
                     currency={currency}
                     coin={type}
                   />

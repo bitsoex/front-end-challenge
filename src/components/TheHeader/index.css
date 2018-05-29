@@ -60,6 +60,7 @@
 
 #app > .page > .header-container > .stats > .exchange-type {
   position: relative;
+  z-index: 100;
 }
 
 #app > .page > .header-container > .stats > .exchange-type > .text {

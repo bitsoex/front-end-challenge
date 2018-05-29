@@ -12,12 +12,24 @@ import { AreaSeries } from 'react-stockcharts/lib/series'
 import { XAxis } from 'react-stockcharts/lib/axes'
 import { fitWidth } from 'react-stockcharts/lib/helper'
 
+import { floatStringToLocaleString } from '../../lib/utils'
+
 const DEFAULT_WIDTH = 980
 const DEFAULT_HEIGHT = 300
 
+function addSumToPositionsArray (positionsArray) {
+  const oneArrayElement = 1
+  const [ initial ] = positionsArray
+  return positionsArray.slice(oneArrayElement).reduce((reducer, bid) => {
+    const sum = reducer[reducer.length - oneArrayElement].sum + parseFloat(bid.amount)
+    return [ ...reducer, { ...bid, sum } ]
+  }, [ { ...initial, sum: parseFloat(initial.amount) } ])
+}
+
 class AreaChartWithYPercent extends React.Component {
   static propTypes = {
-    data: PropTypes.array.isRequired,
+    bids: PropTypes.array.isRequired,
+    asks: PropTypes.array.isRequired,
     width: PropTypes.number.isRequired,
     ratio: PropTypes.number.isRequired,
     type: PropTypes.oneOf(['svg', 'hybrid']).isRequired
@@ -30,14 +42,22 @@ class AreaChartWithYPercent extends React.Component {
   }
 
   render () {
-    const { type, width, height, ratio } = this.props
-    const margin = { left: 0, right: 40, top: 20, bottom: 0 }
+    const { type, width, height, ratio, currency, bids, asks } = this.props
+    const margin = { left: 0, right: 0, top: 20, bottom: 0 }
 
     const showGrid = true
     const gridHeight = height - margin.top - margin.bottom
     const xGrid = showGrid ? { innerTickSize: -1 * gridHeight } : {}
 
-    const data = this.props.data.sort((left, right) => left.price - right.price)
+    // .map(bid => ({ ...bid, type: 'bid' }))
+    // .map(bid => ({ ...bid, type: 'ask' }))
+
+    const ascSortedBids = bids.sort((left, right) => left.price - right.price)
+
+    let ascSortedAsks = addSumToPositionsArray(asks.sort((left, right) => left.price - right.price))
+
+    const data = ascSortedBids.map(bid => ({ ...bid, type: 'bid' })).concat(ascSortedAsks).sort((left, right) => left.price - right.price)
+    const [ first ] = data
 
     return (
       <ChartCanvas
@@ -50,20 +70,23 @@ class AreaChartWithYPercent extends React.Component {
         type={type}
         xAccessor={d => d.price}
         xScale={scaleLinear()}
-        xExtents={data => [0, max(data, d => d.price)]}
-        flipXScale={false}
+        xExtents={data => [first.price, max(data, d => d.price)]}
+        displayXAccessor={d => d.price}
       >
         <Chart id={0} yExtents={d => d.amount} yScale={scalePoint()}>
           <XAxis
             axisAt='top'
             orient='top'
             ticks={8}
+            tickFormat={price => floatStringToLocaleString(price, { currency })}
             tickStroke='rgba(56, 69, 85, .6)'
             stroke='rgba(56, 69, 85, .4)'
             {...xGrid}
           />
           <AreaSeries
-            yAccessor={d => d.amount}
+            yAccessor={d => {
+              if (d.type === 'bid') return d.amount
+            }}
             stroke='#86AF6B'
             fill='#86AF6B'
           />

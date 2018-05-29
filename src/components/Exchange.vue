@@ -54,6 +54,9 @@
         <candles-chart v-bind:class="{hidden: chart.type.selected === 'depth-market'}"></candles-chart>
         <depth-market-chart v-bind:class="{hidden: chart.type.selected === 'candles'}"></depth-market-chart>
 
+        <buy-positions>  </buy-positions>
+
+        <sell-positions> </sell-positions>
       </div>
 
       <div id="positions">
@@ -88,6 +91,8 @@ import VueResource from 'vue-resource'
 import candlesChart from './exchange/candlesChart.vue'
 import lastTrades from './exchange/lastTrades.vue'
 import depthMarket from './exchange/depthMarket.vue'
+import buyPositions from './exchange/buyPositions.vue'
+import sellPositions from './exchange/sellPositions.vue'
 
 Vue.use(VueResource)
 
@@ -97,7 +102,9 @@ export default {
   components: {
     'candles-chart': candlesChart,
     'last-trades': lastTrades,
-    'depth-market-chart': depthMarket
+    'depth-market-chart': depthMarket,
+    'buy-positions': buyPositions,
+    'sell-positions': sellPositions
   },
   computed: {
     trades: function () {

@@ -238,7 +238,7 @@ export default {
     }
 
     #app.day #status-bar {
-      background: #F5F5F6;
+      background: #F5F5F5;
     }
 
     #app.day #content {

@@ -49,7 +49,7 @@
            <div class="close"> <span>Close</span> ${{column.close}} {{booksSelected.comparision}}</div>
            <div class="high"> <span>High</span> ${{column.high}} {{booksSelected.comparision}}</div>
            <div class="low"> <span>Low</span> ${{column.low}} {{booksSelected.comparision}}</div>
-           <div class="vol"> <span>Vol.</span> {{column.volume}} {{booksSelected.unit}}</div>
+           <div class="vol"> <span>Vol.</span> {{parseFloat(column.volume).toFixed(2)}} {{booksSelected.unit}}</div>
            <div class="indicator"></div>
          </div>
 
@@ -96,7 +96,7 @@ export default {
 #candles-chart {
   height: 282px;
   width: calc(100vw - 368px);
-  margin-top: 32px;
+  margin-top: 36px;
   font-size: 0;
   position: absolute;
   overflow: hidden;
@@ -277,12 +277,13 @@ export default {
 }
 
 #app.day #candles-chart .column:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(240, 240, 240, 0.8);
 }
 
 #app.day #candles-chart .column .body {
-  background: #CC4458;
-  border: 1px solid #BA3040;
+  background: #F44336;
+  border: 1px solid transparent;
+  border-radius: 2px;
 }
 
 #app.day #candles-chart .column:hover .body {
@@ -290,12 +291,13 @@ export default {
 }
 
 #app.day #candles-chart .column.up .body {
-  background: #98D372;
-  border: 1px solid #80C156;
+  background: #4CAF50;
+  border: 1px solid transparent;
+  border-radius: 2px;
 }
 
 #app.day #candles-chart .column.up:hover .body {
-  background-color: #80C156;
+  background-color: #87C314;
 }
 
 #app.day #candles-chart .column .bottom {
@@ -304,6 +306,12 @@ export default {
 
 #app.day #candles-chart .column:hover .bottom {
   background: rgba(56, 69,85, 0.6);
+}
+
+#app.day #candles-chart .tooltip {
+  background: rgba(256, 256, 256, 0.97);
+  border: 1px solid #E5E5E5;
+  color: #333;
 }
 
 #app.day .background .vertical {

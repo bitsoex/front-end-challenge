@@ -11,14 +11,14 @@
       <ul>
         <li class="head">
           <div class="hour">hora</div>
-          <div class="price">MXN Precio</div>
-          <div class="amount">BTC Monto</div>
+          <div class="price">{{books.comparision}} Precio</div>
+          <div class="amount">{{books.unit}} Monto</div>
         </li>
         <li class="trade" v-for="trade in trades"
             v-bind:key="trade.tid"
             v-bind:class="{sell: trade.maker_side === 'sell'}">
           <div class="hour">{{trade.created_at}}</div>
-          <div class="price">{{ trade.price }}</div>
+          <div class="price">{{ parseFloat(trade.price).toFixed(Math.max(2, (trade.price.toString().split('.')[1] || []).length)) }}</div>
           <div class="amount">
             <div class="gray">{{parseFloat(trade.amount).toFixed(8)}}</div>
             <div class="normal">{{parseFloat(trade.amount)}}</div>
@@ -39,6 +39,9 @@ export default {
     }
   },
   computed: {
+    books: function () {
+      return this.$store.state.books.selected
+    },
     trades: function () {
       return this.$store.state.trades
     }

@@ -24,7 +24,20 @@ const state = {
   dayMode: false,
   diffOrders: [],
   fullscreen: false,
-  orders: [],
+  orders: {
+    aggregate: {
+      bids: [],
+      asks: []
+    },
+    high: {
+      bid: 0,
+      ask: 0
+    },
+    all: {
+      bids: [],
+      asks: []
+    }
+  },
   ticker: {
     ask: '-',
     bid: '-',
@@ -198,6 +211,51 @@ const mutations = {
   fullscreenOn () {
     state.fullscreen = true
   },
+  orderBook () {
+    var higherBidAmount = 0
+    var higherAskAmount = 0
+    var i
+    Vue.http.get('https://api.bitso.com/v3/order_book?book=' + state.books.selected.url + '&aggregate=true').then(function (data) {
+      var bids = {}
+      for (i = 0; i < data.body.payload.bids.length; i++) {
+        bids[data.body.payload.bids[i].price] = parseFloat(data.body.payload.bids[i].amount)
+        if (parseFloat(data.body.payload.bids[i].amount) > higherBidAmount) {
+          higherBidAmount = data.body.payload.bids[i].amount
+        }
+      }
+      state.orders.aggregate.bids = bids
+      console.log(higherBidAmount)
+
+      var asks = {}
+      for (i = 0; i < data.body.payload.asks.length; i++) {
+        asks[data.body.payload.asks[i].price] = parseFloat(data.body.payload.asks[i].amount)
+      }
+      state.orders.aggregate.asks = asks
+      console.log(higherAskAmount)
+    }, function (err) {
+      console.log(err)
+    })
+
+    Vue.http.get('https://api.bitso.com/v3/order_book?book=' + state.books.selected.url + '&aggregate=false').then(function (data) {
+      state.orders.all.bids = data.body.payload.bids
+      for (i = 0; i < data.body.payload.bids.length; i++) {
+        if (parseFloat(data.body.payload.bids[i].amount) > higherBidAmount) {
+          higherBidAmount = data.body.payload.bids[i].amount
+        }
+      }
+      state.orders.high.bid = higherBidAmount
+
+      state.orders.all.asks = data.body.payload.asks
+      for (i = 0; i < data.body.payload.asks.length; i++) {
+        if (parseFloat(data.body.payload.asks[i].amount) > higherAskAmount) {
+          higherAskAmount = data.body.payload.asks[i].amount
+        }
+      }
+      state.orders.high.ask = higherAskAmount
+    }, function (err) {
+      console.log(err)
+    })
+  },
   ticker (state, payload) {
     state.ticker.ask = commafy(payload.ask)
     state.ticker.bid = commafy(payload.bid)
@@ -250,6 +308,7 @@ const actions = {
     context.commit('booksSelected', payload)
     context.commit('tradesAll')
     context.commit('candlesChart')
+    context.commit('orderBook')
   },
   chartInterval (context, payload) {
     context.commit('chartInterval', payload)

@@ -97,6 +97,8 @@ export default {
         if (this.websocket.open) {
           websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
           websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
+          websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'orders' }))
+          websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'orders' }))
         }
       } else {
         this.books.initial = this.books.selected
@@ -132,8 +134,8 @@ export default {
     websocket.onopen = function () {
       self.websocket.open = true
       websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }))
-      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }))
-      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }))
+      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }))
+      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }))
     }
 
     websocket.onmessage = function (message) {
@@ -144,6 +146,9 @@ export default {
             self.$store.commit('tradesPush', data.payload[0])
             self.$emit('updateHead')
           }
+          break
+        default:
+          console.log(data)
           break
       }
     }

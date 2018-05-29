@@ -11,7 +11,8 @@
   transition: 0.5s;
 }
 .title {
-  margin-top: 40px;
+  position: absolute;
+  left: -10px;
   transform: rotate(90deg);
   color: var(--color-text);
 }

@@ -13,7 +13,6 @@ export class SidenavComponent implements OnInit, OnDestroy {
     @ViewChild("sidenav") public sidenav: MatSidenav;
 
     private mobileQuery: MediaQueryList;
-
     private data: Object = {
         labels: ["BTC", "XRP", "ETH", "LTC", "BCH"],
         datasets: [
@@ -35,10 +34,13 @@ export class SidenavComponent implements OnInit, OnDestroy {
                 ]
             }]
     };
-
     private _mobileQueryListener: () => void;
 
-    constructor(private sidenavMngr: SidenavService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    constructor(
+        private sidenavMngr: SidenavService,
+        private changeDetectorRef: ChangeDetectorRef,
+        private media: MediaMatcher
+    ) {
         this.mobileQuery = media.matchMedia("(max-width: 600px)");
         this._mobileQueryListener = () => changeDetectorRef.detectChanges();
         this.mobileQuery.addListener(this._mobileQueryListener);

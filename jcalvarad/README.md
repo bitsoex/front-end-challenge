@@ -70,3 +70,7 @@ Testing is implemented per component for the UI part, and per store in the busin
 ### Linting and formatting
 
 Eslinter and Prettier are configured in the project so the developer can find potential errors at coding time and also have a consistent format throught the project.
+
+### Responsive
+
+Mobile first aproach to responsive app.

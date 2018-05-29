@@ -100,7 +100,7 @@ export default {
   font-size: 0;
   position: absolute;
   overflow: hidden;
-  transition: all 3s;
+  transition: all 0.3s;
 }
 
 #candles-chart .column {

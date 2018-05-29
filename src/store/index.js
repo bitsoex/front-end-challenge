@@ -23,6 +23,7 @@ const state = {
   },
   dayMode: false,
   diffOrders: [],
+  fullscreen: false,
   orders: [],
   ticker: {
     ask: '-',
@@ -194,6 +195,9 @@ const mutations = {
     state.dayMode = payload
     localStorage.setItem('dayMode', payload)
   },
+  fullscreenOn () {
+    state.fullscreen = true
+  },
   ticker (state, payload) {
     state.ticker.ask = commafy(payload.ask)
     state.ticker.bid = commafy(payload.bid)
@@ -208,6 +212,13 @@ const mutations = {
   tradesAll (state, payload) {
     Vue.http.get('https://api.bitso.com/v3/trades?book=' + state.books.selected.url + '&limit=50').then(function (data) {
       var allTrades = data.body.payload
+      var tradesWithCorrectHour = []
+      for (var i = 0; i < allTrades.length; i++) {
+        var trade = allTrades[i]
+        var dateOfTrade = new Date(trade.created_at)
+        trade.created_at = new Date(dateOfTrade).toString()
+        tradesWithCorrectHour.push(trade)
+      }
       state.trades = allTrades
     }, function (err) {
       console.log(err)
@@ -224,7 +235,7 @@ const mutations = {
     var trade = {
       amount: payload.a,
       book: 'btc_mxn',
-      created_at: new Date().toISOString().split('.')[0],
+      created_at: new Date(Date.CDT).toISOString().split('.')[0],
       maker_side: buyOrSell,
       price: payload.r,
       tid: payload.i

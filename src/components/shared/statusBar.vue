@@ -22,6 +22,8 @@
         Variación
         <span class="value"></span>
       </div>
+
+      <button v-on:click="toggleFullscreen()" id="fullscreen-button"> fullscreen </button>
     </div>
   </div>
 </template>
@@ -84,6 +86,15 @@ export default {
         this.books.initial = this.books.selected
       }
       /* end feature */
+    },
+    toggleFullscreen () {
+      this.$fullscreen.toggle(document.getElementById('app'), {
+        wrap: false,
+        callback: this.fullscreenOn
+      })
+    },
+    fullscreenOn () {
+      this.$store.commit('fullscreenOn')
     },
     loadTicker (book) {
       var self = this

@@ -1,14 +1,14 @@
 <template>
   <div id="app" v-bind:class="{day: dayMode === true}">
+    <fullscreen :fullscreen.sync="fullscreen">
+      <navbar></navbar>
 
-    <navbar></navbar>
+      <status-bar></status-bar>
 
-    <status-bar></status-bar>
-
-    <div id="content">
-      <router-view/>
-    </div>
-
+      <div id="content">
+        <router-view/>
+      </div>
+    </fullscreen>
   </div>
 </template>
 
@@ -19,7 +19,10 @@ import VueResource from 'vue-resource'
 import navbar from './components/shared/navbar.vue'
 import statusBar from './components/shared/statusBar.vue'
 
+import fullscreen from 'vue-fullscreen'
+
 Vue.use(VueResource)
+Vue.use(fullscreen)
 
 export default {
   name: 'App',
@@ -36,6 +39,9 @@ export default {
     },
     books: function () {
       return this.$store.state.books
+    },
+    fullscreen: function () {
+      return this.$store.state.fullscreen
     },
     ticker: function () {
       this.$emit('updateHead')

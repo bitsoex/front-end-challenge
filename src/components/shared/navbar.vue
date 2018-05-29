@@ -241,6 +241,7 @@ export default {
     border-radius: 10px;
     background-color: #1d2228;
     cursor: pointer;
+    border: 1px solid #0d0208;
   }
 
   #navbar .dayMode_switch .button {

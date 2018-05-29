@@ -1,31 +1,8 @@
 <template>
   <div class="exchange">
     <div class="exchange-content" v-bind:style="{transform: mobilePagePosition}">
-      <div id="last-trades" v-bind:class="{open: lastTrades.open}">
-        <div class="slider" v-on:click="lastTrades.open = !lastTrades.open">
-          <img src="../assets/images/dropdown.svg">
-          <div class="title">Últimos Trades</div>
-        </div>
-        <div class="content">
-          <div class="header">
-            Últimos Trades
-          </div>
-          <ul>
-            <li class="head">
-              <div class="hour">hora</div>
-              <div class="price">MXN Precio</div>
-              <div class="amount">BTC Monto</div>
-            </li>
-            <li class="trade" v-for="trade in trades"
-                v-bind:key="trade.tid"
-                v-bind:class="{sell: trade.maker_side === 'sell'}">
-              <div class="hour">{{trade.created_at.split('T')[1].split('+')[0]}}</div>
-              <div class="price">{{parseFloat(Math.round(trade.price * 100) / 100).toFixed(2)}}</div>
-              <div class="amount">{{parseFloat(trade.amount)}}</div>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+      <last-trades></last-trades>
 
       <div id="chart">
         <div class="select chartTypeChange" v-bind:class="{open: chart.type.selectVisible}">
@@ -108,6 +85,7 @@ import vSelect from 'vue-select'
 import VueResource from 'vue-resource'
 
 import candlesChart from './exchange/candlesChart.vue'
+import lastTrades from './exchange/lastTrades.vue'
 
 var VueTouch = require('vue-touch')
 Vue.use(VueTouch, {name: 'v-touch'})
@@ -118,7 +96,8 @@ Vue.component('v-select', vSelect)
 
 export default {
   components: {
-    'candles-chart': candlesChart
+    'candles-chart': candlesChart,
+    'last-trades': lastTrades
   },
   computed: {
     trades: function () {
@@ -265,153 +244,6 @@ export default {
   white-space: nowrap;
 }
 
-/* LAST TRADES */
-  #last-trades {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 302px;
-    transform: translate3d(-258px, 0 , 0);
-    transition: all 0.3s;
-    z-index: 500;
-    background: #21282f;
-  }
-
-  #last-trades.open {
-    transform: translate3d(0, 0 , 0);
-  }
-
-  #last-trades .slider img {
-    transform: rotate(270deg);
-  }
-
-  #last-trades.open .slider img {
-    transform: rotate(90deg);
-  }
-
-  #last-trades .slider {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10;
-  }
-
-  #last-trades .content {
-    height: calc(100vh - 72px);
-    width: 272px;
-  }
-
-  #last-trades .content .header {
-    width: 226px;
-    height: 30px;
-    background-color: #33404d;
-    font-family: 'DIN_Medium';
-    text-transform: uppercase;
-    color: #bdc6cc;
-    text-align: left;
-    line-height: 30px;
-    position: absolute;
-    top: 12px;
-    left: 16px;
-    padding-left: 16px;
-    display: none;
-  }
-
-  #last-trades .content ul {
-    margin: 0 0 0 0;
-    padding: 34px 0 0 0;
-    list-style: none;
-    max-height: calc(100vh - 145px);
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  #last-trades .content .head {
-    color: #949da2;
-    text-transform: uppercase;
-    width: calc(100% - 74px);
-    margin-left: 16px;
-    height: 32px;
-    line-height: 32px;
-    font-size: 11px;
-    text-align: left;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: #21282f;
-    padding-left: 14px;
-  }
-
-  #last-trades .content ul li.head div {
-    display: inline-block;
-    height: 32px;
-    width: 30%;
-  }
-
-  #last-trades .content ul li.head div.hour {
-    width: 56px;
-  }
-
-  #last-trades .content ul li.head div.amount {
-    margin-left: 10px;
-    width: 80px;
-  }
-
-  #last-trades .content ul li.trade {
-    color: #606b76;
-    font-size: 12px;
-    transition: all 0s;
-    cursor: pointer;
-    margin-left: 16px;
-    padding-left: 12px;
-    text-align: left;
-  }
-
-  #last-trades .content ul li.trade:hover {
-    color: #ffffff;
-    background: #363e45;
-  }
-
-  #last-trades .content ul li.trade div {
-    display: inline-block;
-    width: calc(50% - 44px);
-    line-height: 20px;
-    height: 20px;
-    transition: all 0s;
-  }
-
-  #last-trades .content ul li.trade div.hour {
-    width: 64px;
-  }
-
-  #last-trades .content ul li.trade div.price {
-    color: #5e814e;
-  }
-
-  #last-trades .content ul li.trade.sell div.price {
-    color: #7f3741;
-  }
-
-  #last-trades .content ul li.trade:hover div.price {
-    color: #90c969;
-  }
-
-  #last-trades .content ul li.trade.sell:hover div.price {
-    color: #ba3040;
-  }
-
-  #last-trades .content ul li.trade div.amount {
-    color: #bdc6cc;
-  }
-
-  #last-trades .content ul li.trade:hover div.amount {
-    color: #FFFFFF;
-  }
-
-/* END LAST TRADES */
-
 /* PURCHASE AND SELL POSITIONS */
   #positions {
   }
@@ -513,7 +345,7 @@ export default {
     height: 20px;
     border-radius: 10px;
     background: #313a46;
-    z-index: 20;
+    z-index: 40;
   }
 
   #chart .chartTypeChange ul {
@@ -524,7 +356,7 @@ export default {
     border: 1px solid #404e5f;
     background: #313a46;
     position: relative;
-    z-index: 19;
+    z-index: 39;
     transition: all 0.3s;
   }
 
@@ -661,37 +493,6 @@ export default {
 /* END CHART */
 
 @media screen and (min-width:1200px) {
-
-  #last-trades {
-    transform: translate3d(0, 0, 0);
-    width: 256px;
-  }
-
-  #last-trades .slider {
-    display: none;
-  }
-
-  #last-trades .content {
-    width: 302px;
-  }
-
-  #last-trades .content .header {
-    display: block;
-  }
-
-  #last-trades .content ul {
-    margin-top: 42px;
-  }
-
-  #last-trades .content ul li.head {
-    width: 100%;
-    margin-top: 42px;
-  }
-
-  #last-trades .content ul li.trade .amount {
-    margin-left: -10px;
-  }
-
   #chart {
     margin: 0 0 0 280px;
     padding-top: 16px;
@@ -747,55 +548,6 @@ export default {
 }
 
 /* DAY MODE */
-#app.day #last-trades {
-  background: #FFFFFF;
-}
-
-#app.day #last-trades .content .header {
-  background: #F0F0F0;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-#app.day #last-trades .content ul .head {
-  background: #FFFFFF;
-}
-
-#app.day #last-trades .content ul li.trade:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-#app.day #last-trades .content ul li.trade .hour {
-  color: #abc;
-}
-
-#app.day #last-trades .content ul li.trade:hover .hour {
-  color: #abc;
-}
-
-#app.day #last-trades .content ul li.trade .price {
-  color: #86AF6B;
-}
-
-#app.day #last-trades .content ul li.trade:hover .price {
-  color: #80C156;
-}
-
-#app.day #last-trades .content ul li.trade.sell .price {
-  color: #CC4458;
-}
-
-#app.day #last-trades .content ul li.trade.sell:hover .price {
-  color: #BA3040;
-}
-
-#app.day #last-trades .content ul li.trade .amount {
-  color: #abc;
-}
-
-#app.day #last-trades .content ul li.trade:hover .amount {
-  color: #abc;
-}
-
 #app.day #markets .slider {
   background: #5C4B51;
 }

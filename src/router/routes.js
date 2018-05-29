@@ -4,18 +4,21 @@ import Exchange from '../views/Exchange'
 export default [
   {
     type: 'redirect',
+    name: 'home',
     exact: true,
     from: '/',
     to: '/exchange'
   },
   {
     exact: true,
-    path: '/exchange/:type',
-    render: (props) => <Exchange page='exchange' {...props} />
+    type: 'redirect',
+    from: '/exchange',
+    to: '/exchange/btc-mxn'
   },
   {
-    exact: false,
-    path: '/exchange',
+    exact: true,
+    path: '/exchange/:type',
+    name: 'exchange',
     render: (props) => <Exchange page='exchange' {...props} />
   }
 ]

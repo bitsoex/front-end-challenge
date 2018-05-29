@@ -1,7 +1,17 @@
+import isEmpty from 'lodash/isEmpty'
+
 import * as api from '../../lib/api'
 import { camelCaseObject } from '../../lib/utils'
 
 import { DEFAULT_BOOK } from '../../constans'
+
+export const getAvailableBooks = () => async dispatch => {
+  const { payload: availableBooks, success } = await api.getAvailableBooks()
+  if (!success) throw new Error(availableBooks.message)
+
+  dispatch({ type: 'SET_BOOKS_LIST', payload: availableBooks })
+  return availableBooks
+}
 
 export const getTickerData = (bookToFilter = '') => async dispatch => {
   const { payload, success } = await api.getTickerData({ book: bookToFilter })
@@ -50,13 +60,18 @@ export const getOrderBook = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
   return payload
 }
 
-export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async dispatch => {
-  const { payload: availableBooks, success } = await api.getAvailableBooks()
-  if (!success) throw new Error(availableBooks.message)
-  const tradesPromises = availableBooks.map(currentBook => api.getLatestTrades({ book: currentBook.book, limit }))
+export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async (dispatch, getState) => {
+  let books = getState().books.list
+  if (isEmpty(books)) {
+    const { payload, success } = await api.getAvailableBooks()
+    if (!success) throw new Error(payload.message)
+    books = payload
+  }
+
+  const tradesPromises = books.map(currentBook => api.getLatestTrades({ book: currentBook.book, limit }))
 
   const responses = await Promise.all(tradesPromises)
-  const data = availableBooks.map((book, index) => {
+  const data = books.map((book, index) => {
     const data = sort === 'asc' ? responses[index].payload.reverse() : responses[index].payload
     return {
       book: camelCaseObject(book),
@@ -64,10 +79,7 @@ export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async dispatch
     }
   })
 
-  dispatch({
-    type: 'SET_MARKETS_LIST',
-    payload: data
-  })
+  dispatch({ type: 'SET_MARKETS_LIST', payload: data })
   return data
 }
 

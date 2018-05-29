@@ -111,6 +111,14 @@ td.loading::after {
   text-transform: uppercase;
 }
 
+h2.error {
+  padding: 40px;
+}
+
+h3.error {
+  padding: 20px;
+}
+
 @media screen and (max-width: 768px) {
   .is-hidden-mobile,
   .is-hidden-touch {

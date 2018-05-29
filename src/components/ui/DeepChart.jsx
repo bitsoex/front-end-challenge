@@ -5,9 +5,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { max } from 'd3-array'
-import { scaleLinear, scalePoint } from 'd3-scale'
+import { scaleLinear } from 'd3-scale'
 
 import { ChartCanvas, Chart } from 'react-stockcharts'
+import { HoverTooltip } from 'react-stockcharts/lib/tooltip'
 import { AreaSeries } from 'react-stockcharts/lib/series'
 import { XAxis } from 'react-stockcharts/lib/axes'
 import { fitWidth } from 'react-stockcharts/lib/helper'
@@ -16,10 +17,18 @@ import { floatStringToLocaleString } from '../../lib/utils'
 
 const DEFAULT_WIDTH = 980
 const DEFAULT_HEIGHT = 300
+const oneArrayElement = 1
+
+const tooltipContent = (type, currency) => ({ currentItem }) => ({
+  x: `${currency === 'mxn' ? floatStringToLocaleString(currentItem.price, { minimunFractionDigits: 2 }) : currentItem.price} ${currency.toUpperCase()}`,
+  y: [
+    { label: 'SUM', value: `${currentItem.sum} ${type.toUpperCase()}` }
+  ]
+})
 
 function addSumToPositionsArray (positionsArray) {
-  const oneArrayElement = 1
   const [ initial ] = positionsArray
+  const oneArrayElement = 1
   return positionsArray.slice(oneArrayElement).reduce((reducer, bid) => {
     const sum = reducer[reducer.length - oneArrayElement].sum + parseFloat(bid.amount)
     return [ ...reducer, { ...bid, sum } ]
@@ -42,22 +51,26 @@ class AreaChartWithYPercent extends React.Component {
   }
 
   render () {
-    const { type, width, height, ratio, currency, bids, asks } = this.props
+    const { type, width, height, ratio, currency, coin } = this.props
     const margin = { left: 0, right: 0, top: 20, bottom: 0 }
 
     const showGrid = true
     const gridHeight = height - margin.top - margin.bottom
     const xGrid = showGrid ? { innerTickSize: -1 * gridHeight } : {}
 
-    // .map(bid => ({ ...bid, type: 'bid' }))
-    // .map(bid => ({ ...bid, type: 'ask' }))
+    const ascSortedBids = this.props.bids.sort((left, right) => left.price - right.price)
+    const [ firstBid ] = ascSortedBids
+    const summary = ascSortedBids.reduce((reducer, bid) => reducer + parseFloat(bid.amount), 0)
 
-    const ascSortedBids = bids.sort((left, right) => left.price - right.price)
+    let ascSortedAsks = addSumToPositionsArray(this.props.asks.sort((left, right) => left.price - right.price)).map(ask => ({ ...ask, type: 'ask' }))
 
-    let ascSortedAsks = addSumToPositionsArray(asks.sort((left, right) => left.price - right.price))
+    // reverse amounts
+    const data = ascSortedBids.slice(oneArrayElement).reduce((reducer, bid) => {
+      const sum = reducer[reducer.length - oneArrayElement].sum - parseFloat(bid.amount)
+      return [ ...reducer, { ...bid, sum, type: 'bid' } ]
+    }, [ { ...firstBid, type: 'bid', sum: summary } ]).concat(ascSortedAsks).sort((left, right) => left.price - right.price)
 
-    const data = ascSortedBids.map(bid => ({ ...bid, type: 'bid' })).concat(ascSortedAsks).sort((left, right) => left.price - right.price)
-    const [ first ] = data
+    const [ initialElement ] = ascSortedBids
 
     return (
       <ChartCanvas
@@ -65,30 +78,58 @@ class AreaChartWithYPercent extends React.Component {
         width={width}
         height={height}
         margin={margin}
-        seriesName='MSFT'
+        seriesName='deep'
         data={data}
         type={type}
         xAccessor={d => d.price}
         xScale={scaleLinear()}
-        xExtents={data => [first.price, max(data, d => d.price)]}
+        xExtents={data => [initialElement.price, max(data, d => d.price)]}
         displayXAccessor={d => d.price}
+        clamp
       >
-        <Chart id={0} yExtents={d => d.amount} yScale={scalePoint()}>
+        <Chart
+          id={0}
+          yExtents={d => (d.type === 'bid') && d.sum}
+        >
           <XAxis
             axisAt='top'
             orient='top'
             ticks={8}
             tickFormat={price => floatStringToLocaleString(price, { currency })}
-            tickStroke='rgba(56, 69, 85, .6)'
-            stroke='rgba(56, 69, 85, .4)'
+            tickStroke='rgba(56, 69, 85, .8)'
+            stroke='rgba(56, 69, 85, .6)'
             {...xGrid}
           />
           <AreaSeries
-            yAccessor={d => {
-              if (d.type === 'bid') return d.amount
-            }}
-            stroke='#86AF6B'
-            fill='#86AF6B'
+            yAccessor={d => (d.type === 'bid') && d.sum}
+            stroke='rgba(134, 175, 107, .9)'
+            fill='rgba(134, 175, 107, .4)'
+          />
+          <HoverTooltip
+            tooltipContent={tooltipContent(coin, currency)}
+            fontSize={15}
+            fill='rgba(0, 0, 0, 0)'
+            stroke='rgba(0, 0, 0, 0)'
+            fontFill='#747F89'
+            bgFill='rgba(0, 0, 0, 0)'
+          />
+        </Chart>
+        <Chart
+          id={1}
+          yExtents={d => (d.type === 'ask') && d.sum}
+        >
+          <HoverTooltip
+            tooltipContent={tooltipContent(coin, currency)}
+            fontSize={15}
+            fill='rgba(0, 0, 0, 0)'
+            stroke='rgba(0, 0, 0, 0)'
+            fontFill='#747F89'
+            bgFill='rgba(0, 0, 0, 0)'
+          />
+          <AreaSeries
+            yAccessor={d => (d.type === 'ask') && d.sum}
+            stroke='rgba(186, 48, 64, .9)'
+            fill='rgba(186, 48, 64, .4)'
           />
         </Chart>
       </ChartCanvas>

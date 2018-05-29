@@ -128,8 +128,8 @@ class CandleStickChart extends Component {
           <XAxis
             axisAt='top'
             orient='top'
-            tickStroke='rgba(56, 69, 85, .6)'
-            stroke='rgba(56, 69, 85, .4)'
+            tickStroke='rgba(56, 69, 85, .8)'
+            stroke='rgba(56, 69, 85, .6)'
             {...xGrid}
           />
 
@@ -139,7 +139,7 @@ class CandleStickChart extends Component {
             tickFormat={numberFormat}
             {...yGrid}
             stroke='#191e23'
-            tickStroke='rgba(56, 69, 85, .6)'
+            tickStroke='rgba(56, 69, 85, .8)'
           />
 
           <CandlestickSeries

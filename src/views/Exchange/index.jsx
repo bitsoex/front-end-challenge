@@ -245,7 +245,9 @@ class Home extends Component {
         <div className='page'>
           <TheHeader page={this.props.page} />
           <main className={classnames('exchange', { loading: this.state.loading })}>
-            <h2>Ocurrio un error al tratar de obtener la información del servidor, vuelve a intentarlo en unos momentos</h2>
+            <h2 className='error'>
+              Ocurrio un error al tratar de obtener la información del servidor, vuelve a intentarlo en unos momentos
+            </h2>
             <TheMarkets />
           </main>
         </div>

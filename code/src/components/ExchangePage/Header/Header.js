@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Header.css';
-import './HeaderIndicators';
 import HeaderIndicators from './HeaderIndicators';
+import HeaderCurrencySelector from './HeaderCurrencySelector';
 
 class Header extends Component {
   constructor(props) {
@@ -11,10 +11,10 @@ class Header extends Component {
       dropdownOpen: false,
     };
 
-    this.currencyClick = this.currencyClick.bind(this);
+    this.selectorClick = this.selectorClick.bind(this);
   }
 
-  currencyClick() {
+  selectorClick() {
     console.log('Clicked');
     this.setState(prevState =>
       Object.assign({}, ...prevState, { dropdownOpen: !prevState.dropdownOpen }),
@@ -22,22 +22,12 @@ class Header extends Component {
   }
 
   render() {
-    const dropdownClass = `dropdown-content${this.state.dropdownOpen ? ' active' : ''}`;
     return (
       <div className="header-fixed">
-        <div className="currency-dropdown">
-          <div className="dropdown">
-            <div className="dropdown-button" onClick={this.currencyClick}>
-              <span className="dropdown-button-text">BTC/MXN</span>
-              <img src="img/SVG/icon_dropdown.svg" alt="dropdown icon" className="dropdown-icon" />
-            </div>
-            <div className={dropdownClass}>
-              <a>BTC/ETH</a>
-              <a>ETH/MXN</a>
-              <a>XRP/MXN</a>
-            </div>
-          </div>
-        </div>
+        <HeaderCurrencySelector
+          selectorClick={this.selectorClick}
+          dropdownOpen={this.state.dropdownOpen}
+        />
         <HeaderIndicators />
       </div>
     );

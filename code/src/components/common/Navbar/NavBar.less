@@ -145,6 +145,9 @@
 .navbar-switch input {display: none;}
 
 .navbar-switch input:checked {
+  & + .navbar-slider {
+    background-color: white;
+  }
   & + .navbar-slider:before {
     -webkit-mask-image: url(../../../assets/sun.svg);
     mask-image: url(../../../assets/sun.svg);

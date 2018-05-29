@@ -4,6 +4,19 @@ import PropTypes from 'prop-types';
 import './LastTrades.css';
 
 class LastTrades extends Component {
+  buildRows() {
+    return this.props.trades.map((trade) => {
+      const { id, hour, type, price, amount, first } = trade;
+      return (
+        <tr key={id} className={first ? 'trades-active' : ''}>
+          <td className="trades-hour">{hour}</td>
+          <td className={type === 'buy' ? 'trades-buy-price' : 'trades-sell-price'}>{price}</td>
+          <td className="trades-amount">{amount}</td>
+        </tr>
+      );
+    });
+  }
+
   render() {
     return (
       <section className="trades-container">
@@ -17,18 +30,7 @@ class LastTrades extends Component {
             </tr>
           </thead>
           <tbody className="trades-table-body">
-            {
-              this.props.trades.map((trade) => {
-                const { id, hour, type, price, amount, first } = trade;
-                return (
-                  <tr key={id} className={first ? 'trades-active' : ''}>
-                    <td className="trades-hour">{hour}</td>
-                    <td className={type === 'buy' ? 'trades-buy-price' : 'trades-sell-price'}>{price}</td>
-                    <td className="trades-amount">{amount}</td>
-                  </tr>
-                );
-              })
-            }
+            { this.buildRows() }
           </tbody>
         </table>
       </section>

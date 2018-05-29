@@ -94,8 +94,7 @@ class AreaChartWithYPercent extends React.Component {
           <XAxis
             axisAt='top'
             orient='top'
-            ticks={8}
-            tickFormat={price => floatStringToLocaleString(price, { currency })}
+            tickFormat={price => currency === 'mxn' ? floatStringToLocaleString(price, { currency }) : price}
             tickStroke='rgba(56, 69, 85, .8)'
             stroke='rgba(56, 69, 85, .6)'
             {...xGrid}

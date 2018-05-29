@@ -34,7 +34,7 @@ class Home extends Component {
     this.state = {
       loading: false,
       error: false,
-      chart: 'deep',
+      chart: 'candlestick',
       period: '1year'
     }
   }

@@ -7,9 +7,9 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       {
-        routes.map(route => route.type === 'redirect'
-          ? <Redirect key={route.path} {...route} />
-          : <Route key={route.path} {...route} />
+        routes.map((route, index) => route.type === 'redirect'
+          ? <Redirect key={route.path || index} {...route} />
+          : <Route key={route.path || index} {...route} />
         )
       }
     </Switch>

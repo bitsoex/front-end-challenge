@@ -24,7 +24,6 @@
 
 .markets > .content {
   background: var(--markets-content-background);
-  white-space: nowrap;
   display: flex;
   flex-direction: column;
 }
@@ -38,6 +37,11 @@
   flex: 1;
   white-space: nowrap;
   overflow-y: scroll;
+}
+
+.markets > .content > .market-chart,
+.markets > .content > .header {
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 768px) {

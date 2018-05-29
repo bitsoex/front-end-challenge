@@ -111,12 +111,18 @@ td.loading::after {
   text-transform: uppercase;
 }
 
+h3.error,
+h2.error {
+  text-align: center;
+}
+
 h2.error {
   padding: 40px;
 }
 
 h3.error {
   padding: 20px;
+  white-space: normal;
 }
 
 @media screen and (max-width: 768px) {

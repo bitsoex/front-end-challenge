@@ -54,7 +54,7 @@ class TheMarkets extends Component {
             { (!this.state.loading && !this.state.error) ? splittedMarkets.map((market, index) => (
               <MarketChart key={market.book.book + index} {...market} />)
             ) : (
-              <h3 className='error'>Ocurrio un error al tratar de obtener los datos del servidor</h3>
+              <h3 className='error'>Ocurrio un error al tratar de obtener los datos del servidor, intentalo nuevamente</h3>
             )}
           </div>
         </div>

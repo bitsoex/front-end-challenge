@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 import Order_book from './Order_book.js';
+import Chart_trade from './Chart_trade.js';
 
 class Market_page extends Component {
 	render() {
 		return <div class="market-page">
-			<div class="chart-trade"></div>
+			<Chart_trade/>
 			<Order_book/>
 		</div>;
 	}

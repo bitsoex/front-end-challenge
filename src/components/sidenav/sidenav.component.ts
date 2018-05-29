@@ -1,4 +1,5 @@
-import { Component, ViewChild, OnInit } from "@angular/core";
+import { Component, ViewChild, OnInit, ChangeDetectorRef, OnDestroy } from "@angular/core";
+import { MediaMatcher } from "@angular/cdk/layout";
 import { MatSidenav } from "@angular/material";
 import { SidenavService } from "../../assets/utils/services/sidenav.service";
 
@@ -8,8 +9,10 @@ import { SidenavService } from "../../assets/utils/services/sidenav.service";
     styleUrls: ["./sidenav.component.scss"]
 })
 
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
     @ViewChild("sidenav") public sidenav: MatSidenav;
+
+    private mobileQuery: MediaQueryList;
 
     private data: Object = {
         labels: ["BTC", "XRP", "ETH", "LTC", "BCH"],
@@ -33,9 +36,19 @@ export class SidenavComponent implements OnInit {
             }]
     };
 
-    constructor(private sidenavMngr: SidenavService) { }
+    private _mobileQueryListener: () => void;
+
+    constructor(private sidenavMngr: SidenavService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+        this.mobileQuery = media.matchMedia("(max-width: 600px)");
+        this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+        this.mobileQuery.addListener(this._mobileQueryListener);
+    }
 
     ngOnInit(): void {
         this.sidenavMngr.setSidenav(this.sidenav);
+    }
+
+    ngOnDestroy(): void {
+        this.mobileQuery.removeListener(this._mobileQueryListener);
     }
 }

@@ -3,6 +3,7 @@
     <img src="./../../assets/images/1x/bitso_logo.png">
     <span id="sub-title">Challenge</span>
     <span id="full-space"></span>
+    <button mat-icon-button><mat-icon>menu</mat-icon></button>
     <button *ngIf="this.isUsrLogged" mat-button color="accent" (click)="navigateTo('home')">Home</button>
     <button *ngIf="this.isUsrLogged" mat-button (click)="sidebarToggle()">Profile and Wallet</button>
     <button *ngIf="this.isUsrLogged" mat-button color="primary" (click)="navigateTo('dashboard')">Dashboard</button>

@@ -1,6 +1,7 @@
 <div class="sidenav-container">
-  <mat-sidenav-container class="side-container">
-    <mat-sidenav #sidenav mode="push" opened="false">
+  <mat-sidenav-container class="side-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #sidenav opened="false" [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <div fxLayout="column">
         <div fxFlex>
           <div fxLayout>

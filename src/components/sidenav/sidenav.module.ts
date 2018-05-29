@@ -7,6 +7,7 @@ import { MatDividerModule, MatSidenavModule, MatListModule } from "@angular/mate
 import { ChartModule } from "primeng/chart";
 import { SidenavComponent } from "./sidenav.component";
 import { SidenavService } from "../../assets/utils/services/sidenav.service";
+import { MediaMatcher } from "@angular/cdk/layout";
 
 const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -28,7 +29,7 @@ const routes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(routes)
     ],
-    providers: [SidenavService],
+    providers: [MediaMatcher, SidenavService],
     exports: [SidenavComponent],
 })
 

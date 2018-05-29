@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { ErrorComponent } from "./error.component";
 import { Routes, RouterModule } from "@angular/router";
+import { MatCardModule } from "@angular/material";
 
 const routes: Routes = [
     { path: "", component: ErrorComponent, pathMatch: "full" }
@@ -8,7 +9,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [ErrorComponent],
-    imports: [RouterModule.forChild(routes)],
+    imports: [MatCardModule, RouterModule.forChild(routes)],
     providers: [],
     exports: [ErrorComponent]
 })

@@ -13,6 +13,8 @@ import Dropdown from '../ui/Dropdown'
 import logo from '../../../Assets/Images/2x/bitso_logo@2x.png'
 import mobileLog from '../../../Assets/Images/1x/bitso.png'
 
+import { DEFAULT_BOOK } from '../../constans'
+
 import './index.css'
 import './animations.css'
 
@@ -28,8 +30,9 @@ class TheHeader extends Component {
   }
 
   componentWillMount () {
+    const book = this.props.book || DEFAULT_BOOK
     this.setState({ loading: true })
-    this.props.getTickerData().then(payload => {
+    this.props.getTickerData(book).then(payload => {
       this.setState({ loading: false })
     }).catch(error => {
       console.error(error)
@@ -53,10 +56,11 @@ class TheHeader extends Component {
       toggleSidebarAction,
       headerSidebar,
       books,
-      selectedBook
+      selectedBook,
+      book
     } = this.props
 
-    let [ type, currency ] = selectedBook.book.split('_')
+    let [ type, currency ] = book.split('_')
 
     if (type) type = type.toUpperCase()
     if (currency) currency = currency.toUpperCase()
@@ -97,9 +101,9 @@ class TheHeader extends Component {
         <div className={classnames('stats', { loading: this.state.loading })}>
           <Dropdown
             className='exchange-type'
-            options={books.filter(book => book.value !== selectedBook.book)}
+            options={books.filter(book => book.value !== book)}
             onChange={this.selectBook.bind(this)}
-            text={selectedBook.book.replace('_', '/').toUpperCase()}
+            text={book.replace('_', '/').toUpperCase()}
           />
           <div className='list'>
             <div className='stat'>

@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux'
 import moment from 'moment-timezone'
 import range from 'lodash/range'
 import classnames from 'classnames'
+import queryString from 'query-string'
+import snakeCase from 'lodash/snakeCase'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
@@ -15,10 +17,12 @@ import DeepChart from '../../components/ui/DeepChart'
 import candlestickIcon from '../../../Assets/Images/1x/icon_candles.png'
 import deepIcon from '../../../Assets/Images/1x/icon_deep.png'
 
+import { setError as setErrorAction, setLoading as setLoadingAction } from '../../store/actions/ui'
 import {
   getLatestTrades as getLatestTradesAction,
   getOrderBook as getOrderBookAction,
-  getTickerTimeline as getTickerTimelineAction
+  getTickerTimeline as getTickerTimelineAction,
+  getAvailableBooks as getAvailableBooksAction
 } from '../../store/actions/exchange'
 import { floatStringToLocaleString } from '../../lib/utils'
 
@@ -27,45 +31,45 @@ import './index.css'
 
 const INITIAL_RANGE = 0
 const NORMALIZE_INDEX = 1
+const DEFAULT_PERIOD = '1year'
 
 class Home extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      loading: false,
-      error: false,
-      chart: 'candlestick',
-      period: '1year'
-    }
-  }
-
   componentWillMount () {
-    this.getData(DEFAULT_BOOK)
+    const book = this.props.match.params.book || DEFAULT_BOOK
+    this.getData(snakeCase(book))
   }
 
   componentWillUpdate (nextProps, nextState) {
-    const updateData = nextProps.selectedBook.book !== this.props.selectedBook.book
-    const updateTimeline = nextState.period !== this.state.period
-    if (updateData) this.getData(nextProps.selectedBook.book)
-    if (updateTimeline) this.props.getTickerTimeline(nextProps.selectedBook.book, nextState.period)
+    const { period: oldPeriod = DEFAULT_PERIOD } = queryString.parse(this.props.location.search)
+    const { period: nextPeriod = DEFAULT_PERIOD } = queryString.parse(nextProps.location.search)
+
+    const updateData = nextProps.match.params.book !== this.props.match.params.book
+    const updateTimeline = oldPeriod !== nextPeriod
+
+    const nextBook = snakeCase(nextProps.match.params.book)
+
+    if (updateData) this.getData(nextBook)
+    if (updateTimeline) this.props.getTickerTimeline(nextBook, nextPeriod)
   }
 
-  getData (book = DEFAULT_BOOK, period = '1year') {
-    this.setState({ loading: true, period })
+  getData (book, period) {
+    this.props.setLoading(true)
     Promise.all([
       this.props.getLatestTrades(book),
       this.props.getOrderBook(book),
-      this.props.getTickerTimeline(book, period)
+      this.props.getTickerTimeline(book, period),
+      this.props.getAvailableBooks()
     ]).then(payload => {
-      this.setState({ loading: false })
+      this.props.setLoading(false)
     }).catch(error => {
       console.error(error)
-      this.setState({ loading: false, error: true })
+      this.props.setLoading(false)
+      this.props.setError({ value: true, errorMessage: error })
     })
   }
 
   lastTradesColumns () {
-    const [ type, currency ] = this.props.selectedBook.book.split('_')
+    const [ type, currency ] = this.props.match.params.book.split('-')
 
     return [
       {
@@ -91,7 +95,7 @@ class Home extends Component {
   }
 
   bidsColumns () {
-    const [ type, currency ] = this.props.selectedBook.book.split('_')
+    const [ type, currency ] = this.props.match.params.book.split('-')
 
     return [
       {
@@ -127,7 +131,7 @@ class Home extends Component {
   }
 
   asksColumns () {
-    const [ type, currency ] = this.props.selectedBook.book.split('_')
+    const [ type, currency ] = this.props.match.params.book.split('-')
 
     return [
       {
@@ -166,7 +170,7 @@ class Home extends Component {
 
   bidHeader () {
     const bid = floatStringToLocaleString(this.props.selectedBook.bid)
-    const currency = this.props.selectedBook.book.split('_')[1]
+    const currency = this.props.match.params.book.split('-')[1]
 
     return (
       <div className='bid-header'>
@@ -181,7 +185,7 @@ class Home extends Component {
 
   askHeader () {
     const ask = floatStringToLocaleString(this.props.selectedBook.ask)
-    const currency = this.props.selectedBook.book.split('_')[1]
+    const currency = this.props.match.params.book.split('-')[1]
 
     return (
       <div className='ask-header'>
@@ -192,10 +196,6 @@ class Home extends Component {
         <div className='title'>posturas de venta</div>
       </div>
     )
-  }
-
-  changeChart (option) {
-    this.setState({ chart: option.value })
   }
 
   chartOptions = [
@@ -219,7 +219,7 @@ class Home extends Component {
       label: '3m'
     },
     {
-      value: '1year',
+      value: DEFAULT_PERIOD,
       label: '1y'
     }
   ]
@@ -240,19 +240,24 @@ class Home extends Component {
   ]
 
   render () {
-    if (this.state.loading || this.state.error) {
+    if (this.props.loading || this.props.error) {
       return (
         <div className='page'>
-          <TheHeader page={this.props.page} />
-          <main className={classnames('exchange', { loading: this.state.loading })}>
+          <main className={classnames('exchange', { loading: this.props.loading })}>
             <h2 className='error'>
               Ocurrio un error al tratar de obtener la información del servidor, vuelve a intentarlo en unos momentos
             </h2>
-            <TheMarkets />
           </main>
         </div>
       )
     }
+
+    const {
+      chart = 'candlestick',
+      period = DEFAULT_PERIOD
+    } = queryString.parse(this.props.location.search)
+
+    const book = this.props.match.params.book || DEFAULT_BOOK
 
     const bidHeader = this.bidHeader()
     const askHeader = this.askHeader()
@@ -260,20 +265,20 @@ class Home extends Component {
     const bidsColumns = this.bidsColumns()
     const asksColumns = this.asksColumns()
 
-    const chartSelectorOptions = this.chartOptions.filter(option => option.value !== this.state.chart)
-    const chartSelectorText = this.chartOptions.find(option => option.value === this.state.chart).label
-    const [ type, currency ] = this.props.selectedBook.book.split('_')
+    const chartSelectorOptions = this.chartOptions.filter(option => option.value !== chart)
+    const chartSelectorText = this.chartOptions.find(option => option.value === chart).label
+    const [ type, currency ] = book.split('-')
 
     return (
       <div className='page'>
-        <TheHeader page={this.props.page} />
+        <TheHeader page={this.props.page} book={snakeCase(book)} to='exchange' />
         <main className='exchange'>
           <Table
             className='last-trades'
             header='últimos trades'
             columns={lastTradesColumns}
             data={this.props.latestTrades}
-            loading={this.state.loading}
+            loading={this.props.loading}
           />
           <div className='middle-section'>
             <div className='charts'>
@@ -281,16 +286,22 @@ class Home extends Component {
                 <Dropdown
                   options={chartSelectorOptions}
                   text={chartSelectorText}
-                  onChange={this.changeChart.bind(this)}
+                  onChange={(option) => this.props.history.push({
+                    pathname: `/exchange/${book}`,
+                    search: queryString.stringify({ period, chart: option.value })
+                  })}
                   className='charts-options'
                 />
-                {this.state.chart === 'candlestick' && (
+                {chart === 'candlestick' && (
                   <div className='option'>
                     Periodo
                     <Dropdown
                       options={this.periodOptions}
-                      text={this.periodOptions.find(period => period.value === this.state.period).label}
-                      onChange={(option) => this.setState({ period: option.value })}
+                      text={this.periodOptions.find(periodOption => periodOption.value === period).label}
+                      onChange={(option) => this.props.history.push({
+                        pathname: `/exchange/${book}`,
+                        search: queryString.stringify({ period: option.value, chart })
+                      })}
                     />
                   </div>
                 )}
@@ -314,7 +325,7 @@ class Home extends Component {
                 */}
               </div>
               <div className='chart'>
-                {this.state.chart === 'candlestick' ? (
+                {chart === 'candlestick' ? (
                   <CandlestickChart
                     data={this.props.tickerTimeline}
                     currency={currency}
@@ -336,14 +347,14 @@ class Home extends Component {
                 header={bidHeader}
                 columns={bidsColumns}
                 data={this.props.orderBook.bids}
-                loading={this.state.loading}
+                loading={this.props.loading}
               />
               <Table
                 className='ask'
                 header={askHeader}
                 columns={asksColumns}
                 data={this.props.orderBook.asks}
-                loading={this.state.loading}
+                loading={this.props.loading}
               />
             </div>
           </div>
@@ -354,17 +365,23 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ ticker, trades, orderBook }) => ({
+const mapStateToProps = ({ ticker, trades, orderBook, ui }) => ({
   latestTrades: trades.latest,
   selectedBook: ticker.current,
   tickerTimeline: ticker.timeline,
+  loading: ui.loading,
+  error: ui.error,
+  errorMessage: ui.errorMessage,
   orderBook
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getLatestTrades: bindActionCreators(getLatestTradesAction, dispatch),
   getOrderBook: bindActionCreators(getOrderBookAction, dispatch),
-  getTickerTimeline: bindActionCreators(getTickerTimelineAction, dispatch)
+  getTickerTimeline: bindActionCreators(getTickerTimelineAction, dispatch),
+  getAvailableBooks: bindActionCreators(getAvailableBooksAction, dispatch),
+  setError: bindActionCreators(setErrorAction, dispatch),
+  setLoading: bindActionCreators(setLoadingAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

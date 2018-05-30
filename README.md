@@ -11,6 +11,8 @@
 3. react-router
 4. react-redux
 5. react-stockcharts
+6. postcss
+7. standardjs
 
 ### [Parcel Bundler](https://parceljs.org/)
 
@@ -28,6 +30,14 @@ Utilería que conecta react con redux. Redux es un gestor de estado global, debi
 ### [React stockcharts](http://rrag.github.io/react-stockcharts/documentation.html)
 
 Libreria de react para gráficos hecha con D3, svgs y canvas, comportandose de manera más eficiente que otras herramientas de gráficos que usan diferentes elementos HTML para generar las formas. La use en el proyecto debido a la complejidad de las gráficas de velas y area que se solicitan en el diseño.
+
+### [Postcss](https://postcss.org/)
+
+Es un procesador de css que permite importar los archivos css dentro del código javascript, lo use para poder hacer modular los estilos y mejorar la estrucura del proyecto.
+
+### [Standardjs](https://standardjs.com/#usage)
+
+Es una guía de código y analizador que permite crear código limpio y fácil de leer sin demasiadas configuración. Lo use en el proyecto para mantener un estilo en todo el proyecto con un diseño limpio y fácil en el código.
 
 
 ## Estructura del proyecto:
@@ -82,7 +92,7 @@ Este archivo monta la aplicación dentro del DOM en el div con id 'root'
 Requisitos mínimos:
 1. NPM 5.6
 2. GIT
-3. Deshabilitar la pólitica del CORS en el navegaro o instalar una extensión contra ello
+3. Deshabilitar la pólitica del CORS en el navegador o instalar una extensión que fácilite esto
 
 ## Obtener el repositorio:
 

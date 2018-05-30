@@ -13,11 +13,21 @@
     }
 
     .maindashboard {
-        margin-top: 70px;
+        margin-top: 56px;
         margin-left: 0px;
 
         .navbar-market {
-            display: none;
+            height: 72px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+
+            .market_selector, .volume {
+                display: none;
+            }
+
+            > div > span {
+                display: inline-block;
+            }
         }
 
         .last-trades {
@@ -52,7 +62,7 @@
 
         .last-trades {
             order: 4;
-           	width: 100%;
+            width: 100%;
             margin-left: 15px;
             margin-right: 15px;
             display: block;
@@ -71,11 +81,10 @@
     }
 
     .maindashboard {
-        margin-top: 70px;
+        margin-top: 56px;
         margin-left: 0px;
 
         .navbar-market {
-            display: none;
         }
 
         .last-trades {

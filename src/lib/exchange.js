@@ -7,6 +7,11 @@ import { floatStringToLocaleString } from './utils'
 const INITIAL_RANGE = 0
 const NORMALIZE_INDEX = 1
 
+/**
+ * This function return the columns array to print last trades table
+ * @param {stryng} type - The type of the exchange
+ * @param {string} currency - The currency to change
+ */
 export const createLastTradesColumns = (type, currency) => [
   {
     header: 'hora',
@@ -29,6 +34,11 @@ export const createLastTradesColumns = (type, currency) => [
   }
 ]
 
+/**
+ * This function return the columns array to print bids table
+ * @param {stryng} type - The type of the exchange
+ * @param {string} currency - The currency to change
+ */
 export const createBidsColumns = (type, currency, bidsSum) => [
   {
     header: '',
@@ -61,6 +71,11 @@ export const createBidsColumns = (type, currency, bidsSum) => [
   }
 ]
 
+/**
+ * This function return the columns array to print asks table
+ * @param {stryng} type - The type of the exchange
+ * @param {string} currency - The currency to change
+ */
 export const createAsksColumns = (type, currency, asksSum) => [
   {
     header: <div className='mxn-price'><span>{currency}</span>precio</div>,

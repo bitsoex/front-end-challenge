@@ -110,7 +110,7 @@ $ npm install
 
 $ npm start
 
-Ahora puedes ir a tu navegaro y consultar la url: [proyecto](http://127.0.0.1:1234)
+Ahora puedes ir a tu navegador y consultar la url: [http://127.0.0.1:1234](http://127.0.0.1:1234)
 
 ## Empaquetar el código para producción
 

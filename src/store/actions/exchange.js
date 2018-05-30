@@ -11,6 +11,9 @@ export const setTickerError = createAction('SET_TICKER_ERROR')
 export const setMarketsLoading = createAction('SET_MARKETS_LOADING')
 export const setMarketsError = createAction('SET_MARKETS_ERROR')
 
+/**
+ * Get available books from the bitso api and dispatch to the store
+ */
 export const getAvailableBooks = () => async dispatch => {
   const { payload: availableBooks, success } = await api.getAvailableBooks()
   if (!success) throw new Error(availableBooks.message)
@@ -19,6 +22,10 @@ export const getAvailableBooks = () => async dispatch => {
   return availableBooks
 }
 
+/**
+ * Get the ticker data from the bitso api and dispatch to the store
+ * @param {string} bookToFilter - The book to filter data
+ */
 export const getTickerData = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
   dispatch({ type: 'SET_TICKER_LOADING', payload: true })
   const { payload, success } = await api.getTickerData({ book: bookToFilter })
@@ -33,6 +40,10 @@ export const getTickerData = (bookToFilter = DEFAULT_BOOK) => async dispatch => 
   return payload
 }
 
+/**
+ * Get the latest trades data from the bitso api and dispatch to the store
+ * @param {string} bookToFilter - The book to filter data
+ */
 export const getLatestTrades = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
   const { payload, success } = await api.getLatestTrades({ book: bookToFilter })
   if (!success) throw new Error(payload.message)
@@ -41,6 +52,10 @@ export const getLatestTrades = (bookToFilter = DEFAULT_BOOK) => async dispatch =
   return payload
 }
 
+/**
+ * Get the asks and bids data from the api and dispatch to the store
+ * @param {string} bookToFilter - The book to filter data
+ */
 export const getOrderBook = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
   const { payload, success } = await api.getOrderBook({ book: bookToFilter })
   if (!success) throw new Error(payload.message)
@@ -65,6 +80,12 @@ export const getOrderBook = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
   return payload
 }
 
+/**
+ * Get the trades data of all books from the api and dispatch to the store
+ * @param {Object} query - the query to filter items
+ * @param {number} [query.limit=100] - the limit of the response
+ * @param {string} [query.sort=desc] - the param to sort data
+ */
 export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async (dispatch, getState) => {
   dispatch({ type: 'SET_MARKETS_LOADING', payload: true })
   let books = getState().books.list
@@ -95,6 +116,11 @@ export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async (dispatc
   return data
 }
 
+/**
+ * Get the ticker timeline data from the bitso api and dispatch to the store
+ * @param {string} bookToFilter - Specifies which book to use
+ * @param {string} time - Specifies time to filter, possible values: 1month, 3month, 1year
+ */
 export const getTickerTimeline = (bookToFilter = DEFAULT_BOOK, time = '1year') => async dispatch => {
   const payload = await api.getTickerTimeline(bookToFilter, time)
   const data = payload.map(ticker => camelCaseObject(ticker))

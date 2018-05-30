@@ -4,6 +4,9 @@ import kebabCase from 'lodash/kebabCase'
 import Exchange from '../views/Exchange'
 import { DEFAULT_BOOK } from '../constans'
 
+/**
+ * Array with the available routes to navigate
+ */
 export default [
   // Here redirect the home path to exchange path
   {

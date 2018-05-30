@@ -3,6 +3,9 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import routes from './routes'
 
+/**
+ * This component provides the availables routes to navigate in
+ */
 const Router = () => (
   <BrowserRouter>
     <Switch>

@@ -88,7 +88,8 @@ class Home extends Component {
           <main className={classnames('exchange', { loading: this.props.loading })}>
             <h2 className='error'>
               Ocurrio un error al tratar de obtener la información del servidor,
-               vuelve a intentarlo en unos momentos
+               vuelve a intentarlo en unos momentos y verifica que tengas desactivada la política
+                de Access-Control-Allow-Origin CORS
             </h2>
           </main>
         </div>
@@ -204,11 +205,13 @@ class Home extends Component {
               </div>
               <div className='chart'>
                 {chart === 'candlestick' ? (
-                  <CandlestickChart
-                    data={this.props.tickerTimeline}
-                    currency={currency}
-                    coin={type}
-                  />
+                  <ErrorBoundary>
+                    <CandlestickChart
+                      data={this.props.tickerTimeline}
+                      currency={currency}
+                      coin={type}
+                    />
+                  </ErrorBoundary>
                 ) : (
                   <ErrorBoundary>
                     <DeepChart

@@ -49,7 +49,7 @@ generateData();
 /**
  * Componente para render del stock usando la libreria AMCHART, utilizando datos dummy
  */
-class Chart_trade extends Component {
+class ChartTrade extends Component {
 
   render() {
     const config = {
@@ -159,4 +159,4 @@ class Chart_trade extends Component {
   }
 }
 
-export default Chart_trade;
+export default ChartTrade;

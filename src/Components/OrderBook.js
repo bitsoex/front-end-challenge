@@ -7,7 +7,7 @@ import TableOrderBookAsks from './TableOrderBookAsks';
 /**
  * Maquetacion para el libro de ordenes de compra / venta
  */
-class Order_book extends Component {
+class OrderBook extends Component {
 
 	constructor(props) {
 	    super(props);
@@ -56,4 +56,4 @@ class Order_book extends Component {
 	}
 }
 
-export default Order_book;
+export default OrderBook;

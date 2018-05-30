@@ -5,7 +5,7 @@ import TableLastTrades from "./TableLastTrades";
 /**
  * Maquetacion para el panel de ultimos trades
  */
-class Last_trades extends Component {
+class LastTrades extends Component {
 	render() {
 		return <div class="last-trades">
 			<div class="title-lasttrades header">Últimos trades</div>
@@ -14,4 +14,4 @@ class Last_trades extends Component {
 	}
 }
 
-export default Last_trades;
+export default LastTrades;

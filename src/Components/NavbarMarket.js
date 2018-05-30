@@ -4,7 +4,7 @@ import { numberFormat } from "../utils";
 /**
  * Header del mercado actual en donde se muestra informacion basica
  */
-class Navbar_market extends Component {
+class NavbarMarket extends Component {
 
 	constructor(props) {
 	    super(props);
@@ -41,4 +41,4 @@ class Navbar_market extends Component {
 	}
 }
 
-export default Navbar_market;
+export default NavbarMarket;

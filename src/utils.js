@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import numeral from "numeral";
 
 /**
@@ -20,7 +20,6 @@ export const grayzeros = amount => {
  * Bar percent amounr
  * @param  {float} amount
  * @param  {float} maxAmount
- * @return {Component}
  */
 export const percentAmount = (amount, maxAmount) => {
 	let width = (amount / maxAmount) * 100;

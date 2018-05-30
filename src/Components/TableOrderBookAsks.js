@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Time from 'react-time';
 import { grayzeros, percentAmount, numberFormat } from "../utils";
 import _ from 'lodash';
 
@@ -35,7 +34,7 @@ class TableOrderBookAsks extends Component {
 			</thead>
 			<tbody>
 			{this.props.orderbook.map(item => (
-				<tr>
+				<tr key={item.tid}>
 					<td class="price">{numberFormat(item.price)}</td>
 					<td class="value">{numberFormat((item.amount*item.price).toFixed(2))}</td>
 					<td class="mount">{grayzeros(numberFormat(item.amount))}</td>

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import Order_book from './Order_book.js';
-import Chart_trade from './Chart_trade.js';
+import OrderBook from './OrderBook.js';
+import ChartTrade from './ChartTrade.js';
 
 /**
  * Pagina principal del mercado para mostrar el libro de ordenes y la grafica
  */
-class Market_page extends Component {
+class MarketPage extends Component {
 	render() {
 		return <div class="market-page">
-			<Chart_trade/>
-			<Order_book/>
+			<ChartTrade/>
+			<OrderBook/>
 		</div>;
 	}
 }
 
-export default Market_page;
+export default MarketPage;

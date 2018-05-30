@@ -8,7 +8,7 @@ import { grayzeros, percentAmount, numberFormat } from "../utils";
 /**
  * Panel derecho con el listado de precios del mercado
  */
-class Markets_list extends Component {
+class MarketsList extends Component {
 
 	constructor(props) {
 	    super(props);
@@ -58,4 +58,4 @@ class Markets_list extends Component {
 	}
 }
 
-export default Markets_list;
+export default MarketsList;

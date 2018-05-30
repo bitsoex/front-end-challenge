@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 /**
  * Header principal
  */
-class Navbar_main extends Component {
+class NavbarMain extends Component {
 	render() {
 		return <nav class="navbar header-nav fixed-top">
 			<div class="logo">
@@ -26,4 +26,4 @@ class Navbar_main extends Component {
 	}
 }
 
-export default Navbar_main;
+export default NavbarMain;

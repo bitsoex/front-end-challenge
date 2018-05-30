@@ -99,7 +99,7 @@ class Home extends Component {
           <main className={classnames('exchange', { loading: this.props.loading })}>
             <h2 className='error'>
               Ocurrio un error al tratar de obtener la información del servidor,
-               vuelve a intentarlo en unos momentos
+               vuelve a intentarlo en unos momentos asasadsad
             </h2>
           </main>
         </div>

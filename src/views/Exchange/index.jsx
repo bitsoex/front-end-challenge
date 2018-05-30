@@ -40,21 +40,7 @@ class Home extends Component {
   componentWillMount () {
     const book = snakeCase(get(this.props, 'match.params.book', DEFAULT_BOOK))
     let { period = exchangeConstants.defaultPeriod } = queryString.parse(this.props.location.search)
-    this.props.setLoading(true)
-    Promise.all([
-      this.props.getLatestTrades(book),
-      this.props.getOrderBook(book),
-      this.props.getTickerTimeline(book, period),
-      this.props.getAvailableBooks(),
-      this.props.getTickerData(book)
-    ]).then(payload => {
-      this.props.setLoading(false)
-      this.props.setError({ value: false, message: '' })
-    }).catch(error => {
-      console.error(error)
-      this.props.setLoading(false)
-      this.props.setError({ value: true, message: error.message })
-    })
+    this.getExchangeData(book, period)
     this.props.getMarketsData({ sort: 'asc' })
   }
 
@@ -73,23 +59,27 @@ class Home extends Component {
     const updateTimeline = oldPeriod !== nextPeriod
 
     if (updateData) {
-      this.props.setLoading(true)
-      Promise.all([
-        this.props.getLatestTrades(nextBook),
-        this.props.getOrderBook(nextBook),
-        this.props.getTickerTimeline(nextBook, nextPeriod),
-        this.props.getAvailableBooks(),
-        this.props.getTickerData(nextBook)
-      ]).then(payload => {
-        this.props.setLoading(false)
-        this.props.setError({ value: false, message: '' })
-      }).catch(error => {
-        console.error(error)
-        this.props.setLoading(false)
-        this.props.setError({ value: true, message: error.message })
-      })
+
     }
     if (updateTimeline && !updateData) this.props.getTickerTimeline(nextBook, nextPeriod)
+  }
+
+  getExchangeData (book, period) {
+    this.props.setLoading(true)
+    Promise.all([
+      this.props.getLatestTrades(book),
+      this.props.getOrderBook(book),
+      this.props.getTickerTimeline(book, period),
+      this.props.getAvailableBooks(),
+      this.props.getTickerData(book)
+    ]).then(payload => {
+      this.props.setLoading(false)
+      this.props.setError({ value: false, message: '' })
+    }).catch(error => {
+      console.error(error)
+      this.props.setLoading(false)
+      this.props.setError({ value: true, message: error.message })
+    })
   }
 
   render () {

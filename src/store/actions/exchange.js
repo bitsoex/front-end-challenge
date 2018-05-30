@@ -1,9 +1,13 @@
+import { createAction } from 'redux-actions'
 import isEmpty from 'lodash/isEmpty'
 
 import * as api from '../../lib/api'
 import { camelCaseObject } from '../../lib/utils'
 
 import { DEFAULT_BOOK } from '../../constans'
+
+export const setTickerLoading = createAction('SET_TICKER_LOADING')
+export const setTickerError = createAction('SET_TICKER_ERROR')
 
 export const getAvailableBooks = () => async dispatch => {
   const { payload: availableBooks, success } = await api.getAvailableBooks()

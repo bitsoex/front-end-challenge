@@ -17,11 +17,13 @@ const Dropdown = ({ options = [], text = '', className, onChange, ...props }) =>
     </div>
     <ul>
       {
-        options.map((option, index) => (
+        options.map((option, index) => option.label || option.icon ? (
           <li onClick={onChangeOption.bind(null, onChange, option)} key={option.id || index}>
             { option.icon }
             { option.label }
           </li>
+        ) : (
+          <li key={index}>{option}</li>
         ))
       }
     </ul>

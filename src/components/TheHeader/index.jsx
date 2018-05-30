@@ -2,13 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
+import kebabCase from 'lodash/kebabCase'
+
+import Link from '../ui/Link'
+import Dropdown from '../ui/Dropdown'
 
 import { floatStringToLocaleString } from '../../lib/utils'
 
 import { toggleSidebar as toggleSidebarAction } from '../../store/actions/ui'
-import { getTickerData as getTickerDataAction } from '../../store/actions/exchange'
-
-import Dropdown from '../ui/Dropdown'
+import {
+  getTickerData as getTickerDataAction,
+  setTickerLoading as setTickerLoadingAction,
+  setTickerError as setTickerErrorAction
+} from '../../store/actions/exchange'
 
 import logo from '../../../Assets/Images/2x/bitso_logo@2x.png'
 import mobileLog from '../../../Assets/Images/1x/bitso.png'
@@ -21,32 +27,26 @@ import './animations.css'
 const toggleSidebar = (action) => action()
 
 class TheHeader extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      loading: false,
-      error: false
-    }
-  }
-
   componentWillMount () {
+    const getData = !this.props.selectedBook.book
     const book = this.props.book || DEFAULT_BOOK
-    this.setState({ loading: true })
-    this.props.getTickerData(book).then(payload => {
-      this.setState({ loading: false })
-    }).catch(error => {
-      console.error(error)
-      this.setState({ loading: false })
-    })
+    if (getData) this.getTickerData(book)
   }
 
-  selectBook (option) {
-    this.setState({ loading: true })
-    this.props.getTickerData(option.value).then(payload => {
-      this.setState({ loading: false })
+  componentWillUpdate (nextProps, nextState) {
+    const update = nextProps.book !== this.props.book
+    if (update) this.getTickerData(nextProps.book)
+  }
+
+  getTickerData (book) {
+    this.props.setTickerLoading(true)
+    this.props.getTickerData(book).then(payload => {
+      this.props.setTickerLoading(false)
+      this.props.setTickerError({ value: false, message: '' })
     }).catch(error => {
       console.error(error)
-      this.setState({ loading: false })
+      this.props.setTickerLoading(false)
+      this.props.setTickerError({ value: true, message: error.message })
     })
   }
 
@@ -57,13 +57,21 @@ class TheHeader extends Component {
       headerSidebar,
       books,
       selectedBook,
-      book
+      book,
+      loading,
+      to
     } = this.props
 
     let [ type, currency ] = book.split('_')
 
-    if (type) type = type.toUpperCase()
-    if (currency) currency = currency.toUpperCase()
+    const exchangeOptions = books
+      .filter(currentBook => currentBook.value !== book)
+      .map(currentBook => (
+        <Link
+          label={currentBook.label}
+          to={{ ...to, params: { book: kebabCase(currentBook.value) } }}
+        />
+      ))
 
     return (
       <div className='header-container'>
@@ -74,8 +82,8 @@ class TheHeader extends Component {
           </div>
           <div className='title-page money-exchange'>
             <div>{ page }</div>
-            <div>
-              1 {type} = { currency === 'MXN' ? floatStringToLocaleString(selectedBook.last, { minimumFractionDigits: 2 }) : selectedBook.last } {currency}
+            <div className='upper-text'>
+              1 {type} = { currency === 'mxn' ? floatStringToLocaleString(selectedBook.last, { minimumFractionDigits: 2 }) : selectedBook.last } {currency}
             </div>
           </div>
           <nav>
@@ -98,30 +106,49 @@ class TheHeader extends Component {
             </ul>
           </nav>
         </header>
-        <div className={classnames('stats', { loading: this.state.loading })}>
+        <div className={classnames('stats', { loading })}>
           <Dropdown
             className='exchange-type'
-            options={books.filter(book => book.value !== book)}
-            onChange={this.selectBook.bind(this)}
+            options={exchangeOptions}
             text={book.replace('_', '/').toUpperCase()}
           />
           <div className='list'>
             <div className='stat'>
               <span className='label'>Volumen 24hrs</span>
-              <span className='value'>{selectedBook.volume} {type}</span>
+              <span className='value upper-text'>{selectedBook.volume} {type}</span>
             </div>
             <div className='stat'>
               <span className='label'>Max</span>
-              <span className='value'>{currency === 'MXN' ? floatStringToLocaleString(selectedBook.high, { minimumFractionDigits: 2 }) : selectedBook.high } {currency}</span>
+              <span className='value upper-text'>
+                {
+                  currency === 'mxn'
+                    ? floatStringToLocaleString(selectedBook.high, { minimumFractionDigits: 2 })
+                    : selectedBook.high
+                }
+                {currency}
+              </span>
             </div>
             <div className='stat'>
               <span className='label'>Min</span>
-              <span className='value'>{currency === 'MXN' ? floatStringToLocaleString(selectedBook.low, { minimumFractionDigits: 2 }) : selectedBook.low } {currency}</span>
+              <span className='value upper-text'>
+                {
+                  currency === 'mxn'
+                    ? floatStringToLocaleString(selectedBook.low, { minimumFractionDigits: 2 })
+                    : selectedBook.low
+                }
+                {currency}
+              </span>
             </div>
             <div className='stat'>
               <span className='label'>Valoración</span>
-              <span className='value'>
-                + {currency === 'MXN' ? floatStringToLocaleString(selectedBook.vwap, { minimumFractionDigits: 2 }) : selectedBook.vwap } {currency} (1.4%) {/* hardcoded because i don't understand how to calculate it */}
+              <span className='value upper-text'>
+                +
+                {
+                  currency === 'mxn'
+                    ? floatStringToLocaleString(selectedBook.vwap, { minimumFractionDigits: 2 })
+                    : selectedBook.vwap
+                }
+                {currency} (1.4%) {/* hardcoded because i don't understand how to calculate it */}
               </span>
             </div>
           </div>
@@ -131,15 +158,23 @@ class TheHeader extends Component {
   }
 }
 
-const mapStateToProps = ({ ui, ticker }) => ({
+const mapStateToProps = ({ ui, ticker, books }) => ({
   headerSidebar: ui.headerSidebar,
-  books: ticker.data.map(tick => ({ value: tick.book, label: tick.book.replace('_', '/').toUpperCase() })),
-  selectedBook: ticker.current
+  books: books.list.map(availableBook => ({
+    value: availableBook.book,
+    label: availableBook.book.replace('_', '/').toUpperCase()
+  })),
+  selectedBook: ticker.current,
+  loading: ticker.loading,
+  error: ticker.error,
+  errorMessage: ticker.errorMessage
 })
 
 const mapDispatchToProps = (dispatch) => ({
   toggleSidebarAction: bindActionCreators(toggleSidebarAction, dispatch),
-  getTickerData: bindActionCreators(getTickerDataAction, dispatch)
+  getTickerData: bindActionCreators(getTickerDataAction, dispatch),
+  setTickerLoading: bindActionCreators(setTickerLoadingAction, dispatch),
+  setTickerError: bindActionCreators(setTickerErrorAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TheHeader)

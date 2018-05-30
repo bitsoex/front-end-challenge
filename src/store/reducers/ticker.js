@@ -11,9 +11,12 @@ const initialState = {
     createdAt: '',
     vwap: '',
     low: '',
-    ask: '',
-    bid: ''
-  }
+    ask: 0,
+    bid: 0
+  },
+  loading: false,
+  error: false,
+  errorMessage: ''
 }
 
 export default handleActions({
@@ -27,6 +30,18 @@ export default handleActions({
 
   SET_TICKER_TIMELINE (state, action) {
     return { ...state, timeline: action.payload }
+  },
+
+  SET_TICKER_LOADING (state, action) {
+    return { ...state, loading: action.payload }
+  },
+
+  SET_TICKER_ERROR (state, action) {
+    return {
+      ...state,
+      error: action.payload.value,
+      errorMessage: action.payload.message || ''
+    }
   },
 
   CLEAR_TICKER_DATA (state, action) {

@@ -25,7 +25,7 @@ export default handleActions({
     return {
       ...state,
       error: action.payload.value,
-      errorMessage: action.payload.message
+      errorMessage: action.payload.message || ''
     }
   }
 }, initialState)

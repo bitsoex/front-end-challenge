@@ -75,14 +75,30 @@
 }
 
 #app > .page > .header-container > .stats > .exchange-type > ul > li {
+  padding: 0;
+}
+
+#app > .page > .header-container > .stats > .exchange-type > ul > li,
+#app > .page > .header-container > .stats > .exchange-type > ul > li a {
   background: var(--nav-background);
   color: var(--exchange-type-color);
   align-items: center;
   justify-content: center;
 }
 
+#app > .page > .header-container > .stats > .exchange-type > ul > li a:hover,
+#app > .page > .header-container > .stats > .exchange-type > ul > li:hover a,
 #app > .page > .header-container > .stats > .exchange-type > ul > li:hover {
   background: var(--background-navy);
+}
+
+#app > .page > .header-container > .stats > .exchange-type > ul > li a {
+  display: flex;
+  text-decoration: none;
+  padding: .375rem 1rem;
+  width: 100%;
+  height: 100%;
+  user-select: none;
 }
 
 #app > .page > .header-container > .stats > .list {

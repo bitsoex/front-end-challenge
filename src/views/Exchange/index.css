@@ -167,9 +167,17 @@
   justify-content: space-between;
 }
 
+.table.ask .ask-header {
+  flex-direction: row-reverse;
+}
+
 .table.bid .bid-header > .average > span {
   padding-right: 6px;
   color: var(--bid-average-color);
+}
+
+.table.ask .ask-header > .average {
+  flex-direction: row-reverse;
 }
 
 .table.ask .ask-header > .average > span {
@@ -181,6 +189,7 @@
 .table.ask .ask-header > .average {
   color: var(--bid-average-value-color);
   opacity: .5;
+  display: flex;
 }
 
 .table.bid > .container > table > thead > tr > th > div > span,

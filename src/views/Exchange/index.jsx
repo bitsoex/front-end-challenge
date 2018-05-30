@@ -1,37 +1,38 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import moment from 'moment-timezone'
-import range from 'lodash/range'
 import classnames from 'classnames'
 import queryString from 'query-string'
 import snakeCase from 'lodash/snakeCase'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
+import PositionsHeader from '../../components/PositionsHeader'
 import Table from '../../components/ui/Table'
 import Dropdown from '../../components/ui/Dropdown'
 import CandlestickChart from '../../components/ui/CandlestickChart'
 import DeepChart from '../../components/ui/DeepChart'
-
-import candlestickIcon from '../../../Assets/Images/1x/icon_candles.png'
-import deepIcon from '../../../Assets/Images/1x/icon_deep.png'
 
 import { setError as setErrorAction, setLoading as setLoadingAction } from '../../store/actions/ui'
 import {
   getLatestTrades as getLatestTradesAction,
   getOrderBook as getOrderBookAction,
   getTickerTimeline as getTickerTimelineAction,
-  getAvailableBooks as getAvailableBooksAction
+  getAvailableBooks as getAvailableBooksAction,
+  getTickerData as getTickerDataAction
 } from '../../store/actions/exchange'
+
 import { floatStringToLocaleString } from '../../lib/utils'
+import {
+  createAsksColumns,
+  createBidsColumns,
+  createLastTradesColumns
+} from '../../lib/exchange'
 
 import { DEFAULT_BOOK } from '../../constans'
-import './index.css'
+import exchangeConstants from '../../constans/exchange'
 
-const INITIAL_RANGE = 0
-const NORMALIZE_INDEX = 1
-const DEFAULT_PERIOD = '1year'
+import './index.css'
 
 class Home extends Component {
   componentWillMount () {
@@ -40,10 +41,14 @@ class Home extends Component {
   }
 
   componentWillUpdate (nextProps, nextState) {
-    const { period: oldPeriod = DEFAULT_PERIOD } = queryString.parse(this.props.location.search)
-    const { period: nextPeriod = DEFAULT_PERIOD } = queryString.parse(nextProps.location.search)
+    let { period: oldPeriod } = queryString.parse(this.props.location.search)
+    let { period: nextPeriod } = queryString.parse(nextProps.location.search)
+
+    oldPeriod = oldPeriod || exchangeConstants.defaultPeriod
+    nextPeriod = nextPeriod || exchangeConstants.defaultPeriod
 
     const updateData = nextProps.match.params.book !== this.props.match.params.book
+    console.warn(updateData)
     const updateTimeline = oldPeriod !== nextPeriod
 
     const nextBook = snakeCase(nextProps.match.params.book)
@@ -58,186 +63,17 @@ class Home extends Component {
       this.props.getLatestTrades(book),
       this.props.getOrderBook(book),
       this.props.getTickerTimeline(book, period),
-      this.props.getAvailableBooks()
+      this.props.getAvailableBooks(),
+      this.props.getTickerData(book)
     ]).then(payload => {
       this.props.setLoading(false)
+      this.props.setError({ value: false, message: '' })
     }).catch(error => {
       console.error(error)
       this.props.setLoading(false)
-      this.props.setError({ value: true, errorMessage: error })
+      this.props.setError({ value: true, message: error.message })
     })
   }
-
-  lastTradesColumns () {
-    const [ type, currency ] = this.props.match.params.book.split('-')
-
-    return [
-      {
-        header: 'hora',
-        className: 'time',
-        accessor: (row) => moment(row.createdAt).tz('America/Mexico_City').format('hh:mm:ss')
-      },
-      {
-        header: <div className='last-trades-header'><span>{currency}</span>precio</div>,
-        className: 'price',
-        accessor: (row) => (
-          <span className={row.makerSide}>
-            {floatStringToLocaleString(row.price, { minimumFractionDigits: 2 })}
-          </span>
-        )
-      },
-      {
-        header: <div className='last-trades-header'><span>{type}</span>monto</div>,
-        className: 'amount',
-        accessor: 'amount'
-      }
-    ]
-  }
-
-  bidsColumns () {
-    const [ type, currency ] = this.props.match.params.book.split('-')
-
-    return [
-      {
-        header: '',
-        className: 'percent is-hidden-mobile',
-        accessor: (row) => <div className='percent' style={{ width: `${(row.amount * 100) / this.props.orderBook.asksSum}%` }} />
-      },
-      {
-        header: 'sum',
-        className: 'is-hidden-mobile',
-        accessor: (row, index, rows) => {
-          const items = range(INITIAL_RANGE, index + NORMALIZE_INDEX)
-          const sum = items.reduce((reducer, item) => parseFloat(rows[item].amount) + reducer, 0)
-          return floatStringToLocaleString(sum, { minimumFractionDigits: 5 })
-        }
-      },
-      {
-        header: <div className='btc-amount'><span>{type}</span>monto</div>,
-        className: 'amount',
-        accessor: (row) => floatStringToLocaleString(row.amount, { minimumFractionDigits: 5 })
-      },
-      {
-        header: <div className='mxn-value'><span>{currency}</span>valor</div>,
-        className: 'mxn-value',
-        accessor: (row) => floatStringToLocaleString(row.amount * row.price)
-      },
-      {
-        header: <div className='mxn-price'><span>{currency}</span>precio</div>,
-        className: 'mxn-price',
-        accessor: (row) => floatStringToLocaleString(row.price, { minimumFractionDigits: 2 })
-      }
-    ]
-  }
-
-  asksColumns () {
-    const [ type, currency ] = this.props.match.params.book.split('-')
-
-    return [
-      {
-        header: <div className='mxn-price'><span>{currency}</span>precio</div>,
-        className: 'mxn-price',
-        accessor: (row) => floatStringToLocaleString(row.price, { minimumFractionDigits: 2 })
-      },
-      {
-        header: <div className='mxn-value'><span>{currency}</span>valor</div>,
-        className: 'mxn-value',
-        accessor: (row) => floatStringToLocaleString(row.amount * row.price)
-      },
-      {
-        header: <div className='btc-amount'><span>{type}</span>monto</div>,
-        className: 'amount',
-        accessor: (row) => floatStringToLocaleString(row.amount, { minimumFractionDigits: 5 })
-      },
-      {
-        header: 'sum',
-        className: 'is-hidden-mobile',
-        accessor: (row, index, rows) => {
-          const items = range(INITIAL_RANGE, index + NORMALIZE_INDEX)
-          const sum = items.reduce((reducer, item) => parseFloat(rows[item].amount) + reducer, 0)
-          return floatStringToLocaleString(sum, { minimumFractionDigits: 5 })
-        }
-      },
-      {
-        header: '',
-        className: 'percent is-hidden-mobile',
-        accessor: (row) => (
-          <div className='percent' style={{ width: `${(row.amount * 100) / this.props.orderBook.asksSum}%` }} />
-        )
-      }
-    ]
-  }
-
-  bidHeader () {
-    const bid = floatStringToLocaleString(this.props.selectedBook.bid)
-    const currency = this.props.match.params.book.split('-')[1]
-
-    return (
-      <div className='bid-header'>
-        <div className='title'>posturas de compra</div>
-        <div className='average'>
-          <span>{currency}</span>
-          bid {bid}
-        </div>
-      </div>
-    )
-  }
-
-  askHeader () {
-    const ask = floatStringToLocaleString(this.props.selectedBook.ask)
-    const currency = this.props.match.params.book.split('-')[1]
-
-    return (
-      <div className='ask-header'>
-        <div className='average'>
-          {ask} ask
-          <span>{currency}</span>
-        </div>
-        <div className='title'>posturas de venta</div>
-      </div>
-    )
-  }
-
-  chartOptions = [
-    {
-      value: 'candlestick',
-      label: <img src={candlestickIcon} alt='candlestick-chart' />
-    },
-    {
-      value: 'deep',
-      label: <img src={deepIcon} alt='deep-chart' />
-    }
-  ]
-
-  periodOptions = [
-    {
-      value: '1month',
-      label: '1m'
-    },
-    {
-      value: '3months',
-      label: '3m'
-    },
-    {
-      value: DEFAULT_PERIOD,
-      label: '1y'
-    }
-  ]
-
-  intervalOptions = [
-    {
-      value: '1hour',
-      label: '1h'
-    },
-    {
-      value: '5hours',
-      label: '5h'
-    },
-    {
-      value: '1minute',
-      label: '1m'
-    }
-  ]
 
   render () {
     if (this.props.loading || this.props.error) {
@@ -252,30 +88,59 @@ class Home extends Component {
       )
     }
 
-    const {
-      chart = 'candlestick',
-      period = DEFAULT_PERIOD
-    } = queryString.parse(this.props.location.search)
+    const { chart = 'candlestick', period = exchangeConstants.defaultPeriod } = queryString.parse(this.props.location.search)
 
     const book = this.props.match.params.book || DEFAULT_BOOK
-
-    const bidHeader = this.bidHeader()
-    const askHeader = this.askHeader()
-    const lastTradesColumns = this.lastTradesColumns()
-    const bidsColumns = this.bidsColumns()
-    const asksColumns = this.asksColumns()
-
-    const chartSelectorOptions = this.chartOptions.filter(option => option.value !== chart)
-    const chartSelectorText = this.chartOptions.find(option => option.value === chart).label
     const [ type, currency ] = book.split('-')
+
+    const bidNumer = currency === 'mxn'
+      ? floatStringToLocaleString(this.props.selectedBook.bid)
+      : parseFloat(this.props.selectedBook.bid)
+    const askNumer = currency === 'mxn'
+      ? floatStringToLocaleString(this.props.selectedBook.ask)
+      : parseFloat(this.props.selectedBook.ask)
+
+    const bidHeader = (
+      <PositionsHeader
+        type='bid'
+        currency={currency}
+        title='posturas de compra'
+        number={bidNumer}
+        className='bid-header'
+      />
+    )
+
+    const askHeader = (
+      <PositionsHeader
+        type='ask'
+        currency={currency}
+        title='posturas de venta'
+        number={askNumer}
+        className='ask-header'
+      />
+    )
+
+    const lastTradesColumns = createLastTradesColumns(type, currency)
+    const bidsColumns = createBidsColumns(type, currency, this.props.orderBook.bidsSum)
+    const asksColumns = createAsksColumns(type, currency, this.props.orderBook.asksSum)
+
+    const chartSelectorOptions = exchangeConstants.chartOptions.filter(option => option.value !== chart)
+    const chartSelectorText = exchangeConstants.chartOptions.find(option => option.value === chart).label
+
+    const periodLabel = exchangeConstants.periodOptions.find(periodOption => periodOption.value === period).label
+
+    const to = {
+      name: 'exchange',
+      query: { period, chart }
+    }
 
     return (
       <div className='page'>
-        <TheHeader page={this.props.page} book={snakeCase(book)} to='exchange' />
+        <TheHeader page={this.props.page} book={snakeCase(book)} to={to} />
         <main className='exchange'>
           <Table
             className='last-trades'
-            header='últimos trades'
+            header='últimas transacciones'
             columns={lastTradesColumns}
             data={this.props.latestTrades}
             loading={this.props.loading}
@@ -296,8 +161,8 @@ class Home extends Component {
                   <div className='option'>
                     Periodo
                     <Dropdown
-                      options={this.periodOptions}
-                      text={this.periodOptions.find(periodOption => periodOption.value === period).label}
+                      options={exchangeConstants.periodOptions}
+                      text={periodLabel}
                       onChange={(option) => this.props.history.push({
                         pathname: `/exchange/${book}`,
                         search: queryString.stringify({ period: option.value, chart })
@@ -381,7 +246,8 @@ const mapDispatchToProps = (dispatch) => ({
   getTickerTimeline: bindActionCreators(getTickerTimelineAction, dispatch),
   getAvailableBooks: bindActionCreators(getAvailableBooksAction, dispatch),
   setError: bindActionCreators(setErrorAction, dispatch),
-  setLoading: bindActionCreators(setLoadingAction, dispatch)
+  setLoading: bindActionCreators(setLoadingAction, dispatch),
+  getTickerData: bindActionCreators(getTickerDataAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

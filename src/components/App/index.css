@@ -125,6 +125,10 @@ h3.error {
   white-space: normal;
 }
 
+.upper-text {
+  text-transform: uppercase;
+}
+
 @media screen and (max-width: 768px) {
   .is-hidden-mobile,
   .is-hidden-touch {

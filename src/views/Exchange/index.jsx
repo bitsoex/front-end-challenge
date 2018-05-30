@@ -54,14 +54,12 @@ class Home extends Component {
     const updateData = oldBook !== nextBook
     const updateTimeline = oldPeriod !== nextPeriod
 
-    console.warn(updateData, oldBook, nextBook)
     if (updateData) this.getData(nextBook)
     if (updateTimeline) this.props.getTickerTimeline(nextBook, nextPeriod)
   }
 
   getData (book, period) {
     this.props.setLoading(true)
-    console.warn(book)
     Promise.all([
       this.props.getLatestTrades(book),
       this.props.getOrderBook(book),

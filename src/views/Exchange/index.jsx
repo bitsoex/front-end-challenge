@@ -58,7 +58,6 @@ class Home extends Component {
     const updateData = oldBook !== nextBook
     const updateTimeline = oldPeriod !== nextPeriod
 
-    console.warn(updateData, oldBook, nextBook)
     if (updateData) this.getExchangeData(nextBook, nextPeriod)
     if (updateTimeline && !updateData) this.props.getTickerTimeline(nextBook, nextPeriod)
   }

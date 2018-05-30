@@ -13,6 +13,7 @@ import Table from '../../components/ui/Table'
 import Dropdown from '../../components/ui/Dropdown'
 import CandlestickChart from '../../components/ui/CandlestickChart'
 import DeepChart from '../../components/ui/DeepChart'
+import ErrorBoundary from '../../components/ui/ErrorBoundary'
 
 import { setError as setErrorAction, setLoading as setLoadingAction } from '../../store/actions/ui'
 import {
@@ -87,7 +88,7 @@ class Home extends Component {
           <main className={classnames('exchange', { loading: this.props.loading })}>
             <h2 className='error'>
               Ocurrio un error al tratar de obtener la información del servidor,
-               vuelve a intentarlo en unos momentos asasadsad
+               vuelve a intentarlo en unos momentos
             </h2>
           </main>
         </div>
@@ -132,6 +133,8 @@ class Home extends Component {
     const lastTradesColumns = createLastTradesColumns(type, currency)
     const bidsColumns = createBidsColumns(type, currency, this.props.orderBook.bidsSum)
     const asksColumns = createAsksColumns(type, currency, this.props.orderBook.asksSum)
+
+    const spread = this.props.orderBook.bidsSum / this.props.orderBook.asksSum
 
     const chartSelectorOptions = exchangeConstants.chartOptions.filter(option => option.value !== chart)
     const chartSelectorText = exchangeConstants.chartOptions.find(option => option.value === chart).label
@@ -189,14 +192,15 @@ class Home extends Component {
                     />
                   </div>
                 */}
-                {/*
-                  <div className='right-options'>
-                    <div className='zoom'>
-                      <i className='material-icons'>remove</i>
-                      <i className='material-icons'>add</i>
-                    </div>
-                  </div>
-                */}
+                <div className='right-options'>
+                  {chart === 'deep' && (
+                    <h3 className='spread'>{spread} {currency}</h3>
+                  )}
+                  {/* <div className='zoom'>
+                    <i className='material-icons'>remove</i>
+                    <i className='material-icons'>add</i>
+                  </div> */}
+                </div>
               </div>
               <div className='chart'>
                 {chart === 'candlestick' ? (
@@ -206,12 +210,14 @@ class Home extends Component {
                     coin={type}
                   />
                 ) : (
-                  <DeepChart
-                    bids={this.props.orderBook.bids}
-                    asks={this.props.orderBook.asks}
-                    currency={currency}
-                    coin={type}
-                  />
+                  <ErrorBoundary>
+                    <DeepChart
+                      bids={this.props.orderBook.bids}
+                      asks={this.props.orderBook.asks}
+                      currency={currency}
+                      coin={type}
+                    />
+                  </ErrorBoundary>
                 )}
               </div>
             </div>

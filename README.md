@@ -17,7 +17,7 @@
 
 ### [Parcel Bundler](https://parceljs.org/)
 
-Es un empaquetador web de fácil uso y configuración en comparación a webpack, soporta configuración de babel mediante el archivo .babelrc, de postcss y más. Lo use en el proyecto para poder enfocarme más en desarrollar la aplicación sin preocuparme demasiado en el la configuración del ambiente de desarrollo y de producción.
+Es un empaquetador web de fácil uso y configuración en comparación a webpack, soporta configuración de babel mediante el archivo .babelrc, de postcss y más. Lo use en el proyecto para poder enfocarme más en desarrollar la aplicación sin preocuparme demasiado en el la configuración del ambiente de desarrollo y de producción. Por el momento deshabilite el modulo de hot module replacement, debido a un bug en parcel que cicla el lifecycle de react. Debido a que ya estoy muy fuera de tiempo lo deshabilite y seguiré buscando una solución. Si la encuentro les notificaré.
 
 ### [React router](https://reacttraining.com/react-router/)
 

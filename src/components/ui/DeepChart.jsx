@@ -65,10 +65,12 @@ class AreaChartWithYPercent extends React.Component {
     let ascSortedAsks = addSumToPositionsArray(this.props.asks.sort((left, right) => left.price - right.price)).map(ask => ({ ...ask, type: 'ask' }))
 
     // reverse amounts
-    const data = ascSortedBids.slice(oneArrayElement).reduce((reducer, bid) => {
+    let data = ascSortedBids.slice(oneArrayElement).reduce((reducer, bid) => {
       const sum = reducer[reducer.length - oneArrayElement].sum - parseFloat(bid.amount)
       return [ ...reducer, { ...bid, sum, type: 'bid' } ]
-    }, [ { ...firstBid, type: 'bid', sum: summary } ]).concat(ascSortedAsks).sort((left, right) => left.price - right.price)
+    }, [ { ...firstBid, type: 'bid', sum: summary } ]).concat(ascSortedAsks)
+
+    data = data.sort((left, right) => parseFloat(left.price) - parseFloat(right.price))
 
     const [ initialElement ] = ascSortedBids
 

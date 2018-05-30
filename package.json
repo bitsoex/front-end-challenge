@@ -4,7 +4,7 @@
   "description": "bitso frontend challenge",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel --no-hmr index.html",
     "build": "parcel build",
     "test": "parcel index.html -p 2345 & cypress open"
   },

@@ -13,6 +13,7 @@
 5. react-stockcharts
 6. postcss
 7. standardjs
+8. cypress
 
 ### [Parcel Bundler](https://parceljs.org/)
 
@@ -39,6 +40,9 @@ Es un procesador de css que permite importar los archivos css dentro del código
 
 Es una guía de código y analizador que permite crear código limpio y fácil de leer sin demasiadas configuración. Lo use en el proyecto para mantener un estilo en todo el proyecto con un diseño limpio y fácil en el código.
 
+### [Cypress](https://www.cypress.io/)
+
+Cypress es una herramienta de testing web. La agrego el proyecto para poder probar los componentes y las vistas.
 
 ## Estructura del proyecto:
 La raíz del código se encuentra en la carpeta `src/` dentro del repositorio con las siguientes carpetas:

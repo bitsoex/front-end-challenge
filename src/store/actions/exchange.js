@@ -19,18 +19,17 @@ export const getAvailableBooks = () => async dispatch => {
   return availableBooks
 }
 
-export const getTickerData = (bookToFilter = '') => async dispatch => {
+export const getTickerData = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
+  dispatch({ type: 'SET_TICKER_LOADING', payload: true })
   const { payload, success } = await api.getTickerData({ book: bookToFilter })
-  if (!success) throw new Error(payload.message)
-  let book = {}
-  if (bookToFilter) {
-    book = payload
-  } else {
-    const data = payload.map(ticker => camelCaseObject(ticker))
-    book = data.find(ticker => ticker.book === DEFAULT_BOOK)
-    dispatch({ type: 'SET_TICKER_DATA', payload: data })
+  if (!success) {
+    dispatch({ type: 'SET_TICKER_LOADING', payload: false })
+    dispatch({ type: 'SET_TICKER_ERROR', payload: { value: true, message: payload.message } })
+    throw new Error(payload.message)
   }
-  dispatch({ type: 'SET_CURRENT_BOOK', payload: book })
+  dispatch({ type: 'SET_CURRENT_BOOK', payload: payload })
+  dispatch({ type: 'SET_TICKER_ERROR', payload: { value: false, message: '' } })
+  dispatch({ type: 'SET_TICKER_LOADING', payload: false })
   return payload
 }
 
@@ -67,10 +66,15 @@ export const getOrderBook = (bookToFilter = DEFAULT_BOOK) => async dispatch => {
 }
 
 export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async (dispatch, getState) => {
+  dispatch({ type: 'SET_MARKETS_LOADING', payload: true })
   let books = getState().books.list
   if (isEmpty(books)) {
     const { payload, success } = await api.getAvailableBooks()
-    if (!success) throw new Error(payload.message)
+    if (!success) {
+      dispatch({ type: 'SET_MARKETS_ERROR', payload: { value: true, errorMessage: payload.message } })
+      dispatch({ type: 'SET_MARKETS_LOADING', payload: false })
+      throw new Error(payload.message)
+    }
     books = payload
   }
 
@@ -86,10 +90,12 @@ export const getMarketsData = ({ limit = 100, sort = 'desc' }) => async (dispatc
   })
 
   dispatch({ type: 'SET_MARKETS_LIST', payload: data })
+  dispatch({ type: 'SET_MARKETS_ERROR', payload: { value: false, errorMessage: '' } })
+  dispatch({ type: 'SET_MARKETS_LOADING', payload: false })
   return data
 }
 
-export const getTickerTimeline = (bookToFilter = DEFAULT_BOOK, time = '1month') => async dispatch => {
+export const getTickerTimeline = (bookToFilter = DEFAULT_BOOK, time = '1year') => async dispatch => {
   const payload = await api.getTickerTimeline(bookToFilter, time)
   const data = payload.map(ticker => camelCaseObject(ticker))
   dispatch({ type: 'SET_TICKER_TIMELINE', payload: data })

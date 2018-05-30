@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
 import queryString from 'query-string'
 import snakeCase from 'lodash/snakeCase'
+import get from 'lodash/get'
 
 import TheHeader from '../../components/TheHeader'
 import TheMarkets from '../../components/TheMarkets'
@@ -19,7 +20,8 @@ import {
   getOrderBook as getOrderBookAction,
   getTickerTimeline as getTickerTimelineAction,
   getAvailableBooks as getAvailableBooksAction,
-  getTickerData as getTickerDataAction
+  getTickerData as getTickerDataAction,
+  getMarketsData as getMarketsDataAction
 } from '../../store/actions/exchange'
 
 import { floatStringToLocaleString } from '../../lib/utils'
@@ -36,29 +38,32 @@ import './index.css'
 
 class Home extends Component {
   componentWillMount () {
-    const book = this.props.match.params.book || DEFAULT_BOOK
-    this.getData(snakeCase(book))
+    const book = snakeCase(get(this.props, 'match.params.book', DEFAULT_BOOK))
+    let { period = exchangeConstants.defaultPeriod } = queryString.parse(this.props.location.search)
+    this.getExchangeData(book, period)
+    this.props.getMarketsData({ sort: 'asc' })
   }
 
   componentWillUpdate (nextProps, nextState) {
-    let { period: oldPeriod } = queryString.parse(this.props.location.search)
-    let { period: nextPeriod } = queryString.parse(nextProps.location.search)
-    let { book: oldBook } = this.props.match.params
-    let { book: nextBook } = nextProps.match.params
+    const {
+      period: oldPeriod = exchangeConstants.defaultPeriod
+    } = queryString.parse(this.props.location.search)
+    const {
+      period: nextPeriod = exchangeConstants.defaultPeriod
+    } = queryString.parse(nextProps.location.search)
 
-    oldPeriod = oldPeriod || exchangeConstants.defaultPeriod
-    nextPeriod = nextPeriod || exchangeConstants.defaultPeriod
-    oldBook = oldBook ? snakeCase(oldBook) : DEFAULT_BOOK
-    nextBook = nextBook ? snakeCase(nextBook) : DEFAULT_BOOK
+    let oldBook = snakeCase(get(this.props.match.params, 'book', DEFAULT_BOOK))
+    let nextBook = snakeCase(get(nextProps.match.params, 'book', DEFAULT_BOOK))
 
     const updateData = oldBook !== nextBook
     const updateTimeline = oldPeriod !== nextPeriod
 
-    if (updateData) this.getData(nextBook)
-    if (updateTimeline) this.props.getTickerTimeline(nextBook, nextPeriod)
+    console.warn(updateData, oldBook, nextBook)
+    if (updateData) this.getExchangeData(nextBook, nextPeriod)
+    if (updateTimeline && !updateData) this.props.getTickerTimeline(nextBook, nextPeriod)
   }
 
-  getData (book, period) {
+  getExchangeData (book, period) {
     this.props.setLoading(true)
     Promise.all([
       this.props.getLatestTrades(book),
@@ -82,16 +87,20 @@ class Home extends Component {
         <div className='page'>
           <main className={classnames('exchange', { loading: this.props.loading })}>
             <h2 className='error'>
-              Ocurrio un error al tratar de obtener la información del servidor, vuelve a intentarlo en unos momentos
+              Ocurrio un error al tratar de obtener la información del servidor,
+               vuelve a intentarlo en unos momentos
             </h2>
           </main>
         </div>
       )
     }
 
-    const { chart = 'candlestick', period = exchangeConstants.defaultPeriod } = queryString.parse(this.props.location.search)
+    const {
+      chart = 'candlestick',
+      period = exchangeConstants.defaultPeriod
+    } = queryString.parse(this.props.location.search)
 
-    const book = this.props.match.params.book || DEFAULT_BOOK
+    const book = this.props.match.params.book
     const [ type, currency ] = book.split('-')
 
     const bidNumer = currency === 'mxn'
@@ -248,7 +257,8 @@ const mapDispatchToProps = (dispatch) => ({
   getAvailableBooks: bindActionCreators(getAvailableBooksAction, dispatch),
   setError: bindActionCreators(setErrorAction, dispatch),
   setLoading: bindActionCreators(setLoadingAction, dispatch),
-  getTickerData: bindActionCreators(getTickerDataAction, dispatch)
+  getTickerData: bindActionCreators(getTickerDataAction, dispatch),
+  getMarketsData: bindActionCreators(getMarketsDataAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -8,6 +8,8 @@ import { DEFAULT_BOOK } from '../../constans'
 
 export const setTickerLoading = createAction('SET_TICKER_LOADING')
 export const setTickerError = createAction('SET_TICKER_ERROR')
+export const setMarketsLoading = createAction('SET_MARKETS_LOADING')
+export const setMarketsError = createAction('SET_MARKETS_ERROR')
 
 export const getAvailableBooks = () => async dispatch => {
   const { payload: availableBooks, success } = await api.getAvailableBooks()

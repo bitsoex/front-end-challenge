@@ -4,7 +4,11 @@ import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
 
 import { toggleMarkets as toggleMarketsAction } from '../../store/actions/ui'
-import { getMarketsData as getMarketsDataAction } from '../../store/actions/exchange'
+import {
+  getMarketsData as getMarketsDataAction,
+  setMarketsLoading as setMarketsLoadingAction,
+  setMarketsError as setMarketsErrorAction
+} from '../../store/actions/exchange'
 
 import MarketChart from '../MarketChart'
 
@@ -14,26 +18,20 @@ import './animations.css'
 const toggleMarkets = (action) => action()
 
 class TheMarkets extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      loading: false,
-      error: false
-    }
-  }
-
   componentWillMount () {
-    this.setState({ loading: true })
+    this.props.setMarketsLoading(true)
     this.props.getMarketsData({ sort: 'asc' }).then(payload => {
-      this.setState({ loading: false })
+      this.props.setMarketsLoading(false)
+      this.props.setMarketsError({ value: false, message: '' })
     }).catch(error => {
       console.error(error)
-      this.setState({ loading: false, error: true })
+      this.props.setMarketsLoading(false)
+      this.props.setMarketsError({ value: true, message: error.message })
     })
   }
 
   render () {
-    const { marketsSidebar, className, toggleMarketsAction, markets } = this.props
+    const { marketsSidebar, className, toggleMarketsAction, markets, loading, error } = this.props
     const splittedMarkets = markets.reduce((reducer, { book, data }) => {
       const buyMarket = data.filter(trade => trade.makerSide === 'buy')
       const sellMarket = data.filter(trade => trade.makerSide === 'sell')
@@ -50,8 +48,8 @@ class TheMarkets extends Component {
         </div>
         <div className='content'>
           <div className='header'>mercados 24hrs</div>
-          <div className={classnames('markets-container', { loading: this.state.loading && marketsSidebar })}>
-            { (!this.state.loading && !this.state.error) ? splittedMarkets.map((market, index) => (
+          <div className={classnames('markets-container', { loading: loading && marketsSidebar })}>
+            { (!loading && !error) ? splittedMarkets.map((market, index) => (
               <MarketChart key={market.book.book + index} {...market} />)
             ) : (
               <h3 className='error'>Ocurrio un error al tratar de obtener los datos del servidor, intentalo nuevamente</h3>
@@ -65,12 +63,17 @@ class TheMarkets extends Component {
 
 const mapStateToProps = ({ ui, markets }) => ({
   marketsSidebar: ui.marketsSidebar,
-  markets: markets.list
+  markets: markets.list,
+  loading: markets.loading,
+  error: markets.error,
+  errorMessage: markets.errorMessage
 })
 
 const mapDispatchToProps = (dispatch) => ({
   toggleMarketsAction: bindActionCreators(toggleMarketsAction, dispatch),
-  getMarketsData: bindActionCreators(getMarketsDataAction, dispatch)
+  getMarketsData: bindActionCreators(getMarketsDataAction, dispatch),
+  setMarketsLoading: bindActionCreators(setMarketsLoadingAction, dispatch),
+  setMarketsError: bindActionCreators(setMarketsErrorAction, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TheMarkets)

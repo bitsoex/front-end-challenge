@@ -43,22 +43,25 @@ class Home extends Component {
   componentWillUpdate (nextProps, nextState) {
     let { period: oldPeriod } = queryString.parse(this.props.location.search)
     let { period: nextPeriod } = queryString.parse(nextProps.location.search)
+    let { book: oldBook } = this.props.match.params
+    let { book: nextBook } = nextProps.match.params
 
     oldPeriod = oldPeriod || exchangeConstants.defaultPeriod
     nextPeriod = nextPeriod || exchangeConstants.defaultPeriod
+    oldBook = oldBook ? snakeCase(oldBook) : DEFAULT_BOOK
+    nextBook = nextBook ? snakeCase(nextBook) : DEFAULT_BOOK
 
-    const updateData = nextProps.match.params.book !== this.props.match.params.book
-    console.warn(updateData)
+    const updateData = oldBook !== nextBook
     const updateTimeline = oldPeriod !== nextPeriod
 
-    const nextBook = snakeCase(nextProps.match.params.book)
-
+    console.warn(updateData, oldBook, nextBook)
     if (updateData) this.getData(nextBook)
     if (updateTimeline) this.props.getTickerTimeline(nextBook, nextPeriod)
   }
 
   getData (book, period) {
     this.props.setLoading(true)
+    console.warn(book)
     Promise.all([
       this.props.getLatestTrades(book),
       this.props.getOrderBook(book),

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { FormsModule } from "@angular/forms";
 import {
     MatButtonModule,
     MatCardModule,
@@ -8,8 +8,8 @@ import {
     MatInputModule,
     MatTabsModule
 } from "@angular/material";
+import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./login.component";
-import { FormsModule } from "@angular/forms";
 
 const routes: Routes = [
     { path: "", component: LoginComponent, pathMatch: "full" }

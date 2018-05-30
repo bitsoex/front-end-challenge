@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { MediaMatcher } from "@angular/cdk/layout";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -7,12 +8,12 @@ import { MatDividerModule, MatSidenavModule, MatListModule } from "@angular/mate
 import { ChartModule } from "primeng/chart";
 import { SidenavComponent } from "./sidenav.component";
 import { SidenavService } from "../../assets/utils/services/sidenav.service";
-import { MediaMatcher } from "@angular/cdk/layout";
 
 const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
     { path: "login", loadChildren: "../login/login.module#LoginModule" },
     { path: "home", loadChildren: "../home/home.module#HomeModule" },
+    { path: "dashboard", loadChildren: "../dashboard/dashboard.module#DashboardModule" },
     { path: "notfound", loadChildren: "../error/error.module#ErrorModule"},
     { path: "**", redirectTo: "notfound", pathMatch: "full"}
 ];

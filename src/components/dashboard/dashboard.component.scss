@@ -1,0 +1,5 @@
+@import "./../../assets/styles/mixins.scss";
+
+#container-dash {
+    @include card-margin;
+}

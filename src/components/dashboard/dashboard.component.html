@@ -1,1 +1,8 @@
-<h1>Dashboard right here</h1>
+<mat-card id="container-dash">
+  <mat-card-header>
+    <mat-card-title>BTC</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p-chart type="line" [data]="data" (onDataSelect)="selectData($event)"></p-chart>
+  </mat-card-content>
+</mat-card>

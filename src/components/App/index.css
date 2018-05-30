@@ -41,6 +41,9 @@
   --markets-header-background: #727C84;
   --markets-content-background: #23292D;
   --buy-color: #CC4458;
+  --theme-toggle-background: #161A1E;
+  --theme-toggle-light-color: #ff9e22;
+  --theme-toggle-dark-color: #5300e8;
 }
 
 html,

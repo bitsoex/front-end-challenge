@@ -6,6 +6,7 @@ import kebabCase from 'lodash/kebabCase'
 
 import Link from '../ui/Link'
 import Dropdown from '../ui/Dropdown'
+import ThemeToggle from '../ui/ThemeToggle'
 
 import { floatStringToLocaleString } from '../../lib/utils'
 
@@ -77,6 +78,7 @@ const TheHeader = (props) => {
               </div>
               <Dropdown options={[{ label: 'Settings' }]} text='Usuario' />
             </li>
+            <li><ThemeToggle /></li>
           </ul>
         </nav>
       </header>

@@ -4,7 +4,7 @@
     flex-flow: row wrap;
 
     /*> * {
-    	flex: 1 100%;
+        flex: 1 100%;
     }*/
 
     .navbar-market {
@@ -14,23 +14,29 @@
         display: flex;
         margin-bottom: 12px;
         border-bottom: 1px solid $Regular_Navy;
+
         > div {
             color: $Dark_Text;
             line-height: 26px;
+
             > span {
                 color: $Light_Text;
             }
+
             &.market_selector {
                 color: $Bitcoin_Yellow;
                 font-size: 18px;
                 flex-basis: 130px;
             }
+
             &.volume {
                 flex-basis: 240px;
             }
+
             &.high, &.low {
                 flex-basis: 175px;
             }
+
             &.variation {
                 flex-basis: 230px;
             }
@@ -50,10 +56,25 @@
     }
 
     .market-page {
-        flex-grow: 1;
         margin-left: 15px;
         margin-right: 15px;
-        max-width: 1343px;
+        width: calc(100% - 560px);
+
+        .chart-trade {
+            width: 100%;
+
+            .amChartsPeriodSelector.amcharts-period-selector-div {
+                div:first-child {
+                    display: none;
+                }
+
+                fieldset {
+                    div:nth-child(2) {
+                        display: none !important;
+                    }
+                }
+            }
+        }
 
         .orderbook {
             display: flex;
@@ -156,26 +177,35 @@
                                     &.book {
                                         text-transform: uppercase;
                                     }
+
                                     &.lastprice {
-                                    	text-align: right;
-                                    	&.up {
-                                    		color: $Medium_Green;
-                                    		&:before {
-                                    			display: inline-block;
-    											width: 5px;
-  												content:url(str-replace('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><defs><style>.cls-1{fill:mycolor;}</style></defs><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>', 'mycolor', $Medium_Green)); /* with class ModalCarrot ??*/
-  													transform: translateX(-6px) translateY(0) rotate(-90deg);
-  											}
-                                    	}
-                                    	&.down {
-                                    		color: $Medium_Red;
-                                    		&:before {
-                                    			display: inline-block;
-    											width: 5px;
-  												content:url(str-replace('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><defs><style>.cls-1{fill:mycolor;}</style></defs><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>', 'mycolor', $Medium_Red)); /* with class ModalCarrot ??*/
-  												transform: translateX(-1px) translateY(0) rotate(90deg);
-  											}
-                                    	}
+                                        text-align: right;
+
+                                        &.up {
+                                            color: $Medium_Green;
+
+                                            &:before {
+                                                display: inline-block;
+                                                width: 5px;
+                                                content: url(str-replace('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><defs><style>.cls-1{fill:mycolor;}</style></defs><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>', "mycolor", $Medium_Green));
+
+                                                /* with class ModalCarrot ??*/
+                                                transform: translateX(-6px) translateY(0) rotate(-90deg);
+                                            }
+                                        }
+
+                                        &.down {
+                                            color: $Medium_Red;
+
+                                            &:before {
+                                                display: inline-block;
+                                                width: 5px;
+                                                content: url(str-replace('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><defs><style>.cls-1{fill:mycolor;}</style></defs><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>', "mycolor", $Medium_Red));
+
+                                                /* with class ModalCarrot ??*/
+                                                transform: translateX(-1px) translateY(0) rotate(90deg);
+                                            }
+                                        }
                                     }
                                 }
                             }

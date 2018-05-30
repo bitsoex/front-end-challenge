@@ -40,14 +40,14 @@ class Order_book extends Component {
 					<div class="title">Posturas de compra</div>
 					<div class="bidmax"><span class="dark_text">MXN</span> Bid {_.head(this.state.orderbook.bids).price}</div>
 				</div>
-				<TableOrderBookBids orderbook={this.state.orderbook.bids}/>
+				<TableOrderBookBids orderbook={_.slice(this.state.orderbook.bids,0,10)}/>
 			</div>
 			<div class="sellorders">
 				<div class="header">
 					<div class="askmin">{_.head(this.state.orderbook.asks).price} Ask <span class="dark_text">MXN</span></div>
 					<div class="title">Posturas de venta</div>
 				</div>
-				<TableOrderBookAsks orderbook={this.state.orderbook.asks}/>
+				<TableOrderBookAsks orderbook={_.slice(this.state.orderbook.asks,0,10)}/>
 			</div>
 		</div>;
 	}

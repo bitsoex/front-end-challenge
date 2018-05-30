@@ -1,0 +1,146 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .navbar.header-nav {
+        padding: .3rem 1rem;
+
+        .currentvalue {
+            display: none;
+        }
+
+        .infouser {
+            display: none;
+        }
+    }
+
+    .maindashboard {
+        margin-top: 70px;
+
+        .navbar-market {
+            display: none;
+        }
+
+        .last-trades {
+            display: none;
+        }
+
+        .markets_list {
+            display: none;
+        }
+
+        .market-page {
+            width: 100%;
+
+            .chart-trade {
+                .amChartsPeriodSelector.amcharts-period-selector-div {
+                    div:first-child {
+                        display: none;
+                    }
+
+                    fieldset {
+                        div:nth-child(2) {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+
+            .orderbook {
+                margin-top: 40px;
+            }
+        }
+
+        .last-trades {
+            order: 4;
+           	width: 100%;
+            margin-left: 15px;
+            margin-right: 15px;
+            display: block;
+        }
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+    .navbar.header-nav {
+        padding: .3rem 1rem;
+
+        .infouser {
+            display: none;
+        }
+    }
+
+    .maindashboard {
+        margin-top: 70px;
+
+        .navbar-market {
+            display: none;
+        }
+
+        .last-trades {
+            display: none;
+        }
+
+        .markets_list {
+            width: 145px !important;
+            position: sticky;
+            top: 56px;
+            z-index: 1020;
+
+            .sidebar {
+                width: 22px;
+            }
+
+            .content {
+                .title_market {
+                    display: none;
+                }
+
+                .marketsprices ul li .market div.title {
+                    display: flex;
+                    flex-flow: row wrap;
+                }
+            }
+        }
+
+        .market-page {
+            width: calc(100% - 175px);
+
+            .orderbook {
+                margin-top: 20px;
+
+                .buyorders, .sellorders {
+                    flex: 1 100%;
+                }
+            }
+        }
+
+        .last-trades {
+            order: 4;
+            width: calc(100% - 175px);
+            margin-left: 15px;
+            margin-right: 15px;
+            display: block;
+        }
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .maindashboard {
+        .market-page {
+            .chart-trade {}
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .maindashboard {
+        .market-page {
+            .chart-trade {}
+        }
+    }
+}

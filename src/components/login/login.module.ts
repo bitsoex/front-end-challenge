@@ -10,6 +10,8 @@ import {
 } from "@angular/material";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./login.component";
+import { UserService } from "../../assets/utils/services/user.service";
+
 
 const routes: Routes = [
     { path: "", component: LoginComponent, pathMatch: "full" }
@@ -28,7 +30,7 @@ const routes: Routes = [
         MatTabsModule
     ],
     exports: [],
-    providers: []
+    providers: [UserService]
 })
 
 export class LoginModule {}

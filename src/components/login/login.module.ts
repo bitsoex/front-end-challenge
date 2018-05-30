@@ -10,7 +10,6 @@ import {
 } from "@angular/material";
 import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "./login.component";
-import { UserService } from "../../assets/utils/services/user.service";
 
 
 const routes: Routes = [
@@ -30,7 +29,7 @@ const routes: Routes = [
         MatTabsModule
     ],
     exports: [],
-    providers: [UserService]
+    providers: []
 })
 
 export class LoginModule {}

@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { UserService } from "../../assets/utils/services/user.service";
 import { IUser } from "../../assets/utils/DTO/user.interface";
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent {
         phone: 0,
         token: ""
     };
-    constructor(private router: Router, private userService: UserService) { }
+    constructor(private router: Router) { }
 
     private loginUser(): void {
         // this.userService.createAccount(this.user).subscribe(

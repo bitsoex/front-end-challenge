@@ -5,6 +5,9 @@ import Last_trades from './Last_trades';
 import Market_page from './Market_page';
 import Markets_list from './Markets_list';
 
+/**
+ * Maquetacion del dashboard principal para el libro actual
+ */
 class Main_dashboard extends Component {
 	render() {
 		return <div class="maindashboard">

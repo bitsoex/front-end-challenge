@@ -4,6 +4,9 @@ import _ from 'lodash';
 import TableOrderBookBids from './TableOrderBookBids';
 import TableOrderBookAsks from './TableOrderBookAsks';
 
+/**
+ * Maquetacion para el libro de ordenes de compra / venta
+ */
 class Order_book extends Component {
 
 	constructor(props) {

@@ -3,6 +3,9 @@ import Time from 'react-time';
 import { grayzeros, percentAmount, numberFormat } from "../utils";
 import _ from 'lodash';
 
+/**
+ * Tabla de ordenes de venta
+ */
 class TableOrderBookBids extends Component {
 
 	constructor(props) {

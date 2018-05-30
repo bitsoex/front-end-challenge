@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Time from 'react-time';
 import { grayzeros } from "../utils";
 
+/**
+ * Tabla de las ultimas ordenes completadas en el merado actual
+ */
 class TableLastTrades extends Component {
 	constructor(props) {
 	    super(props);

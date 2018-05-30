@@ -5,6 +5,9 @@
 import React, { Component } from 'react';
 import { grayzeros, percentAmount, numberFormat } from "../utils";
 
+/**
+ * Panel derecho con el listado de precios del mercado
+ */
 class Markets_list extends Component {
 
 	constructor(props) {

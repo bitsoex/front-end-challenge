@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/**
+ * Header principal
+ */
 class Navbar_main extends Component {
 	render() {
 		return <nav class="navbar header-nav fixed-top">

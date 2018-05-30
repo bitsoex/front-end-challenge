@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { numberFormat } from "../utils";
 
+/**
+ * Header del mercado actual en donde se muestra informacion basica
+ */
 class Navbar_market extends Component {
 
 	constructor(props) {

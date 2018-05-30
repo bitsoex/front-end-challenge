@@ -46,6 +46,9 @@ function generateData() {
 
 generateData();
 
+/**
+ * Componente para render del stock usando la libreria AMCHART, utilizando datos dummy
+ */
 class Chart_trade extends Component {
 
   render() {

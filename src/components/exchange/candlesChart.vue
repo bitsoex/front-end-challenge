@@ -23,6 +23,13 @@
       <hr style="top:75px">
       <hr style="top:150px">
       <hr style="top:225px">
+      <hr style="top:300px">
+      <hr style="top:375px">
+      <hr style="top:450px">
+      <hr style="top:525px">
+      <hr style="top:600px">
+      <hr style="top:675px">
+      <hr style="top:750px">
 
     </div>
     <div class="column"
@@ -77,7 +84,11 @@ export default {
       return this.$store.state.charts.candles.high - this.$store.state.charts.candles.low
     },
     pixelValue: function () {
-      return (this.$store.state.charts.candles.high - this.$store.state.charts.candles.low) / 225
+      if (window.innerWidth > 992) {
+        return (this.$store.state.charts.candles.high - this.$store.state.charts.candles.low) / 225
+      } else {
+        return (this.$store.state.charts.candles.high - this.$store.state.charts.candles.low) / (window.innerHeight - 300)
+      }
     }
   },
   data () {
@@ -273,6 +284,22 @@ export default {
     margin-top: 56px;
     margin-left: 56px;
     width: calc(100vw - 112px);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #candles-chart {
+    margin-left: 16px;
+    width: calc(100vw - 32px);
+    height: calc(100vh - 240px);
+  }
+
+  #candles-chart .column {
+    height: calc(100vh - 240px);
+  }
+
+  #candles-chart .background {
+    height: calc(100vh - 240px);
   }
 }
 

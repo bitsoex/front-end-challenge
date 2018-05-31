@@ -36,6 +36,14 @@ const state = {
     all: {
       bids: [],
       asks: []
+    },
+    ask: {
+      highest: 0,
+      divider: 0
+    },
+    bid: {
+      highest: 0,
+      divider: 0
     }
   },
   ticker: {
@@ -224,7 +232,6 @@ const mutations = {
         }
       }
       state.orders.aggregate.bids = bids
-      console.log(higherBidAmount)
 
       var asks = {}
       for (i = 0; i < data.body.payload.asks.length; i++) {
@@ -232,11 +239,7 @@ const mutations = {
       }
       state.orders.aggregate.asks = asks
       console.log(higherAskAmount)
-    }, function (err) {
-      console.log(err)
-    })
 
-    Vue.http.get('https://api.bitso.com/v3/order_book?book=' + state.books.selected.url + '&aggregate=false').then(function (data) {
       state.orders.all.bids = data.body.payload.bids
       for (i = 0; i < data.body.payload.bids.length; i++) {
         if (parseFloat(data.body.payload.bids[i].amount) > higherBidAmount) {
@@ -252,6 +255,14 @@ const mutations = {
         }
       }
       state.orders.high.ask = higherAskAmount
+
+      state.orders.bid.highest = parseFloat(Object.keys(state.orders.aggregate.bids)[0])
+      var depthMarket = window.innerWidth - 368
+      state.orders.bid.divider = depthMarket * 0.5 / (state.orders.bid.highest - Object.keys(state.orders.aggregate.bids)[49])
+
+      state.orders.ask.highest = parseFloat(Object.keys(state.orders.aggregate.asks)[0])
+      state.orders.ask.divider = depthMarket * 0.5 / (state.orders.ask.highest - Object.keys(state.orders.aggregate.asks)[49])
+      console.log(depthMarket)
     }, function (err) {
       console.log(err)
     })

@@ -11,8 +11,8 @@
       <ul>
         <li class="head">
           <div class="hour">hora</div>
-          <div class="price">{{books.comparision}} Precio</div>
-          <div class="amount">{{books.unit}} Monto</div>
+          <div class="price"><span class="gray">{{books.comparision}}</span> Precio</div>
+          <div class="amount"><span class="gray">{{books.unit}}</span> Monto</div>
         </li>
         <li class="trade" v-for="trade in trades"
             v-bind:key="trade.tid"
@@ -90,7 +90,7 @@ export default {
     transform: translate3d(-258px, 0 , 0);
     transition: all 0.3s;
     z-index: 500;
-    background: #21282f;
+    background: #181E24;
   }
 
   #last-trades.open {
@@ -109,7 +109,7 @@ export default {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 10;
+    z-index: 50;
   }
 
   #last-trades .content {
@@ -143,20 +143,24 @@ export default {
   }
 
   #last-trades .content .head {
-    color: #949da2;
+    color: #757F86;
     text-transform: uppercase;
     width: calc(100% - 74px);
     margin-left: 16px;
     height: 32px;
     line-height: 32px;
-    font-size: 11px;
+    font-size: 12px;
     text-align: left;
     position: fixed;
     top: 0;
     left: 0;
-    background: #21282f;
+    background: #181E24;
     padding-left: 14px;
     z-index: 10;
+  }
+
+  #last-trades .content .head span.gray {
+    color: #36404A;
   }
 
   #last-trades .content ul li.head div {
@@ -180,7 +184,7 @@ export default {
     transition: all 0s;
     cursor: pointer;
     margin-left: 16px;
-    padding-left: 12px;
+    padding-left: 13px;
     text-align: left;
   }
 
@@ -222,7 +226,7 @@ export default {
   #last-trades .content ul li.trade div.amount {
     color: #bdc6cc;
     position: absolute;
-    right: 50px;
+    right: 32px;
     text-align: right;
     width: auto;
   }
@@ -276,6 +280,51 @@ export default {
 
   #last-trades .content ul li.trade .amount {
     margin-left: -10px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #last-trades {
+    width: 100vw;
+    transform: translate3d(-200vw, 0 , 0);
+  }
+
+  #last-trades .content {
+    width: 100vw;
+  }
+
+  #last-trades .slider, #markets .slider {
+    background: transparent;
+    opacity: 0;
+  }
+
+  #last-trades .content ul li.head {
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  #last-trades .content ul li.trade {
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  #last-trades .content ul li.head div.amount, #last-trades .content ul li.head div.price, #last-trades .content ul li.head div.hour {
+    width: 32%;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  #last-trades .content ul li.trade div.amount, #last-trades .content ul li.trade div.price, #last-trades .content ul li.trade div.hour {
+    width: 32%;
+    text-align: center;
+  }
+
+  #last-trades .content ul li.trade div.amount div {
+    width: 66px !important;
+    left: calc(50% - 33px) !important;
+    text-align: left !important;
   }
 }
 

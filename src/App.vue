@@ -85,7 +85,7 @@ export default {
   html, body {
     margin: 0;
     padding: 0;
-    background: #21282f;
+    background: #181E24;
     overflow-x: hidden;
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -95,6 +95,17 @@ export default {
 
   * {
     transition: all 0.3s;
+  }
+
+  .done {
+    animation: mymove 0.3s linear;
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode:forwards;
+  }
+
+  @keyframes mymove {
+    0%   {background-color: red;}
+    100% {display:none !important}
   }
 
   @font-face {
@@ -156,6 +167,9 @@ export default {
     color: #97BB7E;
     font-family: 'DIN_Medium';
     font-size: 16px;
+    background: #151A1E;
+    position: relative;
+    z-index: 90;
   }
 
   #status-bar .dropdown * {
@@ -222,7 +236,7 @@ export default {
     position: fixed;
     top: 110px;
     left: 0;
-    background: #21282f;
+    background: #181E24;
     border-top: solid 1px #2d3540;
     min-height: calc(100vh - 111px);
     z-index: 11;

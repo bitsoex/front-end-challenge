@@ -7,7 +7,7 @@
       <div id="chart">
         <div class="select chartTypeChange" v-bind:class="{open: chart.type.selectVisible}">
           <div class="selected" v-on:click="chartTypeOptions()">
-            <img src="../assets/images/candles.svg" v-bind:class="{transparent: chart.type.selected === 'triangles'}">
+            <img src="../assets/images/candles.svg" v-bind:class="{transparent: chart.type.selected === 'depth-market'}">
             <img src="../assets/images/triangles.svg" class="triangles" v-bind:class="{transparent: chart.type.selected === 'candles'}">
             <img src="../assets/images/dropdown.svg" class="dropdown">
           </div>
@@ -62,20 +62,16 @@
       <div id="positions">
       </div>
 
-      <div id="markets" v-bind:class="{open: markets.open}">
-        <div class="slider" v-on:click="markets.open = !markets.open">
-          <img src="../assets/images/dropdown.svg">
-          <div class="title">Mercados</div>
-        </div>
+      <markets></markets>
 
-        <div class="content"></div>
-      </div>
     </div>
 
     <div id="mobile-tab-bar">
       <div class="nav first"  v-on:click="tab(1)"></div>
       <div class="nav second" v-on:click="tab(2)"></div>
       <div class="nav third"  v-on:click="tab(3)"></div>
+      <div class="nav fourth" v-on:click="tab(4)"></div>
+      <div class="nav fifth"  v-on:click="tab(5)"></div>
       <audio id="tab-bar-audio">
        <source src="/static/Click-Fast-With-Swipe.m4a" type="audio/mp4">
       </audio>
@@ -90,6 +86,7 @@ import VueResource from 'vue-resource'
 
 import candlesChart from './exchange/candlesChart.vue'
 import lastTrades from './exchange/lastTrades.vue'
+import markets from './exchange/markets.vue'
 import depthMarket from './exchange/depthMarket.vue'
 import buyPositions from './exchange/buyPositions.vue'
 import sellPositions from './exchange/sellPositions.vue'
@@ -102,6 +99,7 @@ export default {
   components: {
     'candles-chart': candlesChart,
     'last-trades': lastTrades,
+    'markets': markets,
     'depth-market-chart': depthMarket,
     'buy-positions': buyPositions,
     'sell-positions': sellPositions
@@ -132,9 +130,6 @@ export default {
         }
       },
       lastTrades: {
-        open: false
-      },
-      markets: {
         open: false
       },
       mobilePagePosition: 'translate3d(0, 0, 0)'
@@ -174,13 +169,19 @@ export default {
     tab (t) {
       switch (t) {
         case 1:
-          this.mobilePagePosition = 'translate3d(100vw, 0, 0)'
+          this.mobilePagePosition = 'translate3d(200vw, 0, 0)'
           break
         case 2:
-          this.mobilePagePosition = 'translate3d(0, 0, 0)'
+          this.mobilePagePosition = 'translate3d(100vw, 0, 0)'
           break
         case 3:
+          this.mobilePagePosition = 'translate3d(0, 0, 0)'
+          break
+        case 4:
           this.mobilePagePosition = 'translate3d(-100vw, 0, 0)'
+          break
+        case 5:
+          this.mobilePagePosition = 'translate3d(-200vw, 0, 0)'
           break
         default:
           this.mobilePagePosition = 'translate3d(0, 0, 0)'
@@ -256,44 +257,6 @@ export default {
   }
 /* END PURCHASE AND SELL POSITIONS */
 
-/* MARKETS */
-  #markets {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: calc(100vh - 111px);
-    width: 364px;
-    overflow-y: scroll;
-    transform: translate3d(320px, 0 , 0);
-    transition: all 0.3s;
-  }
-
-  #markets.open {
-    transform: translate3d(0, 0 , 0);
-  }
-
-  #markets .slider img {
-    transform: rotate(90deg);
-  }
-
-  #markets.open .slider img {
-    transform: rotate(270deg);
-  }
-
-  #markets .slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  #markets .content {
-    height: calc(100vh - 111px);
-    background: purple;
-    width: 320px;
-    margin-left: 44px;
-  }
-/* MARKETS */
-
 /* MOBILE TAB BAR */
   #mobile-tab-bar {
     position: fixed;
@@ -310,7 +273,7 @@ export default {
     position: absolute;
     border-right: 1px solid red;
     height: 56px;
-    width: 33vw;
+    width: 20vw;
     top: 0;
   }
 
@@ -319,11 +282,19 @@ export default {
   }
 
   #mobile-tab-bar .nav.second {
-    left: 33vw;
+    left: 20vw;
   }
 
   #mobile-tab-bar .nav.third {
-    left: 66vw;
+    left: 40vw;
+  }
+
+  #mobile-tab-bar .nav.fourth {
+    left: 60vw;
+  }
+
+  #mobile-tab-bar .nav.fifth {
+    left: 80vw;
   }
 /* END MOBILE TAB BAR */
 
@@ -522,45 +493,9 @@ export default {
   }
 }
 
-@media screen and (max-width:767px) {
-  #last-trades, #markets {
-    width: 100vw;
-  }
-
-  #last-trades {
-    transform: translate3d(-100vw, 0 , 0);
-  }
-
-  #last-trades .content {
-    width: 100vw;
-  }
-
-  #markets {
-    transform: translate3d(100vw, 0 , 0);
-  }
-
-  #markets .content {
-    width: 100vw;
-    margin-left: 0;
-  }
-
-  #last-trades .slider, #markets .slider {
-    background: transparent;
-    opacity: 0;
-  }
-
+@media screen and (max-width:992px) {
   #mobile-tab-bar {
     display: block;
   }
 }
-
-/* DAY MODE */
-#app.day #markets .slider {
-  background: #5C4B51;
-}
-
-#app.day #markets .slider .title {
-  color: #747F89;
-}
-/* END DAY MODE */
 </style>

@@ -83,7 +83,7 @@ export default {
           self.$store.dispatch('bookChange', newBook)
           self.variation.value = Math.abs(data.body[364].value - data.body[363].value).toFixed(2)
           if ((data.body[364].value - data.body[363].value) > 0) {
-            self.variation.sign = ''
+            self.variation.sign = '+'
           } else {
             self.variation.sign = '-'
           }
@@ -97,8 +97,8 @@ export default {
         if (this.websocket.open) {
           websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
           websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
-          websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'orders' }))
-          websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'orders' }))
+          websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'diff-orders' }))
+          websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'diff-orders' }))
         }
       } else {
         this.books.initial = this.books.selected
@@ -134,8 +134,8 @@ export default {
     websocket.onopen = function () {
       self.websocket.open = true
       websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }))
-      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }))
-      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }))
+      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }))
+      // websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }))
     }
 
     websocket.onmessage = function (message) {
@@ -147,8 +147,11 @@ export default {
             self.$emit('updateHead')
           }
           break
+        /* case 'orders':
+          self.$store.commit('wsOrders', data)
+          break */
         default:
-          console.log(data)
+          // console.log(data)
           break
       }
     }
@@ -165,7 +168,7 @@ export default {
     left: 0;
     width: 100vw;
     height: 44px;
-    background: #1d2228;
+    background: #151A1E;
     z-index: 20;
   }
 
@@ -177,6 +180,7 @@ export default {
     font-size: 14px;
     height: 44px;
     line-height: 40px;
+    min-width: 830px;
   }
 
   #status-bar #ticker .item {
@@ -222,4 +226,37 @@ export default {
     opacity: 1;
   }
 
+  @media screen and (max-width: 992px) {
+    #fullscreen-button {
+      display: none;
+    }
+
+    #status-bar #ticker {
+      -webkit-animation: ticker 60s linear infinite; /* Safari 4+ */
+      -moz-animation:    ticker 60s linear infinite; /* Fx 5+ */
+      -o-animation:      ticker 60s linear infinite; /* Opera 12+ */
+      animation:         ticker 60s linear infinite; /* IE 10+, Fx 29+ */
+    }
+
+    -webkit-keyframes ticker {
+      0%   { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(calc(100vw - 160px - 816px), 0, 0); }
+      100%   { transform: translate3d(0, 0, 0); }
+    }
+    @-moz-keyframes ticker {
+      0%   { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(calc(100vw - 160px - 816px), 0, 0); }
+      100%   { transform: translate3d(0, 0, 0); }
+    }
+    @-o-keyframes ticker {
+      0%   { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(calc(100vw - 160px - 816px), 0, 0); }
+      100%   { transform: translate3d(0, 0, 0); }
+    }
+    @keyframes ticker {
+      0%   { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(calc(100vw - 160px - 816px), 0, 0); }
+      100%   { transform: translate3d(0, 0, 0); }
+    }
+  }
 </style>

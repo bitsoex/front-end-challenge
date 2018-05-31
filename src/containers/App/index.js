@@ -21,6 +21,7 @@ export default () => (
         <section className="main">
           <Candlestick />
           <Asks />
+          <Bids />
         </section>
         <aside className="aside aside-left">
           <LastTrades />

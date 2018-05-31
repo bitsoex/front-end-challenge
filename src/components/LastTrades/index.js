@@ -48,8 +48,7 @@ export default class LastTrades extends Component {
 
   render() {
     const { book, lastTrades } = this.props;
-    const currency1 = book.split("_")[0].toUpperCase();
-    const currency2 = book.split("_")[1].toUpperCase();
+    const [from, to] = book.toUpperCase().split("_");
     return (
       <ThemeConsumer>
         {({ theme }) => (
@@ -73,11 +72,11 @@ export default class LastTrades extends Component {
               >
                 <div>HORA</div>
                 <div>
-                  {currency2}&nbsp;
+                  {to}&nbsp;
                   <span style={{ color: colors.sidebar.light }}>PRECIO</span>
                 </div>
                 <div>
-                  {currency1}&nbsp;
+                  {from}&nbsp;
                   <span style={{ color: colors.sidebar.light }}>MONTO</span>
                 </div>
               </div>

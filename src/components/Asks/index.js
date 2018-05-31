@@ -44,7 +44,83 @@ export default class Asks extends Component {
     return (
       <ThemeConsumer>
         {({ theme }) => (
-          <OrderBook>{({ asks }) => <div>Children</div>}</OrderBook>
+          <OrderBook>
+            {({ book, asks }) => {
+              const [from, to] = book.toUpperCase().split("_");
+              return (
+                <div className={styles.container}>
+                  <div
+                    style={
+                      theme.name === "dark"
+                        ? { ...theme, background: colors.navy.header }
+                        : { ...theme, background: colors.gray.light }
+                    }
+                    className={styles.title}
+                  >
+                    ÚLTIMOS TRADES
+                  </div>
+                  <div className={styles.listContainer}>
+                    <div
+                      className={css`
+                        ${styles.row};
+                        padding: 10px 0;
+                      `}
+                    >
+                      <div>HORA</div>
+                      <div>
+                        {to}&nbsp;
+                        <span style={{ color: colors.sidebar.light }}>
+                          PRECIO
+                        </span>
+                      </div>
+                      <div>
+                        {from}&nbsp;
+                        <span style={{ color: colors.sidebar.light }}>
+                          MONTO
+                        </span>
+                      </div>
+                    </div>
+                    {asks.map((trade, i) => (
+                      <div
+                        key={i}
+                        style={{ "--i": i }}
+                        className={css`
+                          ${styles.row} ${animations.slideLeft}
+                          &:hover {
+                            background: ${colors.navy.regular};
+                            color: ${colors.sidebar.light};
+                            .price {
+                              color: ${trade.maker_side === "buy"
+                                ? colors.green.light
+                                : colors.red.light};
+                            }
+                          }
+                          .price {
+                            color: ${trade.maker_side === "buy"
+                              ? colors.green.dark
+                              : colors.red.dark};
+                          }
+                          .amount {
+                            color: ${colors.sidebar.light};
+                          }
+                        `}
+                      >
+                        <div>{this.formatDate(trade.created_at)}</div>{" "}
+                        <div className="price">
+                          {(+trade.price).toLocaleString("es-MX", {
+                            minimumFractionDigits: 2
+                          })}
+                        </div>
+                        <div className="amount">
+                          <Amount amount={trade.amount} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            }}
+          </OrderBook>
         )}
       </ThemeConsumer>
     );

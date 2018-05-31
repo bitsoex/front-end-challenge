@@ -28,10 +28,10 @@ class CandlestickSeries extends AbstractSeries {
         {data.map((d, i) => {
           const xTrans = xFunctor(d);
           // Names of values borrowed from here https://en.wikipedia.org/wiki/Candlestick_chart
-          const yHigh = yFunctor({ ...d, y: d.yHigh });
-          const yOpen = yFunctor({ ...d, y: d.yOpen });
-          const yClose = yFunctor({ ...d, y: d.yClose });
-          const yLow = yFunctor({ ...d, y: d.yLow });
+          const yHigh = yFunctor({ ...d, y: d.high });
+          const yOpen = yFunctor({ ...d, y: d.open });
+          const yClose = yFunctor({ ...d, y: d.close });
+          const yLow = yFunctor({ ...d, y: d.low });
 
           return (
             <g

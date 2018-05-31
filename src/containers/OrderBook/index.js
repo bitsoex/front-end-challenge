@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import { fetchOrderBook } from "../../api";
 import { BookConsumer } from "../../context/Book";
 
-export default () => (
-  <BookConsumer>{({ book }) => <OrderBook book={book.book} />}</BookConsumer>
+export default ({ children }) => (
+  <BookConsumer>
+    {({ book }) => (
+      <OrderBook book={book.book}>
+        {({ book, asks, bids }) => children({ book, asks, bids })}
+      </OrderBook>
+    )}
+  </BookConsumer>
 );
 
 class OrderBook extends Component {
@@ -19,7 +25,7 @@ class OrderBook extends Component {
 
   componentDidMount() {
     const { book } = this.props;
-    this.fetchTrades(book);
+    this.fetchOrderBook(book);
   }
 
   componentDidUpdate(prevProps) {
@@ -31,7 +37,8 @@ class OrderBook extends Component {
 
   fetchOrderBook = async book => {
     const orderBook = await fetchOrderBook({ book });
-    console.log(orderBook);
+    const { asks, bids } = orderBook;
+    this.setState({ asks, bids });
   };
 
   render() {

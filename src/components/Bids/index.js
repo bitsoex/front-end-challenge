@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { css, keyframes } from "emotion";
 import dayjs from "dayjs";
 import OrderBook from "../../containers/OrderBook";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
 import Amount from "../Amount";
+import { formatToLocaleString } from "../../utils";
 
 const styles = {
   container: css`
@@ -107,9 +107,7 @@ export default class Asks extends Component {
                       >
                         <div>{this.formatDate(trade.created_at)}</div>{" "}
                         <div className="price">
-                          {(+trade.price).toLocaleString("es-MX", {
-                            minimumFractionDigits: 2
-                          })}
+                          {formatToLocaleString(+trade.price)}
                         </div>
                         <div className="amount">
                           <Amount amount={trade.amount} />

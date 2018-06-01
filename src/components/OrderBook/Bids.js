@@ -1,41 +1,16 @@
 import React, { Component } from "react";
-import { css, keyframes } from "emotion";
+import { css } from "emotion";
 import dayjs from "dayjs";
 import OrderBook from "../../containers/OrderBook";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
 import Amount from "../Amount";
-import { formatToLocaleString } from "../../utils";
-
-const styles = {
-  container: css`
-    font-size: small;
-  `,
-  title: css`
-    padding 10px 20px;
-  `,
-  listContainer: css`
-    color: ${colors.sidebar.text};
-  `,
-  row: css`
-    display: flex;
-    justify-content: space-around;
-  `,
-  columnTitle: css``,
-  slideLeft: keyframes`
-    from {
-      transform: translateX(50%);
-      opacity: 0;
-    }
-  `
-};
-
-const animations = {
-  slideLeft: css`
-    animation: ${styles.slideLeft} 0.3s both;
-    animation-delay: calc(var(--i) * 0.1s);
-  `
-};
+import {
+  computeOrderBookValues,
+  getCurrencies,
+  formatToLocaleString
+} from "../../utils";
+import styles, { animations } from "./styles";
 
 export default class Asks extends Component {
   formatDate = date => dayjs(date).format("HH:mm:ss");
@@ -45,8 +20,9 @@ export default class Asks extends Component {
       <ThemeConsumer>
         {({ theme }) => (
           <OrderBook>
-            {({ book, asks }) => {
-              const [from, to] = book.toUpperCase().split("_");
+            {({ book, bookDetails, bids }) => {
+              const [from, to] = getCurrencies(book);
+              const computedBids = computeOrderBookValues(bids);
               return (
                 <div className={styles.container}>
                   <div
@@ -57,7 +33,12 @@ export default class Asks extends Component {
                     }
                     className={styles.title}
                   >
-                    ÚLTIMOS TRADES
+                    <div>
+                      <b>POSTURAS DE COMPRA</b>
+                    </div>
+                    <div>
+                      {to} Bid {formatToLocaleString(bookDetails.bid)}
+                    </div>
                   </div>
                   <div className={styles.listContainer}>
                     <div
@@ -66,21 +47,25 @@ export default class Asks extends Component {
                         padding: 10px 0;
                       `}
                     >
-                      <div>HORA</div>
-                      <div>
-                        {to}&nbsp;
-                        <span style={{ color: colors.sidebar.light }}>
-                          PRECIO
-                        </span>
-                      </div>
-                      <div>
+                      <div className={styles.item}>SUM</div>
+
+                      <div className={styles.item}>
                         {from}&nbsp;
                         <span style={{ color: colors.sidebar.light }}>
                           MONTO
                         </span>
                       </div>
+
+                      <div className={styles.item}>{to} VALOR</div>
+
+                      <div className={styles.item}>
+                        {to}&nbsp;
+                        <span style={{ color: colors.sidebar.light }}>
+                          PRECIO
+                        </span>
+                      </div>
                     </div>
-                    {asks.map((trade, i) => (
+                    {computedBids.map((bid, i) => (
                       <div
                         key={i}
                         style={{ "--i": i }}
@@ -89,28 +74,35 @@ export default class Asks extends Component {
                           &:hover {
                             background: ${colors.navy.regular};
                             color: ${colors.sidebar.light};
-                            .price {
-                              color: ${trade.maker_side === "buy"
-                                ? colors.green.light
-                                : colors.red.light};
-                            }
                           }
                           .price {
-                            color: ${trade.maker_side === "buy"
-                              ? colors.green.dark
-                              : colors.red.dark};
+                            color: ${colors.green.light};
                           }
                           .amount {
                             color: ${colors.sidebar.light};
                           }
                         `}
                       >
-                        <div>{this.formatDate(trade.created_at)}</div>{" "}
-                        <div className="price">
-                          {formatToLocaleString(+trade.price)}
+                        <div className={styles.item}>
+                          {formatToLocaleString(bid.sum, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                          })}
                         </div>
-                        <div className="amount">
-                          <Amount amount={trade.amount} />
+
+                        <div className={`${styles.item} amount`}>
+                          <Amount amount={bid.amount} />
+                        </div>
+
+                        <div className={styles.item}>
+                          {formatToLocaleString(+bid.value, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                          })}
+                        </div>
+
+                        <div className={`${styles.item} price`}>
+                          {formatToLocaleString(+bid.price)}
                         </div>
                       </div>
                     ))}

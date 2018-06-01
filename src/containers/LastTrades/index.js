@@ -41,7 +41,7 @@ class LastTradesContainer extends Component {
   }
 
   fetchTrades = async book => {
-    const lastTrades = await fetchLastTrades({ book });
+    const lastTrades = await fetchLastTrades({ book, limit: 30 });
     this.setState({ lastTrades });
   };
 

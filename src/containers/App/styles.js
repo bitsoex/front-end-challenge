@@ -30,5 +30,9 @@ export default {
         order: 3;
       }
     }
+  `,
+  orderBookContainer: css`
+    display: flex;
+    justify-content: space-around;
   `
 };

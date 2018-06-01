@@ -1,103 +1,127 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import {
-  XAxis,
-  YAxis,
-  VerticalGridLines,
-  HorizontalGridLines,
-  FlexibleXYPlot
-} from "react-vis";
-import { format } from "d3-format";
-import { css } from "emotion";
+import React from "react";
 import dayjs from "dayjs";
+import "dayjs/locale/es";
+import {
+  VictoryChart,
+  VictoryTheme,
+  VictoryAxis,
+  VictoryTooltip,
+  VictoryCandlestick,
+  VictoryZoomContainer
+} from "victory";
 import { colors } from "../../themes";
-import Chart from "./Candlestick";
+import {
+  getCurrencies,
+  formatToDecimalNotation,
+  formatToLocaleString
+} from "../../utils";
 
-const styles = {
-  candlestick: css`
-    width: 100%;
-  `,
-  chart: css`
-    width: 100%;
-  `,
-  xyPlot: css`
-    .rv-xy-plot__inner {
-      width: 106%;
-      padding-top: 15px;
-    }
-  `
+export default ({ book, data }) => {
+  const [from, to] = getCurrencies(book);
+  const tickFormatX = v =>
+    dayjs(v)
+      .locale("es")
+      .format("DD MMM");
+
+  const tickFormatY = v => formatToDecimalNotation(v);
+
+  const axisStyle = {
+    axis: { stroke: null },
+    grid: { stroke: colors.navy.header },
+    tickLabels: { fontSize: 12, padding: 5 }
+  };
+
+  return (
+    <div style={{ cursor: "move" }}>
+      <VictoryChart
+        width={800}
+        scale={{ x: "time" }}
+        domainPadding={{ x: 10 }}
+        animate={{ duration: 2000 }}
+        theme={VictoryTheme.material}
+        containerComponent={<VictoryZoomContainer />}
+      >
+        <VictoryAxis
+          style={axisStyle}
+          orientation="top"
+          tickFormat={tickFormatX}
+        />
+        <VictoryAxis
+          style={axisStyle}
+          orientation="right"
+          tickFormat={tickFormatY}
+          dependentAxis
+        />
+        <VictoryCandlestick
+          data={data}
+          labels={d =>
+            [
+              `Open ${formatToLocaleString(d.open)} ${to}`,
+              `Close ${formatToLocaleString(d.close)} ${to}`,
+              `High ${formatToLocaleString(d.high)} ${to}`,
+              `Low ${formatToLocaleString(d.low)} ${to}`,
+              `Vol. ${formatToLocaleString(d.volume)} ${from}`
+            ].join("\n")
+          }
+          labelComponent={
+            <VictoryTooltip
+              orientation={"left"}
+              flyoutStyle={{
+                fill: colors.navy.header,
+                fillOpacity: 0.8
+              }}
+            />
+          }
+          style={{
+            labels: { fill: colors.gray.regular, textAnchor: "end" },
+            data: {
+              fillOpacity: 0.7,
+              stroke: d =>
+                d.open < d.close ? colors.green.medium : colors.red.medium
+            }
+          }}
+          candleColors={{
+            positive: colors.green.dark,
+            negative: colors.red.dark
+          }}
+          events={[
+            {
+              onClick: () => {
+                return [
+                  {
+                    target: "data",
+                    mutation: () => ({ style: { fill: "gold", width: 30 } })
+                  }
+                ];
+              },
+              onMouseOver: () => {
+                return [
+                  {
+                    target: "data",
+                    mutation: () => ({ style: { fill: "gold", width: 30 } })
+                  },
+                  {
+                    target: "labels",
+                    mutation: () => ({ active: true })
+                  }
+                ];
+              },
+              onMouseOut: () => {
+                return [
+                  {
+                    target: "data",
+                    mutation: () => {}
+                  },
+                  {
+                    target: "labels",
+                    mutation: () => ({ active: false })
+                  }
+                ];
+              }
+            }
+          ]}
+        />
+      </VictoryChart>
+    </div>
+  );
 };
-export default class Candlestick extends Component {
-  static propTypes = {
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-        yHigh: PropTypes.number,
-        yOpen: PropTypes.number,
-        yClose: PropTypes.number,
-        yLow: PropTypes.number,
-        color: PropTypes.color,
-        opacity: PropTypes.number
-      })
-    ).isRequired,
-    yDomain: PropTypes.arrayOf(PropTypes.number)
-  };
-
-  static defaultProps = { yDomain: [] };
-
-  tickFormatY = v => format("~s")(v);
-
-  tickValuesX = () => {
-    const { data } = this.props;
-    const flatten = list =>
-      list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
-    const result = data.map(d => {
-      const date = d.date;
-      const datePlus12Hours = dayjs(date).add(12, "hours");
-      return [date.valueOf(), datePlus12Hours.valueOf()];
-    });
-    return flatten(result);
-  };
-
-  render() {
-    const { data, yDomain } = this.props;
-    console.log("yDomain", yDomain);
-    return (
-      <div className={styles.candlestick}>
-        <div className={styles.chart}>
-          <FlexibleXYPlot
-            className={styles.xyPlot}
-            animation
-            height={500}
-            yDomain={yDomain}
-            xType="time"
-          >
-            <VerticalGridLines
-              style={{
-                stroke: colors.navy.header,
-                strokeDasharray: "2, 2"
-              }}
-            />
-            <HorizontalGridLines
-              style={{
-                stroke: colors.navy.header,
-                strokeDasharray: "2, 2"
-              }}
-            />
-
-            <XAxis orientation="top" tickValues={this.tickValuesX()} hideLine />
-            <YAxis orientation="right" tickFormat={this.tickFormatY} hideLine />
-
-            <Chart
-              colorType="literal"
-              opacityType="literal"
-              stroke="#79C7E3"
-              data={data}
-            />
-          </FlexibleXYPlot>
-        </div>
-      </div>
-    );
-  }
-}

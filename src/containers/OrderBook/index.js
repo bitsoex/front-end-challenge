@@ -5,9 +5,9 @@ import { BookConsumer } from "../../context/Book";
 
 export default ({ children }) => (
   <BookConsumer>
-    {({ book }) => (
+    {({ book, bookDetails }) => (
       <OrderBook book={book.book}>
-        {({ book, asks, bids }) => children({ book, asks, bids })}
+        {({ book, asks, bids }) => children({ book, bookDetails, asks, bids })}
       </OrderBook>
     )}
   </BookConsumer>

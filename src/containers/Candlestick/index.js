@@ -3,20 +3,32 @@ import PropTypes from "prop-types";
 import dayjs from "dayjs";
 
 import { fetchChartData } from "../../api";
-import { colors } from "../../themes";
 import { BookConsumer } from "../../context/Book";
-// import Chart from "../../components/Candlestick";
-import Chart from "../../components/Candlestick2";
+import Chart from "../../components/Candlestick";
+import ChartToolbar from "../../components/Candlestick/Toolbar";
+
+const timeFrames = ["1month", "3months", "1year"];
 
 export default () => (
   <BookConsumer>
-    {({ book }) => <ChartContainer book={book.book} />}
+    {({ book }) => (
+      <ChartToolbar timeFrames={timeFrames}>
+        {({ timeFrame }) => (
+          <ChartContainer book={book.book} timeFrame={timeFrame} />
+        )}
+      </ChartToolbar>
+    )}
   </BookConsumer>
 );
 
 class ChartContainer extends Component {
   static propTypes = {
-    book: PropTypes.string.isRequired
+    book: PropTypes.string.isRequired,
+    timeFrame: PropTypes.string.isRequired
+  };
+
+  static defaultProps = {
+    timeFrame: timeFrames[0]
   };
 
   state = {
@@ -30,58 +42,45 @@ class ChartContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { book } = this.props;
-    if (book !== prevProps.book) {
+    const { book, timeFrame } = this.props;
+    if (book !== prevProps.book || timeFrame !== prevProps.timeFrame) {
       this.fetchData(book);
     }
   }
 
   fetchData = async book => {
     this.setState({ loading: true });
-    const data = await fetchChartData({ book });
+    const { timeFrame } = this.props;
+    const data = await fetchChartData({ book, timeFrame });
     const mappedData = data
-      .map(this.dataMapperFormat)
-      .map(this.dataMapperValues);
+      .map(this.convertValuesMapper)
+      .map(this.xyValuesMapper);
     this.setState({ loading: false, data: mappedData });
   };
 
-  dataMapperFormat = d => ({
+  convertValuesMapper = d => ({
     date: dayjs(d.date),
-    x: dayjs(d.date).valueOf(),
     high: +d.high,
     open: +d.open,
     close: +d.close,
-    low: +d.low
+    low: +d.low,
+    volume: +d.volume,
+    value: +d.value,
+    vwap: +d.vwap
   });
 
-  dataMapperValues = d => ({
+  xyValuesMapper = d => ({
     ...d,
-    y: (d.open - d.close) * 2,
-    opacity: 0.7,
-    stroke: d.open > d.close ? colors.green.medium : colors.red.medium,
-    color: d.open > d.close ? colors.green.dark : colors.red.dark
+    x: dayjs(d.date).valueOf(),
+    y: (d.open - d.close) * 2
   });
-
-  getHighAndLow = (data = []) => {
-    const lowValues = data.map(d => d.low);
-    const highValues = data.map(d => d.high);
-    const lowest = Math.min(...lowValues);
-    const highest = Math.max(...highValues);
-
-    const min = Math.floor(lowest / 5000) * 5000; // floor to the closest 5000
-    const max = Math.ceil(highest / 5000) * 5000; // ceil to the closest 5000
-
-    return { min, max };
-  };
 
   render() {
     const { loading } = this.state;
-    if (loading) return <div>Loading...</div>;
 
+    const { book } = this.props;
     const { data } = this.state;
 
-    const { min, max } = this.getHighAndLow(data);
-
-    return <Chart data={data} yDomain={[min, max]} />;
+    return <Chart book={book} data={data} />;
   }
 }

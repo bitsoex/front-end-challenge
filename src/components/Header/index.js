@@ -5,10 +5,11 @@ import { BookConsumer } from "../../context/Book";
 import { ThemeConsumer } from "../../context/Theme";
 import ThemeToggler from "../ThemeToggler";
 import { colors } from "../../themes";
+import { formatToLocaleString } from "../../utils";
 
 const styles = {
   container: css`
-    padding: 10px;
+    padding: 15px 10px;
   `,
   logo: css`
     height: 30px;
@@ -67,11 +68,7 @@ function Header({ book, bookDetails }) {
             </li>
 
             <li className={styles.navItem}>
-              1 {from} ={" "}
-              {(+bookDetails.last).toLocaleString("es-MX", {
-                minimumFractionDigits: 2
-              })}{" "}
-              {to}
+              1 {from} = {formatToLocaleString(+bookDetails.last)} {to}
             </li>
 
             <li className={styles.navItem}>

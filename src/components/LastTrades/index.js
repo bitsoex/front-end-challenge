@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
 import Amount from "../Amount";
+import { getCurrencies, formatToLocaleString } from "../../utils";
 
 const styles = {
   container: css`
@@ -19,6 +20,7 @@ const styles = {
   row: css`
     display: flex;
     justify-content: space-around;
+    padding: 3px 0px;
   `,
   columnTitle: css``,
   slideLeft: keyframes`
@@ -48,7 +50,7 @@ export default class LastTrades extends Component {
 
   render() {
     const { book, lastTrades } = this.props;
-    const [from, to] = book.toUpperCase().split("_");
+    const [from, to] = getCurrencies(book);
     return (
       <ThemeConsumer>
         {({ theme }) => (
@@ -61,7 +63,7 @@ export default class LastTrades extends Component {
               }
               className={styles.title}
             >
-              ÚLTIMOS TRADES
+              <b>ÚLTIMOS TRADES</b>
             </div>
             <div className={styles.listContainer}>
               <div
@@ -107,9 +109,7 @@ export default class LastTrades extends Component {
                 >
                   <div>{this.formatDate(trade.created_at)}</div>{" "}
                   <div className="price">
-                    {(+trade.price).toLocaleString("es-MX", {
-                      minimumFractionDigits: 2
-                    })}
+                    {formatToLocaleString(+trade.price)}
                   </div>
                   <div className="amount">
                     <Amount amount={trade.amount} />

@@ -1,0 +1,22 @@
+.Header{
+    width: 100%;
+    height: 1000px;
+    background-color: #050c18;
+    line-height: 50px;
+    padding-left: 25px;
+}
+
+.menuIcon{
+    color: #fff;
+    font-size: 35px;
+    display: inline-block;
+    margin-top: -10px;
+}
+
+.logo{
+    display: inline-block;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+}

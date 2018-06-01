@@ -59,12 +59,21 @@ export default {
         var booksLoaded = data.body.payload
         var books = []
         for (var i = 0; i < booksLoaded.length; i++) {
-          var name = booksLoaded[i]['book'].replace('_', '/')
-          var unit = booksLoaded[i]['book'].split('_')[0]
-          var comparision = booksLoaded[i]['book'].split('_')[1]
-          books.push({url: booksLoaded[i]['book'], label: name, unit: unit, comparision: comparision})
+          var j = i
+          var url = booksLoaded[j]['book']
+          var name = booksLoaded[j]['book'].replace('_', '/')
+          var unit = booksLoaded[j]['book'].split('_')[0]
+          var comparision = booksLoaded[j]['book'].split('_')[1]
+          books.push({url: url, label: name, unit: unit, comparision: comparision})
         }
         self.books.available = books
+        for (i = 0; i < self.books.available.length; i++) {
+          Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + self.books.available[i].url + '&' + '1year').then(function (data) {
+            var cBook = data.url.split('?')[1].split('&')[0]
+            self.books.values[cBook] = data.body
+            // console.log(data.body)
+          })
+        }
       }, function (err) {
         console.log(err)
       })
@@ -138,7 +147,7 @@ export default {
   }
 
   .hidden {
-    display: none !important;
+    opacity: 0 !important;
   }
 
   .blur {
@@ -260,8 +269,13 @@ export default {
       background: #FFF;
     }
 
+    #app.day #status-bar .dropdown {
+      background: #F5F5F5;
+    }
+
     #app.day #status-bar .dropdown-menu {
       background: #FFFFFF;
     }
+
   /* END DAY MODE */
 </style>

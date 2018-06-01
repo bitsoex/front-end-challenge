@@ -224,4 +224,8 @@ ul li:hover div.price {
     max-height: calc(100% - 36px);
   }
 }
+
+#app.day #sellPositions .head {
+  background: #F5F5F5;
+}
 </style>

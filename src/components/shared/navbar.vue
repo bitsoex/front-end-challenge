@@ -75,7 +75,7 @@ export default {
   methods: {
     toggleDayMode () {
       var move = !this.$store.state.dayMode
-      console.log(move)
+      // console.log(move)
       localStorage.setItem('dayMode', this.dayMode)
       this.$store.commit('dayMode', move)
     }

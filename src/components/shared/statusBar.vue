@@ -62,7 +62,8 @@ export default {
       },
       websocket: {
         open: false
-      }
+      },
+      bookLoaded: false
     }
   },
   head: {
@@ -73,33 +74,45 @@ export default {
     }
   },
   methods: {
+    actualBookChange (val) {
+      var self = this
+      console.log('0')
+      // load data for that book
+      console.log('bookChange')
+      var data = self.$store.state.books.values[val.url]
+      var newBook = {url: val.url, label: val.label, unit: val.unit, comparision: val.comparision, data: data}
+      self.$store.dispatch('bookChange', newBook)
+      self.variation.value = Math.abs(data[364].value - data[363].value).toFixed(2)
+      if ((data[364].value - data[363].value) > 0) {
+        self.variation.sign = '+'
+      } else {
+        self.variation.sign = '-'
+      }
+      self.variation.percentage = (data[364].value / data[363].value * 100 - 100).toFixed(1)
+
+      // load statusbar
+      self.loadTicker()
+
+      // change ws connection
+      if (this.websocket.open) {
+        websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
+        websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
+        websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'diff-orders' }))
+        websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'diff-orders' }))
+      }
+    },
     bookChange (val) { /* function after changing the books select */
       /* fix unwanted feature that deselected the option if you clicked the same that is currently selected */
       var self = this
+      // console.log('bookChange')
       if (val !== null) {
-        // load data for that book
-        Vue.http.get('https://bitso-challenge.firebaseapp.com/chart?' + val.url + '&' + '1year').then(function (data) {
-          var newBook = {url: val.url, label: val.label, unit: val.unit, comparision: val.comparision, data: data.body}
-          self.$store.dispatch('bookChange', newBook)
-          self.variation.value = Math.abs(data.body[364].value - data.body[363].value).toFixed(2)
-          if ((data.body[364].value - data.body[363].value) > 0) {
-            self.variation.sign = '+'
+        setTimeout(function () {
+          if (self.$store.state.books.values[val.url].length === 0) {
+            self.bookChange(val)
           } else {
-            self.variation.sign = '-'
+            self.actualBookChange(val)
           }
-          self.variation.percentage = (data.body[364].value / data.body[363].value * 100 - 100).toFixed(1)
-        })
-
-        // load statusbar
-        self.loadTicker()
-
-        // change ws connection
-        if (this.websocket.open) {
-          websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'trades' }))
-          websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'trades' }))
-          websocket.send(JSON.stringify({ action: 'subscribe', book: this.books.selected.url, type: 'diff-orders' }))
-          websocket.send(JSON.stringify({ action: 'unsubscribe', book: this.books.last.url, type: 'diff-orders' }))
-        }
+        }, 300)
       } else {
         this.books.initial = this.books.selected
       }
@@ -118,7 +131,6 @@ export default {
       var self = this
       Vue.http.get('https://bitso-challenge.firebaseapp.com/ticker?book=' + self.books.selected.url).then(function (data) {
         self.$store.commit('ticker', data.body.payload)
-        console.log('ticker update')
         self.$emit('updateHead')
       }, function (err) {
         console.log(err)

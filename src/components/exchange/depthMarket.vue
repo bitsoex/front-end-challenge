@@ -103,4 +103,12 @@ export default {
     height: calc(100vh - 199px);
   }
 }
+
+#app.day .bid {
+  background: #4CAF50;
+}
+
+#app.day .ask {
+  background: #F44336;
+}
 </style>

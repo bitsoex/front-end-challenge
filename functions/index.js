@@ -8,7 +8,7 @@ exports.bitsoTicker = functions.https.onRequest((request, response) => {
   if (ticker !== null) {
     axios.get('https://api.bitso.com/v3/ticker/?book=' + ticker)
     .then(data => {
-      console.log(data.data)
+      // console.log(data.data)
       response.send(data.data)
       return 'a'
     })
@@ -23,13 +23,13 @@ exports.bitsoTicker = functions.https.onRequest((request, response) => {
 
 exports.bitsoChart = functions.https.onRequest((request, response) => {
   response.set('Access-Control-Allow-Origin', '*')
-  console.log(request.url)
+  // console.log(request.url)
   var options = request.url.split('?')[1].replace('&', '/')
-  console.log(options)
+  // console.log(options)
   if (options !== null) {
     axios.get('https://bitso.com/trade/chartJSON/' + options)
     .then(data => {
-      console.log(data.data)
+      // console.log(data.data)
       response.send(data.data)
       return 'a'
     })

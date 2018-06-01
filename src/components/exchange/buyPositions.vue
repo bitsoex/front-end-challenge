@@ -219,4 +219,8 @@ ul li div.price {
     max-height: calc(100% - 36px);
   }
 }
+
+#app.day #buyPositions .head {
+  background: #E5E5E5;
+}
 </style>

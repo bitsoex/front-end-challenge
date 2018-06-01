@@ -150,7 +150,7 @@ export default {
       this.chart.interval.selectVisible = false
     },
     chartPeriodicitySelect (option) {
-      console.log(option)
+      // console.log(option)
       this.chart.periodicity.selected = option
       this.chart.periodicity.selectVisible = false
       this.$store.dispatch('chartPeriodicity', option)
@@ -161,7 +161,7 @@ export default {
       this.chart.type.selectVisible = false
     },
     chartIntervalSelect (option) {
-      console.log(option)
+      // console.log(option)
       this.chart.interval.selected = option
       this.chart.interval.selectVisible = false
       this.$store.dispatch('chartInterval', option)
@@ -189,20 +189,22 @@ export default {
       }
       var x = document.getElementById('tab-bar-audio')
       x.play()
-      console.log(t)
+      // console.log(t)
     }
   },
   mounted () {
     var self = this
     /* select */
     document.addEventListener('click', function (e) {
-      var classes = e.target.className.split(' ')
-      if (classes.indexOf('selected') === -1) {
-        classes = e.target.parentElement.className.split(' ')
+      if (typeof e.target.className === 'string') {
+        var classes = e.target.className.split(' ')
         if (classes.indexOf('selected') === -1) {
-          self.chart.type.selectVisible = false
-          self.chart.periodicity.selectVisible = false
-          self.chart.interval.selectVisible = false
+          classes = e.target.parentElement.className.split(' ')
+          if (classes.indexOf('selected') === -1) {
+            self.chart.type.selectVisible = false
+            self.chart.periodicity.selectVisible = false
+            self.chart.interval.selectVisible = false
+          }
         }
       }
     })
@@ -497,5 +499,25 @@ export default {
   #mobile-tab-bar {
     display: block;
   }
+}
+
+#app.day #chart .selected {
+  background: #F5F5F5;
+  border: 1px solid #E5E5E5;
+  color: #424242;
+}
+
+#app.day #chart .select span {
+  color: #424242;
+}
+
+#app.day #chart ul {
+  background: #F5F5F5;
+  border: 1px solid #E5E5E5;
+  color: #424242;
+}
+
+#app.day #chart ul li:hover {
+  background: #E5E5E5;
 }
 </style>

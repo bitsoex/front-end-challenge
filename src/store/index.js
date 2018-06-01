@@ -8,7 +8,17 @@ const state = {
     available: [],
     last: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'},
     initial: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'},
-    selected: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'}
+    selected: {url: 'btc_mxn', label: 'btc/mxn', unit: 'btc', comparision: 'mxn'},
+    values: {
+      'btc_mxn': [],
+      'bch_btc': [],
+      'xrp_btc': [],
+      'xrp_mxn': [],
+      'eth_mxn': [],
+      'ltc_mxn': [],
+      'bch_mxn': [],
+      'ltc_btc': []
+    }
   },
   charts: {
     candles: {
@@ -238,7 +248,7 @@ const mutations = {
         asks[data.body.payload.asks[i].price] = parseFloat(data.body.payload.asks[i].amount)
       }
       state.orders.aggregate.asks = asks
-      console.log(higherAskAmount)
+      // console.log(higherAskAmount)
 
       state.orders.all.bids = data.body.payload.bids
       for (i = 0; i < data.body.payload.bids.length; i++) {
@@ -262,7 +272,7 @@ const mutations = {
 
       state.orders.ask.highest = parseFloat(Object.keys(state.orders.aggregate.asks)[0])
       state.orders.ask.divider = depthMarket * 0.5 / (state.orders.ask.highest - Object.keys(state.orders.aggregate.asks)[49])
-      console.log(depthMarket)
+      // console.log(depthMarket)
     }, function (err) {
       console.log(err)
     })

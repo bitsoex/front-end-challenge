@@ -25,7 +25,7 @@ class MarketsSideBar extends Component {
     const books = MARKETS_DATA.payload.map((market) => market.book);
     return books.map((book) => {
       const market = TICKER_DATA[book]
-      const toCurrency = book.slice('_').toUpperCase()
+      const toCurrency = book.toUpperCase().split('_')[1]
       const bookFormatted = book.toUpperCase().replace('_', '/')
       const price = parseFloat(market.vwap).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
       const isRising = market.vwap > market.last

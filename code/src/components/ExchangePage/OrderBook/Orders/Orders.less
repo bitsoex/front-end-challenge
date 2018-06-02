@@ -6,25 +6,42 @@
   height: 100%;
   padding: 5px;
   display: flex;
+  max-height: 50vh - 7px;
+  overflow: auto;
   // for Childs
   flex-direction: column;
 }
 
 .orders-header {
-  padding: 5px;
+  padding: 10px;
   font-family: DINPro-Medium;
   color: @light-text;
-  background-color: @navy-headers;
+  background-color: @regular-navy;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .orders-table {
   padding: 5px;
   border-collapse: collapse;
   tr {
+    position: relative;
     display: flex;
     justify-content: space-around;
+    flex-grow: 1;
+    th {
+      font-family: DINPro-Regular;
+      color: @sidebar-text;
+      width: 100%;
+      flex-grow: 1;
+      padding: 5px;
+    }
+    td {
+      width: 100%;
+      flex-grow: 1;
+      padding: 3px;
+    }
   }
 }
 
@@ -34,17 +51,18 @@
 
 .orders-table-body {
   color: @light-text;
-  text-align: center;
   tr:hover {
-    color: white;
-    .orders-value {
-      color: white;
-    }
+    background-color: @regular-navy;
   }
 }
 
 .orders-value {
   color: @dark-text;
+}
+
+.order-sum {
+  display: inline-flex;
+  justify-content: space-between;
 }
 
 .orders-active {
@@ -58,25 +76,38 @@
   }
 }
 
+.orders-selected::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: url(../../../../assets/order_selector.svg);
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+}
+
 .orders-bids {
+  &:hover > .orders-header {
+    border-left: solid 4px @regular-green;
+    background-color: @navy-headers;
+  }
   .orders-header {
     flex-direction: row;
   }
   .orders-table {
     tr {
       flex-direction: row;
-    }
-  }
-  .orders-table-body {
-    tr:hover {
-      background-color: @dark-green;
-      .orders-price {
-        color: @light-green;
-      }
+      text-align: right;
+      padding-right: 15px;
     }
   }
   .orders-price {
     color: @regular-green;
+  }
+  .order-sum {
+    flex-direction: row;
+    .order-sum-bar {
+      background-color: @regular-green;
+    }
   }
   .orders-active {
     background-color: @dark-green;
@@ -84,32 +115,43 @@
       color: @light-green;
     }
   }
+  .orders-selected::before {
+    background-position: center left;
+    transform: rotate(180deg);
+  }
 }
 
 .orders-asks {
+  &:hover > .orders-header {
+    border-right: solid 4px @medium-red;
+    background-color: @navy-headers;
+  }
   .orders-header {
     flex-direction: row-reverse;
   }
   .orders-table {
     tr {
       flex-direction: row-reverse;
-    }
-  }
-  .orders-table-body {
-    tr:hover {
-      background-color: @dark-red;
-      .orders-price {
-        color: @regular-red;
-      }
+      text-align: left;
+      padding-left: 15px;
     }
   }
   .orders-price {
     color: @medium-red;
+  }
+  .order-sum {
+    flex-direction: row-reverse;
+    .order-sum-bar {
+      background-color: @regular-red;
+    }
   }
   .orders-active {
     background-color: @dark-red;
     .orders-price {
       color: @regular-red;
     }
+  }
+  .orders-selected::before {
+    background-position: center left;
   }
 }

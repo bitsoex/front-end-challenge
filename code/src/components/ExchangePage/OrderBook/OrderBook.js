@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Orders from './Orders/Orders';
 import './OrderBook.css';
-
-const orders = [
-  { id: 1, sum: 1.09, amount: 1.093423, value: 2307984.29, price: 319149.90 },
-  { id: 2, sum: 1.10, amount: 0.093423, value: 2307984.29, price: 319149.90 },
-  { id: 3, sum: 3.32, amount: 42.0903, value: 2307984.29, price: 319149.90 },
-]
+import ORDER_BOOK_DATA from '../../../utils/orders-mock-data';
 
 class OrderBook extends Component {
   render() {
     return (
       <div className="order-book">
         <Orders
+        book={this.props.book}
         title="POSTURAS DE COMPRA"
-        orders={orders}
+        orders={ORDER_BOOK_DATA.payload.bids}
         type="bid" />
         <Orders
+        book={this.props.book}
         title="POSTURAS DE VENTA"
-        orders={orders}
+        orders={ORDER_BOOK_DATA.payload.asks}
         type="ask" />
       </div>
     );
   }
 }
+
+Orders.propTypes = { book: PropTypes.string.isRequired };
 
 export default OrderBook;

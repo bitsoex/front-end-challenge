@@ -22,6 +22,13 @@ class Orders extends Component {
     const { title, type, orders } = this.props;
     let sum = 0;
     let id = 0;
+
+    const sumPrice = orders.reduce((total, order) => {
+      const price = parseFloat(order.price);
+      return total + price;
+    }, 0);
+    const averagePrice = sumPrice / orders.length;
+
     const totalSum = orders.reduce((total, order) => {
       const amount = parseFloat(order.amount);
       return total + amount;
@@ -48,7 +55,7 @@ class Orders extends Component {
       <section className={type === 'bid' ? 'orders-bids orders-container' : 'orders-asks orders-container'}>
         <header className="orders-header">
           <div>{title}</div>
-          <div>{type[0].toUpperCase() + type.slice(1)} 319,140.00</div>
+          <div>{type[0].toUpperCase() + type.slice(1)} {averagePrice.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</div>
         </header>
         <table className="orders-table">
           <thead className="orders-table-head">

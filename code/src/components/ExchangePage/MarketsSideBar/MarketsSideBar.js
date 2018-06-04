@@ -34,7 +34,7 @@ class MarketsSideBar extends Component {
           <div className="market-resume">
             <span className="market-book">{bookFormatted}</span>
             <div className={isRising ? 'market-price rising' : 'market-price descending'}>
-              <svg className="market-arrow-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon class="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>
+              <svg className="market-arrow-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon className="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>
               <span>${price} {toCurrency}</span>
             </div>
           </div>
@@ -45,9 +45,6 @@ class MarketsSideBar extends Component {
   }
 
   render() {
-    MARKETS_DATA.payload.forEach((market) => {
-      console.log(market.book);
-    });
     const width = this.state.sideBarOpen ? '250px' : '0';
     return (
       <div className="sidenav-wrapper">

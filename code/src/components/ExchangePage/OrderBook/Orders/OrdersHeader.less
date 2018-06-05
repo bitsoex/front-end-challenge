@@ -1,0 +1,31 @@
+@import '../../../../styles/colors.less';
+
+.orders-header {
+  padding: 10px;
+  font-family: DINPro-Medium;
+  color: @light-text;
+  background-color: @regular-navy;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orders-bids {
+  .orders-header {
+    flex-direction: row;
+  }
+  &:hover > .orders-header {
+    border-left: solid 4px @regular-green;
+    background-color: @navy-headers;
+  }
+}
+
+.orders-asks {
+  .orders-header {
+    flex-direction: row-reverse;
+  }
+  &:hover > .orders-header {
+    border-right: solid 4px @medium-red;
+    background-color: @navy-headers;
+  }
+}

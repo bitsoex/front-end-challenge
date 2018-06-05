@@ -15,7 +15,7 @@ class OrderBook extends Component {
       asks: [],
     };
 
-    this._fetchOrderBook = this._fetchOrderBook.bind(this)
+    this._fetchOrderBook = this._fetchOrderBook.bind(this);
   }
 
   componentWillMount() {

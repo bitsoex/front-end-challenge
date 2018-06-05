@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { formatCurrency } from '../../../utils/utilities';
 import './MarketsSideBar.css';
 import MARKETS_DATA from '../../../utils/books-mock-data'
 import TICKER_DATA from '../../../utils/ticker-mock-data'
@@ -27,7 +28,7 @@ class MarketsSideBar extends Component {
       const market = TICKER_DATA[book]
       const toCurrency = book.toUpperCase().split('_')[1]
       const bookFormatted = book.toUpperCase().replace('_', '/')
-      const price = parseFloat(market.vwap).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+      const price = parseFloat(market.vwap)
       const isRising = market.vwap > market.last
       return (
         <div key={book} className={book === 'eth_mxn' ? 'market active' : 'market'}>
@@ -35,7 +36,7 @@ class MarketsSideBar extends Component {
             <span className="market-book">{bookFormatted}</span>
             <div className={isRising ? 'market-price rising' : 'market-price descending'}>
               <svg className="market-arrow-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3.83 5.66"><title>Order_selector</title><g id="Capa_2" data-name="Capa 2"><g id="Capa_1-2" data-name="Capa 1"><polygon className="cls-1" points="3.83 2.83 0 0 0 5.66 3.83 2.83"/></g></g></svg>
-              <span>${price} {toCurrency}</span>
+              <span>${formatCurrency(price, 2)} {toCurrency}</span>
             </div>
           </div>
           <div className="market-info">Chart</div>

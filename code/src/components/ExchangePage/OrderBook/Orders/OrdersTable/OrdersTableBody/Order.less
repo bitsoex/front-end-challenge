@@ -1,0 +1,81 @@
+@import '../../../../../../styles/colors.less';
+
+.orders-table {
+  td {
+    width: 100%;
+    flex-grow: 1;
+    padding: 3px;
+  }
+}
+
+.orders-value {
+  color: @dark-text;
+}
+
+.order-sum {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.order-new {
+  color: white;
+  background-color: @dark-green;
+  .orders-value {
+    color: white;
+  }
+  .orders-price {
+    color: @light-green;
+  }
+}
+
+.order-selected::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: url(../../../../../../assets/order_selector.svg);
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+}
+
+.orders-bids {
+  .orders-price {
+    color: @regular-green;
+  }
+  .order-sum {
+    flex-direction: row;
+    .order-sum-bar {
+      background-color: @regular-green;
+    }
+  }
+  .order-new {
+    background-color: @dark-green;
+    .orders-price {
+      color: @light-green;
+    }
+  }
+  .order-selected::before {
+    background-position: center left;
+    transform: rotate(180deg);
+  }
+}
+
+.orders-asks {
+  .orders-price {
+    color: @medium-red;
+  }
+  .order-sum {
+    flex-direction: row-reverse;
+    .order-sum-bar {
+      background-color: @regular-red;
+    }
+  }
+  .order-new {
+    background-color: @dark-red;
+    .orders-price {
+      color: @regular-red;
+    }
+  }
+  .order-selected::before {
+    background-position: center left;
+  }
+}

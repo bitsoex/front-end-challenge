@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './LastTradesTableBody.css';
+import { formatCurrency, formatTime } from '../../../../../utils/utilities';
 
 function LastTradesTableBody({ trades }) {
   let isFirst = true;
@@ -46,10 +47,7 @@ Trade.propTypes = {
 };
 
 function Hour({ date }) {
-  const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-  const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-  const seconds = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
-  const hour = `${hours}:${minutes}:${seconds}`;
+  const hour = formatTime(date);
   return (<td className="trades-hour">{hour}</td>);
 }
 
@@ -59,7 +57,7 @@ Hour.propTypes = {
 
 function Price({ type, price }) {
   const priceClass = type === 'buy' ? 'trades-buy-price' : 'trades-sell-price';
-  const formmattedPrice = parseFloat(price).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  const formmattedPrice = formatCurrency(price, 2);
   return (
     <td className={priceClass}>{formmattedPrice}</td>
   );

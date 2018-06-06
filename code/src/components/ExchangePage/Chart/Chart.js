@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Chart.css';
-import API_DATA from '../../../utils/mock-data';
 
 import ChartComposer from './BarChart';
+import './Chart.css';
+import API_DATA from '../../../utils/mock-data';
 
 class Chart extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Chart extends Component {
       this.setState(prevState =>
         Object.assign({}, ...prevState, {
           canvasHeight: `${newHeight}`,
-          canvasWidth: `${newWidth - 20}`,
+          canvasWidth: `${newWidth - 40}`,
         }),
       );
     }
@@ -32,7 +32,11 @@ class Chart extends Component {
   render() {
     return (
       <div className="chart-container">
-        <div className="chart-option-toggles">Option Toggles</div>
+        <div className="chart-option-toggles">
+          <div>Option Toggles</div>
+          <div>Option Toggles</div>
+          <div>Option Toggles</div>
+        </div>
         <div ref={this.chartCanvasRef} className="chart-canvas">
           <ChartComposer
             data={API_DATA}

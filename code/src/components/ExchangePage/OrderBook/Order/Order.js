@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { formatCurrency } from '../../../../../../utils/utilities';
+import { formatCurrency } from '../../../../utils/utilities';
 import './Order.css';
 
 class Order extends Component {

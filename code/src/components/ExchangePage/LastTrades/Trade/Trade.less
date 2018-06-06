@@ -1,20 +1,15 @@
-@import '../../../../../styles/colors.less';
+@import '../../../../styles/colors.less';
 
-.trades-table-body {
-  text-align: center;
-  td {
-    padding: 3px;
-  }
-  tr:hover {
-    background-color: @regular-navy;
-    .trades-hour, .trades-amount {
-      color: white;
-    }
-    .trades-buy-price {
-      color: @regular-green;
-    }
-    .trades-sell-price {
-      color: @regular-red;
+#trades-table {
+  tbody{
+    tr {
+      td {
+        padding: 3px;
+        width: 110px;
+      }
+      &:hover {
+        background-color: @regular-navy;
+      }
     }
   }
 }
@@ -35,7 +30,7 @@
   color: @light-text;
 }
 
-.trades-active {
+.trade-new {
   background-color: @regular-navy;
 
   .trades-hour, .trades-amount {

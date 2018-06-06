@@ -1,22 +1,24 @@
 @import '../../../styles/colors.less';
 
 .chart-container {
-  width: 100%;
-  max-height: 300px;
-  flex: 2 2;
-  // Flex Config
+  width: calc(100% - 40px);
+  flex: 1 1;
+  padding: 5px;
+  // for Childs
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: start;
-  align-items: center;
-  align-content: center;
+  justify-content: space-evenly;
 }
 
 .chart-option-toggles {
   width: 100%;
-  height: 48px;
   margin: auto;
+  // for Childs
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .chart-canvas {
@@ -29,8 +31,47 @@
     margin: auto;
     cursor: auto;
 
+    bar-container {
+      fill: @medium-navy;
+      background-color: @medium-navy;
+    }
+
     rect:hover {
       fill: @medium-navy;
+    }
+
+    .horizontal-threshold {
+      stroke: rgba(49, 61, 76, 0.6);
+      stroke-dasharray: '5, 5';
+    }
+
+    // Candles Clases
+
+    .candle-box {
+      fill-opacity: 0.4;
+    }
+
+    .candle-box.green {
+      fill: #86af6b;
+      stroke: #80c156;
+    }
+
+    .candle-box.red {
+      fill: #ba3040;
+      stroke: #ba3040;
+    }
+
+    .candle-line {
+      stroke-miterlimit: 10;
+      fill: none;
+    }
+
+    .candle-line.green {
+      stroke: #80c156;
+    }
+
+    .candle-line.red {
+      stroke: #ba3040;
     }
   }
 }

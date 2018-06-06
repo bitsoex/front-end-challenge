@@ -1,9 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Order from './Order';
-import { formatCurrency } from '../../../../../../utils/utilities';
-import './OrdersTableBody.css';
+import Order from '../Order/Order';
+import { formatCurrency } from '../../../../utils/utilities';
+import './OrdersTable.css';
+
+function OrdersTable({ book, orders }) {
+  return (
+    <table id="orders-table">
+      <OrdersTableHeader book={book} />
+      <OrdersTableBody orders={orders} />
+    </table>
+  );
+}
+
+OrdersTable.propTypes = {
+  orders: PropTypes.array.isRequired,
+  book: PropTypes.string.isRequired,
+};
+
+export default OrdersTable;
+
+function OrdersTableHeader({ book }) {
+  const currencies = book.toUpperCase().split('_');
+  const base = currencies[0];
+  const second = currencies[1];
+  return (
+    <thead>
+      <tr>
+        <th>SUM</th>
+        <th><span className="dark-text">{base}</span> MONTO</th>
+        <th><span className="dark-text">{second}</span> VALOR</th>
+        <th><span className="dark-text">{second}</span> PRECIO</th>
+      </tr>
+    </thead>    
+  );
+}
+
+OrdersTableHeader.propTypes = { book: PropTypes.string.isRequired };
 
 function OrdersTableBody({ orders }) {
   let sum = 0;
@@ -34,12 +68,10 @@ function OrdersTableBody({ orders }) {
     return (<Order key={amount} order={completeOrderData} />);
   });
   return (
-    <tbody className="orders-table-body">
+    <tbody>
       {rows}
     </tbody>
   );
 }
 
 OrdersTableBody.propTypes = { orders: PropTypes.array.isRequired };
-
-export default OrdersTableBody;

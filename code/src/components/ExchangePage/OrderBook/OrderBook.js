@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Orders from './Orders/Orders';
-import './OrderBook.css';
-import ORDER_BOOK_DATA from '../../../utils/orders-mock-data';
+import OrdersContainer from './OrdersContainer';
+
+const orderBookStyles = {
+  // Self
+  width: '97%',
+  flex: '1 1',
+  // for Childs
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: 'space-evenly',
+}
 
 class OrderBook extends Component {
   constructor(props) {
@@ -40,17 +49,19 @@ class OrderBook extends Component {
     const { book } = this.props;
     const { bids, asks } = this.state;
     return (
-      <div className="order-book">
-        <Orders
-        book={book}
-        title="POSTURAS DE COMPRA"
-        orders={bids}
-        type="bid" />
-        <Orders
-        book={book}
-        title="POSTURAS DE VENTA"
-        orders={asks}
-        type="ask" />
+      <div style={orderBookStyles}>
+        <OrdersContainer
+          book={book}
+          title="POSTURAS DE COMPRA"
+          orders={bids}
+          type="bid"
+        />
+        <OrdersContainer
+          book={book}
+          title="POSTURAS DE VENTA"
+          orders={asks}
+          type="ask"
+        />
       </div>
     );
   }

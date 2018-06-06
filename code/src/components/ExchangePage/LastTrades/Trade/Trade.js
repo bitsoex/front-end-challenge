@@ -1,50 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './LastTradesTableBody.css';
-import { formatCurrency, formatTime } from '../../../../../utils/utilities';
+import { formatCurrency, formatTime } from '../../../../utils/utilities';
+import './Trade.css';
 
-function LastTradesTableBody({ trades }) {
-  let isFirst = true;
-  const rows = trades.map((trade, index) => {
-    if (index !== 0) isFirst = false;
+class Trade extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { counter: 5 };
+    this._startTimer = this._startTimer.bind(this);
+  }
+
+  componentDidMount() {
+    this._startTimer();
+  }
+
+  componentWillUnmount() { clearInterval(this._timer); }
+
+  _startTimer() {
+    this._timer = setInterval(() => {
+      this.setState(prevState =>
+        Object.assign({}, ...prevState, { counter: prevState.counter - 1 }));
+    }, 1000);
+  }
+
+  render() {
+    const { amount, created_at, maker_side, price } = this.props.trade;
+    const newTradeClass = this.state.counter <= 0 ? '' : 'trade-new';
     return (
-      <Trade
-        key={trade.tid}
-        trade={trade}
-        isFirst={isFirst} />
+      <tr className={newTradeClass}>
+        <Hour date={new Date(created_at)} />
+        <Price
+          type={maker_side}
+          price={parseFloat(price)} />
+        <Amount amount={parseFloat(amount)} />
+      </tr>
     );
-  });
-  return (  
-    <tbody className="trades-table-body">
-      {rows}
-    </tbody>
-  );
+  }
 }
 
-LastTradesTableBody.propTypes = {
-  trades: PropTypes.array.isRequired,
-};
+Trade.propTypes = { trade: PropTypes.object.isRequired };
 
-export default LastTradesTableBody;
-
-function Trade({ trade, isFirst }) {
-  const { amount, created_at, maker_side, price } = trade;
-  return (
-    <tr className={isFirst ? 'trades-active' : ''}>
-      <Hour date={new Date(created_at)} />
-      <Price
-        type={maker_side}
-        price={parseFloat(price)} />
-      <Amount amount={parseFloat(amount)} />
-    </tr>
-  );
-}
-
-Trade.propTypes = {
-  trade: PropTypes.object.isRequired,
-  isFirst: PropTypes.bool.isRequired,
-};
+export default Trade;
 
 function Hour({ date }) {
   const hour = formatTime(date);

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { formatCurrency } from '../../../../utils/utilities';
-import './OrdersHeader.css';
+import './OrdersContainerHeader.css';
 
-function OrdersHeader({ title, type, averagePrice }) {
+function OrdersContainerHeader({ title, type, averagePrice }) {
   const formattedType = type[0].toUpperCase() + type.slice(1);
   const formattedAveragePrice = formatCurrency(averagePrice, 2);
   return (
@@ -15,10 +15,10 @@ function OrdersHeader({ title, type, averagePrice }) {
   );
 }
 
-OrdersHeader.propTypes = {
+OrdersContainerHeader.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   averagePrice: PropTypes.number.isRequired,
 };
 
-export default OrdersHeader;
+export default OrdersContainerHeader;

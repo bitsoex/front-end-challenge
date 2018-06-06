@@ -1,0 +1,25 @@
+@import '../../../../styles/colors.less';
+
+#trades-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center;
+  tr {
+    display: block;
+  }
+  thead {
+    padding: 10px;
+    color: @sidebar-header;
+    th {
+      width: 110px;
+      font-family: DINPro-Regular;
+      color: @sidebar-text;
+      padding: 5px 3px 5px 3px;
+    }
+  }
+  tbody {
+    height: 76.5vh;
+    display: block;
+    overflow: auto;
+  }
+};

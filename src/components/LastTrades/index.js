@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { ThemeConsumer } from "../../context/Theme";
 import { colors } from "../../themes";
 import Amount from "../Amount";
+import { getCurrencies, formatToLocaleString } from "../../utils";
 
 const styles = {
   container: css`
@@ -12,15 +13,21 @@ const styles = {
   `,
   title: css`
     padding 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
   `,
   listContainer: css`
     color: ${colors.sidebar.text};
   `,
   row: css`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 3px 0px;
   `,
-  columnTitle: css``,
+  item: css`
+    flex: 1;
+  `,
   slideLeft: keyframes`
     from {
       transform: translateX(50%);
@@ -48,8 +55,7 @@ export default class LastTrades extends Component {
 
   render() {
     const { book, lastTrades } = this.props;
-    const currency1 = book.split("_")[0].toUpperCase();
-    const currency2 = book.split("_")[1].toUpperCase();
+    const [from, to] = getCurrencies(book);
     return (
       <ThemeConsumer>
         {({ theme }) => (
@@ -62,7 +68,7 @@ export default class LastTrades extends Component {
               }
               className={styles.title}
             >
-              ÚLTIMOS TRADES
+              <b>ÚLTIMOS TRADES</b>
             </div>
             <div className={styles.listContainer}>
               <div
@@ -71,13 +77,13 @@ export default class LastTrades extends Component {
                   padding: 10px 0;
                 `}
               >
-                <div>HORA</div>
-                <div>
-                  {currency2}&nbsp;
+                <div className={styles.item}>HORA</div>
+                <div className={styles.item}>
+                  {to}&nbsp;
                   <span style={{ color: colors.sidebar.light }}>PRECIO</span>
                 </div>
-                <div>
-                  {currency1}&nbsp;
+                <div className={styles.item}>
+                  {from}&nbsp;
                   <span style={{ color: colors.sidebar.light }}>MONTO</span>
                 </div>
               </div>
@@ -106,13 +112,13 @@ export default class LastTrades extends Component {
                     }
                   `}
                 >
-                  <div>{this.formatDate(trade.created_at)}</div>{" "}
-                  <div className="price">
-                    {(+trade.price).toLocaleString("es-MX", {
-                      minimumFractionDigits: 2
-                    })}
+                  <div className={styles.item}>
+                    {this.formatDate(trade.created_at)}
+                  </div>{" "}
+                  <div className={`${styles.item} price`}>
+                    {formatToLocaleString(+trade.price)}
                   </div>
-                  <div className="amount">
+                  <div className={`${styles.item} amount`}>
                     <Amount amount={trade.amount} />
                   </div>
                 </div>

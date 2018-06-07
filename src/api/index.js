@@ -68,5 +68,5 @@ export const fetchLastTrades = async ({
 
 export const fetchOrderBook = async ({ book = "", aggregate = true }) =>
   await getRequest(
-    `${baseUrl}/order_book/?book=${book}?aggregate=${aggregate}`
-  );
+    `${baseUrl}/order_book/?book=${book}&aggregate=${aggregate}`
+  ).then(resp => resp.payload);

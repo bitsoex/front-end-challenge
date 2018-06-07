@@ -6,6 +6,7 @@ const styles = {
     background: transparent;
     border: none;
     cursor: pointer;
+    font-size: 20px;
   `
 };
 

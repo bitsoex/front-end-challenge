@@ -4,6 +4,6 @@ import Toggle from "../Toggle";
 
 export default () => (
   <ThemeConsumer>
-    {({ theme, toggleTheme }) => <Toggle onToggle={toggleTheme} />}
+    {({ toggleTheme }) => <Toggle onToggle={toggleTheme} />}
   </ThemeConsumer>
 );

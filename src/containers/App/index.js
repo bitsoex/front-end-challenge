@@ -5,8 +5,8 @@ import Header from "../../components/Header";
 import InfoBar from "../../components/InfoBar";
 import Candlestick from "../../containers/Candlestick";
 import LastTrades from "../../containers/LastTrades";
-import Asks from "../../components/Asks";
-import Bids from "../../components/Bids";
+import Asks from "../../components/OrderBook/Asks";
+import Bids from "../../components/OrderBook/Bids";
 
 import styles from "./styles";
 
@@ -20,13 +20,13 @@ export default () => (
         <InfoBar />
         <section className="main">
           <Candlestick />
-          <Asks />
+          <div className={styles.orderBookContainer}>
+            <Bids />
+            <Asks />
+          </div>
         </section>
         <aside className="aside aside-left">
           <LastTrades />
-        </aside>
-        <aside className="aside aside-right">
-          <div>Aside right</div>
         </aside>
       </div>
     )}

@@ -4,6 +4,7 @@ import { ThemeConsumer } from "../../context/Theme";
 import { BookConsumer } from "../../context/Book";
 import DropDown from "../DropDown";
 import { colors } from "../../themes";
+import { formatToLocaleString } from "../../utils";
 
 const styles = {
   container: css`
@@ -87,8 +88,7 @@ export default () => (
                 className={`${styles.item} ${animations.slideLeft}`}
               >
                 <span className={styles.itemPrefix}>Max.</span>{" "}
-                {high.toLocaleString("es-MX", { minimumFractionDigits: 2 })}{" "}
-                {to}
+                {formatToLocaleString(high)} {to}
               </div>
 
               <div
@@ -96,14 +96,15 @@ export default () => (
                 className={`${styles.item} ${animations.slideLeft}`}
               >
                 <span className={styles.itemPrefix}>Min.</span>{" "}
-                {low.toLocaleString("es-MX", { minimumFractionDigits: 2 })} {to}
+                {formatToLocaleString(low)} {to}
               </div>
 
               <div
                 style={{ "--i": 4 }}
                 className={`${styles.item} ${animations.slideLeft}`}
               >
-                <span className={styles.itemPrefix}>Variacion.</span> {to}{" "}
+                <span className={styles.itemPrefix}>Variacion.</span>{" "}
+                {formatToLocaleString(variation)} {to}{" "}
                 {variationPercentage.toFixed(2)}%
               </div>
             </div>

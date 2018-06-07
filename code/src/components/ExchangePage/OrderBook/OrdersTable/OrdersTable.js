@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Order from '../Order/Order';
-import { formatCurrency } from '../../../../utils/utilities';
 import './OrdersTable.css';
 
-function OrdersTable({ book, orders }) {
+function OrdersTable({ book, orders, isFirstFetch }) {
   return (
     <table id="orders-table">
       <OrdersTableHeader book={book} />
-      <OrdersTableBody orders={orders} />
+      <OrdersTableBody orders={orders} isFirstFetch={isFirstFetch} />
     </table>
   );
 }
@@ -17,6 +16,7 @@ function OrdersTable({ book, orders }) {
 OrdersTable.propTypes = {
   orders: PropTypes.array.isRequired,
   book: PropTypes.string.isRequired,
+  isFirstFetch: PropTypes.bool.isRequired,
 };
 
 export default OrdersTable;
@@ -39,33 +39,26 @@ function OrdersTableHeader({ book }) {
 
 OrdersTableHeader.propTypes = { book: PropTypes.string.isRequired };
 
-function OrdersTableBody({ orders }) {
+function OrdersTableBody({ orders, isFirstFetch }) {
   let sum = 0;
-  const totalSum = orders.reduce((total, order) => {
-    const amount = parseFloat(order.amount);
-    return total + amount;
-  }, 0);
+  const totalSum = orders.reduce((total, order) => total + order.amount, 0);
 
   const rows = orders.map((order) => {
-    const amount = parseFloat(order.amount);
-    const price = parseFloat(order.price);
-    // Calculates the total value of the order
-    const value = amount * price;
+    const { id, amount, price, value } = order;
     // Calculates the accumulative of the bitcoins amount
     sum += amount;
     // Calculates the representative percentage of the order amount
     const weight = Math.ceil((amount / totalSum) * 100);
 
     const completeOrderData = {
-      sum,
-      weight,
+      id,
+      price,
       amount,
       value,
-      price,
+      sum,
+      weight,
     };
-
-    // TODO: use a real id
-    return (<Order key={amount} order={completeOrderData} />);
+    return (<Order key={id} order={completeOrderData} isFirstFetch={isFirstFetch}/>);
   });
   return (
     <tbody>
@@ -74,4 +67,7 @@ function OrdersTableBody({ orders }) {
   );
 }
 
-OrdersTableBody.propTypes = { orders: PropTypes.array.isRequired };
+OrdersTableBody.propTypes = {
+  orders: PropTypes.array.isRequired,
+  isFirstFetch: PropTypes.bool.isRequired,
+};

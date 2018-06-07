@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import OrdersContainerHeader from './OrdersContainerHeader/OrdersContainerHeader';
@@ -15,7 +15,7 @@ const containerStyles = {
 };
 
 function OrdersContainer({
-  title, type, orders, book,
+  title, type, orders, book, isFirstFetch,
 }) {
   const typeClass = type === 'bid' ? 'orders-bids' : 'orders-asks';
 
@@ -30,19 +30,23 @@ function OrdersContainer({
       <OrdersContainerHeader
         title={title}
         type={type}
-        averagePrice={averagePrice} />
+        averagePrice={averagePrice}
+      />
       <OrdersTable
         book={book}
-        orders={orders} />
+        orders={orders}
+        isFirstFetch={isFirstFetch}
+      />
     </section>
   );
 }
 
 OrdersContainer.propTypes = {
   title: PropTypes.string.isRequired,
+  book: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   orders: PropTypes.array.isRequired,
-  book: PropTypes.string.isRequired,
+  isFirstFetch: PropTypes.bool.isRequired,
 };
 
 export default OrdersContainer;

@@ -36,7 +36,7 @@ class Market extends Component {
             <span>${formatCurrency(price, 2)} {secondCurrency}</span>
           </div>
         </div>
-        <div className="market-info">Chart</div>
+        <MarketChart priceTrend={priceTrend}/>
       </div>
     );
   }
@@ -54,5 +54,74 @@ function ArrowSVG() {
         </g>
       </g>
     </svg>
+  );
+}
+
+function MarketChart({ width = 198, height = 50, priceTrend }) {
+  // Defines the color chart
+  const primaryColor = priceTrend === 'rising' ? '#80C156' : '#CC4458';
+  const secondaryColor = '#161A1E';
+
+  // Defines the origin point
+  const N = 24;
+  const y0 = Math.floor(Math.random() * height + 1);
+  const x0 = 0;
+  const origin = [`M ${x0} ${y0}`]
+
+  // steps on x
+  const xs = Array.apply(null, {length: N}).map(Number.call, Number)
+  const xss = xs.map(x => width / N * (x + 1)).sort((a, b) => a - b)
+
+  // steps on y
+  const ys = Array.apply(null, {length: N}).map(Function.call, Math.random)
+  const yss = ys.map(y => Math.floor(y * height + 1))
+
+  // steps on x, y
+  const steps = xss.map((x, i) => {
+    let y = yss[i]
+    if(i == 23) y = priceTrend === 'rising' ? 0 : height;
+    return { x, y }
+  });
+
+  // Builds the commands to draw the svg path
+  const pathSteps = steps.map(s => `L ${s.x} ${s.y}`)
+  const d = origin.concat(pathSteps).join(' ')
+
+  // Build half steps
+  const halfStep = (a, b) => a + ((b - a) / 2);
+  const xhs = xss.map(x => x - width / N / 2);
+  const yhs = yss.map((y, i) => {
+    const y00 = yss[i - 1];
+    if(i === 0) {
+      return halfStep(y0, y);
+    } else if(i === 23) {
+      const y1 = priceTrend === 'rising' ? 0 : height;
+      return halfStep(y00, y1);
+    }
+    return halfStep(y00, y);
+  });
+
+  const halfSteps = xhs.map((x, i) => {
+    let y = yhs[i]
+    return { x, y }
+  });
+
+  // Build the pointers
+  const pointers = steps.concat(halfSteps).map(s => {
+    return (
+      <g key={s.x}>
+        <line className="chart-line" x1={s.x} y1="0" x2={s.x} y2={height} stroke={secondaryColor} strokeWidth={1.8} />
+        <circle className="chart-point" cx={s.x} cy={s.y} r="1" fill={primaryColor} />
+      </g>
+    );
+  });
+  return (
+    <div className="market-info">
+      <span className="market-chart-time dark-text">4:44 AM</span>
+      <svg className="market-chart" width={width} height={height}>
+        {pointers}
+        <path d={d} stroke={primaryColor} strokeWidth={2} fill="none" />
+      </svg>
+    </div>
   );
 }

@@ -11,10 +11,10 @@ class Header extends Component {
       dropdownOpen: false,
     };
 
-    this.selectorClick = this.selectorClick.bind(this);
+    this._selectorClick = this._selectorClick.bind(this);
   }
 
-  selectorClick() {
+  _selectorClick() {
     console.log('Clicked');
     this.setState(prevState =>
       Object.assign({}, ...prevState, { dropdownOpen: !prevState.dropdownOpen }),
@@ -25,8 +25,10 @@ class Header extends Component {
     return (
       <div className="header-fixed">
         <HeaderCurrencySelector
-          selectorClick={this.selectorClick}
+          selectorClick={this._selectorClick}
           dropdownOpen={this.state.dropdownOpen}
+          currentBook={this.props.currentBook}
+          changeBook={this.props.changeBook}
         />
         <HeaderIndicators />
       </div>

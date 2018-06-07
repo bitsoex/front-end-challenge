@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import OrdersContainer from './OrdersContainer';
 
@@ -13,7 +12,7 @@ const orderBookStyles = {
   flexDirection: 'row',
   flexWrap: 'nowrap',
   justifyContent: 'space-evenly',
-}
+};
 
 class OrderBook extends Component {
   constructor(props) {
@@ -22,44 +21,58 @@ class OrderBook extends Component {
     this.state = {
       bids: [],
       asks: [],
+      isFirstFetch: false,
     };
-
-    this._fetchOrderBook = this._fetchOrderBook.bind(this);
-  }
-
-  componentWillMount() {
-    this._fetchOrderBook();
   }
 
   componentDidMount() {
-    this._timer = setInterval(this._fetchOrderBook, 5000);
+    this._receiveNewOrdersMessage();
   }
 
-  componentWillUnmount() { clearInterval(this._timer); }
+  _receiveNewOrdersMessage() {
+    const { websocket } = this.props;
+    websocket.onmessage = (message) => {
+      const { type, payload } = JSON.parse(message.data);
 
-  _fetchOrderBook() {
-    axios.get(`https://api.bitso.com/v3/order_book?book=${this.props.book}`)
-      .then((response) => {
-        const { bids, asks } = response.data.payload;
-        this.setState({ bids, asks });
-      });
+      if (type === 'orders' && payload) {
+        const { bids, asks } = payload;
+
+        const formatOrder = (order) => {
+          const {  v, a, r, o } = order;
+          return {
+            id: o,
+            price: parseFloat(r),
+            amount: parseFloat(a),
+            value: parseFloat(v),
+          };
+        };
+
+        const newBids = bids.map(formatOrder);
+        const newAsks = asks.map(formatOrder);
+
+        const isFirstFetch = this.state.bids.length === 0;
+        this.setState({ bids: newBids, asks: newAsks, isFirstFetch });
+      }
+    };
   }
 
   render() {
     const { book } = this.props;
-    const { bids, asks } = this.state;
+    const { bids, asks, isFirstFetch } = this.state;
     return (
       <div style={orderBookStyles}>
         <OrdersContainer
           book={book}
           title="POSTURAS DE COMPRA"
           orders={bids}
+          isFirstFetch={isFirstFetch}
           type="bid"
         />
         <OrdersContainer
           book={book}
           title="POSTURAS DE VENTA"
           orders={asks}
+          isFirstFetch={isFirstFetch}
           type="ask"
         />
       </div>
@@ -67,6 +80,9 @@ class OrderBook extends Component {
   }
 }
 
-OrderBook.propTypes = { book: PropTypes.string.isRequired };
+OrderBook.propTypes = {
+  book: PropTypes.string.isRequired,
+  websocket: PropTypes.object.isRequired,
+};
 
 export default OrderBook;

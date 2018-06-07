@@ -1,24 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const HeaderIndicators = ({ indicators }) => (
-  <div className="currency-indicators">
-    <div>
-      <span>Volumen 24 Hrs.</span> {indicators.last24hours} BTC
+function HeaderIndicators({ indicators }) {
+  return (
+    <div className="currency-indicators">
+      <div>
+        <span>Volumen 24 Hrs.</span> {indicators.last24hours} BTC
+      </div>
+      <div>
+        <span>Max.</span>
+        {indicators.max} MXN
+      </div>
+      <div>
+        <span>Min.</span>
+        {indicators.min} MXN
+      </div>
+      <div>
+        <span>Variación.</span> {indicators.variation.amount} MXN ({indicators.variation.perc})
+      </div>
     </div>
-    <div>
-      <span>Max.</span>
-      {indicators.max} MXN
-    </div>
-    <div>
-      <span>Min.</span>
-      {indicators.min} MXN
-    </div>
-    <div>
-      <span>Variación.</span> {indicators.variation.amount} MXN ({indicators.variation.perc})
-    </div>
-  </div>
-);
+  );
+}
 
 HeaderIndicators.propTypes = {
   indicators: PropTypes.object,

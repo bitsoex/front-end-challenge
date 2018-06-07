@@ -1,59 +1,109 @@
 import React, { Component } from 'react';
+
+import NavbarConversionRate from './NavbarConversionRate/NavbarConversionRate'
 import './NavBar.css';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { lightTheme: false }
+    this.state = { hasLightTheme: false }
 
-    this.toogleTheme = this.toogleTheme.bind(this)
+    this._toogleTheme = this._toogleTheme.bind(this)
   }
 
-  toogleTheme() {
+  _toogleTheme() {
     console.log('Change theme');
     this.setState(prevState =>
-      Object.assign({}, ...prevState, { lightTheme: !prevState.lightTheme }),
+      Object.assign({}, ...prevState, { hasLightTheme: !prevState.hasLightTheme }),
     );
   }
 
   render() {
     return (
-      <div className="navbar-container-fixed">
-        <div className="navbar-left">
-          <img className="navbar-logo" src="img/SVG/bitso_logo.svg" alt="Bitso Logo" />
-          <h4>EXCHANGE</h4>
-        </div>
-        <div className="navbar-right">
-          <div className="navbar-conversion-rate">1BTC = 0000 MXN</div>
-          <div className="navbar-item">
-            <span>Wallet</span>
-            <img src="img/SVG/icon_dropdown.svg" alt="dropdown icon" className="dropdown-icon" />
-          </div>
-          <div className="navbar-item">
-            <span>Exchange</span>
-            <img src="img/SVG/icon_dropdown.svg" alt="dropdown icon" className="dropdown-icon" />
-          </div>
-          <div className="navbar-item">
-            <span>Ayuda</span>
-          </div>
-          <div className="navbar-item navbar-user">
-            <div className="navbar-user-img" />
-            <div className="navbar-user-text">
-              <span>User</span>
-              <img src="img/SVG/icon_dropdown.svg" alt="dropdown icon" className="dropdown-icon" />
-            </div>
-          </div>
-          <div className="navbar-item">
-            <div className="navbar-switch">
-              <input type="checkbox" checked={this.state.lightTheme} />
-              <span className="navbar-slider" onClick={this.toogleTheme} />
-            </div>
-          </div>
-        </div>
+      <div id="navbar-container-fixed">
+        <NavbarLeft>
+          <Logo />
+          <Title />
+        </NavbarLeft>
+        <NavbarRight>
+          <NavbarConversionRate />
+          <NavbarDropdown label="Wallet" />
+          <NavbarDropdown label="Exchange" />
+          <NavbarLink label="Ayuda" />
+          <NavbarUser />
+          <NavbarToogle
+            hasLightTheme={this.state.hasLightTheme}
+            toogleTheme={this._toogleTheme}
+          />
+        </NavbarRight>
       </div>
     );
   }
 }
 
 export default NavBar;
+
+function NavbarLeft(props) {
+  return (
+    <div id="navbar-left">
+      {props.children}
+    </div>
+  );
+}
+
+function Logo() {
+  return <img id="navbar-logo" src="img/SVG/bitso_logo.svg" alt="Bitso Logo" />
+}
+
+function Title() {
+  return <h4 id="navbar-title">EXCHANGE</h4>
+}
+
+function NavbarRight(props) {
+  return (
+    <div id="navbar-right">
+      {props.children}
+    </div>
+  );
+}
+
+function NavbarDropdown({ label }) {
+  return(
+    <div className="navbar-item">
+      <span>{label}</span>
+      <img className="dropdown-icon" src="img/SVG/icon_dropdown.svg" alt="dropdown icon" />
+    </div>
+  );
+}
+
+function NavbarLink({ label }) {
+  return(
+    <div className="navbar-item">
+      <a className="navbar-link" href="#">{label}</a>
+    </div>
+  );
+}
+
+function NavbarUser(){
+  return (
+    <div className="navbar-item navbar-user">
+      <div className="navbar-user-img" />
+      <NavbarDropdown
+        className="navbar-user-text"
+        label="User"
+      />
+    </div>
+  );
+}
+
+function NavbarToogle({ hasLightTheme, toogleTheme }) {
+  return (
+    <div className="navbar-item">
+      <div className="navbar-switch">
+        <input type="checkbox" checked={hasLightTheme} />
+        <span className="navbar-slider" onClick={toogleTheme} />
+      </div>
+    </div>
+  );
+}

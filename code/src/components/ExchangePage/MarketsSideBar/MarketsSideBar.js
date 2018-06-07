@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Market from './Market'
-import { formatCurrency } from '../../../utils/utilities';
 import './MarketsSideBar.css';
 import MARKETS_DATA from '../../../utils/books-mock-data';
 
@@ -24,7 +23,7 @@ class MarketsSideBar extends Component {
 
   render() {
     const width = this.state.sideBarOpen ? '250px' : '0';
-    const books = MARKETS_DATA.payload.map((market) => market.book);
+    const books = MARKETS_DATA.payload.map(market => market.book);
     return (
       <div className="sidenav-wrapper">
         <SideBarToogle toogleSideBar={this.toggleSideBar} />

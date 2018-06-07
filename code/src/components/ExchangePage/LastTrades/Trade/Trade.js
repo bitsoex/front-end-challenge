@@ -8,8 +8,16 @@ class Trade extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { counter: 5 };
+    this.state = {
+      counter: 5,
+      isFirstFetch: undefined,
+    };
     this._startTimer = this._startTimer.bind(this);
+  }
+
+  componentWillMount() {
+    const { isFirstFetch } = this.props;
+    this.setState({ isFirstFetch });
   }
 
   componentDidMount() {
@@ -20,14 +28,19 @@ class Trade extends Component {
 
   _startTimer() {
     this._timer = setInterval(() => {
-      this.setState(prevState =>
-        Object.assign({}, ...prevState, { counter: prevState.counter - 1 }));
+      this.setState((prevState) => {
+        const oldCount = prevState.counter;
+        if (oldCount <= 1) clearInterval(this._timer);
+        const newCount = oldCount <= 1 ? 0 : oldCount - 1;
+        return Object.assign({}, ...prevState, { counter: newCount });
+      });
     }, 1000);
   }
 
   render() {
     const { amount, created_at, maker_side, price } = this.props.trade;
-    const newTradeClass = this.state.counter <= 0 ? '' : 'trade-new';
+    const { isFirstFetch, counter } = this.state;
+    const newTradeClass = (isFirstFetch || counter <= 0) ? '' : 'trade-new';
     return (
       <tr className={newTradeClass}>
         <Hour date={new Date(created_at)} />
@@ -40,7 +53,10 @@ class Trade extends Component {
   }
 }
 
-Trade.propTypes = { trade: PropTypes.object.isRequired };
+Trade.propTypes = {
+  trade: PropTypes.object.isRequired,
+  isFirstFetch: PropTypes.bool.isRequired,
+};
 
 export default Trade;
 
@@ -68,7 +84,8 @@ Price.propTypes = {
 
 function Amount({ amount }) {
   const number = amount.toString().split('.');
-  const afterPoint = number[1].length;
+  const isInt = number.length < 2;
+  const afterPoint = isInt ? 0 : number[1].length;
   if (afterPoint >= 8) {
     return (<td className="trades-amount">{amount.toFixed(8)}</td>);
   }

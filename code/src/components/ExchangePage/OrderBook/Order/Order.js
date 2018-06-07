@@ -8,10 +8,19 @@ class Order extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { isSelected: false, counter: 3 };
+    this.state = {
+      isSelected: false,
+      counter: 3,
+      isFirstFetch: undefined,
+    };
 
     this._toogleOrder = this._toogleOrder.bind(this);
     this._startTimer = this._startTimer.bind(this);
+  }
+
+  componentWillMount() {
+    const { isFirstFetch } = this.props;
+    this.setState({ isFirstFetch });
   }
 
   componentDidMount() {
@@ -22,8 +31,12 @@ class Order extends Component {
 
   _startTimer() {
     this._timer = setInterval(() => {
-      this.setState(prevState =>
-        Object.assign({}, ...prevState, { counter: prevState.counter - 1 }));
+      this.setState((prevState) => {
+        const oldCount = prevState.counter;
+        if (oldCount <= 1) clearInterval(this._timer);
+        const newCount = oldCount <= 1 ? 0 : oldCount - 1;
+        return Object.assign({}, ...prevState, { counter: newCount });
+      });
     }, 1000);
   }
 
@@ -36,8 +49,9 @@ class Order extends Component {
     const {
       sum, weight, amount, value, price,
     } = this.props.order;
-    const selectedOrderClass = this.state.isSelected ? 'order-selected' : '';
-    const newOrderClass = this.state.counter <= 0 ? '' : 'order-new';
+    const { isSelected, counter, isFirstFetch } = this.state;
+    const selectedOrderClass = isSelected ? 'order-selected' : '';
+    const newOrderClass = (isFirstFetch || counter <= 0) ? '' : 'order-new';
     return (
       <tr
         className={`${newOrderClass + selectedOrderClass}`}
@@ -53,7 +67,10 @@ class Order extends Component {
   }
 }
 
-Order.propTypes = { order: PropTypes.object.isRequired };
+Order.propTypes = {
+  order: PropTypes.object.isRequired,
+  isFirstFetch: PropTypes.bool.isRequired,
+};
 
 export default Order;
 

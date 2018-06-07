@@ -12,19 +12,53 @@ class ExchangePage extends Component {
 
     this.state = {
       book: 'btc_mxn',
+      websocket: new WebSocket('wss://ws.bitso.com'),
+    };
+
+    this._changeBook = this._changeBook.bind(this);
+  }
+
+  componentWillMount() {
+    this._connectWebsocket();
+  }
+
+  componentWillUnmount() {
+    this.state.websocket.close();
+  }
+
+  _connectWebsocket() {
+    const { websocket } = this.state;
+    websocket.onopen = () => {
+      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'trades' }));
+      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'diff-orders' }));
+      websocket.send(JSON.stringify({ action: 'subscribe', book: 'btc_mxn', type: 'orders' }));
     };
   }
 
+  _changeBook(book) {
+    this.setState({ book });
+  }
+
   render() {
+    const { book, websocket } = this.state;
     return (
       <div className="page-container">
-        <Header />
+        <Header
+          changeBook={this._changeBook}
+          currentBook={book}
+        />
         <div className="boxes-container">
           <div className="charts-container">
-            <LastTrades book={this.state.book} />
+            <LastTrades
+              book={book}
+              websocket={websocket}
+            />
             <div className="charts-children-container">
               <Chart />
-              <OrderBook book={this.state.book} />
+              <OrderBook
+                book={book}
+                websocket={websocket}
+              />
             </div>
           </div>
           <MarketsSideBar />

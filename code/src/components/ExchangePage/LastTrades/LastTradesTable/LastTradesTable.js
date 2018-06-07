@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Trade from '../Trade/Trade';
 import './LastTradesTable.css';
 
-function LastTradesTable({ book, trades }) {
+function LastTradesTable({ book, tradesData }) {
   return (
     <table id="trades-table">
       <LastTradesTableHeader book={book} />
-      <LastTradesTableBody trades={trades} />
+      <LastTradesTableBody tradesData={tradesData} />
     </table>
   );
 }
 
 LastTradesTable.propTypes = {
-  trades: PropTypes.array.isRequired,
+  tradesData: PropTypes.object.isRequired,
   book: PropTypes.string.isRequired,
 };
 
@@ -39,16 +39,17 @@ LastTradesTableHeader.propTypes = {
   book: PropTypes.string.isRequired,
 };
 
-function LastTradesTableBody({ trades }) {
+function LastTradesTableBody({ tradesData }) {
+  const { trades, isFirstFetch } = tradesData;
   return (
     <tbody>
       {
-        trades.map(trade => <Trade key={trade.tid} trade={trade} />)
+        trades.map(trade => <Trade key={trade.tid} trade={trade} isFirstFetch={isFirstFetch} />)
       }
     </tbody>
   );
 }
 
 LastTradesTableBody.propTypes = {
-  trades: PropTypes.array.isRequired,
+  tradesData: PropTypes.object.isRequired,
 };

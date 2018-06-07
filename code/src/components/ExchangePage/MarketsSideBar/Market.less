@@ -37,6 +37,7 @@
   border-top: solid 1px @sidebar-header;
   border-bottom: solid 1px @sidebar-header;
   background-color: @dark-navy;
+  transition-duration: 0.3s;
 
   & + .market {
     .market-resume {
@@ -47,7 +48,8 @@
     border-top: none;
   }
   .market-info {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   .market-arrow-indicator {
     display: none;
@@ -69,6 +71,31 @@
     color: @regular-red;
     .market-arrow-indicator{
       transform: rotate(90deg);
+    }
+  }
+}
+
+.market-chart-time {
+  align-self: flex-end;
+}
+
+.market-chart {
+  padding: 10px;
+}
+
+.chart-point {
+  &:hover{
+    r: 3;
+  }
+}
+
+.chart-line {
+  z-index: -3;
+  &:hover {
+    stroke: @sidebar-header;
+    stroke-width: 1.8;
+    + .chart-point{
+      r: 3;
     }
   }
 }

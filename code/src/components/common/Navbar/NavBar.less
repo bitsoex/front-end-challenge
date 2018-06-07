@@ -1,6 +1,6 @@
 @import '../../../styles/colors.less';
 
-.navbar-container-fixed {
+#navbar-container-fixed {
   position: absolute;
   top: 0;
   right: 0;
@@ -18,30 +18,30 @@
   font-size: 1em;
 }
 
-.navbar-logo {
-  width: 90px;
-  padding: 10px;
-  padding-left: 30px; 
-  padding-right: 30px;
-}
-
 // Left navbar items
-.navbar-left {
+#navbar-left {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
   align-content: center;
+}
 
-  h4 {
-    border-left: solid 1.4px @light-text;
-    padding-left: 30px;
-  }
+#navbar-logo {
+  width: 90px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#navbar-title {
+  border-left: solid 1.4px @light-text;
+  padding-left: 30px;
 }
 
 // Right navbar items
-.navbar-right {
+#navbar-right {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -62,9 +62,10 @@
   }
 }
 
-.navbar-conversion-rate {
-  padding: 5px 20px 5px 0;
-  border-right: solid 1.4px @light-text;
+.navbar-link {
+  text-decoration: none;
+  color: @light-text;
+  font-size: 1em;
 }
 
 .navbar-user {
@@ -122,7 +123,6 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 
 // circle
 .navbar-slider:after {

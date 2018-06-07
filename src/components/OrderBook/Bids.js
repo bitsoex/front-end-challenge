@@ -37,7 +37,7 @@ export default class Asks extends Component {
                       <b>POSTURAS DE COMPRA</b>
                     </div>
                     <div>
-                      {to} Bid {formatToLocaleString(bookDetails.bid)}
+                      {to} Bid {formatToLocaleString(+bookDetails.bid)}
                     </div>
                   </div>
                   <div className={styles.listContainer}>
@@ -74,9 +74,12 @@ export default class Asks extends Component {
                           &:hover {
                             background: ${colors.navy.regular};
                             color: ${colors.sidebar.light};
+                            .price {
+                              color: ${colors.green.light};
+                            }
                           }
                           .price {
-                            color: ${colors.green.light};
+                            color: ${colors.green.dark};
                           }
                           .amount {
                             color: ${colors.sidebar.light};

@@ -28,9 +28,6 @@ export default () => (
         <aside className="aside aside-left">
           <LastTrades />
         </aside>
-        <aside className="aside aside-right">
-          <div>Aside right</div>
-        </aside>
       </div>
     )}
   </ThemeConsumer>

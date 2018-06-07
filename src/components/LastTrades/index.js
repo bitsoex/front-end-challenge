@@ -13,16 +13,21 @@ const styles = {
   `,
   title: css`
     padding 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
   `,
   listContainer: css`
     color: ${colors.sidebar.text};
   `,
   row: css`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 3px 0px;
   `,
-  columnTitle: css``,
+  item: css`
+    flex: 1;
+  `,
   slideLeft: keyframes`
     from {
       transform: translateX(50%);
@@ -72,12 +77,12 @@ export default class LastTrades extends Component {
                   padding: 10px 0;
                 `}
               >
-                <div>HORA</div>
-                <div>
+                <div className={styles.item}>HORA</div>
+                <div className={styles.item}>
                   {to}&nbsp;
                   <span style={{ color: colors.sidebar.light }}>PRECIO</span>
                 </div>
-                <div>
+                <div className={styles.item}>
                   {from}&nbsp;
                   <span style={{ color: colors.sidebar.light }}>MONTO</span>
                 </div>
@@ -107,11 +112,13 @@ export default class LastTrades extends Component {
                     }
                   `}
                 >
-                  <div>{this.formatDate(trade.created_at)}</div>{" "}
-                  <div className="price">
+                  <div className={styles.item}>
+                    {this.formatDate(trade.created_at)}
+                  </div>{" "}
+                  <div className={`${styles.item} price`}>
                     {formatToLocaleString(+trade.price)}
                   </div>
-                  <div className="amount">
+                  <div className={`${styles.item} amount`}>
                     <Amount amount={trade.amount} />
                   </div>
                 </div>

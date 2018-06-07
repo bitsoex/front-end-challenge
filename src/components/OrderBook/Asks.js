@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { css, keyframes } from "emotion";
+import { css } from "emotion";
 import dayjs from "dayjs";
 import OrderBook from "../../containers/OrderBook";
 import { ThemeConsumer } from "../../context/Theme";
@@ -34,7 +34,7 @@ export default class Asks extends Component {
                     className={styles.title}
                   >
                     <div>
-                      {formatToLocaleString(bookDetails.ask)} Ask {to}
+                      {formatToLocaleString(+bookDetails.ask)} Ask {to}
                     </div>
                     <div>
                       <b>POSTURAS DE VENTA</b>
@@ -74,9 +74,12 @@ export default class Asks extends Component {
                           &:hover {
                             background: ${colors.navy.regular};
                             color: ${colors.sidebar.light};
+                            .price {
+                              color: ${colors.red.light};
+                            }
                           }
                           .price {
-                            color: ${colors.red.light};
+                            color: ${colors.red.dark};
                           }
                           .amount {
                             color: ${colors.sidebar.light};

@@ -104,7 +104,8 @@ export default () => (
                 className={`${styles.item} ${animations.slideLeft}`}
               >
                 <span className={styles.itemPrefix}>Variacion.</span>{" "}
-                {variation} {to} {variationPercentage.toFixed(2)}%
+                {formatToLocaleString(variation)} {to}{" "}
+                {variationPercentage.toFixed(2)}%
               </div>
             </div>
           );

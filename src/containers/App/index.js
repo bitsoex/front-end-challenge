@@ -10,8 +10,6 @@ import Bids from "../../components/OrderBook/Bids";
 
 import styles from "./styles";
 
-import "react-vis/dist/style.css";
-
 export default () => (
   <ThemeConsumer>
     {({ theme }) => (

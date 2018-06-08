@@ -11,7 +11,7 @@
   justify-content: space-evenly;
 }
 
-.chart-option-toggles {
+.chart-options-container {
   width: 100%;
   margin: auto;
   // for Childs
@@ -19,6 +19,65 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+}
+
+.chart-options {
+  display: inline-flex;
+}
+
+.chart-dropdown {
+  padding: 2px 15px 2px;
+  display: inline-flex;
+  .chart-dropdown-label {
+    color: @neutral-grey;
+    padding: 2px 10px 2px 0;
+  }
+  .candles-icon {
+    height: 1.3rem;
+    width: 1.3rem;
+  }
+  .dropdown-icon {
+    padding-left: 5px;
+    height: 0.5rem;
+    width: 0.5rem;
+  }
+}
+
+.chart-button {
+  border: solid 1px @navy-headers;
+  border-radius: 15px;
+  padding: 0 7px 0 7px;
+  display: inline-flex;
+  align-items: center;
+  & > .label {
+    color: @light-text;
+    font-size: 0.6rem;
+  }
+}
+
+#chart-select-type {
+  border-color: @regular-navy;
+  background-color: @regular-navy;
+}
+
+.chart-zoom {
+  font-family: DINPro-Medium;
+  font-size: 1.rem;
+  border-radius: 15px;
+  & > .out {
+    background-color: @dark-navy;
+    padding: 2px 14px 2px 12px;
+    border: solid 1px @navy-headers;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  & > .in {
+    background-color: @dark-navy;
+    padding: 2px 12px 2px 14px;
+    border: solid 1px @navy-headers;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
 }
 
 .chart-canvas {

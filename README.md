@@ -12,7 +12,7 @@ In this repo you will find the proposal to participate.
 
 ## Stack
 
-Builded from scratch with [react-scripts] and stylizing it with [Less].
+Builded from scratch with [react-scripts] and stylized with [Less].
 
 Also following the tips from [airbnb guys].
 

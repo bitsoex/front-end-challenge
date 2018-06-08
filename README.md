@@ -6,7 +6,7 @@
 
 Heard of this Front End Bitso Challenge, more info here => [original repo]
 
-Challenge accepted!
+**Challenge accepted!**
 
 In this repo you will find the proposal to participate.
 
@@ -19,7 +19,7 @@ Also following the tips from [airbnb guys].
 ## Run & Build instructions
 
 ``` bash
-## Go to code directory
+# Go to code directory
 cd code
 
 # Install dependencies (you could use yarn if prefered)

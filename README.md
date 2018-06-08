@@ -2,7 +2,7 @@
 
 ![Front End Challenge Image](https://github.com/bitsoex/front-end-challenge/blob/master/bann_bfec.jpg)
 
-### About
+## About
 
 Heard of this Front End Bitso Challenge, more info here => [original repo]
 
@@ -10,29 +10,27 @@ Challenge accepted!
 
 In this repo you will find the proposal to participate.
 
-### Stack
+## Stack
 
 Builded from scratch with [react-scripts] and stylizing it with [Less].
 
 Also following the tips from [airbnb guys].
 
-### Run & Build instructions
+## Run & Build instructions
 
-Go to `code` directory
+``` bash
+## Go to code directory
+cd code
 
-  $ cd code
+# Install dependencies (you could use yarn if prefered)
+npm install
 
-Install dependencies (you could use yarn if prefered)
+# Run project in dev mode
+npm run dev:start
 
-  $ npm install
-
-Run project in dev mode
-
-  $ npm run dev:start
-
-To build the project
-
-  $ npm run build
+# To build the project
+npm run build
+```
 
 Crafted with ❤ in Mexico.
 

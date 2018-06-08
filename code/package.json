@@ -16,7 +16,7 @@
     "css:watch": "npm run css:build && less-watch-compiler ./src/ ./",
     "dev:start": "npm-run-all --parallel css:watch lint:watch start",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run css:build && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

@@ -15,7 +15,7 @@ function _toggleNightModeHandler(){
   this.classList.toggle('on');
 
 };
-
+ 
 /* Night Mode Switch Handler
 ----------------------------------------- */
 function _toggleMobileSidebar(){
@@ -39,6 +39,12 @@ function _toggleMobileSidebar(){
   this.classList.toggle('active');
 };
 
+function _toggleMarketsSidebar(){
+  var marketsSidebar = document.getElementById('markets-sidebar');
+
+  marketsSidebar.classList.toggle('active');
+}
+
 /* Night Mode Switch Handler
 ----------------------------------------- */
 var NightModeSwitch = function(){
@@ -52,7 +58,12 @@ MobileSidebar = function(){
   var marketsButton = document.getElementById('markets-button');
 
   marketsButton.addEventListener('click', _toggleMobileSidebar, false);
-}
+},
+toggleMarketsSidebar = function(){
+  var marketsSidebarButton = document.getElementById('sidebar-button');
+
+  marketsSidebarButton.addEventListener('click', _toggleMarketsSidebar, false);
+};
 
 var App = function(){
   "use strict";
@@ -61,6 +72,7 @@ var App = function(){
     init: function(){
       NightModeSwitch();
       MobileSidebar();
+      toggleMarketsSidebar();
     }
   };
 }();

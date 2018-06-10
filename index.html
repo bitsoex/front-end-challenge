@@ -36,36 +36,44 @@
 <body class="night-mode">
 
   <aside id="markets-sidebar">
-    <h3>Mercados 24 hrs</h3>
-    <ul>
-      <li class="btc-mxn">
-        <div class="market-header">
-          <span class="trading-pair">BTC/MXN</span>
-          <span class="value"><i class="bi-arrow-up"></i> $172,948.00 MXN</span>
-        </div>
-        <div class="market-content">
-          <canvas class="chart"></canvas>
-        </div>
-      </li>
-      <li class="eth-mxn">
-        <div class="market-header">
-          <span class="trading-pair">ETH/MXN</span>
-          <span class="value"><i class="bi-arrow-up"></i> $172,948.00 MXN</span>
-        </div>
-        <div class="market-content">
-          <canvas class="chart"></canvas>
-        </div>
-      </li>
-      <li class="xrp-mxn">
-        <div class="market-header">
-          <span class="trading-pair">XRP/MXN</span>
-          <span class="value"><i class="bi-arrow-up"></i> $172,948.00 MXN</span>
-        </div>
-        <div class="market-content">
-          <canvas class="chart"></canvas>
-        </div>
-      </li>
-    </ul>
+    <div id="sidebar-button">
+      <div id="sidebar-button-title">
+        <i class="bi-chevron-down"></i>
+        <h3>Mercados</h3>
+      </div>
+    </div>
+    <div id="sidebar-wrapper">
+      <h3>Mercados 24 hrs</h3>
+      <ul class="markets-menu">
+        <li class="btc-mxn">
+          <div class="market-header">
+            <span class="trading-pair">BTC/MXN</span>
+            <span class="value up"><i class="bi-arrow-up"></i> $172,948.00 MXN</span>
+          </div>
+          <div class="market-content">
+            <canvas class="chart"></canvas>
+          </div>
+        </li>
+        <li class="eth-mxn">
+          <div class="market-header">
+            <span class="trading-pair">ETH/MXN</span>
+            <span class="value up"><i class="bi-arrow-up"></i> $172,948.00 MXN</span>
+          </div>
+          <div class="market-content">
+            <canvas class="chart"></canvas>
+          </div>
+        </li>
+        <li class="xrp-mxn">
+          <div class="market-header">
+            <span class="trading-pair">XRP/MXN</span>
+            <span class="value down"><i class="bi-arrow-down"></i> $172,948.00 MXN</span>
+          </div>
+          <div class="market-content">
+            <canvas class="chart"></canvas>
+          </div>
+        </li>
+      </ul>
+    </div>
   </aside>
 
   <header id="main-header">

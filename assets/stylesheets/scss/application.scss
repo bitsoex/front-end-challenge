@@ -14,6 +14,12 @@
 @import "global";     /* Global Selectors and classes */
 @import "components"; /* Theme components */
 
+
+/* Color templates
+------------------------------------- */
+@import "light-mode-theme"; /* Theme components */
+@import "night-mode-theme"; /* Theme components */
+
 /* General
 ------------------------------------- */
 
@@ -41,7 +47,6 @@
 .bi-wallet{
   width: 1em;
   height: 1em;
-  background-color: $dark-text;
   border-radius: 100%;
 }
 
@@ -61,8 +66,6 @@
   height: 31px;
   margin: 1.1em 1.4em 1.1em 0;
   vertical-align: middle;
-
-  @include background-image(bitso_logo);
   display: inline-block;
   background-repeat: no-repeat;
 
@@ -76,7 +79,6 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: $background-navy;
 
   @include media-breakpoint-down(md){
     margin: 62px 0 70px;
@@ -92,8 +94,6 @@
 
 #main-header{
   padding: 0 2vw;
-  color: $light-text;
-  background-color: $regular-navy;
   vertical-align: middle;
 
   @include media-breakpoint-down(md){
@@ -116,12 +116,12 @@
       content: "";
       height: 0.7em;
       width: 1px;
-      background-color: $light-text;
       top: 3px;
       left: 0;
       display: block;
       position: absolute;
     }
+
   }
 
   a{
@@ -168,7 +168,6 @@
     left: 0;
     bottom: 0;
     position: absolute;
-    background-color: $light-text;
     display: block;
   }
 
@@ -187,7 +186,6 @@
 
   ul.sub-menu{
     padding: 0;
-    background-color: $regular-navy;
     list-style-type: none;
     text-align: center;
 
@@ -213,7 +211,6 @@
   border: 1px solid $dark-text;
   position: relative;
   vertical-align: middle;
-  background-color: $dark-text;
 
   &:before{
     content: "";
@@ -246,12 +243,6 @@
   cursor: pointer;
   margin-left: 1vw;
 
-  &:hover, &:focus{
-    .switch{
-      background-color: $light-text;
-    }
-  }
-
   &.on{
     .switch{
       left: 1.8em;
@@ -261,7 +252,6 @@
 
 #night-mode-wrapper{
   padding: 0.2em;
-  background-color: $background-navy;
   position: relative;
   border-radius: 1em;
 
@@ -271,7 +261,6 @@
     top: 0.1em;
     left: 0.1em;
     position: absolute;
-    background-color: $dark-text;
     border-radius: 100%;
     @extend %transition;
 
@@ -311,7 +300,6 @@
 #mobile-nav{
   display: none;
   width: 100%;
-  background-color: $regular-navy;
   bottom: 0;
   right: 0;
   left: 0;
@@ -345,10 +333,6 @@
       &:hover, &:active, &:focus{
         text-decoration: none;
         color: lighten($light-text, 10%);
-
-        i{
-          background-color: lighten($light-text, 10%);
-        }
       }
 
       span{
@@ -436,7 +420,6 @@
     list-style-type: none;
     padding: 0 0 0.6em;
     margin: 0;
-    background-color: $sidebar-background;
     text-align: center;
     border-top: 1px solid transparentize($sidebar-text, 0.6);
     border-bottom: 2px solid $regular-green;
@@ -450,9 +433,6 @@
 
       &:hover, &:active, &:focus{
         text-decoration: none;
-        border-right-color: $background-navy;
-        border-left-color: $background-navy;
-        background-color: $background-navy;
       }
     }
   }
@@ -471,7 +451,6 @@
 #trading-data{
   padding: 1em;
   border-top: 1px solid $medium-navy;
-  background-color: $background-navy;
 }
 
 #last-trades{
@@ -499,7 +478,6 @@
   thead{
 
     tr.thead{
-      background-color: $navy-headers;
       color: $sidebar-light-text;
       font-weight: 600;
       text-align: left;
@@ -537,7 +515,6 @@
       }
 
       &:hover, &:active, &:focus{
-        background-color: $regular-navy;
         
         &.buy{
           td.price{
@@ -591,13 +568,11 @@
   &.bid, &.ask{
     &:hover{
       thead tr.thead{
-        background-color: $navy-headers;
       }
     }
 
     thead{
       tr.thead{
-        background-color: $regular-navy;
         @extend %transition;
       }
     }
@@ -698,7 +673,6 @@
     tbody{
       tr{
         &.active, &:active, &:focus{
-          background-color: transparentize($light-green, 0.7);
           
           td{
             &.price{ color: $light-green; }
@@ -707,7 +681,6 @@
       }
 
       td{
-        &.bar span{ background-color: $light-green; }
         &.price{ color: $regular-green; }
       }
     }
@@ -753,8 +726,6 @@
     tbody{
       tr{
         &.active, &:active, &:focus{
-          background-color: transparentize($regular-red, 0.7);
-          
           td{
             &.price{ color: $regular-red; }
           }
@@ -762,7 +733,6 @@
       }
 
       td{
-        &.bar span{ background-color: $regular-red; }
         &.price{ color: $medium-red; }
       }
     }
@@ -806,11 +776,11 @@
   width: 56px;
   height: 56px;
   padding: 0.6em 0;
-  background-color: transparent;
   border: 0;
   position: relative;
   cursor: pointer;
   vertical-align: middle;
+  background-color: transparent;
   // z-index: 99999;
 
   @include media-breakpoint-down(md){
@@ -842,9 +812,8 @@
     left: 0;
     display: block;
     position: absolute;
-    background-color: $light-text;
     transition: 0.2s;
-
+    
     &:nth-child(1) { top: -14px; }
     &:nth-child(2) { top: 0; }
     &:nth-child(3) { top: 14px; }
@@ -854,22 +823,10 @@
 #markets-sidebar{
   display: none;
   height: 100%;
-  background-color: $background-navy;
   position: fixed;
   z-index: 1;
   overflow: auto;
   @include animation('animateleft 0.4s');
-}
-
-@include keyframes('animateleft'){
-  from{
-    left: -300px;
-    opacity: 0;
-  } 
-  to{
-    left: 0;
-    opacity: 1;
-  }
 }
 
 @include keyframes('animateleft'){

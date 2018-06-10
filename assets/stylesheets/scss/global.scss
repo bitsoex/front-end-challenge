@@ -5,8 +5,8 @@ html{
 }
 body{ 
   font-family: $primaryFontFamily; 
-  background-color: $background-navy; 
   font-weight: 400;
+  transition: 0.2s;
 }
 
 h1{

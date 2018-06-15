@@ -57,31 +57,31 @@ body {
   font-family: 'Open Sans', 'sans-serif', 'DINPro Regular';
 }
 
-#app {
+#root {
   display: flex;
   height: 100%;
   width: 100%;
   flex-direction: column;
 }
 
-#app > .page {
+#root > .page {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-#app > .page > main {
+#root > .page > main {
   background: var(--background-navy);
   flex: 1;
   color: var(--light-text);
   overflow-y: scroll;
 }
 
-#app > .page * {
+#root > .page * {
   transition: background-color 1s;
 }
 
-#app > .page.light {
+#root > .page.light {
   --background-navy: #eaeaea;
   --light-text: #676767;
   --table-header-background: #d3d6d7;
@@ -95,6 +95,7 @@ body {
   --markets-header-background: rgba(0, 0, 0, .2);
   --markets-content-background: #eaeaea;
   --medium-navy: #d3d6d7;
+  --sidebar: rgba(255, 255, 255, .9);
 }
 
 .loading {

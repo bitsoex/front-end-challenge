@@ -78,7 +78,7 @@ const TheHeader = (props) => {
               </div>
               <Dropdown options={[{ label: 'Settings' }]} text='Usuario' />
             </li>
-            <li><ThemeToggle /></li>
+            <li className='theme-toggle-container'><ThemeToggle /></li>
           </ul>
         </nav>
       </header>

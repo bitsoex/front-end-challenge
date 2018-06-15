@@ -1,4 +1,4 @@
-#app > .page > .header-container > header {
+#root > .page > .header-container > header {
   display: flex;
   background: var(--header-background);
   align-items: center;
@@ -7,43 +7,43 @@
   position: relative;
 }
 
-#app > .page > .header-container > header > .logo {
+#root > .page > .header-container > header > .logo {
   display: flex;
 }
 
-#app > .page > .header-container > header > .logo > img {
+#root > .page > .header-container > header > .logo > img {
   height: 30px;
   width: auto;
 }
 
-#app > .page > .header-container > header > .title-page.money-exchange {
+#root > .page > .header-container > header > .title-page.money-exchange {
   flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#app > .page > .header-container > header > .title-page.money-exchange > div {
+#root > .page > .header-container > header > .title-page.money-exchange > div {
   text-transform: uppercase;
   font-size: .85rem;
 }
 
-#app > .page > .header-container > header > .title-page.money-exchange > div:first-child {
+#root > .page > .header-container > header > .title-page.money-exchange > div:first-child {
   border-left: 1px solid var(--header-color);
 }
 
-#app > .page > .header-container > header > .title-page.money-exchange > div:last-child {
+#root > .page > .header-container > header > .title-page.money-exchange > div:last-child {
   border-right: 1px solid var(--header-color);
 }
 
-#app > .page > .header-container > header > nav > ul {
+#root > .page > .header-container > header > nav > ul {
   list-style-type: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-#app > .page > .header-container > header > nav > ul > li > .avatar {
+#root > .page > .header-container > header > nav > ul > li > .avatar {
   height: 42px;
   width: 42px;
   border-radius: 50%;
@@ -51,48 +51,48 @@
   background: var(--table-color);
 }
 
-#app > .page > .header-container > .stats {
+#root > .page > .header-container > .stats {
   display: flex;
   align-items: center;
   background: var(--nav-background);
   position: relative;
 }
 
-#app > .page > .header-container > .stats > .exchange-type {
+#root > .page > .header-container > .stats > .exchange-type {
   position: relative;
   z-index: 100;
 }
 
-#app > .page > .header-container > .stats > .exchange-type > .text {
+#root > .page > .header-container > .stats > .exchange-type > .text {
   color: var(--exchange-type-color);
   padding: 11px 16px;
 }
 
-#app > .page > .header-container > .stats > .exchange-type > ul {
+#root > .page > .header-container > .stats > .exchange-type > ul {
   background: var(--nav-background);
   border-radius: 0;
   width: 100%;
 }
 
-#app > .page > .header-container > .stats > .exchange-type > ul > li {
+#root > .page > .header-container > .stats > .exchange-type > ul > li {
   padding: 0;
 }
 
-#app > .page > .header-container > .stats > .exchange-type > ul > li,
-#app > .page > .header-container > .stats > .exchange-type > ul > li a {
+#root > .page > .header-container > .stats > .exchange-type > ul > li,
+#root > .page > .header-container > .stats > .exchange-type > ul > li a {
   background: var(--nav-background);
   color: var(--exchange-type-color);
   align-items: center;
   justify-content: center;
 }
 
-#app > .page > .header-container > .stats > .exchange-type > ul > li a:hover,
-#app > .page > .header-container > .stats > .exchange-type > ul > li:hover a,
-#app > .page > .header-container > .stats > .exchange-type > ul > li:hover {
+#root > .page > .header-container > .stats > .exchange-type > ul > li a:hover,
+#root > .page > .header-container > .stats > .exchange-type > ul > li:hover a,
+#root > .page > .header-container > .stats > .exchange-type > ul > li:hover {
   background: var(--background-navy);
 }
 
-#app > .page > .header-container > .stats > .exchange-type > ul > li a {
+#root > .page > .header-container > .stats > .exchange-type > ul > li a {
   display: flex;
   text-decoration: none;
   padding: .375rem 1rem;
@@ -101,50 +101,50 @@
   user-select: none;
 }
 
-#app > .page > .header-container > .stats > .list {
+#root > .page > .header-container > .stats > .list {
   flex: 1;
   overflow-x: scroll;
   color: var(--header-color);
   display: flex;
 }
 
-#app > .page > .header-container > .stats > .list > .stat {
+#root > .page > .header-container > .stats > .list > .stat {
   opacity: .5;
   font-size: .93rem;
   white-space: nowrap;
 }
 
-#app > .page > .header-container > .stats > .list > .stat > .label {
+#root > .page > .header-container > .stats > .list > .stat > .label {
   padding-right: .3rem;
 }
 
-#app > .page > .header-container > .stats > .list > .stat > .value {
+#root > .page > .header-container > .stats > .list > .stat > .value {
   color: var(--header-stat-color);
 }
 
-#app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
+#root > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
   color: var(--sidebar-light-text);
 }
 
-#app > .page > .header-container > .stats > .list > .stat {
+#root > .page > .header-container > .stats > .list > .stat {
   padding: 11px 16px 11px 0;
 }
 
 @media screen and (max-width: 768px) {
-  #app > .page > .header-container > header > .logo > img {
+  #root > .page > .header-container > header > .logo > img {
     padding: 16px 11px 16px 16px;
   }
 
-  #app > .page > .header-container > header > .title-page.money-exchange > div {
+  #root > .page > .header-container > header > .title-page.money-exchange > div {
     padding: 5px 10px;
   }
 
-  #app > .page > .header-container > header > nav > i {
+  #root > .page > .header-container > header > nav > i {
     cursor: pointer;
     padding: 19px 20px;
   }
 
-  #app > .page > .header-container > header > nav > ul {
+  #root > .page > .header-container > header > nav > ul {
     position: fixed;
     flex-direction: column;
     height: calc(100% - 62px);
@@ -153,90 +153,97 @@
     overflow-y: scroll;
   }
 
-  #app > .page > .header-container > header > nav > ul > li > .avatar {
+  #root > .page > .header-container > header > nav > ul > li > .avatar {
     margin: 0 auto;
   }
 
-  #app > .page > .header-container > header > nav > ul.hidden {
+  #root > .page > .header-container > header > nav > ul.hidden {
     animation: hideHeaderSidebar .2s ease forwards;
   }
 
-  #app > .page > .header-container > header > nav > ul.show {
+  #root > .page > .header-container > header > nav > ul.show {
     display: flex;
     animation: showHeaderSidebar .2s ease forwards;
   }
 
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {
     justify-content: space-between;
     align-items: center;
   }
 
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > .text {
     padding: 10px 20px;
   }
 
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul {
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul {
     position: relative;
     border: none;
     border-radius: 0;
     background: var(--medium-navy);
   }
 
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {
     background: var(--medium-navy);
   }
 }
 
 @media screen and (min-width: 769px) {
-  #app > .page > .header-container > header > .logo > img {
+  #root > .page > .header-container > header > .logo > img {
     padding: 18px 30px;
   }
 
-  #app > .page > .header-container > header > nav > ul.menu {
+  #root > .page > .header-container > header > nav > ul.menu {
     justify-content: center;
     align-items: center;
   }
 
-  #app > .page > .header-container > header > nav > ul > li:first-child {
+  #root > .page > .header-container > header > nav > ul > li:first-child {
     margin-left: 40px;
   }
 
-  #app > .page > .header-container > .stats > .exchange-type > .text {
+  #root > .page > .header-container > .stats > .exchange-type > .text {
     margin-left: 24px;
   }
 
-  #app > .page > .header-container > header > nav > ul > li {
+  #root > .page > .header-container > header > nav > ul > li {
     margin: 0 20px;
   }
 
-  #app > .page > .header-container > header > nav > ul > li .dropdown {
+  #root > .page > .header-container > header > nav > ul > li .dropdown {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 4px 0;
   }
 
-  #app > .page > .header-container > header > nav > ul > li.user {
+  #root > .page > .header-container > header > nav > ul > li.user,
+  #root > .page > .header-container > header > nav > ul > li.theme-toggle-container {
     display: flex;
     justify-content: center;
     align-items: center
   }
 
-  #app > .page > .header-container > header > nav > ul > li.user > .avatar {
+  #root > .page > .header-container > header > nav > ul > li.user > .avatar {
     margin-right: 20px;
   }
 
-  #app > .page > .header-container > header > .title-page.money-exchange > div {
+  #root > .page > .header-container > header > .title-page.money-exchange > div {
     padding: 10px 20px;
   }
 
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul,
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul > li {
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul,
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul > li {
     background: var(--header-background);
   }
 
-  #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul > li:hover {
+  #root > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul > li:hover {
     background: var(--medium-navy);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  li.theme-toggle > .theme-toggle {
+    width: 80px;
   }
 }
 

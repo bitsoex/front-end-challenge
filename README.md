@@ -6,7 +6,7 @@
 
 ## Tecnologías ocupadas:
 
-1. parcel-bundler
+1. neutrinojs
 2. react
 3. react-router
 4. react-redux
@@ -15,9 +15,9 @@
 7. standardjs
 8. cypress
 
-### [Parcel Bundler](https://parceljs.org/)
+### [Neutrinojs](https://neutrinojs.org/)
 
-Es un empaquetador web de fácil uso y configuración en comparación a webpack, soporta configuración de babel mediante el archivo .babelrc, de postcss y más. Lo use en el proyecto para poder enfocarme más en desarrollar la aplicación sin preocuparme demasiado en el la configuración del ambiente de desarrollo y de producción. Por el momento deshabilite el modulo de hot module replacement, debido a un bug en parcel que cicla el lifecycle de react. Debido a que ya estoy muy fuera de tiempo lo deshabilite y seguiré buscando una solución. Si la encuentro les notificaré.
+Es un empaquetador web de fácil uso y configuración en comparación a webpack, soporta configuración de babel mediante el archivo .neutrino.js, de postcss y más. Lo use en el proyecto para poder enfocarme más en desarrollar la aplicación sin preocuparme demasiado en el la configuración del ambiente de desarrollo y de producción.
 
 ### [React router](https://reacttraining.com/react-router/)
 

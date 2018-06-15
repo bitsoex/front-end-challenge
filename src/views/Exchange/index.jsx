@@ -84,7 +84,7 @@ class Home extends Component {
   render () {
     if (this.props.loading || this.props.error) {
       return (
-        <div className='page'>
+        <div className={classnames('page', this.props.theme)}>
           <main className={classnames('exchange', { loading: this.props.loading })}>
             <h2 className='error'>
               Ocurrio un error al tratar de obtener la información del servidor,

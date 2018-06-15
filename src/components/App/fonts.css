@@ -1,15 +1,15 @@
 /* default global fonts */
 @font-face {
   font-family: 'DINPro Regular';
-  src: url('../../../Assets/Fonts/DINPro-Regular.otf');
+  src: url('/static/fonts/DINPro-Regular.otf');
 }
 
 @font-face {
   font-family: 'DINPro Medium';
-  src: url('../../../Assets/Fonts/DINPro-Medium.otf');
+  src: url('/static/fonts/DINPro-Medium.otf');
 }
 
 @font-face {
   font-family: 'DINPro Light';
-  src: url('../../../Assets/Fonts/DINPro-Light.otf');
+  src: url('/static/fonts/DINPro-Light.otf');
 }

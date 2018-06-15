@@ -264,7 +264,7 @@
 }
 
 @media screen and (min-width: 769px) {
-  #app > .page > main.exchange {
+  #root > .page > main.exchange {
     display: flex;
     position: relative;
   }

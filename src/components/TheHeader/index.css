@@ -119,7 +119,7 @@
 }
 
 #app > .page > .header-container > .stats > .list > .stat > .value {
-  color: white;
+  color: var(--header-stat-color);
 }
 
 #app > .page > .header-container > header > nav > ul.menu > li > .dropdown > ul li {

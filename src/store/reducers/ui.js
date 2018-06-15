@@ -5,7 +5,8 @@ const initialState = {
   marketsSidebar: false,
   loading: false,
   error: false,
-  errorMessage: ''
+  errorMessage: '',
+  theme: 'dark'
 }
 
 export default handleActions({
@@ -15,6 +16,11 @@ export default handleActions({
 
   TOGGLE_MARKETS_SIDEBAR (state, action) {
     return { ...state, marketsSidebar: !state.marketsSidebar }
+  },
+
+  TOGGLE_THEME (state, action) {
+    const nextTheme = state.theme === 'dark' ? 'light' : 'dark'
+    return { ...state, theme: nextTheme }
   },
 
   SET_LOADING (state, action) {

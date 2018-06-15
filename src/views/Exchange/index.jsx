@@ -148,7 +148,7 @@ class Home extends Component {
     }
 
     return (
-      <div className='page'>
+      <div className={classnames('page', this.props.theme)}>
         <TheHeader page={this.props.page} book={snakeCase(book)} to={to} />
         <main className='exchange'>
           <Table
@@ -255,6 +255,7 @@ const mapStateToProps = ({ ticker, trades, orderBook, ui }) => ({
   loading: ui.loading,
   error: ui.error,
   errorMessage: ui.errorMessage,
+  theme: ui.theme,
   orderBook
 })
 

@@ -44,6 +44,8 @@
   --theme-toggle-background: #161A1E;
   --theme-toggle-light-color: #ff9e22;
   --theme-toggle-dark-color: #5300e8;
+  --header-stat-color: white;
+  --table-last-trades-color: white;
 }
 
 html,
@@ -73,6 +75,26 @@ body {
   flex: 1;
   color: var(--light-text);
   overflow-y: scroll;
+}
+
+#app > .page * {
+  transition: background-color 1s;
+}
+
+#app > .page.light {
+  --background-navy: #eaeaea;
+  --light-text: #676767;
+  --table-header-background: #d3d6d7;
+  --header-color: #4f5051;
+  --nav-background: #d3d6d7;
+  --header-stat-color: #4f5051;
+  --table-last-trades-color: #4f5051;
+  --header-background: #eaeaea;
+  --theme-toggle-background: #d3d6d7;
+  --markets-toggle-background: #d3d6d7;
+  --markets-header-background: rgba(0, 0, 0, .2);
+  --markets-content-background: #eaeaea;
+  --medium-navy: #d3d6d7;
 }
 
 .loading {

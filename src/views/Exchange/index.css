@@ -150,7 +150,7 @@
 }
 
 .table.last-trades > .container > table > tbody > tr:hover > td.time {
-  color: white;
+  color: var(--table-last-trades-color);
 }
 
 .table.last-trades > .container > table > tbody > tr > td.price > .sell {

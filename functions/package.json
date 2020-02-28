@@ -12,8 +12,8 @@
   "dependencies": {
     "axios": "^0.18",
     "cors": "^2.8.1",
-    "firebase-admin": "~5.8.1",
-    "firebase-functions": "^0.8.1"
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.8.2"
   },
   "devDependencies": {
     "eslint": "^4.12.0",

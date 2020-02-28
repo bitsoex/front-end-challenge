@@ -1,0 +1,52 @@
+[debug] [2020-02-28T02:41:04.558Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:41:04.560Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2020-02-28T02:41:04.560Z] CLI Version:   7.13.1
+[debug] [2020-02-28T02:41:04.560Z] Platform:      darwin
+[debug] [2020-02-28T02:41:04.560Z] Node Version:  v12.13.1
+[debug] [2020-02-28T02:41:04.560Z] Time:          Thu Feb 27 2020 20:41:04 GMT-0600 (Central Standard Time)
+[debug] [2020-02-28T02:41:04.560Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:41:04.561Z] 
+[debug] [2020-02-28T02:41:04.565Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-28T02:41:04.565Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[warn] ⚠  Your functions directory does not specify a Node version.
+   - Learn more at https://firebase.google.com/docs/functions/manage-functions#set_runtime_options
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/jaime/GitHub/front-end-challenge/functions" for Cloud Functions...
+[debug] [2020-02-28T02:41:04.602Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:41:04.602Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-28T02:41:04.602Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:41:04.602Z] [worker-~diagnostic~-89827161-55c2-4d67-a551-dbac61508c5f]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_40798.sock
+[debug] [2020-02-28T02:41:04.603Z] [worker-~diagnostic~-89827161-55c2-4d67-a551-dbac61508c5f]: BUSY
+[debug] [2020-02-28T02:41:04.777Z] [runtime-status] [40798] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:41:04.777Z] [runtime-status] [40798] Disabled runtime features: undefined
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-admin" to be installed. This package is in your package.json, but it's not available. You probably need to run "npm install" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2020-02-28T02:41:04.795Z] [worker-~diagnostic~-89827161-55c2-4d67-a551-dbac61508c5f]: exited
+[debug] [2020-02-28T02:41:04.795Z] [worker-~diagnostic~-89827161-55c2-4d67-a551-dbac61508c5f]: FINISHED
+[debug] [2020-02-28T02:44:34.057Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:44:34.058Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2020-02-28T02:44:34.058Z] CLI Version:   7.13.1
+[debug] [2020-02-28T02:44:34.058Z] Platform:      darwin
+[debug] [2020-02-28T02:44:34.058Z] Node Version:  v12.13.1
+[debug] [2020-02-28T02:44:34.059Z] Time:          Thu Feb 27 2020 20:44:34 GMT-0600 (Central Standard Time)
+[debug] [2020-02-28T02:44:34.059Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:44:34.059Z] 
+[debug] [2020-02-28T02:44:34.063Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-28T02:44:34.063Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[warn] ⚠  Your functions directory does not specify a Node version.
+   - Learn more at https://firebase.google.com/docs/functions/manage-functions#set_runtime_options
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/jaime/GitHub/front-end-challenge/functions" for Cloud Functions...
+[debug] [2020-02-28T02:44:34.094Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:44:34.094Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-28T02:44:34.094Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:44:34.094Z] [worker-~diagnostic~-4c902af3-b00b-4d87-9e9d-cab108a9dc62]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_41290.sock
+[debug] [2020-02-28T02:44:34.094Z] [worker-~diagnostic~-4c902af3-b00b-4d87-9e9d-cab108a9dc62]: BUSY
+[debug] [2020-02-28T02:44:34.262Z] [runtime-status] [41290] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:44:34.263Z] [runtime-status] [41290] Disabled runtime features: undefined
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-admin" to be installed. This package is in your package.json, but it's not available. You probably need to run "npm install" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2020-02-28T02:44:34.282Z] [worker-~diagnostic~-4c902af3-b00b-4d87-9e9d-cab108a9dc62]: exited
+[debug] [2020-02-28T02:44:34.282Z] [worker-~diagnostic~-4c902af3-b00b-4d87-9e9d-cab108a9dc62]: FINISHED

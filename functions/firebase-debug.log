@@ -1,0 +1,2435 @@
+[debug] [2020-02-28T02:53:00.069Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:53:00.071Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2020-02-28T02:53:00.071Z] CLI Version:   7.13.1
+[debug] [2020-02-28T02:53:00.071Z] Platform:      darwin
+[debug] [2020-02-28T02:53:00.071Z] Node Version:  v12.13.1
+[debug] [2020-02-28T02:53:00.071Z] Time:          Thu Feb 27 2020 20:53:00 GMT-0600 (Central Standard Time)
+[debug] [2020-02-28T02:53:00.071Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:53:00.071Z] 
+[debug] [2020-02-28T02:53:00.076Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-28T02:53:00.076Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[warn] ⚠  Your functions directory does not specify a Node version.
+   - Learn more at https://firebase.google.com/docs/functions/manage-functions#set_runtime_options
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/jaime/GitHub/front-end-challenge/functions" for Cloud Functions...
+[debug] [2020-02-28T02:53:00.113Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:53:00.113Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-28T02:53:00.113Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:53:00.113Z] [worker-~diagnostic~-db98a163-6b0a-43aa-b358-44bb37d9b145]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42577.sock
+[debug] [2020-02-28T02:53:00.113Z] [worker-~diagnostic~-db98a163-6b0a-43aa-b358-44bb37d9b145]: BUSY
+[debug] [2020-02-28T02:53:00.286Z] [runtime-status] [42577] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:53:00.286Z] [runtime-status] [42577] Disabled runtime features: undefined
+[debug] [2020-02-28T02:53:00.287Z] [runtime-status] [42577] Resolved module firebase-admin {"declared":true,"installed":true,"version":"5.10.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-admin" to be version >8.0.0 so your version is too old. You can probably fix this by running "npm install firebase-admin@latest" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2020-02-28T02:53:00.304Z] [worker-~diagnostic~-db98a163-6b0a-43aa-b358-44bb37d9b145]: exited
+[debug] [2020-02-28T02:53:00.304Z] [worker-~diagnostic~-db98a163-6b0a-43aa-b358-44bb37d9b145]: FINISHED
+[debug] [2020-02-28T02:53:58.004Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:53:58.006Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2020-02-28T02:53:58.006Z] CLI Version:   7.13.1
+[debug] [2020-02-28T02:53:58.006Z] Platform:      darwin
+[debug] [2020-02-28T02:53:58.006Z] Node Version:  v12.13.1
+[debug] [2020-02-28T02:53:58.006Z] Time:          Thu Feb 27 2020 20:53:58 GMT-0600 (Central Standard Time)
+[debug] [2020-02-28T02:53:58.006Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:53:58.006Z] 
+[debug] [2020-02-28T02:53:58.012Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-28T02:53:58.012Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[warn] ⚠  Your functions directory does not specify a Node version.
+   - Learn more at https://firebase.google.com/docs/functions/manage-functions#set_runtime_options
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/jaime/GitHub/front-end-challenge/functions" for Cloud Functions...
+[debug] [2020-02-28T02:53:58.043Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:53:58.043Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-28T02:53:58.043Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:53:58.043Z] [worker-~diagnostic~-c3666bba-84c7-4481-ad79-28f5b04b0c96]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42611.sock
+[debug] [2020-02-28T02:53:58.044Z] [worker-~diagnostic~-c3666bba-84c7-4481-ad79-28f5b04b0c96]: BUSY
+[debug] [2020-02-28T02:53:58.211Z] [runtime-status] [42611] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:53:58.212Z] [runtime-status] [42611] Disabled runtime features: undefined
+[debug] [2020-02-28T02:53:58.213Z] [runtime-status] [42611] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:53:58.214Z] [runtime-status] [42611] Resolved module firebase-functions {"declared":true,"installed":true,"version":"0.8.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  The Cloud Functions emulator requires the module "firebase-functions" to be version >3.0.0 so your version is too old. You can probably fix this by running "npm install firebase-functions@latest" in your functions directory.
+[info] i  functions: Your functions could not be parsed due to an issue with your node_modules (see above)
+[debug] [2020-02-28T02:53:58.231Z] [worker-~diagnostic~-c3666bba-84c7-4481-ad79-28f5b04b0c96]: exited
+[debug] [2020-02-28T02:53:58.231Z] [worker-~diagnostic~-c3666bba-84c7-4481-ad79-28f5b04b0c96]: FINISHED
+[debug] [2020-02-28T02:54:41.233Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:54:41.234Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start --only functions
+[debug] [2020-02-28T02:54:41.234Z] CLI Version:   7.13.1
+[debug] [2020-02-28T02:54:41.234Z] Platform:      darwin
+[debug] [2020-02-28T02:54:41.234Z] Node Version:  v12.13.1
+[debug] [2020-02-28T02:54:41.235Z] Time:          Thu Feb 27 2020 20:54:41 GMT-0600 (Central Standard Time)
+[debug] [2020-02-28T02:54:41.235Z] ----------------------------------------------------------------------
+[debug] [2020-02-28T02:54:41.235Z] 
+[debug] [2020-02-28T02:54:41.240Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-28T02:54:41.240Z] > authorizing via signed-in user
+[info] i  emulators: Starting emulators: functions
+[warn] ⚠  Your functions directory does not specify a Node version.
+   - Learn more at https://firebase.google.com/docs/functions/manage-functions#set_runtime_options
+[info] ✔  functions: Emulator started at http://localhost:5001
+[info] i  functions: Watching "/Users/jaime/GitHub/front-end-challenge/functions" for Cloud Functions...
+[debug] [2020-02-28T02:54:41.269Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:54:41.269Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-28T02:54:41.269Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:54:41.269Z] [worker-~diagnostic~-cf78f4e3-acd0-4122-9ef8-9f0cc90cf8bb]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42626.sock
+[debug] [2020-02-28T02:54:41.269Z] [worker-~diagnostic~-cf78f4e3-acd0-4122-9ef8-9f0cc90cf8bb]: BUSY
+[debug] [2020-02-28T02:54:41.428Z] [runtime-status] [42626] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:54:41.428Z] [runtime-status] [42626] Disabled runtime features: undefined
+[debug] [2020-02-28T02:54:41.430Z] [runtime-status] [42626] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:54:41.430Z] [runtime-status] [42626] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:54:41.542Z] [runtime-status] [42626] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:54:41.542Z] [runtime-status] [42626] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:54:41.564Z] [runtime-status] [42626] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:54:41.564Z] [runtime-status] [42626] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:54:41.565Z] [runtime-status] [42626] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:54:41.565Z] [runtime-status] [42626] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:54:41.588Z] [runtime-status] [42626] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[info] ✔  functions[bitsoTicker]: http function initialized (http://localhost:5001/bitso-challenge/us-central1/bitsoTicker).
+[info] ✔  functions[bitsoChart]: http function initialized (http://localhost:5001/bitso-challenge/us-central1/bitsoChart).
+[info] ✔  All emulators started, it is now safe to connect.
+[debug] [2020-02-28T02:54:41.605Z] [worker-~diagnostic~-cf78f4e3-acd0-4122-9ef8-9f0cc90cf8bb]: IDLE
+[debug] [2020-02-28T02:54:49.823Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2020-02-28T02:54:49.823Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:54:49.823Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker --> bitsoTicker
+[debug] [2020-02-28T02:54:49.827Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:54:49.827Z] [worker-pool] Adding worker with key bitsoTicker, total=1
+[debug] [2020-02-28T02:54:49.827Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:54:49.827Z] [worker-bitsoTicker-52356d4e-56d6-4008-98d1-d833c6b48663]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42627.sock
+[debug] [2020-02-28T02:54:49.827Z] [worker-bitsoTicker-52356d4e-56d6-4008-98d1-d833c6b48663]: BUSY
+[debug] [2020-02-28T02:54:50.023Z] [runtime-status] [42627] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:54:50.024Z] [runtime-status] [42627] Disabled runtime features: undefined
+[debug] [2020-02-28T02:54:50.026Z] [runtime-status] [42627] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:54:50.027Z] [runtime-status] [42627] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:54:50.154Z] [runtime-status] [42627] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:54:50.154Z] [runtime-status] [42627] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:54:50.185Z] [runtime-status] [42627] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:54:50.185Z] [runtime-status] [42627] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:54:50.186Z] [runtime-status] [42627] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:54:50.187Z] [runtime-status] [42627] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:54:50.219Z] [runtime-status] [42627] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:54:50.230Z] [runtime-status] [42627] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:54:50.230Z] [runtime-status] [42627] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:54:50.230Z] [runtime-status] [42627] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:54:50.234Z] [runtime-status] [42627] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42627.sock
+[debug] [2020-02-28T02:54:50.236Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:54:50.242Z] [runtime-status] [42627] Ephemeral server handling GET request
+[debug] [2020-02-28T02:54:50.258Z] [runtime-status] [42627] Ephemeral server survived.
+[info] >  Error: Request failed with status code 400
+[info] >      at createError (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/createError.js:16:15)
+[info] >      at settle (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/settle.js:18:12)
+[info] >      at IncomingMessage.handleStreamEnd (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/adapters/http.js:201:11)
+[info] >      at IncomingMessage.emit (events.js:215:7)
+[info] >      at endReadableNT (_stream_readable.js:1184:12)
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+[info] >    config: {
+[info] >      adapter: [Function: httpAdapter],
+[info] >      transformRequest: { '0': [Function: transformRequest] },
+[info] >      transformResponse: { '0': [Function: transformResponse] },
+[info] >      timeout: 0,
+[info] >      xsrfCookieName: 'XSRF-TOKEN',
+[info] >      xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >      maxContentLength: -1,
+[info] >      validateStatus: [Function: validateStatus],
+[info] >      headers: {
+[info] >        Accept: 'application/json, text/plain, */*',
+[info] >        'User-Agent': 'axios/0.18.0'
+[info] >      },
+[info] >      method: 'get',
+[info] >      url: 'https://api.bitso.com/v3/ticker/?book=undefined',
+[info] >      data: undefined
+[info] >    },
+[info] >    request: ClientRequest {
+[info] >      _events: [Object: null prototype] {
+[info] >        socket: [Function],
+[info] >        abort: [Function],
+[info] >        aborted: [Function],
+[info] >        error: [Function],
+[info] >        timeout: [Function],
+[info] >        prefinish: [Function: requestOnPrefinish]
+[info] >      },
+[info] >      _eventsCount: 6,
+[info] >      _maxListeners: undefined,
+[info] >      outputData: [],
+[info] >      outputSize: 0,
+[info] >      writable: true,
+[info] >      _last: true,
+[info] >      chunkedEncoding: false,
+[info] >      shouldKeepAlive: false,
+[info] >      useChunkedEncodingByDefault: false,
+[info] >      sendDate: false,
+[info] >      _removedConnection: false,
+[info] >      _removedContLen: false,
+[info] >      _removedTE: false,
+[info] >      _contentLength: 0,
+[info] >      _hasBody: true,
+[info] >      _trailer: '',
+[info] >      finished: true,
+[info] >      _headerSent: true,
+[info] >      socket: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      connection: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      _header: 'GET /v3/ticker/?book=undefined HTTP/1.1\r\n' +
+[info] >        'Accept: application/json, text/plain, */*\r\n' +
+[info] >        'User-Agent: axios/0.18.0\r\n' +
+[info] >        'Host: api.bitso.com\r\n' +
+[info] >        'Connection: close\r\n' +
+[info] >        '\r\n',
+[info] >      _onPendingData: [Function: noopPendingOutput],
+[info] >      agent: Agent {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 1,
+[info] >        _maxListeners: undefined,
+[info] >        defaultPort: 443,
+[info] >        protocol: 'https:',
+[info] >        options: [Object],
+[info] >        requests: {},
+[info] >        sockets: [Object],
+[info] >        freeSockets: {},
+[info] >        keepAliveMsecs: 1000,
+[info] >        keepAlive: false,
+[info] >        maxSockets: Infinity,
+[info] >        maxFreeSockets: 256,
+[info] >        maxCachedSessions: 100,
+[info] >        _sessionCache: [Object]
+[info] >      },
+[info] >      socketPath: undefined,
+[info] >      method: 'GET',
+[info] >      path: '/v3/ticker/?book=undefined',
+[info] >      _ended: true,
+[info] >      res: IncomingMessage {
+[info] >        _readableState: [ReadableState],
+[info] >        readable: false,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 3,
+[info] >        _maxListeners: undefined,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        httpVersionMajor: 1,
+[info] >        httpVersionMinor: 1,
+[info] >        httpVersion: '1.1',
+[info] >        complete: true,
+[info] >        headers: [Object],
+[info] >        rawHeaders: [Array],
+[info] >        trailers: {},
+[info] >        rawTrailers: [],
+[info] >        aborted: false,
+[info] >        upgrade: false,
+[info] >        url: '',
+[info] >        method: null,
+[info] >        statusCode: 400,
+[info] >        statusMessage: '',
+[info] >        client: [TLSSocket],
+[info] >        _consuming: false,
+[info] >        _dumped: false,
+[info] >        req: [Circular],
+[info] >        responseUrl: 'https://api.bitso.com/v3/ticker/?book=undefined'
+[info] >      },
+[info] >      aborted: false,
+[info] >      timeoutCb: null,
+[info] >      upgradeOrConnect: false,
+[info] >      parser: null,
+[info] >      maxHeadersCount: null,
+[info] >      _redirectable: Writable {
+[info] >        _writableState: [WritableState],
+[info] >        writable: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 2,
+[info] >        _maxListeners: undefined,
+[info] >        _options: [Object],
+[info] >        _redirectCount: 0,
+[info] >        _requestBodyLength: 0,
+[info] >        _requestBodyBuffers: [],
+[info] >        _onNativeResponse: [Function],
+[info] >        _currentRequest: [Circular],
+[info] >        _currentUrl: 'https://api.bitso.com/v3/ticker/?book=undefined'
+[info] >      },
+[info] >      [Symbol(kNeedDrain)]: false,
+[info] >      [Symbol(isCorked)]: false,
+[info] >      [Symbol(kOutHeaders)]: [Object: null prototype] {
+[info] >        accept: [Array],
+[info] >        'user-agent': [Array],
+[info] >        host: [Array]
+[info] >      }
+[info] >    },
+[info] >    response: {
+[info] >      status: 400,
+[info] >      statusText: '',
+[info] >      headers: {
+[info] >        date: 'Fri, 28 Feb 2020 02:54:50 GMT',
+[info] >        'content-type': 'application/json;charset=UTF-8',
+[info] >        'content-length': '81',
+[info] >        connection: 'close',
+[info] >        'set-cookie': [Array],
+[info] >        'x-content-type-options': 'nosniff',
+[info] >        'x-frame-options': 'DENY',
+[info] >        'x-xss-protection': '1; mode=block',
+[info] >        'cf-cache-status': 'DYNAMIC',
+[info] >        'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+[info] >        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+[info] >        server: 'cloudflare',
+[info] >        'cf-ray': '56bf1dbcaab158cb-DFW'
+[info] >      },
+[info] >      config: {
+[info] >        adapter: [Function: httpAdapter],
+[info] >        transformRequest: [Object],
+[info] >        transformResponse: [Object],
+[info] >        timeout: 0,
+[info] >        xsrfCookieName: 'XSRF-TOKEN',
+[info] >        xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >        maxContentLength: -1,
+[info] >        validateStatus: [Function: validateStatus],
+[info] >        headers: [Object],
+[info] >        method: 'get',
+[info] >        url: 'https://api.bitso.com/v3/ticker/?book=undefined',
+[info] >        data: undefined
+[info] >      },
+[info] >      request: ClientRequest {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 6,
+[info] >        _maxListeners: undefined,
+[info] >        outputData: [],
+[info] >        outputSize: 0,
+[info] >        writable: true,
+[info] >        _last: true,
+[info] >        chunkedEncoding: false,
+[info] >        shouldKeepAlive: false,
+[info] >        useChunkedEncodingByDefault: false,
+[info] >        sendDate: false,
+[info] >        _removedConnection: false,
+[info] >        _removedContLen: false,
+[info] >        _removedTE: false,
+[info] >        _contentLength: 0,
+[info] >        _hasBody: true,
+[info] >        _trailer: '',
+[info] >        finished: true,
+[info] >        _headerSent: true,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        _header: 'GET /v3/ticker/?book=undefined HTTP/1.1\r\n' +
+[info] >          'Accept: application/json, text/plain, */*\r\n' +
+[info] >          'User-Agent: axios/0.18.0\r\n' +
+[info] >          'Host: api.bitso.com\r\n' +
+[info] >          'Connection: close\r\n' +
+[info] >          '\r\n',
+[info] >        _onPendingData: [Function: noopPendingOutput],
+[info] >        agent: [Agent],
+[info] >        socketPath: undefined,
+[info] >        method: 'GET',
+[info] >        path: '/v3/ticker/?book=undefined',
+[info] >        _ended: true,
+[info] >        res: [IncomingMessage],
+[info] >        aborted: false,
+[info] >        timeoutCb: null,
+[info] >        upgradeOrConnect: false,
+[info] >        parser: null,
+[info] >        maxHeadersCount: null,
+[info] >        _redirectable: [Writable],
+[info] >        [Symbol(kNeedDrain)]: false,
+[info] >        [Symbol(isCorked)]: false,
+[info] >        [Symbol(kOutHeaders)]: [Object: null prototype]
+[info] >      },
+[info] >      data: { success: false, error: [Object] }
+[info] >    }
+[info] >  }
+[info] >  (node:42627) UnhandledPromiseRejectionWarning: TypeError: Converting circular structure to JSON
+[info] >      --> starting at object with constructor 'ClientRequest'
+[info] >      |     property 'socket' -> object with constructor 'TLSSocket'
+[info] >      --- property '_httpMessage' closes the circle
+[info] >      at JSON.stringify (<anonymous>)
+[info] >      at stringify (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:1123:12)
+[info] >      at ServerResponse.json (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:260:14)
+[info] >      at ServerResponse.send (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:158:21)
+[info] >      at /Users/jaime/GitHub/front-end-challenge/functions/index.js:17:15
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[info] >  (node:42627) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+[info] >  (node:42627) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+[debug] [2020-02-28T02:55:00.904Z] File /Users/jaime/GitHub/front-end-challenge/functions/package.json changed, reloading triggers
+[debug] [2020-02-28T02:55:01.905Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:55:01.905Z] [worker-~diagnostic~-cf78f4e3-acd0-4122-9ef8-9f0cc90cf8bb]: FINISHING
+[debug] [2020-02-28T02:55:01.906Z] [worker-pool] Marking BUSY worker to finish (bitsoTicker)
+[debug] [2020-02-28T02:55:01.906Z] [worker-bitsoTicker-52356d4e-56d6-4008-98d1-d833c6b48663]: FINISHING
+[debug] [2020-02-28T02:55:01.909Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:55:01.910Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:55:01.910Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:55:01.910Z] [worker-~diagnostic~-57a849d5-084e-4fcc-9daf-7f1bb2da801f]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42630.sock
+[debug] [2020-02-28T02:55:01.910Z] [worker-~diagnostic~-57a849d5-084e-4fcc-9daf-7f1bb2da801f]: BUSY
+[debug] [2020-02-28T02:55:01.911Z] [worker-~diagnostic~-cf78f4e3-acd0-4122-9ef8-9f0cc90cf8bb]: exited
+[debug] [2020-02-28T02:55:01.911Z] [worker-~diagnostic~-cf78f4e3-acd0-4122-9ef8-9f0cc90cf8bb]: FINISHED
+[debug] [2020-02-28T02:55:02.115Z] [runtime-status] [42630] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:55:02.116Z] [runtime-status] [42630] Disabled runtime features: undefined
+[debug] [2020-02-28T02:55:02.117Z] [runtime-status] [42630] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:02.118Z] [runtime-status] [42630] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:02.247Z] [runtime-status] [42630] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:55:02.248Z] [runtime-status] [42630] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:55:02.275Z] [runtime-status] [42630] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:55:02.276Z] [runtime-status] [42630] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:02.276Z] [runtime-status] [42630] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:02.277Z] [runtime-status] [42630] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:02.305Z] [runtime-status] [42630] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:55:02.316Z] [worker-~diagnostic~-57a849d5-084e-4fcc-9daf-7f1bb2da801f]: IDLE
+[debug] [2020-02-28T02:55:28.430Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:55:29.432Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:55:29.433Z] [worker-~diagnostic~-57a849d5-084e-4fcc-9daf-7f1bb2da801f]: FINISHING
+[debug] [2020-02-28T02:55:29.433Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:55:29.437Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:55:29.437Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:55:29.438Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:55:29.438Z] [worker-~diagnostic~-5a982ac0-8d65-4f6e-9dfe-79647af460a6]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42654.sock
+[debug] [2020-02-28T02:55:29.438Z] [worker-~diagnostic~-5a982ac0-8d65-4f6e-9dfe-79647af460a6]: BUSY
+[debug] [2020-02-28T02:55:29.439Z] [worker-~diagnostic~-57a849d5-084e-4fcc-9daf-7f1bb2da801f]: exited
+[debug] [2020-02-28T02:55:29.439Z] [worker-~diagnostic~-57a849d5-084e-4fcc-9daf-7f1bb2da801f]: FINISHED
+[debug] [2020-02-28T02:55:29.612Z] [runtime-status] [42654] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:55:29.613Z] [runtime-status] [42654] Disabled runtime features: undefined
+[debug] [2020-02-28T02:55:29.614Z] [runtime-status] [42654] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:29.615Z] [runtime-status] [42654] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:29.720Z] [runtime-status] [42654] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:55:29.720Z] [runtime-status] [42654] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:55:29.744Z] [runtime-status] [42654] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:55:29.744Z] [runtime-status] [42654] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:29.745Z] [runtime-status] [42654] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:29.745Z] [runtime-status] [42654] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:29.770Z] [runtime-status] [42654] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[warn] ⚠  /Users/jaime/GitHub/front-end-challenge/functions/index.js:11
+      console.log(data.)
+                       ^
+
+SyntaxError: Unexpected token ')'
+    at Module._compile (internal/modules/cjs/loader.js:895:18)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:719:33
+    at Generator.next (<anonymous>)
+    at fulfilled (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:5:58)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[warn] ⚠  We were unable to load your functions code. (see above)
+[debug] [2020-02-28T02:55:29.788Z] [worker-~diagnostic~-5a982ac0-8d65-4f6e-9dfe-79647af460a6]: exited
+[debug] [2020-02-28T02:55:29.788Z] [worker-~diagnostic~-5a982ac0-8d65-4f6e-9dfe-79647af460a6]: FINISHED
+[debug] [2020-02-28T02:55:35.021Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:55:35.021Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:55:35.021Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker --> bitsoTicker
+[debug] [2020-02-28T02:55:35.021Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 0
+[debug] [2020-02-28T02:55:35.024Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:55:35.024Z] [worker-pool] Adding worker with key bitsoTicker, total=2
+[debug] [2020-02-28T02:55:35.024Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:55:35.024Z] [worker-bitsoTicker-209e1e6f-bafd-45a3-b7ee-bdff902bcfe4]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42655.sock
+[debug] [2020-02-28T02:55:35.024Z] [worker-bitsoTicker-209e1e6f-bafd-45a3-b7ee-bdff902bcfe4]: BUSY
+[debug] [2020-02-28T02:55:35.229Z] [runtime-status] [42655] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:55:35.230Z] [runtime-status] [42655] Disabled runtime features: undefined
+[debug] [2020-02-28T02:55:35.232Z] [runtime-status] [42655] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:35.232Z] [runtime-status] [42655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:35.370Z] [runtime-status] [42655] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:55:35.370Z] [runtime-status] [42655] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:55:35.397Z] [runtime-status] [42655] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:55:35.398Z] [runtime-status] [42655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:35.398Z] [runtime-status] [42655] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:35.399Z] [runtime-status] [42655] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:35.426Z] [runtime-status] [42655] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[warn] ⚠  /Users/jaime/GitHub/front-end-challenge/functions/index.js:11
+      console.log(data.)
+                       ^
+
+SyntaxError: Unexpected token ')'
+    at Module._compile (internal/modules/cjs/loader.js:895:18)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+    at Module.load (internal/modules/cjs/loader.js:815:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:719:33
+    at Generator.next (<anonymous>)
+    at fulfilled (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:5:58)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[warn] ⚠  We were unable to load your functions code. (see above)
+[debug] [2020-02-28T02:55:35.444Z] [worker-bitsoTicker-209e1e6f-bafd-45a3-b7ee-bdff902bcfe4]: exited
+[debug] [2020-02-28T02:55:35.444Z] [worker-bitsoTicker-209e1e6f-bafd-45a3-b7ee-bdff902bcfe4]: FINISHED
+[debug] [2020-02-28T02:55:43.294Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:55:44.295Z] [worker-pool] Cleaned up workers for bitsoTicker: 2 --> 1
+[debug] [2020-02-28T02:55:44.298Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:55:44.298Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-02-28T02:55:44.298Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:55:44.298Z] [worker-~diagnostic~-298f1760-5ba7-45df-af04-34cef0c3e70f]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42657.sock
+[debug] [2020-02-28T02:55:44.298Z] [worker-~diagnostic~-298f1760-5ba7-45df-af04-34cef0c3e70f]: BUSY
+[debug] [2020-02-28T02:55:44.472Z] [runtime-status] [42657] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:55:44.473Z] [runtime-status] [42657] Disabled runtime features: undefined
+[debug] [2020-02-28T02:55:44.474Z] [runtime-status] [42657] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:44.475Z] [runtime-status] [42657] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:44.586Z] [runtime-status] [42657] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:55:44.586Z] [runtime-status] [42657] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:55:44.609Z] [runtime-status] [42657] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:55:44.610Z] [runtime-status] [42657] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:44.610Z] [runtime-status] [42657] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:44.611Z] [runtime-status] [42657] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:44.635Z] [runtime-status] [42657] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:55:44.645Z] [worker-~diagnostic~-298f1760-5ba7-45df-af04-34cef0c3e70f]: IDLE
+[warn] ⚠  functions: Your function timed out after ~60s. To configure this timeout, see
+      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation.
+[info] >  /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671
+[info] >                  throw new Error("Function timed out.");
+[info] >                  ^
+[info] >  
+[info] >  Error: Function timed out.
+[info] >      at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671:23)
+[info] >      at listOnTimeout (internal/timers.js:531:17)
+[info] >      at processTimers (internal/timers.js:475:7)
+[debug] [2020-02-28T02:55:50.241Z] [worker-bitsoTicker-52356d4e-56d6-4008-98d1-d833c6b48663]: exited
+[debug] [2020-02-28T02:55:50.241Z] [worker-bitsoTicker-52356d4e-56d6-4008-98d1-d833c6b48663]: FINISHED
+[debug] [2020-02-28T02:55:50.241Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:55:54.865Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:55:54.865Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:55:54.866Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker --> bitsoTicker
+[debug] [2020-02-28T02:55:54.866Z] [worker-pool] Cleaned up workers for bitsoTicker: 1 --> 0
+[debug] [2020-02-28T02:55:54.869Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:55:54.869Z] [worker-pool] Adding worker with key bitsoTicker, total=1
+[debug] [2020-02-28T02:55:54.869Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:55:54.870Z] [worker-bitsoTicker-ebeb8d14-e736-4e3f-b7c4-5ad6c4c95316]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42658.sock
+[debug] [2020-02-28T02:55:54.870Z] [worker-bitsoTicker-ebeb8d14-e736-4e3f-b7c4-5ad6c4c95316]: BUSY
+[debug] [2020-02-28T02:55:55.069Z] [runtime-status] [42658] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:55:55.070Z] [runtime-status] [42658] Disabled runtime features: undefined
+[debug] [2020-02-28T02:55:55.072Z] [runtime-status] [42658] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:55.073Z] [runtime-status] [42658] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:55.206Z] [runtime-status] [42658] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:55:55.206Z] [runtime-status] [42658] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:55:55.234Z] [runtime-status] [42658] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:55:55.234Z] [runtime-status] [42658] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:55.235Z] [runtime-status] [42658] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:55:55.235Z] [runtime-status] [42658] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:55:55.262Z] [runtime-status] [42658] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:55:55.273Z] [runtime-status] [42658] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:55:55.273Z] [runtime-status] [42658] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:55:55.273Z] [runtime-status] [42658] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:55:55.276Z] [runtime-status] [42658] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42658.sock
+[debug] [2020-02-28T02:55:55.278Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:55:55.283Z] [runtime-status] [42658] Ephemeral server handling GET request
+[debug] [2020-02-28T02:55:55.298Z] [runtime-status] [42658] Ephemeral server survived.
+[info] >  Error: Request failed with status code 400
+[info] >      at createError (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/createError.js:16:15)
+[info] >      at settle (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/settle.js:18:12)
+[info] >      at IncomingMessage.handleStreamEnd (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/adapters/http.js:201:11)
+[info] >      at IncomingMessage.emit (events.js:215:7)
+[info] >      at endReadableNT (_stream_readable.js:1184:12)
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+[info] >    config: {
+[info] >      adapter: [Function: httpAdapter],
+[info] >      transformRequest: { '0': [Function: transformRequest] },
+[info] >      transformResponse: { '0': [Function: transformResponse] },
+[info] >      timeout: 0,
+[info] >      xsrfCookieName: 'XSRF-TOKEN',
+[info] >      xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >      maxContentLength: -1,
+[info] >      validateStatus: [Function: validateStatus],
+[info] >      headers: {
+[info] >        Accept: 'application/json, text/plain, */*',
+[info] >        'User-Agent': 'axios/0.18.0'
+[info] >      },
+[info] >      method: 'get',
+[info] >      url: 'https://api.bitso.com/v3/ticker/?book=undefined',
+[info] >      data: undefined
+[info] >    },
+[info] >    request: ClientRequest {
+[info] >      _events: [Object: null prototype] {
+[info] >        socket: [Function],
+[info] >        abort: [Function],
+[info] >        aborted: [Function],
+[info] >        error: [Function],
+[info] >        timeout: [Function],
+[info] >        prefinish: [Function: requestOnPrefinish]
+[info] >      },
+[info] >      _eventsCount: 6,
+[info] >      _maxListeners: undefined,
+[info] >      outputData: [],
+[info] >      outputSize: 0,
+[info] >      writable: true,
+[info] >      _last: true,
+[info] >      chunkedEncoding: false,
+[info] >      shouldKeepAlive: false,
+[info] >      useChunkedEncodingByDefault: false,
+[info] >      sendDate: false,
+[info] >      _removedConnection: false,
+[info] >      _removedContLen: false,
+[info] >      _removedTE: false,
+[info] >      _contentLength: 0,
+[info] >      _hasBody: true,
+[info] >      _trailer: '',
+[info] >      finished: true,
+[info] >      _headerSent: true,
+[info] >      socket: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      connection: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      _header: 'GET /v3/ticker/?book=undefined HTTP/1.1\r\n' +
+[info] >        'Accept: application/json, text/plain, */*\r\n' +
+[info] >        'User-Agent: axios/0.18.0\r\n' +
+[info] >        'Host: api.bitso.com\r\n' +
+[info] >        'Connection: close\r\n' +
+[info] >        '\r\n',
+[info] >      _onPendingData: [Function: noopPendingOutput],
+[info] >      agent: Agent {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 1,
+[info] >        _maxListeners: undefined,
+[info] >        defaultPort: 443,
+[info] >        protocol: 'https:',
+[info] >        options: [Object],
+[info] >        requests: {},
+[info] >        sockets: [Object],
+[info] >        freeSockets: {},
+[info] >        keepAliveMsecs: 1000,
+[info] >        keepAlive: false,
+[info] >        maxSockets: Infinity,
+[info] >        maxFreeSockets: 256,
+[info] >        maxCachedSessions: 100,
+[info] >        _sessionCache: [Object]
+[info] >      },
+[info] >      socketPath: undefined,
+[info] >      method: 'GET',
+[info] >      path: '/v3/ticker/?book=undefined',
+[info] >      _ended: true,
+[info] >      res: IncomingMessage {
+[info] >        _readableState: [ReadableState],
+[info] >        readable: false,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 3,
+[info] >        _maxListeners: undefined,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        httpVersionMajor: 1,
+[info] >        httpVersionMinor: 1,
+[info] >        httpVersion: '1.1',
+[info] >        complete: true,
+[info] >        headers: [Object],
+[info] >        rawHeaders: [Array],
+[info] >        trailers: {},
+[info] >        rawTrailers: [],
+[info] >        aborted: false,
+[info] >        upgrade: false,
+[info] >        url: '',
+[info] >        method: null,
+[info] >        statusCode: 400,
+[info] >        statusMessage: '',
+[info] >        client: [TLSSocket],
+[info] >        _consuming: false,
+[info] >        _dumped: false,
+[info] >        req: [Circular],
+[info] >        responseUrl: 'https://api.bitso.com/v3/ticker/?book=undefined'
+[info] >      },
+[info] >      aborted: false,
+[info] >      timeoutCb: null,
+[info] >      upgradeOrConnect: false,
+[info] >      parser: null,
+[info] >      maxHeadersCount: null,
+[info] >      _redirectable: Writable {
+[info] >        _writableState: [WritableState],
+[info] >        writable: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 2,
+[info] >        _maxListeners: undefined,
+[info] >        _options: [Object],
+[info] >        _redirectCount: 0,
+[info] >        _requestBodyLength: 0,
+[info] >        _requestBodyBuffers: [],
+[info] >        _onNativeResponse: [Function],
+[info] >        _currentRequest: [Circular],
+[info] >        _currentUrl: 'https://api.bitso.com/v3/ticker/?book=undefined'
+[info] >      },
+[info] >      [Symbol(kNeedDrain)]: false,
+[info] >      [Symbol(isCorked)]: false,
+[info] >      [Symbol(kOutHeaders)]: [Object: null prototype] {
+[info] >        accept: [Array],
+[info] >        'user-agent': [Array],
+[info] >        host: [Array]
+[info] >      }
+[info] >    },
+[info] >    response: {
+[info] >      status: 400,
+[info] >      statusText: '',
+[info] >      headers: {
+[info] >        date: 'Fri, 28 Feb 2020 02:55:55 GMT',
+[info] >        'content-type': 'application/json;charset=UTF-8',
+[info] >        'content-length': '81',
+[info] >        connection: 'close',
+[info] >        'set-cookie': [Array],
+[info] >        'x-content-type-options': 'nosniff',
+[info] >        'x-frame-options': 'DENY',
+[info] >        'x-xss-protection': '1; mode=block',
+[info] >        'cf-cache-status': 'DYNAMIC',
+[info] >        'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+[info] >        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+[info] >        server: 'cloudflare',
+[info] >        'cf-ray': '56bf1f532b35ecbf-DFW'
+[info] >      },
+[info] >      config: {
+[info] >        adapter: [Function: httpAdapter],
+[info] >        transformRequest: [Object],
+[info] >        transformResponse: [Object],
+[info] >        timeout: 0,
+[info] >        xsrfCookieName: 'XSRF-TOKEN',
+[info] >        xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >        maxContentLength: -1,
+[info] >        validateStatus: [Function: validateStatus],
+[info] >        headers: [Object],
+[info] >        method: 'get',
+[info] >        url: 'https://api.bitso.com/v3/ticker/?book=undefined',
+[info] >        data: undefined
+[info] >      },
+[info] >      request: ClientRequest {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 6,
+[info] >        _maxListeners: undefined,
+[info] >        outputData: [],
+[info] >        outputSize: 0,
+[info] >        writable: true,
+[info] >        _last: true,
+[info] >        chunkedEncoding: false,
+[info] >        shouldKeepAlive: false,
+[info] >        useChunkedEncodingByDefault: false,
+[info] >        sendDate: false,
+[info] >        _removedConnection: false,
+[info] >        _removedContLen: false,
+[info] >        _removedTE: false,
+[info] >        _contentLength: 0,
+[info] >        _hasBody: true,
+[info] >        _trailer: '',
+[info] >        finished: true,
+[info] >        _headerSent: true,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        _header: 'GET /v3/ticker/?book=undefined HTTP/1.1\r\n' +
+[info] >          'Accept: application/json, text/plain, */*\r\n' +
+[info] >          'User-Agent: axios/0.18.0\r\n' +
+[info] >          'Host: api.bitso.com\r\n' +
+[info] >          'Connection: close\r\n' +
+[info] >          '\r\n',
+[info] >        _onPendingData: [Function: noopPendingOutput],
+[info] >        agent: [Agent],
+[info] >        socketPath: undefined,
+[info] >        method: 'GET',
+[info] >        path: '/v3/ticker/?book=undefined',
+[info] >        _ended: true,
+[info] >        res: [IncomingMessage],
+[info] >        aborted: false,
+[info] >        timeoutCb: null,
+[info] >        upgradeOrConnect: false,
+[info] >        parser: null,
+[info] >        maxHeadersCount: null,
+[info] >        _redirectable: [Writable],
+[info] >        [Symbol(kNeedDrain)]: false,
+[info] >        [Symbol(isCorked)]: false,
+[info] >        [Symbol(kOutHeaders)]: [Object: null prototype]
+[info] >      },
+[info] >      data: { success: false, error: [Object] }
+[info] >    }
+[info] >  }
+[info] >  (node:42658) UnhandledPromiseRejectionWarning: TypeError: Converting circular structure to JSON
+[info] >      --> starting at object with constructor 'ClientRequest'
+[info] >      |     property 'socket' -> object with constructor 'TLSSocket'
+[info] >      --- property '_httpMessage' closes the circle
+[info] >      at JSON.stringify (<anonymous>)
+[info] >      at stringify (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:1123:12)
+[info] >      at ServerResponse.json (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:260:14)
+[info] >      at ServerResponse.send (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:158:21)
+[info] >      at /Users/jaime/GitHub/front-end-challenge/functions/index.js:17:15
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[info] >  (node:42658) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+[info] >  (node:42658) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+[debug] [2020-02-28T02:56:13.751Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:56:14.757Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:56:14.757Z] [worker-~diagnostic~-298f1760-5ba7-45df-af04-34cef0c3e70f]: FINISHING
+[debug] [2020-02-28T02:56:14.757Z] [worker-pool] Marking BUSY worker to finish (bitsoTicker)
+[debug] [2020-02-28T02:56:14.757Z] [worker-bitsoTicker-ebeb8d14-e736-4e3f-b7c4-5ad6c4c95316]: FINISHING
+[debug] [2020-02-28T02:56:14.760Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:56:14.760Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:56:14.760Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:56:14.760Z] [worker-~diagnostic~-80a39f91-aec3-44ba-aaca-6ceb9c2b2db9]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42660.sock
+[debug] [2020-02-28T02:56:14.760Z] [worker-~diagnostic~-80a39f91-aec3-44ba-aaca-6ceb9c2b2db9]: BUSY
+[debug] [2020-02-28T02:56:14.761Z] [worker-~diagnostic~-298f1760-5ba7-45df-af04-34cef0c3e70f]: exited
+[debug] [2020-02-28T02:56:14.761Z] [worker-~diagnostic~-298f1760-5ba7-45df-af04-34cef0c3e70f]: FINISHED
+[debug] [2020-02-28T02:56:14.962Z] [runtime-status] [42660] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:56:14.963Z] [runtime-status] [42660] Disabled runtime features: undefined
+[debug] [2020-02-28T02:56:14.965Z] [runtime-status] [42660] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:56:14.966Z] [runtime-status] [42660] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:56:15.095Z] [runtime-status] [42660] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:56:15.095Z] [runtime-status] [42660] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:56:15.123Z] [runtime-status] [42660] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:56:15.124Z] [runtime-status] [42660] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:56:15.125Z] [runtime-status] [42660] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:56:15.125Z] [runtime-status] [42660] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:56:15.153Z] [runtime-status] [42660] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:56:15.164Z] [worker-~diagnostic~-80a39f91-aec3-44ba-aaca-6ceb9c2b2db9]: IDLE
+[debug] [2020-02-28T02:56:16.595Z] [work-queue] {"queueLength":1,"workRunningCount":2}
+[debug] [2020-02-28T02:56:16.596Z] [work-queue] {"queueLength":0,"workRunningCount":3}
+[debug] [2020-02-28T02:56:16.596Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker --> bitsoTicker
+[debug] [2020-02-28T02:56:16.596Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:56:16.599Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:56:16.599Z] [worker-pool] Adding worker with key bitsoTicker, total=2
+[debug] [2020-02-28T02:56:16.599Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:56:16.599Z] [worker-bitsoTicker-8a1f080a-af38-406f-8cf3-b20b38f8b9bb]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42661.sock
+[debug] [2020-02-28T02:56:16.600Z] [worker-bitsoTicker-8a1f080a-af38-406f-8cf3-b20b38f8b9bb]: BUSY
+[debug] [2020-02-28T02:56:16.806Z] [runtime-status] [42661] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:56:16.807Z] [runtime-status] [42661] Disabled runtime features: undefined
+[debug] [2020-02-28T02:56:16.809Z] [runtime-status] [42661] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:56:16.810Z] [runtime-status] [42661] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:56:16.951Z] [runtime-status] [42661] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:56:16.951Z] [runtime-status] [42661] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:56:16.979Z] [runtime-status] [42661] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:56:16.979Z] [runtime-status] [42661] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:56:16.980Z] [runtime-status] [42661] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:56:16.981Z] [runtime-status] [42661] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:56:17.008Z] [runtime-status] [42661] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:56:17.019Z] [runtime-status] [42661] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:56:17.019Z] [runtime-status] [42661] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:56:17.019Z] [runtime-status] [42661] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:56:17.022Z] [runtime-status] [42661] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42661.sock
+[debug] [2020-02-28T02:56:17.024Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:56:17.030Z] [runtime-status] [42661] Ephemeral server handling GET request
+[debug] [2020-02-28T02:56:17.045Z] [runtime-status] [42661] Ephemeral server survived.
+[info] >  Error: Request failed with status code 400
+[info] >      at createError (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/createError.js:16:15)
+[info] >      at settle (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/settle.js:18:12)
+[info] >      at IncomingMessage.handleStreamEnd (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/adapters/http.js:201:11)
+[info] >      at IncomingMessage.emit (events.js:215:7)
+[info] >      at endReadableNT (_stream_readable.js:1184:12)
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+[info] >    config: {
+[info] >      adapter: [Function: httpAdapter],
+[info] >      transformRequest: { '0': [Function: transformRequest] },
+[info] >      transformResponse: { '0': [Function: transformResponse] },
+[info] >      timeout: 0,
+[info] >      xsrfCookieName: 'XSRF-TOKEN',
+[info] >      xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >      maxContentLength: -1,
+[info] >      validateStatus: [Function: validateStatus],
+[info] >      headers: {
+[info] >        Accept: 'application/json, text/plain, */*',
+[info] >        'User-Agent': 'axios/0.18.0'
+[info] >      },
+[info] >      method: 'get',
+[info] >      url: 'https://api.bitso.com/v3/ticker/?book=undefined',
+[info] >      data: undefined
+[info] >    },
+[info] >    request: ClientRequest {
+[info] >      _events: [Object: null prototype] {
+[info] >        socket: [Function],
+[info] >        abort: [Function],
+[info] >        aborted: [Function],
+[info] >        error: [Function],
+[info] >        timeout: [Function],
+[info] >        prefinish: [Function: requestOnPrefinish]
+[info] >      },
+[info] >      _eventsCount: 6,
+[info] >      _maxListeners: undefined,
+[info] >      outputData: [],
+[info] >      outputSize: 0,
+[info] >      writable: true,
+[info] >      _last: true,
+[info] >      chunkedEncoding: false,
+[info] >      shouldKeepAlive: false,
+[info] >      useChunkedEncodingByDefault: false,
+[info] >      sendDate: false,
+[info] >      _removedConnection: false,
+[info] >      _removedContLen: false,
+[info] >      _removedTE: false,
+[info] >      _contentLength: 0,
+[info] >      _hasBody: true,
+[info] >      _trailer: '',
+[info] >      finished: true,
+[info] >      _headerSent: true,
+[info] >      socket: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      connection: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      _header: 'GET /v3/ticker/?book=undefined HTTP/1.1\r\n' +
+[info] >        'Accept: application/json, text/plain, */*\r\n' +
+[info] >        'User-Agent: axios/0.18.0\r\n' +
+[info] >        'Host: api.bitso.com\r\n' +
+[info] >        'Connection: close\r\n' +
+[info] >        '\r\n',
+[info] >      _onPendingData: [Function: noopPendingOutput],
+[info] >      agent: Agent {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 1,
+[info] >        _maxListeners: undefined,
+[info] >        defaultPort: 443,
+[info] >        protocol: 'https:',
+[info] >        options: [Object],
+[info] >        requests: {},
+[info] >        sockets: [Object],
+[info] >        freeSockets: {},
+[info] >        keepAliveMsecs: 1000,
+[info] >        keepAlive: false,
+[info] >        maxSockets: Infinity,
+[info] >        maxFreeSockets: 256,
+[info] >        maxCachedSessions: 100,
+[info] >        _sessionCache: [Object]
+[info] >      },
+[info] >      socketPath: undefined,
+[info] >      method: 'GET',
+[info] >      path: '/v3/ticker/?book=undefined',
+[info] >      _ended: true,
+[info] >      res: IncomingMessage {
+[info] >        _readableState: [ReadableState],
+[info] >        readable: false,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 3,
+[info] >        _maxListeners: undefined,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        httpVersionMajor: 1,
+[info] >        httpVersionMinor: 1,
+[info] >        httpVersion: '1.1',
+[info] >        complete: true,
+[info] >        headers: [Object],
+[info] >        rawHeaders: [Array],
+[info] >        trailers: {},
+[info] >        rawTrailers: [],
+[info] >        aborted: false,
+[info] >        upgrade: false,
+[info] >        url: '',
+[info] >        method: null,
+[info] >        statusCode: 400,
+[info] >        statusMessage: '',
+[info] >        client: [TLSSocket],
+[info] >        _consuming: false,
+[info] >        _dumped: false,
+[info] >        req: [Circular],
+[info] >        responseUrl: 'https://api.bitso.com/v3/ticker/?book=undefined'
+[info] >      },
+[info] >      aborted: false,
+[info] >      timeoutCb: null,
+[info] >      upgradeOrConnect: false,
+[info] >      parser: null,
+[info] >      maxHeadersCount: null,
+[info] >      _redirectable: Writable {
+[info] >        _writableState: [WritableState],
+[info] >        writable: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 2,
+[info] >        _maxListeners: undefined,
+[info] >        _options: [Object],
+[info] >        _redirectCount: 0,
+[info] >        _requestBodyLength: 0,
+[info] >        _requestBodyBuffers: [],
+[info] >        _onNativeResponse: [Function],
+[info] >        _currentRequest: [Circular],
+[info] >        _currentUrl: 'https://api.bitso.com/v3/ticker/?book=undefined'
+[info] >      },
+[info] >      [Symbol(kNeedDrain)]: false,
+[info] >      [Symbol(isCorked)]: false,
+[info] >      [Symbol(kOutHeaders)]: [Object: null prototype] {
+[info] >        accept: [Array],
+[info] >        'user-agent': [Array],
+[info] >        host: [Array]
+[info] >      }
+[info] >    },
+[info] >    response: {
+[info] >      status: 400,
+[info] >      statusText: '',
+[info] >      headers: {
+[info] >        date: 'Fri, 28 Feb 2020 02:56:17 GMT',
+[info] >        'content-type': 'application/json;charset=UTF-8',
+[info] >        'content-length': '81',
+[info] >        connection: 'close',
+[info] >        'set-cookie': [Array],
+[info] >        'x-content-type-options': 'nosniff',
+[info] >        'x-frame-options': 'DENY',
+[info] >        'x-xss-protection': '1; mode=block',
+[info] >        'cf-cache-status': 'DYNAMIC',
+[info] >        'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+[info] >        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+[info] >        server: 'cloudflare',
+[info] >        'cf-ray': '56bf1fdafa3deca2-DFW'
+[info] >      },
+[info] >      config: {
+[info] >        adapter: [Function: httpAdapter],
+[info] >        transformRequest: [Object],
+[info] >        transformResponse: [Object],
+[info] >        timeout: 0,
+[info] >        xsrfCookieName: 'XSRF-TOKEN',
+[info] >        xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >        maxContentLength: -1,
+[info] >        validateStatus: [Function: validateStatus],
+[info] >        headers: [Object],
+[info] >        method: 'get',
+[info] >        url: 'https://api.bitso.com/v3/ticker/?book=undefined',
+[info] >        data: undefined
+[info] >      },
+[info] >      request: ClientRequest {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 6,
+[info] >        _maxListeners: undefined,
+[info] >        outputData: [],
+[info] >        outputSize: 0,
+[info] >        writable: true,
+[info] >        _last: true,
+[info] >        chunkedEncoding: false,
+[info] >        shouldKeepAlive: false,
+[info] >        useChunkedEncodingByDefault: false,
+[info] >        sendDate: false,
+[info] >        _removedConnection: false,
+[info] >        _removedContLen: false,
+[info] >        _removedTE: false,
+[info] >        _contentLength: 0,
+[info] >        _hasBody: true,
+[info] >        _trailer: '',
+[info] >        finished: true,
+[info] >        _headerSent: true,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        _header: 'GET /v3/ticker/?book=undefined HTTP/1.1\r\n' +
+[info] >          'Accept: application/json, text/plain, */*\r\n' +
+[info] >          'User-Agent: axios/0.18.0\r\n' +
+[info] >          'Host: api.bitso.com\r\n' +
+[info] >          'Connection: close\r\n' +
+[info] >          '\r\n',
+[info] >        _onPendingData: [Function: noopPendingOutput],
+[info] >        agent: [Agent],
+[info] >        socketPath: undefined,
+[info] >        method: 'GET',
+[info] >        path: '/v3/ticker/?book=undefined',
+[info] >        _ended: true,
+[info] >        res: [IncomingMessage],
+[info] >        aborted: false,
+[info] >        timeoutCb: null,
+[info] >        upgradeOrConnect: false,
+[info] >        parser: null,
+[info] >        maxHeadersCount: null,
+[info] >        _redirectable: [Writable],
+[info] >        [Symbol(kNeedDrain)]: false,
+[info] >        [Symbol(isCorked)]: false,
+[info] >        [Symbol(kOutHeaders)]: [Object: null prototype]
+[info] >      },
+[info] >      data: { success: false, error: [Object] }
+[info] >    }
+[info] >  }
+[info] >  (node:42661) UnhandledPromiseRejectionWarning: TypeError: Converting circular structure to JSON
+[info] >      --> starting at object with constructor 'ClientRequest'
+[info] >      |     property 'socket' -> object with constructor 'TLSSocket'
+[info] >      --- property '_httpMessage' closes the circle
+[info] >      at JSON.stringify (<anonymous>)
+[info] >      at stringify (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:1123:12)
+[info] >      at ServerResponse.json (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:260:14)
+[info] >      at ServerResponse.send (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:158:21)
+[info] >      at /Users/jaime/GitHub/front-end-challenge/functions/index.js:18:15
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[info] >  (node:42661) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+[info] >  (node:42661) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+[warn] ⚠  functions: Your function timed out after ~60s. To configure this timeout, see
+      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation.
+[info] >  /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671
+[info] >                  throw new Error("Function timed out.");
+[info] >                  ^
+[info] >  
+[info] >  Error: Function timed out.
+[info] >      at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671:23)
+[info] >      at listOnTimeout (internal/timers.js:531:17)
+[info] >      at processTimers (internal/timers.js:475:7)
+[debug] [2020-02-28T02:56:55.285Z] [worker-bitsoTicker-ebeb8d14-e736-4e3f-b7c4-5ad6c4c95316]: exited
+[debug] [2020-02-28T02:56:55.285Z] [worker-bitsoTicker-ebeb8d14-e736-4e3f-b7c4-5ad6c4c95316]: FINISHED
+[debug] [2020-02-28T02:56:55.285Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:57:05.047Z] [work-queue] {"queueLength":1,"workRunningCount":2}
+[debug] [2020-02-28T02:57:05.047Z] [work-queue] {"queueLength":0,"workRunningCount":3}
+[debug] [2020-02-28T02:57:05.047Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:57:05.047Z] [worker-pool] Cleaned up workers for bitsoTicker: 2 --> 1
+[debug] [2020-02-28T02:57:05.051Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:57:05.051Z] [worker-pool] Adding worker with key bitsoTicker, total=2
+[debug] [2020-02-28T02:57:05.051Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:57:05.051Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:05.051Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: BUSY
+[debug] [2020-02-28T02:57:05.247Z] [runtime-status] [42664] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:57:05.248Z] [runtime-status] [42664] Disabled runtime features: undefined
+[debug] [2020-02-28T02:57:05.249Z] [runtime-status] [42664] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:05.250Z] [runtime-status] [42664] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:05.376Z] [runtime-status] [42664] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:57:05.377Z] [runtime-status] [42664] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:57:05.404Z] [runtime-status] [42664] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:57:05.405Z] [runtime-status] [42664] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:05.406Z] [runtime-status] [42664] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:05.406Z] [runtime-status] [42664] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:05.438Z] [runtime-status] [42664] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:57:05.451Z] [runtime-status] [42664] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:57:05.451Z] [runtime-status] [42664] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:57:05.451Z] [runtime-status] [42664] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:57:05.455Z] [runtime-status] [42664] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:05.457Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:57:05.464Z] [runtime-status] [42664] Ephemeral server handling GET request
+[debug] [2020-02-28T02:57:05.483Z] [runtime-status] [42664] Ephemeral server survived.
+[info] >  ------------
+[info] >  undefined
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:57:05.655Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: IDLE
+[debug] [2020-02-28T02:57:05.655Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:57:08.120Z] [work-queue] {"queueLength":1,"workRunningCount":2}
+[debug] [2020-02-28T02:57:08.120Z] [work-queue] {"queueLength":0,"workRunningCount":3}
+[debug] [2020-02-28T02:57:08.121Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:57:08.121Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:57:08.121Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:08.121Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: BUSY
+[debug] [2020-02-28T02:57:08.121Z] [runtime-status] [42664] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:57:08.121Z] [runtime-status] [42664] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:57:08.121Z] [runtime-status] [42664] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:57:08.122Z] [runtime-status] [42664] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:08.123Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:57:08.125Z] [runtime-status] [42664] Ephemeral server handling GET request
+[debug] [2020-02-28T02:57:08.127Z] [runtime-status] [42664] Ephemeral server survived.
+[info] >  ------------
+[info] >  undefined
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:57:08.395Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: IDLE
+[debug] [2020-02-28T02:57:08.395Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:57:13.853Z] [work-queue] {"queueLength":1,"workRunningCount":2}
+[debug] [2020-02-28T02:57:13.853Z] [work-queue] {"queueLength":0,"workRunningCount":3}
+[debug] [2020-02-28T02:57:13.853Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:57:13.853Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:57:13.853Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:13.853Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: BUSY
+[debug] [2020-02-28T02:57:13.854Z] [runtime-status] [42664] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:57:13.854Z] [runtime-status] [42664] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:57:13.854Z] [runtime-status] [42664] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:57:13.854Z] [runtime-status] [42664] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:13.855Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:57:13.856Z] [runtime-status] [42664] Ephemeral server handling GET request
+[debug] [2020-02-28T02:57:13.858Z] [runtime-status] [42664] Ephemeral server survived.
+[info] >  ------------
+[info] >  undefined
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:57:14.011Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: IDLE
+[debug] [2020-02-28T02:57:14.012Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[warn] ⚠  functions: Your function timed out after ~60s. To configure this timeout, see
+      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation.
+[info] >  /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671
+[info] >                  throw new Error("Function timed out.");
+[info] >                  ^
+[info] >  
+[info] >  Error: Function timed out.
+[info] >      at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671:23)
+[info] >      at listOnTimeout (internal/timers.js:531:17)
+[info] >      at processTimers (internal/timers.js:475:7)
+[debug] [2020-02-28T02:57:17.033Z] [worker-bitsoTicker-8a1f080a-af38-406f-8cf3-b20b38f8b9bb]: exited
+[debug] [2020-02-28T02:57:17.033Z] [worker-bitsoTicker-8a1f080a-af38-406f-8cf3-b20b38f8b9bb]: FINISHED
+[debug] [2020-02-28T02:57:17.033Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:57:24.702Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:57:24.703Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:57:24.703Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:57:24.703Z] [worker-pool] Cleaned up workers for bitsoTicker: 2 --> 1
+[debug] [2020-02-28T02:57:24.703Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:57:24.703Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:24.703Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: BUSY
+[debug] [2020-02-28T02:57:24.703Z] [runtime-status] [42664] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:57:24.703Z] [runtime-status] [42664] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:57:24.704Z] [runtime-status] [42664] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:57:24.705Z] [runtime-status] [42664] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42664.sock
+[debug] [2020-02-28T02:57:24.706Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:57:24.708Z] [runtime-status] [42664] Ephemeral server handling GET request
+[debug] [2020-02-28T02:57:24.710Z] [runtime-status] [42664] Ephemeral server survived.
+[info] >  ------------
+[info] >  undefined
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:57:24.886Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: IDLE
+[debug] [2020-02-28T02:57:24.886Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:57:36.613Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:57:37.615Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:57:37.615Z] [worker-~diagnostic~-80a39f91-aec3-44ba-aaca-6ceb9c2b2db9]: FINISHING
+[debug] [2020-02-28T02:57:37.615Z] [worker-pool] Shutting down IDLE worker (bitsoTicker)
+[debug] [2020-02-28T02:57:37.615Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: FINISHING
+[debug] [2020-02-28T02:57:37.619Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:57:37.619Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:57:37.619Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:57:37.619Z] [worker-~diagnostic~-cda88663-b3d6-444a-b366-e121063d6820]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42666.sock
+[debug] [2020-02-28T02:57:37.619Z] [worker-~diagnostic~-cda88663-b3d6-444a-b366-e121063d6820]: BUSY
+[debug] [2020-02-28T02:57:37.621Z] [worker-~diagnostic~-80a39f91-aec3-44ba-aaca-6ceb9c2b2db9]: exited
+[debug] [2020-02-28T02:57:37.621Z] [worker-~diagnostic~-80a39f91-aec3-44ba-aaca-6ceb9c2b2db9]: FINISHED
+[debug] [2020-02-28T02:57:37.621Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: exited
+[debug] [2020-02-28T02:57:37.621Z] [worker-bitsoTicker-84d27148-3aa6-4d4f-bb2e-0059cfd5ece4]: FINISHED
+[debug] [2020-02-28T02:57:37.800Z] [runtime-status] [42666] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:57:37.801Z] [runtime-status] [42666] Disabled runtime features: undefined
+[debug] [2020-02-28T02:57:37.803Z] [runtime-status] [42666] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:37.804Z] [runtime-status] [42666] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:37.909Z] [runtime-status] [42666] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:57:37.909Z] [runtime-status] [42666] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:57:37.935Z] [runtime-status] [42666] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:57:37.935Z] [runtime-status] [42666] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:37.936Z] [runtime-status] [42666] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:37.936Z] [runtime-status] [42666] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:37.959Z] [runtime-status] [42666] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:57:37.968Z] [worker-~diagnostic~-cda88663-b3d6-444a-b366-e121063d6820]: IDLE
+[debug] [2020-02-28T02:57:38.806Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:57:39.806Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:57:39.806Z] [worker-~diagnostic~-cda88663-b3d6-444a-b366-e121063d6820]: FINISHING
+[debug] [2020-02-28T02:57:39.806Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:57:39.806Z] [worker-pool] Cleaned up workers for bitsoTicker: 1 --> 0
+[debug] [2020-02-28T02:57:39.810Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:57:39.811Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:57:39.811Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:57:39.811Z] [worker-~diagnostic~-91f6f45e-1101-4a2a-987b-c828c4a131d8]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42668.sock
+[debug] [2020-02-28T02:57:39.811Z] [worker-~diagnostic~-91f6f45e-1101-4a2a-987b-c828c4a131d8]: BUSY
+[debug] [2020-02-28T02:57:39.812Z] [worker-~diagnostic~-cda88663-b3d6-444a-b366-e121063d6820]: exited
+[debug] [2020-02-28T02:57:39.812Z] [worker-~diagnostic~-cda88663-b3d6-444a-b366-e121063d6820]: FINISHED
+[debug] [2020-02-28T02:57:39.986Z] [runtime-status] [42668] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:57:39.987Z] [runtime-status] [42668] Disabled runtime features: undefined
+[debug] [2020-02-28T02:57:39.989Z] [runtime-status] [42668] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:39.989Z] [runtime-status] [42668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:40.100Z] [runtime-status] [42668] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:57:40.100Z] [runtime-status] [42668] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:57:40.126Z] [runtime-status] [42668] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:57:40.127Z] [runtime-status] [42668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:40.127Z] [runtime-status] [42668] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:40.128Z] [runtime-status] [42668] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:40.154Z] [runtime-status] [42668] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:57:40.165Z] [worker-~diagnostic~-91f6f45e-1101-4a2a-987b-c828c4a131d8]: IDLE
+[debug] [2020-02-28T02:57:41.260Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:57:41.261Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:57:41.261Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:57:41.261Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:57:41.264Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:57:41.265Z] [worker-pool] Adding worker with key bitsoTicker, total=1
+[debug] [2020-02-28T02:57:41.265Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:57:41.265Z] [worker-bitsoTicker-3aabff6a-02f9-4cd0-932a-dd7c83d9a8bd]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42669.sock
+[debug] [2020-02-28T02:57:41.265Z] [worker-bitsoTicker-3aabff6a-02f9-4cd0-932a-dd7c83d9a8bd]: BUSY
+[debug] [2020-02-28T02:57:41.459Z] [runtime-status] [42669] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:57:41.460Z] [runtime-status] [42669] Disabled runtime features: undefined
+[debug] [2020-02-28T02:57:41.461Z] [runtime-status] [42669] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:41.462Z] [runtime-status] [42669] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:41.589Z] [runtime-status] [42669] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:57:41.589Z] [runtime-status] [42669] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:57:41.616Z] [runtime-status] [42669] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:57:41.617Z] [runtime-status] [42669] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:41.617Z] [runtime-status] [42669] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:57:41.618Z] [runtime-status] [42669] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:57:41.645Z] [runtime-status] [42669] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:57:41.656Z] [runtime-status] [42669] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:57:41.656Z] [runtime-status] [42669] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:57:41.656Z] [runtime-status] [42669] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:57:41.659Z] [runtime-status] [42669] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42669.sock
+[debug] [2020-02-28T02:57:41.661Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:57:41.666Z] [runtime-status] [42669] Ephemeral server handling GET request
+[info] >  btc_mxn
+[debug] [2020-02-28T02:57:41.682Z] [runtime-status] [42669] Ephemeral server survived.
+[info] >  ------------
+[info] >  undefined
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:57:41.865Z] [worker-bitsoTicker-3aabff6a-02f9-4cd0-932a-dd7c83d9a8bd]: IDLE
+[debug] [2020-02-28T02:57:41.865Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:58:02.642Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:58:03.642Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:58:03.642Z] [worker-~diagnostic~-91f6f45e-1101-4a2a-987b-c828c4a131d8]: FINISHING
+[debug] [2020-02-28T02:58:03.642Z] [worker-pool] Shutting down IDLE worker (bitsoTicker)
+[debug] [2020-02-28T02:58:03.643Z] [worker-bitsoTicker-3aabff6a-02f9-4cd0-932a-dd7c83d9a8bd]: FINISHING
+[debug] [2020-02-28T02:58:03.647Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:58:03.647Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:58:03.647Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:58:03.647Z] [worker-~diagnostic~-c6754461-1c1b-4584-9289-9ca32c07ec03]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42671.sock
+[debug] [2020-02-28T02:58:03.647Z] [worker-~diagnostic~-c6754461-1c1b-4584-9289-9ca32c07ec03]: BUSY
+[debug] [2020-02-28T02:58:03.648Z] [worker-~diagnostic~-91f6f45e-1101-4a2a-987b-c828c4a131d8]: exited
+[debug] [2020-02-28T02:58:03.648Z] [worker-~diagnostic~-91f6f45e-1101-4a2a-987b-c828c4a131d8]: FINISHED
+[debug] [2020-02-28T02:58:03.649Z] [worker-bitsoTicker-3aabff6a-02f9-4cd0-932a-dd7c83d9a8bd]: exited
+[debug] [2020-02-28T02:58:03.649Z] [worker-bitsoTicker-3aabff6a-02f9-4cd0-932a-dd7c83d9a8bd]: FINISHED
+[debug] [2020-02-28T02:58:03.825Z] [runtime-status] [42671] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:58:03.826Z] [runtime-status] [42671] Disabled runtime features: undefined
+[debug] [2020-02-28T02:58:03.827Z] [runtime-status] [42671] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:03.828Z] [runtime-status] [42671] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:03.944Z] [runtime-status] [42671] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:58:03.944Z] [runtime-status] [42671] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:58:03.968Z] [runtime-status] [42671] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:58:03.968Z] [runtime-status] [42671] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:03.969Z] [runtime-status] [42671] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:03.969Z] [runtime-status] [42671] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:03.992Z] [runtime-status] [42671] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:58:04.001Z] [worker-~diagnostic~-c6754461-1c1b-4584-9289-9ca32c07ec03]: IDLE
+[debug] [2020-02-28T02:58:16.496Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:58:16.496Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:58:16.496Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:58:16.496Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:58:16.496Z] [worker-pool] Cleaned up workers for bitsoTicker: 1 --> 0
+[debug] [2020-02-28T02:58:16.499Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:58:16.499Z] [worker-pool] Adding worker with key bitsoTicker, total=1
+[debug] [2020-02-28T02:58:16.500Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:58:16.500Z] [worker-bitsoTicker-68f9233b-554f-4367-84ff-c55112820ad3]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42672.sock
+[debug] [2020-02-28T02:58:16.500Z] [worker-bitsoTicker-68f9233b-554f-4367-84ff-c55112820ad3]: BUSY
+[debug] [2020-02-28T02:58:16.711Z] [runtime-status] [42672] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:58:16.712Z] [runtime-status] [42672] Disabled runtime features: undefined
+[debug] [2020-02-28T02:58:16.714Z] [runtime-status] [42672] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:16.715Z] [runtime-status] [42672] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:16.871Z] [runtime-status] [42672] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:58:16.871Z] [runtime-status] [42672] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:58:16.898Z] [runtime-status] [42672] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:58:16.898Z] [runtime-status] [42672] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:16.899Z] [runtime-status] [42672] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:16.900Z] [runtime-status] [42672] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:16.927Z] [runtime-status] [42672] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:58:16.937Z] [runtime-status] [42672] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:58:16.938Z] [runtime-status] [42672] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:58:16.938Z] [runtime-status] [42672] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:58:16.940Z] [runtime-status] [42672] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42672.sock
+[debug] [2020-02-28T02:58:16.942Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:58:16.948Z] [runtime-status] [42672] Ephemeral server handling GET request
+[info] >  btc_mxn
+[debug] [2020-02-28T02:58:16.964Z] [runtime-status] [42672] Ephemeral server survived.
+[info] >  ------------
+[info] >  {
+[info] >    status: 200,
+[info] >    statusText: '',
+[info] >    headers: {
+[info] >      date: 'Fri, 28 Feb 2020 02:58:17 GMT',
+[info] >      'content-type': 'application/json;charset=UTF-8',
+[info] >      'content-length': '251',
+[info] >      connection: 'close',
+[info] >      'set-cookie': [
+[info] >        '__cfduid=d5d70b81f43c38d0380b3c5cbdbc27bb91582858697; expires=Sun, 29-Mar-20 02:58:17 GMT; path=/; domain=.bitso.com; HttpOnly; SameSite=Lax; Secure'
+[info] >      ],
+[info] >      'x-content-type-options': 'nosniff',
+[info] >      'x-frame-options': 'DENY',
+[info] >      'x-xss-protection': '1; mode=block',
+[info] >      'cf-cache-status': 'DYNAMIC',
+[info] >      'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+[info] >      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+[info] >      server: 'cloudflare',
+[info] >      'cf-ray': '56bf22c88feac812-DFW'
+[info] >    },
+[info] >    config: {
+[info] >      adapter: [Function: httpAdapter],
+[info] >      transformRequest: { '0': [Function: transformRequest] },
+[info] >      transformResponse: { '0': [Function: transformResponse] },
+[info] >      timeout: 0,
+[info] >      xsrfCookieName: 'XSRF-TOKEN',
+[info] >      xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >      maxContentLength: -1,
+[info] >      validateStatus: [Function: validateStatus],
+[info] >      headers: {
+[info] >        Accept: 'application/json, text/plain, */*',
+[info] >        'User-Agent': 'axios/0.18.0'
+[info] >      },
+[info] >      method: 'get',
+[info] >      url: 'https://api.bitso.com/v3/ticker/?book=btc_mxn',
+[info] >      data: undefined
+[info] >    },
+[info] >    request: ClientRequest {
+[info] >      _events: [Object: null prototype] {
+[info] >        socket: [Function],
+[info] >        abort: [Function],
+[info] >        aborted: [Function],
+[info] >        error: [Function],
+[info] >        timeout: [Function],
+[info] >        prefinish: [Function: requestOnPrefinish]
+[info] >      },
+[info] >      _eventsCount: 6,
+[info] >      _maxListeners: undefined,
+[info] >      outputData: [],
+[info] >      outputSize: 0,
+[info] >      writable: true,
+[info] >      _last: true,
+[info] >      chunkedEncoding: false,
+[info] >      shouldKeepAlive: false,
+[info] >      useChunkedEncodingByDefault: false,
+[info] >      sendDate: false,
+[info] >      _removedConnection: false,
+[info] >      _removedContLen: false,
+[info] >      _removedTE: false,
+[info] >      _contentLength: 0,
+[info] >      _hasBody: true,
+[info] >      _trailer: '',
+[info] >      finished: true,
+[info] >      _headerSent: true,
+[info] >      socket: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 41,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      connection: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'api.bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'api.bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 41,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      _header: 'GET /v3/ticker/?book=btc_mxn HTTP/1.1\r\n' +
+[info] >        'Accept: application/json, text/plain, */*\r\n' +
+[info] >        'User-Agent: axios/0.18.0\r\n' +
+[info] >        'Host: api.bitso.com\r\n' +
+[info] >        'Connection: close\r\n' +
+[info] >        '\r\n',
+[info] >      _onPendingData: [Function: noopPendingOutput],
+[info] >      agent: Agent {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 1,
+[info] >        _maxListeners: undefined,
+[info] >        defaultPort: 443,
+[info] >        protocol: 'https:',
+[info] >        options: [Object],
+[info] >        requests: {},
+[info] >        sockets: [Object],
+[info] >        freeSockets: {},
+[info] >        keepAliveMsecs: 1000,
+[info] >        keepAlive: false,
+[info] >        maxSockets: Infinity,
+[info] >        maxFreeSockets: 256,
+[info] >        maxCachedSessions: 100,
+[info] >        _sessionCache: [Object]
+[info] >      },
+[info] >      socketPath: undefined,
+[info] >      method: 'GET',
+[info] >      path: '/v3/ticker/?book=btc_mxn',
+[info] >      _ended: true,
+[info] >      res: IncomingMessage {
+[info] >        _readableState: [ReadableState],
+[info] >        readable: false,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 3,
+[info] >        _maxListeners: undefined,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        httpVersionMajor: 1,
+[info] >        httpVersionMinor: 1,
+[info] >        httpVersion: '1.1',
+[info] >        complete: true,
+[info] >        headers: [Object],
+[info] >        rawHeaders: [Array],
+[info] >        trailers: {},
+[info] >        rawTrailers: [],
+[info] >        aborted: false,
+[info] >        upgrade: false,
+[info] >        url: '',
+[info] >        method: null,
+[info] >        statusCode: 200,
+[info] >        statusMessage: '',
+[info] >        client: [TLSSocket],
+[info] >        _consuming: false,
+[info] >        _dumped: false,
+[info] >        req: [Circular],
+[info] >        responseUrl: 'https://api.bitso.com/v3/ticker/?book=btc_mxn'
+[info] >      },
+[info] >      aborted: false,
+[info] >      timeoutCb: null,
+[info] >      upgradeOrConnect: false,
+[info] >      parser: null,
+[info] >      maxHeadersCount: null,
+[info] >      _redirectable: Writable {
+[info] >        _writableState: [WritableState],
+[info] >        writable: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 2,
+[info] >        _maxListeners: undefined,
+[info] >        _options: [Object],
+[info] >        _redirectCount: 0,
+[info] >        _requestBodyLength: 0,
+[info] >        _requestBodyBuffers: [],
+[info] >        _onNativeResponse: [Function],
+[info] >        _currentRequest: [Circular],
+[info] >        _currentUrl: 'https://api.bitso.com/v3/ticker/?book=btc_mxn'
+[info] >      },
+[info] >      [Symbol(kNeedDrain)]: false,
+[info] >      [Symbol(isCorked)]: false,
+[info] >      [Symbol(kOutHeaders)]: [Object: null prototype] {
+[info] >        accept: [Array],
+[info] >        'user-agent': [Array],
+[info] >        host: [Array]
+[info] >      }
+[info] >    },
+[info] >    data: {
+[info] >      success: true,
+[info] >      payload: {
+[info] >        high: '174489.98',
+[info] >        last: '173036.62',
+[info] >        created_at: '2020-02-28T02:58:16+00:00',
+[info] >        book: 'btc_mxn',
+[info] >        volume: '317.29064106',
+[info] >        vwap: '171378.9364186985',
+[info] >        low: '167636.94',
+[info] >        ask: '173135.92',
+[info] >        bid: '173050.00',
+[info] >        change_24: '5292.86'
+[info] >      }
+[info] >    }
+[info] >  }
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:58:17.261Z] [worker-bitsoTicker-68f9233b-554f-4367-84ff-c55112820ad3]: IDLE
+[debug] [2020-02-28T02:58:17.261Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:58:22.372Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:58:23.375Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:58:23.376Z] [worker-~diagnostic~-c6754461-1c1b-4584-9289-9ca32c07ec03]: FINISHING
+[debug] [2020-02-28T02:58:23.376Z] [worker-pool] Shutting down IDLE worker (bitsoTicker)
+[debug] [2020-02-28T02:58:23.376Z] [worker-bitsoTicker-68f9233b-554f-4367-84ff-c55112820ad3]: FINISHING
+[debug] [2020-02-28T02:58:23.379Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:58:23.379Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:58:23.379Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:58:23.379Z] [worker-~diagnostic~-9c586463-30aa-4c5d-ac3d-532d2d1fd532]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42674.sock
+[debug] [2020-02-28T02:58:23.379Z] [worker-~diagnostic~-9c586463-30aa-4c5d-ac3d-532d2d1fd532]: BUSY
+[debug] [2020-02-28T02:58:23.381Z] [worker-~diagnostic~-c6754461-1c1b-4584-9289-9ca32c07ec03]: exited
+[debug] [2020-02-28T02:58:23.381Z] [worker-~diagnostic~-c6754461-1c1b-4584-9289-9ca32c07ec03]: FINISHED
+[debug] [2020-02-28T02:58:23.381Z] [worker-bitsoTicker-68f9233b-554f-4367-84ff-c55112820ad3]: exited
+[debug] [2020-02-28T02:58:23.381Z] [worker-bitsoTicker-68f9233b-554f-4367-84ff-c55112820ad3]: FINISHED
+[debug] [2020-02-28T02:58:23.565Z] [runtime-status] [42674] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:58:23.566Z] [runtime-status] [42674] Disabled runtime features: undefined
+[debug] [2020-02-28T02:58:23.568Z] [runtime-status] [42674] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:23.569Z] [runtime-status] [42674] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:23.681Z] [runtime-status] [42674] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:58:23.681Z] [runtime-status] [42674] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:58:23.706Z] [runtime-status] [42674] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:58:23.706Z] [runtime-status] [42674] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:23.707Z] [runtime-status] [42674] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:23.708Z] [runtime-status] [42674] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:23.733Z] [runtime-status] [42674] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:58:23.744Z] [worker-~diagnostic~-9c586463-30aa-4c5d-ac3d-532d2d1fd532]: IDLE
+[debug] [2020-02-28T02:58:25.632Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:58:26.637Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:58:26.637Z] [worker-~diagnostic~-9c586463-30aa-4c5d-ac3d-532d2d1fd532]: FINISHING
+[debug] [2020-02-28T02:58:26.637Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:58:26.637Z] [worker-pool] Cleaned up workers for bitsoTicker: 1 --> 0
+[debug] [2020-02-28T02:58:26.641Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:58:26.641Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:58:26.641Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:58:26.641Z] [worker-~diagnostic~-b5e35bfd-b6b1-4382-a35f-fab793091a62]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42676.sock
+[debug] [2020-02-28T02:58:26.641Z] [worker-~diagnostic~-b5e35bfd-b6b1-4382-a35f-fab793091a62]: BUSY
+[debug] [2020-02-28T02:58:26.642Z] [worker-~diagnostic~-9c586463-30aa-4c5d-ac3d-532d2d1fd532]: exited
+[debug] [2020-02-28T02:58:26.642Z] [worker-~diagnostic~-9c586463-30aa-4c5d-ac3d-532d2d1fd532]: FINISHED
+[debug] [2020-02-28T02:58:26.819Z] [runtime-status] [42676] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:58:26.820Z] [runtime-status] [42676] Disabled runtime features: undefined
+[debug] [2020-02-28T02:58:26.821Z] [runtime-status] [42676] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:26.822Z] [runtime-status] [42676] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:26.931Z] [runtime-status] [42676] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:58:26.932Z] [runtime-status] [42676] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:58:26.954Z] [runtime-status] [42676] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:58:26.954Z] [runtime-status] [42676] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:26.955Z] [runtime-status] [42676] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:26.955Z] [runtime-status] [42676] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:26.977Z] [runtime-status] [42676] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:58:26.986Z] [worker-~diagnostic~-b5e35bfd-b6b1-4382-a35f-fab793091a62]: IDLE
+[debug] [2020-02-28T02:58:28.108Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:58:28.108Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:58:28.108Z] Accepted request GET /bitso-challenge/us-central1/bitsoTicker?book=btc_mxn --> bitsoTicker
+[debug] [2020-02-28T02:58:28.108Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:58:28.111Z] [worker-pool] addWorker(bitsoTicker)
+[debug] [2020-02-28T02:58:28.111Z] [worker-pool] Adding worker with key bitsoTicker, total=1
+[debug] [2020-02-28T02:58:28.111Z] [worker-pool] submitWork(triggerId=bitsoTicker)
+[debug] [2020-02-28T02:58:28.111Z] [worker-bitsoTicker-b5363782-4b99-4a0c-a0da-22b3aad6786f]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42677.sock
+[debug] [2020-02-28T02:58:28.111Z] [worker-bitsoTicker-b5363782-4b99-4a0c-a0da-22b3aad6786f]: BUSY
+[debug] [2020-02-28T02:58:28.295Z] [runtime-status] [42677] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:58:28.296Z] [runtime-status] [42677] Disabled runtime features: undefined
+[debug] [2020-02-28T02:58:28.298Z] [runtime-status] [42677] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:28.299Z] [runtime-status] [42677] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:28.422Z] [runtime-status] [42677] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:58:28.423Z] [runtime-status] [42677] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:58:28.451Z] [runtime-status] [42677] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:58:28.452Z] [runtime-status] [42677] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:28.453Z] [runtime-status] [42677] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:28.453Z] [runtime-status] [42677] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:28.483Z] [runtime-status] [42677] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:58:28.494Z] [runtime-status] [42677] Trigger "bitsoTicker" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoTicker"
+[debug] [2020-02-28T02:58:28.494Z] [runtime-status] [42677] triggerDefinition {"httpsTrigger":{},"name":"bitsoTicker","entryPoint":"bitsoTicker"}
+[debug] [2020-02-28T02:58:28.494Z] [runtime-status] [42677] Running bitsoTicker in mode HTTPS
+[debug] [2020-02-28T02:58:28.497Z] [runtime-status] [42677] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42677.sock
+[debug] [2020-02-28T02:58:28.499Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:58:28.504Z] [runtime-status] [42677] Ephemeral server handling GET request
+[info] >  btc_mxn
+[debug] [2020-02-28T02:58:28.520Z] [runtime-status] [42677] Ephemeral server survived.
+[info] >  ------------
+[info] >  {
+[info] >    success: true,
+[info] >    payload: {
+[info] >      high: '174489.98',
+[info] >      last: '173135.92',
+[info] >      created_at: '2020-02-28T02:58:28+00:00',
+[info] >      book: 'btc_mxn',
+[info] >      volume: '317.36109904',
+[info] >      vwap: '171379.3264896392',
+[info] >      low: '167636.94',
+[info] >      ask: '173135.92',
+[info] >      bid: '173050.00',
+[info] >      change_24: '5392.16'
+[info] >    }
+[info] >  }
+[info] i  functions: Finished "bitsoTicker" in ~1s
+[debug] [2020-02-28T02:58:28.699Z] [worker-bitsoTicker-b5363782-4b99-4a0c-a0da-22b3aad6786f]: IDLE
+[debug] [2020-02-28T02:58:28.699Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T02:58:44.334Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T02:58:45.336Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T02:58:45.336Z] [worker-~diagnostic~-b5e35bfd-b6b1-4382-a35f-fab793091a62]: FINISHING
+[debug] [2020-02-28T02:58:45.336Z] [worker-pool] Shutting down IDLE worker (bitsoTicker)
+[debug] [2020-02-28T02:58:45.336Z] [worker-bitsoTicker-b5363782-4b99-4a0c-a0da-22b3aad6786f]: FINISHING
+[debug] [2020-02-28T02:58:45.340Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T02:58:45.340Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T02:58:45.340Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T02:58:45.340Z] [worker-~diagnostic~-5a960b06-59cc-4078-b292-c081e03baff7]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42679.sock
+[debug] [2020-02-28T02:58:45.340Z] [worker-~diagnostic~-5a960b06-59cc-4078-b292-c081e03baff7]: BUSY
+[debug] [2020-02-28T02:58:45.341Z] [worker-~diagnostic~-b5e35bfd-b6b1-4382-a35f-fab793091a62]: exited
+[debug] [2020-02-28T02:58:45.342Z] [worker-~diagnostic~-b5e35bfd-b6b1-4382-a35f-fab793091a62]: FINISHED
+[debug] [2020-02-28T02:58:45.342Z] [worker-bitsoTicker-b5363782-4b99-4a0c-a0da-22b3aad6786f]: exited
+[debug] [2020-02-28T02:58:45.342Z] [worker-bitsoTicker-b5363782-4b99-4a0c-a0da-22b3aad6786f]: FINISHED
+[debug] [2020-02-28T02:58:45.542Z] [runtime-status] [42679] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:58:45.543Z] [runtime-status] [42679] Disabled runtime features: undefined
+[debug] [2020-02-28T02:58:45.544Z] [runtime-status] [42679] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:45.545Z] [runtime-status] [42679] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:45.675Z] [runtime-status] [42679] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:58:45.675Z] [runtime-status] [42679] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:58:45.702Z] [runtime-status] [42679] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:58:45.702Z] [runtime-status] [42679] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:45.703Z] [runtime-status] [42679] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:58:45.703Z] [runtime-status] [42679] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:58:45.730Z] [runtime-status] [42679] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:58:45.740Z] [worker-~diagnostic~-5a960b06-59cc-4078-b292-c081e03baff7]: IDLE
+[debug] [2020-02-28T02:59:55.471Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T02:59:55.471Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T02:59:55.471Z] Accepted request GET /bitso-challenge/us-central1/bitsoChart --> bitsoChart
+[debug] [2020-02-28T02:59:55.471Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T02:59:55.471Z] [worker-pool] Cleaned up workers for bitsoTicker: 1 --> 0
+[debug] [2020-02-28T02:59:55.475Z] [worker-pool] addWorker(bitsoChart)
+[debug] [2020-02-28T02:59:55.475Z] [worker-pool] Adding worker with key bitsoChart, total=1
+[debug] [2020-02-28T02:59:55.475Z] [worker-pool] submitWork(triggerId=bitsoChart)
+[debug] [2020-02-28T02:59:55.475Z] [worker-bitsoChart-fd5b7810-1ab7-4705-8162-1c1d4b629ae2]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42692.sock
+[debug] [2020-02-28T02:59:55.475Z] [worker-bitsoChart-fd5b7810-1ab7-4705-8162-1c1d4b629ae2]: BUSY
+[debug] [2020-02-28T02:59:55.656Z] [runtime-status] [42692] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T02:59:55.657Z] [runtime-status] [42692] Disabled runtime features: undefined
+[debug] [2020-02-28T02:59:55.658Z] [runtime-status] [42692] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:59:55.659Z] [runtime-status] [42692] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:59:55.783Z] [runtime-status] [42692] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T02:59:55.783Z] [runtime-status] [42692] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T02:59:55.809Z] [runtime-status] [42692] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T02:59:55.809Z] [runtime-status] [42692] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:59:55.810Z] [runtime-status] [42692] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T02:59:55.810Z] [runtime-status] [42692] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T02:59:55.836Z] [runtime-status] [42692] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T02:59:55.844Z] [runtime-status] [42692] Trigger "bitsoChart" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoChart"
+[debug] [2020-02-28T02:59:55.845Z] [runtime-status] [42692] triggerDefinition {"httpsTrigger":{},"name":"bitsoChart","entryPoint":"bitsoChart"}
+[debug] [2020-02-28T02:59:55.845Z] [runtime-status] [42692] Running bitsoChart in mode HTTPS
+[debug] [2020-02-28T02:59:55.847Z] [runtime-status] [42692] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42692.sock
+[debug] [2020-02-28T02:59:55.849Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T02:59:55.854Z] [runtime-status] [42692] Ephemeral server handling GET request
+[debug] [2020-02-28T02:59:55.854Z] [runtime-status] [42692] Ephemeral server survived.
+[warn] ⚠  functions: TypeError: Cannot read property 'replace' of undefined
+    at /Users/jaime/GitHub/front-end-challenge/functions/index.js:28:42
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:622:20
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:597:19
+    at Generator.next (<anonymous>)
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:4:12)
+    at runFunction (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:594:12)
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:621:15
+    at Generator.next (<anonymous>)
+[warn] ⚠  Your function was killed because it raised an unhandled error.
+[debug] [2020-02-28T02:59:55.861Z] [worker-bitsoChart-fd5b7810-1ab7-4705-8162-1c1d4b629ae2]: exited
+[debug] [2020-02-28T02:59:55.862Z] [worker-bitsoChart-fd5b7810-1ab7-4705-8162-1c1d4b629ae2]: FINISHED
+[debug] [2020-02-28T02:59:55.862Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T03:00:17.122Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T03:00:17.122Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T03:00:17.122Z] Accepted request GET /bitso-challenge/us-central1/bitsoChart --> bitsoChart
+[debug] [2020-02-28T03:00:17.122Z] [worker-pool] Cleaned up workers for bitsoChart: 1 --> 0
+[debug] [2020-02-28T03:00:17.125Z] [worker-pool] addWorker(bitsoChart)
+[debug] [2020-02-28T03:00:17.126Z] [worker-pool] Adding worker with key bitsoChart, total=1
+[debug] [2020-02-28T03:00:17.126Z] [worker-pool] submitWork(triggerId=bitsoChart)
+[debug] [2020-02-28T03:00:17.126Z] [worker-bitsoChart-2a620221-9361-4b96-b603-db6f263286d8]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42693.sock
+[debug] [2020-02-28T03:00:17.126Z] [worker-bitsoChart-2a620221-9361-4b96-b603-db6f263286d8]: BUSY
+[debug] [2020-02-28T03:00:17.329Z] [runtime-status] [42693] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T03:00:17.330Z] [runtime-status] [42693] Disabled runtime features: undefined
+[debug] [2020-02-28T03:00:17.332Z] [runtime-status] [42693] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:00:17.333Z] [runtime-status] [42693] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:17.466Z] [runtime-status] [42693] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T03:00:17.466Z] [runtime-status] [42693] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T03:00:17.493Z] [runtime-status] [42693] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T03:00:17.493Z] [runtime-status] [42693] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:17.494Z] [runtime-status] [42693] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:00:17.494Z] [runtime-status] [42693] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:17.522Z] [runtime-status] [42693] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T03:00:17.532Z] [runtime-status] [42693] Trigger "bitsoChart" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoChart"
+[debug] [2020-02-28T03:00:17.533Z] [runtime-status] [42693] triggerDefinition {"httpsTrigger":{},"name":"bitsoChart","entryPoint":"bitsoChart"}
+[debug] [2020-02-28T03:00:17.533Z] [runtime-status] [42693] Running bitsoChart in mode HTTPS
+[debug] [2020-02-28T03:00:17.535Z] [runtime-status] [42693] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42693.sock
+[debug] [2020-02-28T03:00:17.537Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T03:00:17.542Z] [runtime-status] [42693] Ephemeral server handling GET request
+[debug] [2020-02-28T03:00:17.542Z] [runtime-status] [42693] Ephemeral server survived.
+[warn] ⚠  functions: TypeError: Cannot read property 'replace' of undefined
+    at /Users/jaime/GitHub/front-end-challenge/functions/index.js:28:42
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:622:20
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:597:19
+    at Generator.next (<anonymous>)
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:4:12)
+    at runFunction (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:594:12)
+    at /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:621:15
+    at Generator.next (<anonymous>)
+[warn] ⚠  Your function was killed because it raised an unhandled error.
+[debug] [2020-02-28T03:00:17.548Z] [worker-bitsoChart-2a620221-9361-4b96-b603-db6f263286d8]: exited
+[debug] [2020-02-28T03:00:17.548Z] [worker-bitsoChart-2a620221-9361-4b96-b603-db6f263286d8]: FINISHED
+[debug] [2020-02-28T03:00:17.548Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T03:00:27.340Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T03:00:27.340Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T03:00:27.340Z] Accepted request GET /bitso-challenge/us-central1/bitsoChart?mxn --> bitsoChart
+[debug] [2020-02-28T03:00:27.340Z] [worker-pool] Cleaned up workers for bitsoChart: 1 --> 0
+[debug] [2020-02-28T03:00:27.344Z] [worker-pool] addWorker(bitsoChart)
+[debug] [2020-02-28T03:00:27.345Z] [worker-pool] Adding worker with key bitsoChart, total=1
+[debug] [2020-02-28T03:00:27.345Z] [worker-pool] submitWork(triggerId=bitsoChart)
+[debug] [2020-02-28T03:00:27.345Z] [worker-bitsoChart-28a97473-aa9f-47e2-9eb9-f314290a757e]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42694.sock
+[debug] [2020-02-28T03:00:27.345Z] [worker-bitsoChart-28a97473-aa9f-47e2-9eb9-f314290a757e]: BUSY
+[debug] [2020-02-28T03:00:27.551Z] [runtime-status] [42694] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T03:00:27.552Z] [runtime-status] [42694] Disabled runtime features: undefined
+[debug] [2020-02-28T03:00:27.554Z] [runtime-status] [42694] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:00:27.555Z] [runtime-status] [42694] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:27.680Z] [runtime-status] [42694] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T03:00:27.680Z] [runtime-status] [42694] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T03:00:27.708Z] [runtime-status] [42694] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T03:00:27.709Z] [runtime-status] [42694] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:27.709Z] [runtime-status] [42694] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:00:27.710Z] [runtime-status] [42694] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:27.742Z] [runtime-status] [42694] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T03:00:27.753Z] [runtime-status] [42694] Trigger "bitsoChart" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoChart"
+[debug] [2020-02-28T03:00:27.753Z] [runtime-status] [42694] triggerDefinition {"httpsTrigger":{},"name":"bitsoChart","entryPoint":"bitsoChart"}
+[debug] [2020-02-28T03:00:27.753Z] [runtime-status] [42694] Running bitsoChart in mode HTTPS
+[debug] [2020-02-28T03:00:27.756Z] [runtime-status] [42694] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42694.sock
+[debug] [2020-02-28T03:00:27.758Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T03:00:27.763Z] [runtime-status] [42694] Ephemeral server handling GET request
+[debug] [2020-02-28T03:00:27.778Z] [runtime-status] [42694] Ephemeral server survived.
+[info] i  functions: Finished "bitsoChart" in ~1s
+[debug] [2020-02-28T03:00:27.964Z] [worker-bitsoChart-28a97473-aa9f-47e2-9eb9-f314290a757e]: IDLE
+[debug] [2020-02-28T03:00:27.964Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2020-02-28T03:00:45.974Z] File /Users/jaime/GitHub/front-end-challenge/functions/index.js changed, reloading triggers
+[debug] [2020-02-28T03:00:46.977Z] [worker-pool] Shutting down IDLE worker (~diagnostic~)
+[debug] [2020-02-28T03:00:46.977Z] [worker-~diagnostic~-5a960b06-59cc-4078-b292-c081e03baff7]: FINISHING
+[debug] [2020-02-28T03:00:46.977Z] [worker-pool] Shutting down IDLE worker (bitsoChart)
+[debug] [2020-02-28T03:00:46.977Z] [worker-bitsoChart-28a97473-aa9f-47e2-9eb9-f314290a757e]: FINISHING
+[debug] [2020-02-28T03:00:46.982Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-02-28T03:00:46.982Z] [worker-pool] Adding worker with key ~diagnostic~, total=2
+[debug] [2020-02-28T03:00:46.982Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-02-28T03:00:46.982Z] [worker-~diagnostic~-8011cc20-202d-410a-8575-18f81438124d]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42696.sock
+[debug] [2020-02-28T03:00:46.982Z] [worker-~diagnostic~-8011cc20-202d-410a-8575-18f81438124d]: BUSY
+[debug] [2020-02-28T03:00:46.983Z] [worker-~diagnostic~-5a960b06-59cc-4078-b292-c081e03baff7]: exited
+[debug] [2020-02-28T03:00:46.983Z] [worker-~diagnostic~-5a960b06-59cc-4078-b292-c081e03baff7]: FINISHED
+[debug] [2020-02-28T03:00:46.984Z] [worker-bitsoChart-28a97473-aa9f-47e2-9eb9-f314290a757e]: exited
+[debug] [2020-02-28T03:00:46.984Z] [worker-bitsoChart-28a97473-aa9f-47e2-9eb9-f314290a757e]: FINISHED
+[debug] [2020-02-28T03:00:47.157Z] [runtime-status] [42696] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T03:00:47.158Z] [runtime-status] [42696] Disabled runtime features: undefined
+[debug] [2020-02-28T03:00:47.159Z] [runtime-status] [42696] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:00:47.160Z] [runtime-status] [42696] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:47.267Z] [runtime-status] [42696] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T03:00:47.267Z] [runtime-status] [42696] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T03:00:47.289Z] [runtime-status] [42696] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T03:00:47.289Z] [runtime-status] [42696] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:47.290Z] [runtime-status] [42696] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:00:47.290Z] [runtime-status] [42696] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:00:47.312Z] [runtime-status] [42696] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T03:00:47.321Z] [worker-~diagnostic~-8011cc20-202d-410a-8575-18f81438124d]: IDLE
+[debug] [2020-02-28T03:02:25.572Z] [work-queue] {"queueLength":1,"workRunningCount":1}
+[debug] [2020-02-28T03:02:25.572Z] [work-queue] {"queueLength":0,"workRunningCount":2}
+[debug] [2020-02-28T03:02:25.572Z] Accepted request GET /bitso-challenge/us-central1/bitsoChart?book=btc_mxn&timeframe=1year --> bitsoChart
+[debug] [2020-02-28T03:02:25.572Z] [worker-pool] Cleaned up workers for ~diagnostic~: 2 --> 1
+[debug] [2020-02-28T03:02:25.572Z] [worker-pool] Cleaned up workers for bitsoChart: 1 --> 0
+[debug] [2020-02-28T03:02:25.575Z] [worker-pool] addWorker(bitsoChart)
+[debug] [2020-02-28T03:02:25.575Z] [worker-pool] Adding worker with key bitsoChart, total=1
+[debug] [2020-02-28T03:02:25.575Z] [worker-pool] submitWork(triggerId=bitsoChart)
+[debug] [2020-02-28T03:02:25.575Z] [worker-bitsoChart-75dc550b-b9e8-4b77-8326-5d03660f2a3a]: Assigning socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42721.sock
+[debug] [2020-02-28T03:02:25.575Z] [worker-bitsoChart-75dc550b-b9e8-4b77-8326-5d03660f2a3a]: BUSY
+[debug] [2020-02-28T03:02:25.779Z] [runtime-status] [42721] Functions runtime initialized. {"cwd":"/Users/jaime/GitHub/front-end-challenge/functions","node_version":"12.13.1"}
+[debug] [2020-02-28T03:02:25.781Z] [runtime-status] [42721] Disabled runtime features: undefined
+[debug] [2020-02-28T03:02:25.783Z] [runtime-status] [42721] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:02:25.784Z] [runtime-status] [42721] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:02:25.919Z] [runtime-status] [42721] Found google-gax at /Users/jaime/GitHub/front-end-challenge/functions/node_modules/google-gax/build/src/index.js
+[debug] [2020-02-28T03:02:25.919Z] [runtime-status] [42721] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"},{"name":"google-gax","status":"mocked"}]
+[debug] [2020-02-28T03:02:25.946Z] [runtime-status] [42721] Checked functions.config() {"config":{}}
+[debug] [2020-02-28T03:02:25.946Z] [runtime-status] [42721] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:02:25.947Z] [runtime-status] [42721] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-02-28T03:02:25.947Z] [runtime-status] [42721] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-02-28T03:02:25.974Z] [runtime-status] [42721] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/jaime/GitHub/front-end-challenge/functions/node_modules/firebase-admin/lib/index.js"}}
+[debug] [2020-02-28T03:02:25.985Z] [runtime-status] [42721] Trigger "bitsoChart" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "bitsoChart"
+[debug] [2020-02-28T03:02:25.985Z] [runtime-status] [42721] triggerDefinition {"httpsTrigger":{},"name":"bitsoChart","entryPoint":"bitsoChart"}
+[debug] [2020-02-28T03:02:25.985Z] [runtime-status] [42721] Running bitsoChart in mode HTTPS
+[debug] [2020-02-28T03:02:25.988Z] [runtime-status] [42721] Attempting to listen to socketPath: /var/folders/ln/3s6b7myd6f5g7qxd91nk97fw0000gn/T/fire_emu_42721.sock
+[debug] [2020-02-28T03:02:25.990Z] [functions] Runtime ready! Sending request!
+[debug] [2020-02-28T03:02:25.995Z] [runtime-status] [42721] Ephemeral server handling GET request
+[debug] [2020-02-28T03:02:26.010Z] [runtime-status] [42721] Ephemeral server survived.
+[info] >  Error: Request failed with status code 400
+[info] >      at createError (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/createError.js:16:15)
+[info] >      at settle (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/core/settle.js:18:12)
+[info] >      at IncomingMessage.handleStreamEnd (/Users/jaime/GitHub/front-end-challenge/functions/node_modules/axios/lib/adapters/http.js:201:11)
+[info] >      at IncomingMessage.emit (events.js:215:7)
+[info] >      at endReadableNT (_stream_readable.js:1184:12)
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+[info] >    config: {
+[info] >      adapter: [Function: httpAdapter],
+[info] >      transformRequest: { '0': [Function: transformRequest] },
+[info] >      transformResponse: { '0': [Function: transformResponse] },
+[info] >      timeout: 0,
+[info] >      xsrfCookieName: 'XSRF-TOKEN',
+[info] >      xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >      maxContentLength: -1,
+[info] >      validateStatus: [Function: validateStatus],
+[info] >      headers: {
+[info] >        Accept: 'application/json, text/plain, */*',
+[info] >        'User-Agent': 'axios/0.18.0'
+[info] >      },
+[info] >      method: 'get',
+[info] >      url: 'https://bitso.com/trade/chartJSON/book=btc_mxn/timeframe=1year',
+[info] >      data: undefined
+[info] >    },
+[info] >    request: ClientRequest {
+[info] >      _events: [Object: null prototype] {
+[info] >        socket: [Function],
+[info] >        abort: [Function],
+[info] >        aborted: [Function],
+[info] >        error: [Function],
+[info] >        timeout: [Function],
+[info] >        prefinish: [Function: requestOnPrefinish]
+[info] >      },
+[info] >      _eventsCount: 6,
+[info] >      _maxListeners: undefined,
+[info] >      outputData: [],
+[info] >      outputSize: 0,
+[info] >      writable: true,
+[info] >      _last: true,
+[info] >      chunkedEncoding: false,
+[info] >      shouldKeepAlive: false,
+[info] >      useChunkedEncodingByDefault: false,
+[info] >      sendDate: false,
+[info] >      _removedConnection: false,
+[info] >      _removedContLen: false,
+[info] >      _removedTE: false,
+[info] >      _contentLength: 0,
+[info] >      _hasBody: true,
+[info] >      _trailer: '',
+[info] >      finished: true,
+[info] >      _headerSent: true,
+[info] >      socket: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      connection: TLSSocket {
+[info] >        _tlsOptions: [Object],
+[info] >        _secureEstablished: true,
+[info] >        _securePending: false,
+[info] >        _newSessionPending: false,
+[info] >        _controlReleased: true,
+[info] >        _SNICallback: null,
+[info] >        servername: 'bitso.com',
+[info] >        alpnProtocol: false,
+[info] >        authorized: true,
+[info] >        authorizationError: null,
+[info] >        encrypted: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 9,
+[info] >        connecting: false,
+[info] >        _hadError: false,
+[info] >        _parent: null,
+[info] >        _host: 'bitso.com',
+[info] >        _readableState: [ReadableState],
+[info] >        readable: true,
+[info] >        _maxListeners: undefined,
+[info] >        _writableState: [WritableState],
+[info] >        writable: false,
+[info] >        allowHalfOpen: false,
+[info] >        _sockname: null,
+[info] >        _pendingData: null,
+[info] >        _pendingEncoding: '',
+[info] >        server: undefined,
+[info] >        _server: null,
+[info] >        ssl: [TLSWrap],
+[info] >        _requestCert: true,
+[info] >        _rejectUnauthorized: true,
+[info] >        parser: null,
+[info] >        _httpMessage: [Circular],
+[info] >        [Symbol(res)]: [TLSWrap],
+[info] >        [Symbol(asyncId)]: 40,
+[info] >        [Symbol(kHandle)]: [TLSWrap],
+[info] >        [Symbol(lastWriteQueueSize)]: 0,
+[info] >        [Symbol(timeout)]: null,
+[info] >        [Symbol(kBuffer)]: null,
+[info] >        [Symbol(kBufferCb)]: null,
+[info] >        [Symbol(kBufferGen)]: null,
+[info] >        [Symbol(kBytesRead)]: 0,
+[info] >        [Symbol(kBytesWritten)]: 0,
+[info] >        [Symbol(connect-options)]: [Object]
+[info] >      },
+[info] >      _header: 'GET /trade/chartJSON/book=btc_mxn/timeframe=1year HTTP/1.1\r\n' +
+[info] >        'Accept: application/json, text/plain, */*\r\n' +
+[info] >        'User-Agent: axios/0.18.0\r\n' +
+[info] >        'Host: bitso.com\r\n' +
+[info] >        'Connection: close\r\n' +
+[info] >        '\r\n',
+[info] >      _onPendingData: [Function: noopPendingOutput],
+[info] >      agent: Agent {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 1,
+[info] >        _maxListeners: undefined,
+[info] >        defaultPort: 443,
+[info] >        protocol: 'https:',
+[info] >        options: [Object],
+[info] >        requests: {},
+[info] >        sockets: [Object],
+[info] >        freeSockets: {},
+[info] >        keepAliveMsecs: 1000,
+[info] >        keepAlive: false,
+[info] >        maxSockets: Infinity,
+[info] >        maxFreeSockets: 256,
+[info] >        maxCachedSessions: 100,
+[info] >        _sessionCache: [Object]
+[info] >      },
+[info] >      socketPath: undefined,
+[info] >      method: 'GET',
+[info] >      path: '/trade/chartJSON/book=btc_mxn/timeframe=1year',
+[info] >      _ended: true,
+[info] >      res: IncomingMessage {
+[info] >        _readableState: [ReadableState],
+[info] >        readable: false,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 3,
+[info] >        _maxListeners: undefined,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        httpVersionMajor: 1,
+[info] >        httpVersionMinor: 1,
+[info] >        httpVersion: '1.1',
+[info] >        complete: true,
+[info] >        headers: [Object],
+[info] >        rawHeaders: [Array],
+[info] >        trailers: {},
+[info] >        rawTrailers: [],
+[info] >        aborted: false,
+[info] >        upgrade: false,
+[info] >        url: '',
+[info] >        method: null,
+[info] >        statusCode: 400,
+[info] >        statusMessage: 'Bad Request',
+[info] >        client: [TLSSocket],
+[info] >        _consuming: false,
+[info] >        _dumped: false,
+[info] >        req: [Circular],
+[info] >        responseUrl: 'https://bitso.com/trade/chartJSON/book=btc_mxn/timeframe=1year'
+[info] >      },
+[info] >      aborted: false,
+[info] >      timeoutCb: null,
+[info] >      upgradeOrConnect: false,
+[info] >      parser: null,
+[info] >      maxHeadersCount: null,
+[info] >      _redirectable: Writable {
+[info] >        _writableState: [WritableState],
+[info] >        writable: true,
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 2,
+[info] >        _maxListeners: undefined,
+[info] >        _options: [Object],
+[info] >        _redirectCount: 0,
+[info] >        _requestBodyLength: 0,
+[info] >        _requestBodyBuffers: [],
+[info] >        _onNativeResponse: [Function],
+[info] >        _currentRequest: [Circular],
+[info] >        _currentUrl: 'https://bitso.com/trade/chartJSON/book=btc_mxn/timeframe=1year'
+[info] >      },
+[info] >      [Symbol(kNeedDrain)]: false,
+[info] >      [Symbol(isCorked)]: false,
+[info] >      [Symbol(kOutHeaders)]: [Object: null prototype] {
+[info] >        accept: [Array],
+[info] >        'user-agent': [Array],
+[info] >        host: [Array]
+[info] >      }
+[info] >    },
+[info] >    response: {
+[info] >      status: 400,
+[info] >      statusText: 'Bad Request',
+[info] >      headers: {
+[info] >        date: 'Fri, 28 Feb 2020 03:02:26 GMT',
+[info] >        'content-type': 'text/html; charset=UTF-8',
+[info] >        'transfer-encoding': 'chunked',
+[info] >        connection: 'close',
+[info] >        'set-cookie': [Array],
+[info] >        location: '/invaliduri',
+[info] >        'x-frame-options': 'sameorigin',
+[info] >        'x-xss-protection': '1; mode=block',
+[info] >        'x-content-type-options': 'nosniff',
+[info] >        'x-permitted-cross-domain-policies': 'master-only',
+[info] >        'content-security-policy': "frame-ancestors 'self';",
+[info] >        'cache-control': 'no-cache, no-store, must-revalidate',
+[info] >        pragma: 'no-cache',
+[info] >        expires: '0',
+[info] >        'cf-cache-status': 'DYNAMIC',
+[info] >        'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+[info] >        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+[info] >        server: 'cloudflare',
+[info] >        'cf-ray': '56bf28dcfd439adc-DFW'
+[info] >      },
+[info] >      config: {
+[info] >        adapter: [Function: httpAdapter],
+[info] >        transformRequest: [Object],
+[info] >        transformResponse: [Object],
+[info] >        timeout: 0,
+[info] >        xsrfCookieName: 'XSRF-TOKEN',
+[info] >        xsrfHeaderName: 'X-XSRF-TOKEN',
+[info] >        maxContentLength: -1,
+[info] >        validateStatus: [Function: validateStatus],
+[info] >        headers: [Object],
+[info] >        method: 'get',
+[info] >        url: 'https://bitso.com/trade/chartJSON/book=btc_mxn/timeframe=1year',
+[info] >        data: undefined
+[info] >      },
+[info] >      request: ClientRequest {
+[info] >        _events: [Object: null prototype],
+[info] >        _eventsCount: 6,
+[info] >        _maxListeners: undefined,
+[info] >        outputData: [],
+[info] >        outputSize: 0,
+[info] >        writable: true,
+[info] >        _last: true,
+[info] >        chunkedEncoding: false,
+[info] >        shouldKeepAlive: false,
+[info] >        useChunkedEncodingByDefault: false,
+[info] >        sendDate: false,
+[info] >        _removedConnection: false,
+[info] >        _removedContLen: false,
+[info] >        _removedTE: false,
+[info] >        _contentLength: 0,
+[info] >        _hasBody: true,
+[info] >        _trailer: '',
+[info] >        finished: true,
+[info] >        _headerSent: true,
+[info] >        socket: [TLSSocket],
+[info] >        connection: [TLSSocket],
+[info] >        _header: 'GET /trade/chartJSON/book=btc_mxn/timeframe=1year HTTP/1.1\r\n' +
+[info] >          'Accept: application/json, text/plain, */*\r\n' +
+[info] >          'User-Agent: axios/0.18.0\r\n' +
+[info] >          'Host: bitso.com\r\n' +
+[info] >          'Connection: close\r\n' +
+[info] >          '\r\n',
+[info] >        _onPendingData: [Function: noopPendingOutput],
+[info] >        agent: [Agent],
+[info] >        socketPath: undefined,
+[info] >        method: 'GET',
+[info] >        path: '/trade/chartJSON/book=btc_mxn/timeframe=1year',
+[info] >        _ended: true,
+[info] >        res: [IncomingMessage],
+[info] >        aborted: false,
+[info] >        timeoutCb: null,
+[info] >        upgradeOrConnect: false,
+[info] >        parser: null,
+[info] >        maxHeadersCount: null,
+[info] >        _redirectable: [Writable],
+[info] >        [Symbol(kNeedDrain)]: false,
+[info] >        [Symbol(isCorked)]: false,
+[info] >        [Symbol(kOutHeaders)]: [Object: null prototype]
+[info] >      },
+[info] >      data: ''
+[info] >    }
+[info] >  }
+[info] >  (node:42721) UnhandledPromiseRejectionWarning: TypeError: Converting circular structure to JSON
+[info] >      --> starting at object with constructor 'ClientRequest'
+[info] >      |     property 'socket' -> object with constructor 'TLSSocket'
+[info] >      --- property '_httpMessage' closes the circle
+[info] >      at JSON.stringify (<anonymous>)
+[info] >      at stringify (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:1123:12)
+[info] >      at ServerResponse.json (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:260:14)
+[info] >      at ServerResponse.send (/usr/local/lib/node_modules/firebase-tools/node_modules/express/lib/response.js:158:21)
+[info] >      at /Users/jaime/GitHub/front-end-challenge/functions/index.js:39:15
+[info] >      at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[info] >  (node:42721) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+[info] >  (node:42721) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+[warn] ⚠  functions: Your function timed out after ~60s. To configure this timeout, see
+      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation.
+[info] >  /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671
+[info] >                  throw new Error("Function timed out.");
+[info] >                  ^
+[info] >  
+[info] >  Error: Function timed out.
+[info] >      at Timeout._onTimeout (/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:671:23)
+[info] >      at listOnTimeout (internal/timers.js:531:17)
+[info] >      at processTimers (internal/timers.js:475:7)
+[debug] [2020-02-28T03:03:25.998Z] [worker-bitsoChart-75dc550b-b9e8-4b77-8326-5d03660f2a3a]: exited
+[debug] [2020-02-28T03:03:25.998Z] [worker-bitsoChart-75dc550b-b9e8-4b77-8326-5d03660f2a3a]: FINISHED
+[debug] [2020-02-28T03:03:25.998Z] [work-queue] {"queueLength":0,"workRunningCount":1}
